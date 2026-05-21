@@ -9,10 +9,64 @@ import {
   FileText,
   RefreshCw,
 } from "lucide-react";
+import Swal from "sweetalert2";
 import { booksService } from "@/lib/api/services/books.service";
 import { BookSummary, BookStatus, CreateBookDto } from "@/types/books.types";
 import { useToast } from "@/contexts/ToastContext";
 import UploadModal from "@/components/Dashboard/Library/UploadModal";
+
+const applyButtonStyles = (popup: HTMLElement, confirmColor: string) => {
+  const confirm = popup.querySelector<HTMLElement>(".swal2-confirm");
+  const cancel = popup.querySelector<HTMLElement>(".swal2-cancel");
+
+  if (confirm) {
+    confirm.style.cssText = `
+      background-color: ${confirmColor} !important;
+      color: ${confirmColor === "var(--z-error)" ? "#fff" : "#0d0d0d"} !important;
+      font-weight: 600;
+      border-radius: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.875rem;
+      border: none;
+      cursor: pointer;
+    `;
+  }
+
+  if (cancel) {
+    cancel.style.cssText = `
+      background: transparent !important;
+      color: var(--z-text-secondary) !important;
+      border: 1.5px solid var(--z-border) !important;
+      font-weight: 500;
+      border-radius: 0.75rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    `;
+    cancel.addEventListener("mouseenter", () => {
+      cancel.style.borderColor = "var(--z-text-muted)";
+      cancel.style.color = "var(--z-text-primary)";
+    });
+    cancel.addEventListener("mouseleave", () => {
+      cancel.style.borderColor = "var(--z-border)";
+      cancel.style.color = "var(--z-text-secondary)";
+    });
+  }
+};
+
+const swalBase = Swal.mixin({
+  background: "var(--z-bg-elevated)",
+  color: "var(--z-text-primary)",
+  confirmButtonColor: "var(--z-gold)",
+  cancelButtonColor: "#transparent",
+  customClass: {
+    popup: "!rounded-2xl !border !border-[var(--z-border)] !shadow-xl",
+    title: "!text-[var(--z-text-primary)] !text-base !font-semibold",
+    htmlContainer: "!text-[var(--z-text-muted)] !text-sm",
+    actions: "!gap-3 !mt-1",
+  },
+});
 
 // ── Status badge ──────────────────────────────────────────────────────────────
 
@@ -78,7 +132,7 @@ function BookCard({
   onDelete,
 }: {
   book: BookSummary;
-  onProcess: (id: string) => void;
+  onProcess: (id: string, retry?: boolean) => Promise<void>;
   onDelete: (id: string, title: string) => void;
 }) {
   return (
@@ -145,54 +199,91 @@ function BookCard({
         {/* Actions */}
         <div className="flex items-center gap-1">
           {book.status === "PENDING" && (
-            <button
-              onClick={() => onProcess(book.id)}
-              title="Process book"
-              className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
-              style={{ color: "var(--z-info)" }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  "rgba(91,155,213,0.12)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = "transparent")
-              }
-            >
-              <Play className="w-3.5 h-3.5" />
-            </button>
+            <div className="relative group/tip">
+              <button
+                onClick={() => onProcess(book.id)}
+                className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
+                style={{ color: "var(--z-info)" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "rgba(91,155,213,0.12)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = "transparent")
+                }
+              >
+                <Play className="w-3.5 h-3.5" />
+              </button>
+              <span
+                className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150"
+                style={{
+                  backgroundColor: "var(--z-bg-overlay)",
+                  color: "var(--z-text-primary)",
+                  border: "1px solid var(--z-border)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+                }}
+              >
+                Process book
+              </span>
+            </div>
           )}
           {book.status === "FAILED" && (
-            <button
-              onClick={() => onProcess(book.id)}
-              title="Retry processing"
-              className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
-              style={{ color: "var(--z-error)" }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = "rgba(224,92,92,0.12)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = "transparent")
-              }
-            >
-              <RefreshCw className="w-3.5 h-3.5" />
-            </button>
+            <div className="relative group/tip">
+              <button
+                onClick={() => onProcess(book.id, true)}
+                className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
+                style={{ color: "var(--z-error)" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "rgba(224,92,92,0.12)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = "transparent")
+                }
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+              </button>
+              <span
+                className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150"
+                style={{
+                  backgroundColor: "var(--z-bg-overlay)",
+                  color: "var(--z-text-primary)",
+                  border: "1px solid var(--z-border)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+                }}
+              >
+                Retry processing
+              </span>
+            </div>
           )}
-          <button
-            onClick={() => onDelete(book.id, book.title)}
-            title="Delete book"
-            className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
-            style={{ color: "var(--z-text-muted)" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "var(--z-error)";
-              e.currentTarget.style.backgroundColor = "rgba(224,92,92,0.08)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "var(--z-text-muted)";
-              e.currentTarget.style.backgroundColor = "transparent";
-            }}
-          >
-            <Trash2 className="w-3.5 h-3.5" />
-          </button>
+          <div className="relative group/tip">
+            <button
+              onClick={() => onDelete(book.id, book.title)}
+              className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
+              style={{ color: "var(--z-text-muted)" }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--z-error)";
+                e.currentTarget.style.backgroundColor = "rgba(224,92,92,0.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--z-text-muted)";
+                e.currentTarget.style.backgroundColor = "transparent";
+              }}
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+            </button>
+            <span
+              className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150"
+              style={{
+                backgroundColor: "var(--z-bg-overlay)",
+                color: "var(--z-error)",
+                border: "1px solid rgba(224,92,92,0.25)",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+              }}
+            >
+              Delete book
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -289,7 +380,20 @@ export default function LibraryPage() {
     }
   };
 
-  const handleProcess = async (id: string) => {
+  const handleProcess = async (id: string, retry = false) => {
+    const confirmColor = retry ? "var(--z-error)" : "var(--z-gold)";
+    const { isConfirmed } = await swalBase.fire({
+      title: retry ? "Retry processing?" : "Process this book?",
+      html: retry
+        ? "The previous attempt failed. Start a new processing run?"
+        : "This will extract and index the book's content so you can chat with it.",
+      icon: retry ? "warning" : "info",
+      showCancelButton: true,
+      confirmButtonText: retry ? "Retry" : "Process",
+      cancelButtonText: "Cancel",
+      didOpen: (popup) => applyButtonStyles(popup, confirmColor),
+    });
+    if (!isConfirmed) return;
     try {
       await booksService.process(id);
       setBooks((prev) =>
@@ -305,7 +409,16 @@ export default function LibraryPage() {
   };
 
   const handleDelete = async (id: string, title: string) => {
-    if (!confirm(`Delete "${title}"? This cannot be undone.`)) return;
+    const { isConfirmed } = await swalBase.fire({
+      title: "Delete this book?",
+      html: `<span style="color:var(--z-text-primary);font-weight:600">"${title}"</span> and all its data will be permanently removed.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+      didOpen: (popup) => applyButtonStyles(popup, "var(--z-error)"),
+    });
+    if (!isConfirmed) return;
     try {
       await booksService.delete(id);
       setBooks((prev) => prev.filter((b) => b.id !== id));
