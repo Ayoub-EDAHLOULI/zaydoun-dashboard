@@ -1,6 +1,11 @@
 import { apiClient } from "@/lib/api/client";
 import { API_CONFIG } from "@/lib/api/config";
-import { UserProfile, UpdateUserDto } from "@/types/users.types";
+import {
+  UserProfile,
+  UpdateUserDto,
+  UsageStats,
+  UsagePeriod,
+} from "@/types/users.types";
 
 const USERS = API_CONFIG.ENDPOINTS.USERS;
 
@@ -15,5 +20,9 @@ export const usersService = {
 
   deleteMe(): Promise<void> {
     return apiClient.delete<void>(`${USERS}/me`);
+  },
+
+  getStats(period: UsagePeriod): Promise<UsageStats> {
+    return apiClient.get<UsageStats>(`${USERS}/me/stats?period=${period}`);
   },
 };
