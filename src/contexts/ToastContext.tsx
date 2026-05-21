@@ -12,7 +12,7 @@ interface ToastContextType {
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
-export const ToastProvider = ({ children }: { children: ReactNode }) => {
+export default function ToastProvider({ children }: { children: ReactNode }) {
   const notify = (
     message: string,
     type: ToastType = "info",
@@ -36,7 +36,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </ToastContext.Provider>
   );
-};
+}
 
 export const useToast = () => {
   const context = useContext(ToastContext);
