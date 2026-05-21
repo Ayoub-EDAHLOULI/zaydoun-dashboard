@@ -2,11 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { PUBLIC_ROUTES } from "@/lib/routes";
 
 const COOKIE_NAME = "refreshToken";
+const ROOT = "/";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Vérification simple puisque tout est à la racine (/login, /reset-password, etc.)
+  // Always allow root — it renders a spinner then redirects client-side
+  if (pathname === ROOT) return NextResponse.next();
+
   const isPublicRoute = PUBLIC_ROUTES.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
@@ -14,20 +17,12 @@ export function proxy(request: NextRequest) {
   const hasSession = request.cookies.has(COOKIE_NAME);
 
   if (!hasSession && !isPublicRoute) {
-    const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("from", pathname);
-    return NextResponse.redirect(loginUrl);
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   if (hasSession && pathname === "/login") {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
-};

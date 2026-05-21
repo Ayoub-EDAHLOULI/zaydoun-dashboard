@@ -1,4 +1,3 @@
-// contexts/AuthContext.tsx
 "use client";
 
 import React, {
@@ -36,56 +35,57 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const initialized = useRef(false);
+  const routerRef = useRef(router);
+  useEffect(() => { routerRef.current = router; }, [router]);
 
   const logout = useCallback(async () => {
     try {
       await authService.logout();
     } catch {
-      // ignore logout errors — always clear state
+      // ignore — always clear state
     } finally {
       setAccessTokenStore(null);
       setAccessToken(null);
       setUser(null);
-
-      router.push("/login");
-    }
-  }, [router]);
-
-  const attemptSilentRefresh = useCallback(async () => {
-    try {
-      const data = await authService.refreshToken();
-      setAccessTokenStore(data.accessToken);
-      setAccessToken(data.accessToken);
-
-      const profile = await authService.getProfile(data.accessToken);
-      setUser(profile);
-    } catch {
-      setAccessTokenStore(null);
-      setAccessToken(null);
-      setUser(null);
-    } finally {
-      setIsLoading(false);
+      routerRef.current.push("/login");
     }
   }, []);
 
+  // Run once on mount
   useEffect(() => {
-    if (!initialized.current) {
-      initialized.current = true;
-      attemptSilentRefresh();
-    }
-
-    const handleTokenRefresh = (event: Event) => {
-      const customEvent = event as CustomEvent<{ accessToken: string }>;
-      if (customEvent.detail?.accessToken) {
-        setAccessTokenStore(customEvent.detail.accessToken);
-        setAccessToken(customEvent.detail.accessToken);
+    const run = async () => {
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("timeout")), 5000),
+      );
+      try {
+        const data = await Promise.race([authService.refreshToken(), timeout]);
+        setAccessTokenStore(data.accessToken);
+        setAccessToken(data.accessToken);
+        const profile = await authService.getProfile(data.accessToken);
+        setUser(profile);
+      } catch {
+        setAccessTokenStore(null);
+        setAccessToken(null);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    const handleLogout = () => {
-      void logout();
+    run();
+  }, []);
+
+  // Event listeners — stable, no deps that change
+  useEffect(() => {
+    const handleTokenRefresh = (event: Event) => {
+      const e = event as CustomEvent<{ accessToken: string }>;
+      if (e.detail?.accessToken) {
+        setAccessTokenStore(e.detail.accessToken);
+        setAccessToken(e.detail.accessToken);
+      }
     };
+
+    const handleLogout = () => { void logout(); };
 
     window.addEventListener(TOKEN_REFRESHED_EVENT, handleTokenRefresh);
     window.addEventListener("auth:logout", handleLogout);
@@ -94,7 +94,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener(TOKEN_REFRESHED_EVENT, handleTokenRefresh);
       window.removeEventListener("auth:logout", handleLogout);
     };
-  }, [attemptSilentRefresh, logout]);
+  }, [logout]);
 
   const login = async (credentials: LoginDto): Promise<User> => {
     const response = await authService.login(credentials);
@@ -104,9 +104,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return response.user;
   };
 
-  const updateUser = (newUser: User) => {
-    setUser(newUser);
-  };
+  const updateUser = (newUser: User) => setUser(newUser);
 
   return (
     <AuthContext.Provider

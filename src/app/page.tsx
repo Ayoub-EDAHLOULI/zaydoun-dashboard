@@ -1,10 +1,30 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
+import { getDashboardPath } from "@/lib/routes";
+
 export default function Home() {
+  const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+  const redirected = useRef(false);
+
+  useEffect(() => {
+    if (isLoading || redirected.current) return;
+    redirected.current = true;
+    router.replace(isAuthenticated ? getDashboardPath() : "/login");
+  }, [isAuthenticated, isLoading, router]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-4xl font-bold">Welcome to Zaydoun Dashboard</h1>
-      <p className="mt-4 text-lg text-gray-600">
-        Manage your conversations, users, and settings here.
-      </p>
-    </main>
+    <div
+      className="min-h-screen flex items-center justify-center"
+      style={{ backgroundColor: "var(--z-bg-base)" }}
+    >
+      <div
+        className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin"
+        style={{ borderColor: "var(--z-gold)", borderTopColor: "transparent" }}
+      />
+    </div>
   );
 }
