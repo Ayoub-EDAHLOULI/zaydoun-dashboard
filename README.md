@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Zaydoun.AI - Admin Dashboard
 
-## Getting Started
+Welcome to the frontend dashboard for **Zaydoun.AI**, a Voice-Activated RAG (Retrieval-Augmented Generation) system. This interface allows administrators to manage users, upload knowledge bases (PDFs), monitor chunk processing, and interact with the AI via voice.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+This project leverages a modern React ecosystem optimized for speed, animations, and internationalization:
+
+* **Framework:** [Next.js](https://nextjs.org/) (App Router) with React 19
+* **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) & Sass
+* **State & Data Fetching:** [Axios](https://axios-http.com/)
+* **Animations:** [Framer Motion](https://www.framer.com/motion/)
+* **Icons:** [Lucide React](https://lucide.dev/)
+* **Validation:** [Zod](https://zod.dev/)
+* **Notifications:** [React Toastify](https://fkhadra.github.io/react-toastify/) & [SweetAlert2](https://sweetalert2.github.io/)
+* **i18n:** [next-intl](https://next-intl-docs.vercel.app/) for multi-language support (English, French, Arabic/Darija)
+* **Rich Text:** `react-quill-new`
+
+## 📂 Core Features Planned
+
+1. **Secure Authentication:** JWT-based login bridging to the Express backend.
+2. **Library Management:** Upload PDF books (`multer` endpoint) and trigger the OpenAI `pdf-parse` processing pipeline.
+3. **Knowledge Base Viewer:** Inspect vectors, chunks, and metadata extracted from uploaded documents.
+4. **Voice Interface:** "Walkie-Talkie" style interaction using the device microphone to communicate with the Zaydoun AI orchestrator (Whisper STT -> pgvector RAG -> GPT-4o-mini -> TTS).
+
+## 🛠️ Getting Started
+
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Set up your local environment variables:
+Create a .env.local file and point it to your local Express API:
+
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+```
+
+Run the development server:
+
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open http://localhost:3000 with your browser to see the result. Ayoub EDAHLOULI :)
