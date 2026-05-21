@@ -1,6 +1,6 @@
-import { authService } from "@/lib/api/services/auth.service";
-
 export const TOKEN_REFRESHED_EVENT = "auth:token-refreshed";
+
+const REFRESH_URL = `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1"}/auth/refresh-token`;
 
 let _accessToken: string | null = null;
 let isRefreshing = false;
@@ -8,6 +8,16 @@ let refreshPromise: Promise<string> | null = null;
 
 export function setAccessTokenStore(token: string | null) {
   _accessToken = token;
+}
+
+async function refreshAccessToken(): Promise<string> {
+  const response = await fetch(REFRESH_URL, {
+    method: "POST",
+    credentials: "include",
+  });
+  if (!response.ok) throw new Error("Session expired. Please login again.");
+  const json = (await response.json()) as { data: { accessToken: string } };
+  return json.data.accessToken;
 }
 
 export async function fetchWithAuth<T>(
@@ -26,31 +36,32 @@ export async function fetchWithAuth<T>(
   const response = await fetch(input, init);
 
   if (response.status === 401) {
-    if (input.includes("/login") || input.includes("/register")) {
+    const isAuthRoute =
+      input.includes("/login") ||
+      input.includes("/register") ||
+      input.includes("/refresh-token") ||
+      input.includes("/logout");
+
+    if (isAuthRoute) {
       const body = (await response.json().catch(() => ({}))) as {
         message?: string;
       };
-      throw new Error(body.message || "Invalid credentials");
-    }
-
-    if (input.includes("/auth/refresh-token")) {
-      throw new Error("Session expired. Please login again.");
+      throw new Error(body.message || "Authentication failed");
     }
 
     try {
       if (!isRefreshing) {
         isRefreshing = true;
-        refreshPromise = authService
-          .refreshToken()
-          .then((data) => {
+        refreshPromise = refreshAccessToken()
+          .then((newToken) => {
             if (typeof window !== "undefined") {
               window.dispatchEvent(
                 new CustomEvent(TOKEN_REFRESHED_EVENT, {
-                  detail: { accessToken: data.accessToken },
+                  detail: { accessToken: newToken },
                 }),
               );
             }
-            return data.accessToken;
+            return newToken;
           })
           .finally(() => {
             isRefreshing = false;
