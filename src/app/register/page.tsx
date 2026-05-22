@@ -4,50 +4,118 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, User, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
 import { getDashboardPath } from "@/lib/routes";
+import { authService } from "@/lib/api/services/auth.service";
 import Image from "next/image";
 
-const loginSchema = z.object({
-  email: z.email("Invalid email address"),
-  password: z.string().min(1, "Password is required"),
-});
+const registerSchema = z
+  .object({
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    email: z.email("Invalid email address"),
+    password: z.string().min(8, "Password must be at least 8 characters"),
+    confirmPassword: z.string().min(1, "Please confirm your password"),
+  })
+  .refine((d) => d.password === d.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
-type LoginFormData = z.infer<typeof loginSchema>;
+type RegisterFormData = z.infer<typeof registerSchema>;
 
-export default function LoginPage() {
+const inputBase =
+  "w-full pl-10 pr-4 py-2.5 rounded-xl text-sm outline-none transition-all duration-150";
+
+function Field({
+  label,
+  error,
+  children,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label
+        className="block text-sm font-medium mb-1.5"
+        style={{ color: "var(--z-text-secondary)" }}
+      >
+        {label}
+      </label>
+      {children}
+      <AnimatePresence>
+        {error && (
+          <motion.p
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="text-xs font-medium mt-1.5"
+            style={{ color: "var(--z-error)" }}
+          >
+            {error}
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export default function RegisterPage() {
   const router = useRouter();
   const { login } = useAuth();
   const { notify } = useToast();
 
-  const [formData, setFormData] = useState<LoginFormData>({
+  const [form, setForm] = useState<RegisterFormData>({
+    name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
-  const [errors, setErrors] = useState<Partial<LoginFormData>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof RegisterFormData, string>>
+  >({});
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name as keyof LoginFormData]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
-    }
-  };
+  const set =
+    (field: keyof RegisterFormData) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setForm((p) => ({ ...p, [field]: e.target.value }));
+      setErrors((p) => ({ ...p, [field]: undefined }));
+    };
+
+  const borderColor = (field: keyof RegisterFormData) =>
+    errors[field] ? "var(--z-error)" : "var(--z-border)";
+
+  const focusHandlers = (field: keyof RegisterFormData) => ({
+    onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
+      e.currentTarget.style.borderColor = errors[field]
+        ? "var(--z-error)"
+        : "var(--z-gold)";
+      e.currentTarget.style.boxShadow = errors[field]
+        ? "0 0 0 3px rgba(224,92,92,0.1)"
+        : "0 0 0 3px rgba(201,168,76,0.1)";
+    },
+    onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+      e.currentTarget.style.borderColor = borderColor(field);
+      e.currentTarget.style.boxShadow = "none";
+    },
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
 
-    const validation = loginSchema.safeParse(formData);
-    if (!validation.success) {
-      const fieldErrors: Partial<LoginFormData> = {};
-      validation.error.issues.forEach((issue) => {
-        fieldErrors[issue.path[0] as keyof LoginFormData] = issue.message;
+    const result = registerSchema.safeParse(form);
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof RegisterFormData, string>> = {};
+      result.error.issues.forEach((issue) => {
+        fieldErrors[issue.path[0] as keyof RegisterFormData] = issue.message;
       });
       setErrors(fieldErrors);
       return;
@@ -55,12 +123,14 @@ export default function LoginPage() {
 
     setIsLoading(true);
     try {
-      await login(formData);
-      notify("Welcome back!", "success");
+      const { name, email, password } = result.data;
+      await authService.register({ name, email, password });
+      await login({ email, password });
+      notify("Account created!", "success");
       router.push(getDashboardPath());
     } catch (error: unknown) {
       const message =
-        error instanceof Error ? error.message : "Invalid credentials";
+        error instanceof Error ? error.message : "Registration failed";
       notify(message, "error");
     } finally {
       setIsLoading(false);
@@ -80,7 +150,6 @@ export default function LoginPage() {
         className="hidden lg:flex lg:w-[52%] flex-col justify-between p-14 relative overflow-hidden"
         style={{ backgroundColor: "var(--z-bg-surface)" }}
       >
-        {/* Gold glow top-right */}
         <div
           className="absolute -top-40 -right-40 w-125 h-125 rounded-full pointer-events-none"
           style={{
@@ -88,7 +157,6 @@ export default function LoginPage() {
               "radial-gradient(circle, rgba(201,168,76,0.12), transparent 70%)",
           }}
         />
-        {/* Subtle grid */}
         <div
           className="absolute inset-0 opacity-[0.025] pointer-events-none"
           style={{
@@ -98,7 +166,6 @@ export default function LoginPage() {
           }}
         />
 
-        {/* Logo */}
         <div className="relative z-10 flex gap-3">
           <Image
             src="/logo.png"
@@ -115,7 +182,6 @@ export default function LoginPage() {
           </span>
         </div>
 
-        {/* Headline */}
         <div className="relative z-10 space-y-6">
           <div className="space-y-4">
             <p
@@ -128,11 +194,9 @@ export default function LoginPage() {
               className="text-4xl font-bold leading-tight"
               style={{ color: "var(--z-text-primary)" }}
             >
-              Your books,
+              Start your reading
               <br />
-              <span style={{ color: "var(--z-gold)" }}>
-                intelligently indexed.
-              </span>
+              <span style={{ color: "var(--z-gold)" }}>journey today.</span>
             </h1>
             <p
               className="text-base leading-relaxed max-w-sm"
@@ -188,7 +252,6 @@ export default function LoginPage() {
         className="flex-1 flex flex-col justify-center items-center px-6 py-12 sm:px-14"
         style={{ backgroundColor: "var(--z-bg-base)" }}
       >
-        {/* Mobile logo */}
         <div className="lg:hidden mb-10 flex gap-3">
           <Image
             src="/logo.png"
@@ -216,91 +279,68 @@ export default function LoginPage() {
               className="text-2xl font-bold"
               style={{ color: "var(--z-text-primary)" }}
             >
-              Sign in
+              Create account
             </h2>
             <p
               className="text-sm mt-1"
               style={{ color: "var(--z-text-muted)" }}
             >
-              Access your reading dashboard
+              Join Zaydoun and start reading smarter
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Name */}
+            <Field label="Full name" error={errors.name}>
+              <div className="relative">
+                <User
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
+                  style={{ color: "var(--z-text-muted)" }}
+                />
+                <input
+                  type="text"
+                  value={form.name}
+                  onChange={set("name")}
+                  placeholder="Your name"
+                  autoComplete="name"
+                  className={inputBase}
+                  style={{
+                    backgroundColor: "var(--z-bg-surface)",
+                    border: `1.5px solid ${borderColor("name")}`,
+                    color: "var(--z-text-primary)",
+                  }}
+                  {...focusHandlers("name")}
+                />
+              </div>
+            </Field>
+
             {/* Email */}
-            <div>
-              <label
-                className="block text-sm font-medium mb-1.5"
-                style={{ color: "var(--z-text-secondary)" }}
-              >
-                Email address
-              </label>
+            <Field label="Email address" error={errors.email}>
               <div className="relative">
                 <Mail
                   className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
                   style={{ color: "var(--z-text-muted)" }}
                 />
                 <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="you@example.com"
+                  type="text"
+                  inputMode="email"
                   autoComplete="email"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm outline-none transition-all duration-150"
+                  value={form.email}
+                  onChange={set("email")}
+                  placeholder="you@example.com"
+                  className={inputBase}
                   style={{
                     backgroundColor: "var(--z-bg-surface)",
-                    border: `1.5px solid ${errors.email ? "var(--z-error)" : "var(--z-border)"}`,
+                    border: `1.5px solid ${borderColor("email")}`,
                     color: "var(--z-text-primary)",
                   }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = errors.email
-                      ? "var(--z-error)"
-                      : "var(--z-gold)";
-                    e.currentTarget.style.boxShadow = errors.email
-                      ? "0 0 0 3px rgba(224,92,92,0.1)"
-                      : "0 0 0 3px rgba(201,168,76,0.1)";
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = errors.email
-                      ? "var(--z-error)"
-                      : "var(--z-border)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
+                  {...focusHandlers("email")}
                 />
               </div>
-              <AnimatePresence>
-                {errors.email && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="text-xs font-medium mt-1.5"
-                    style={{ color: "var(--z-error)" }}
-                  >
-                    {errors.email}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </div>
+            </Field>
 
             {/* Password */}
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label
-                  className="block text-sm font-medium"
-                  style={{ color: "var(--z-text-secondary)" }}
-                >
-                  Password
-                </label>
-                <Link
-                  href="/forgot-password"
-                  className="text-xs font-medium transition-colors"
-                  style={{ color: "var(--z-gold)" }}
-                >
-                  Forgot password?
-                </Link>
-              </div>
+            <Field label="Password" error={errors.password}>
               <div className="relative">
                 <Lock
                   className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
@@ -308,35 +348,21 @@ export default function LoginPage() {
                 />
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="••••••••"
-                  autoComplete="current-password"
-                  className="w-full pl-10 pr-10 py-2.5 rounded-xl text-sm outline-none transition-all duration-150"
+                  value={form.password}
+                  onChange={set("password")}
+                  placeholder="Min. 8 characters"
+                  autoComplete="new-password"
+                  className={`${inputBase} pr-10`}
                   style={{
                     backgroundColor: "var(--z-bg-surface)",
-                    border: `1.5px solid ${errors.password ? "var(--z-error)" : "var(--z-border)"}`,
+                    border: `1.5px solid ${borderColor("password")}`,
                     color: "var(--z-text-primary)",
                   }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = errors.password
-                      ? "var(--z-error)"
-                      : "var(--z-gold)";
-                    e.currentTarget.style.boxShadow = errors.password
-                      ? "0 0 0 3px rgba(224,92,92,0.1)"
-                      : "0 0 0 3px rgba(201,168,76,0.1)";
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = errors.password
-                      ? "var(--z-error)"
-                      : "var(--z-border)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
+                  {...focusHandlers("password")}
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => setShowPassword((p) => !p)}
                   className="absolute right-3.5 top-1/2 -translate-y-1/2 transition-colors"
                   style={{ color: "var(--z-text-muted)" }}
                 >
@@ -347,20 +373,43 @@ export default function LoginPage() {
                   )}
                 </button>
               </div>
-              <AnimatePresence>
-                {errors.password && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="text-xs font-medium mt-1.5"
-                    style={{ color: "var(--z-error)" }}
-                  >
-                    {errors.password}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </div>
+            </Field>
+
+            {/* Confirm Password */}
+            <Field label="Confirm password" error={errors.confirmPassword}>
+              <div className="relative">
+                <Lock
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
+                  style={{ color: "var(--z-text-muted)" }}
+                />
+                <input
+                  type={showConfirm ? "text" : "password"}
+                  value={form.confirmPassword}
+                  onChange={set("confirmPassword")}
+                  placeholder="Repeat your password"
+                  autoComplete="new-password"
+                  className={`${inputBase} pr-10`}
+                  style={{
+                    backgroundColor: "var(--z-bg-surface)",
+                    border: `1.5px solid ${borderColor("confirmPassword")}`,
+                    color: "var(--z-text-primary)",
+                  }}
+                  {...focusHandlers("confirmPassword")}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirm((p) => !p)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 transition-colors"
+                  style={{ color: "var(--z-text-muted)" }}
+                >
+                  {showConfirm ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
+            </Field>
 
             {/* Submit */}
             <button
@@ -383,26 +432,26 @@ export default function LoginPage() {
               {isLoading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                "Sign in"
+                "Create account"
               )}
             </button>
           </form>
 
           <div
-            className="mt-8 pt-6"
+            className="mt-6 pt-6"
             style={{ borderTop: "1px solid var(--z-border)" }}
           >
             <p
               className="text-center text-sm"
               style={{ color: "var(--z-text-muted)" }}
             >
-              Don&apos;t have an account?{" "}
+              Already have an account?{" "}
               <Link
-                href="/register"
+                href="/login"
                 className="font-semibold transition-colors"
                 style={{ color: "var(--z-gold)" }}
               >
-                Create one
+                Sign in
               </Link>
             </p>
           </div>

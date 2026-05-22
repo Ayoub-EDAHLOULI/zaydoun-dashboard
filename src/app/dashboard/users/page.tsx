@@ -62,7 +62,9 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
     >
       <span
         className="w-1.5 h-1.5 rounded-full"
-        style={{ backgroundColor: isActive ? "#4ac582" : "var(--z-text-disabled)" }}
+        style={{
+          backgroundColor: isActive ? "#4ac582" : "var(--z-text-disabled)",
+        }}
       />
       {isActive ? "Active" : "Inactive"}
     </span>
@@ -122,7 +124,9 @@ export default function UsersPage() {
   }, [notify]);
 
   useEffect(() => {
-    const run = async () => { await load(); };
+    const run = async () => {
+      await load();
+    };
     void run();
   }, [load]);
 
@@ -168,10 +172,7 @@ export default function UsersPage() {
       setUsers((prev) =>
         prev.map((u) => (u.id === target.id ? { ...u, role: newRole } : u)),
       );
-      notify(
-        `${target.name ?? target.email} is now ${newRole}`,
-        "success",
-      );
+      notify(`${target.name ?? target.email} is now ${newRole}`, "success");
     } catch {
       notify("Failed to update role", "error");
     } finally {
@@ -212,7 +213,10 @@ export default function UsersPage() {
             >
               Users
             </h1>
-            <p className="text-sm mt-1" style={{ color: "var(--z-text-muted)" }}>
+            <p
+              className="text-sm mt-1"
+              style={{ color: "var(--z-text-muted)" }}
+            >
               {users.length} total · {adminCount} admin
               {adminCount !== 1 ? "s" : ""} · {userCount} user
               {userCount !== 1 ? "s" : ""}
@@ -369,7 +373,9 @@ export default function UsersPage() {
                       key={u.id}
                       style={{
                         borderTop:
-                          i > 0 ? "1px solid var(--z-border-subtle)" : undefined,
+                          i > 0
+                            ? "1px solid var(--z-border-subtle)"
+                            : undefined,
                         opacity: isActing ? 0.6 : 1,
                       }}
                     >
@@ -452,68 +458,157 @@ export default function UsersPage() {
                           {!isSelf && (
                             <>
                               {/* Edit */}
-                              <ActionButton
-                                title="Edit user"
-                                onClick={() => setModal({ type: "edit", user: u })}
-                                disabled={isActing}
-                                hoverColor="var(--z-gold-muted)"
-                                hoverText="var(--z-gold)"
-                              >
-                                <Pencil className="w-4 h-4" />
-                              </ActionButton>
+                              <div className="relative group/tip">
+                                <button
+                                  onClick={() =>
+                                    setModal({ type: "edit", user: u })
+                                  }
+                                  disabled={isActing}
+                                  className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed"
+                                  style={{ color: "var(--z-text-muted)" }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor =
+                                      "var(--z-gold-muted)";
+                                    e.currentTarget.style.color =
+                                      "var(--z-gold)";
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor =
+                                      "transparent";
+                                    e.currentTarget.style.color =
+                                      "var(--z-text-muted)";
+                                  }}
+                                >
+                                  <Pencil className="w-3.5 h-3.5" />
+                                </button>
+                                <span
+                                  className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150"
+                                  style={{
+                                    backgroundColor: "var(--z-bg-elevated)",
+                                    color: "var(--z-text-secondary)",
+                                    border: "1px solid var(--z-border)",
+                                  }}
+                                >
+                                  Edit user
+                                </span>
+                              </div>
 
                               {/* Toggle role */}
-                              <ActionButton
-                                title={
-                                  u.role === "ADMIN"
+                              <div className="relative group/tip">
+                                <button
+                                  onClick={() => handleRoleToggle(u)}
+                                  disabled={isActing}
+                                  className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed"
+                                  style={{ color: "var(--z-text-muted)" }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor =
+                                      "var(--z-gold-muted)";
+                                    e.currentTarget.style.color =
+                                      "var(--z-gold)";
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor =
+                                      "transparent";
+                                    e.currentTarget.style.color =
+                                      "var(--z-text-muted)";
+                                  }}
+                                >
+                                  {u.role === "ADMIN" ? (
+                                    <ShieldOff className="w-3.5 h-3.5" />
+                                  ) : (
+                                    <Shield className="w-3.5 h-3.5" />
+                                  )}
+                                </button>
+                                <span
+                                  className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150"
+                                  style={{
+                                    backgroundColor: "var(--z-bg-elevated)",
+                                    color: "var(--z-text-secondary)",
+                                    border: "1px solid var(--z-border)",
+                                  }}
+                                >
+                                  {u.role === "ADMIN"
                                     ? "Demote to User"
-                                    : "Promote to Admin"
-                                }
-                                onClick={() => handleRoleToggle(u)}
-                                disabled={isActing}
-                                hoverColor="var(--z-gold-muted)"
-                                hoverText="var(--z-gold)"
-                              >
-                                {u.role === "ADMIN" ? (
-                                  <ShieldOff className="w-4 h-4" />
-                                ) : (
-                                  <Shield className="w-4 h-4" />
-                                )}
-                              </ActionButton>
+                                    : "Promote to Admin"}
+                                </span>
+                              </div>
 
                               {/* Toggle active */}
-                              <ActionButton
-                                title={u.isActive ? "Deactivate" : "Activate"}
-                                onClick={() => handleToggleActive(u)}
-                                disabled={isActing}
-                                hoverColor={
-                                  u.isActive
-                                    ? "rgba(224,92,92,0.08)"
-                                    : "rgba(74,197,130,0.08)"
-                                }
-                                hoverText={
-                                  u.isActive ? "var(--z-error)" : "#4ac582"
-                                }
-                              >
-                                {u.isActive ? (
-                                  <ToggleRight className="w-4 h-4" />
-                                ) : (
-                                  <ToggleLeft className="w-4 h-4" />
-                                )}
-                              </ActionButton>
+                              <div className="relative group/tip">
+                                <button
+                                  onClick={() => handleToggleActive(u)}
+                                  disabled={isActing}
+                                  className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed"
+                                  style={{ color: "var(--z-text-muted)" }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor =
+                                      u.isActive
+                                        ? "rgba(224,92,92,0.08)"
+                                        : "rgba(74,197,130,0.08)";
+                                    e.currentTarget.style.color = u.isActive
+                                      ? "var(--z-error)"
+                                      : "#4ac582";
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor =
+                                      "transparent";
+                                    e.currentTarget.style.color =
+                                      "var(--z-text-muted)";
+                                  }}
+                                >
+                                  {u.isActive ? (
+                                    <ToggleRight className="w-3.5 h-3.5" />
+                                  ) : (
+                                    <ToggleLeft className="w-3.5 h-3.5" />
+                                  )}
+                                </button>
+                                <span
+                                  className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150"
+                                  style={{
+                                    backgroundColor: "var(--z-bg-elevated)",
+                                    color: "var(--z-text-secondary)",
+                                    border: "1px solid var(--z-border)",
+                                  }}
+                                >
+                                  {u.isActive ? "Deactivate" : "Activate"}
+                                </span>
+                              </div>
 
                               {/* Delete */}
-                              <ActionButton
-                                title="Delete user"
-                                onClick={() =>
-                                  setModal({ type: "delete", user: u })
-                                }
-                                disabled={isActing}
-                                hoverColor="rgba(224,92,92,0.08)"
-                                hoverText="var(--z-error)"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </ActionButton>
+                              <div className="relative group/tip">
+                                <button
+                                  onClick={() =>
+                                    setModal({ type: "delete", user: u })
+                                  }
+                                  disabled={isActing}
+                                  className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed"
+                                  style={{ color: "var(--z-text-muted)" }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor =
+                                      "rgba(224,92,92,0.08)";
+                                    e.currentTarget.style.color =
+                                      "var(--z-error)";
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor =
+                                      "transparent";
+                                    e.currentTarget.style.color =
+                                      "var(--z-text-muted)";
+                                  }}
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                                <span
+                                  className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150"
+                                  style={{
+                                    backgroundColor: "var(--z-bg-elevated)",
+                                    color: "var(--z-text-secondary)",
+                                    border: "1px solid var(--z-border)",
+                                  }}
+                                >
+                                  Delete user
+                                </span>
+                              </div>
                             </>
                           )}
                         </div>
@@ -550,41 +645,5 @@ export default function UsersPage() {
         onConfirm={handleDelete}
       />
     </>
-  );
-}
-
-function ActionButton({
-  children,
-  title,
-  onClick,
-  disabled,
-  hoverColor,
-  hoverText,
-}: {
-  children: React.ReactNode;
-  title: string;
-  onClick: () => void;
-  disabled: boolean;
-  hoverColor: string;
-  hoverText: string;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      title={title}
-      className="p-2 rounded-lg transition-all disabled:cursor-not-allowed"
-      style={{ color: "var(--z-text-muted)", backgroundColor: "transparent" }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = hoverColor;
-        e.currentTarget.style.color = hoverText;
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = "transparent";
-        e.currentTarget.style.color = "var(--z-text-muted)";
-      }}
-    >
-      {children}
-    </button>
   );
 }
