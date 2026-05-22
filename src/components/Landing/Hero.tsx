@@ -194,14 +194,14 @@ export default function Hero() {
     >
       {/* Background glow effects */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-125 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 70%)",
         }}
       />
       <div
-        className="absolute bottom-0 right-0 w-[600px] h-[400px] pointer-events-none"
+        className="absolute bottom-0 right-0 w-200 h-125 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse at bottom right, rgba(201,168,76,0.04) 0%, transparent 70%)",
