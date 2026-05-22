@@ -29,7 +29,7 @@ export default function LandingFooter() {
 
         <nav className="flex items-center gap-6">
           {[
-            { label: "Features", href: "#features" },
+            { label: "Features", href: "/features" },
             { label: "Pricing", href: "/pricing" },
             { label: "Sign in", href: "/login" },
           ].map((item) => (

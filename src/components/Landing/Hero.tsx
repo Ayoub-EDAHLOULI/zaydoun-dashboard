@@ -291,7 +291,7 @@ export default function Hero() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="#features"
+                href="/features"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200"
                 style={{
                   color: "var(--z-text-secondary)",

@@ -50,7 +50,7 @@ export default function PricingPage() {
     >
       <LandingNav />
 
-      <main className="flex-grow pt-32 pb-24 max-w-6xl mx-auto px-5 sm:px-8 w-full">
+      <main className="grow pt-32 pb-24 max-w-6xl mx-auto px-5 sm:px-8 w-full">
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
           <p

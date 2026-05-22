@@ -47,7 +47,7 @@ export default function LandingNav() {
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1">
           {[
-            { label: "Features", href: "#features" },
+            { label: "Features", href: "/features" },
             { label: "Pricing", href: "/pricing" },
           ].map((item) => (
             <Link
@@ -129,7 +129,7 @@ export default function LandingNav() {
           }}
         >
           {[
-            { label: "Features", href: "#features" },
+            { label: "Features", href: "/features" },
             { label: "Pricing", href: "/pricing" },
           ].map((item) => (
             <Link
