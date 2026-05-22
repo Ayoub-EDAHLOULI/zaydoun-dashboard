@@ -3,11 +3,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, Loader2, BookOpen } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
 import { getDashboardPath } from "@/lib/routes";
+import Image from "next/image";
 
 const loginSchema = z.object({
   email: z.email("Invalid email address"),
@@ -97,16 +98,14 @@ export default function LoginPage() {
         />
 
         {/* Logo */}
-        <div className="relative z-10 flex items-center gap-3">
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{
-              backgroundColor: "var(--z-gold-muted)",
-              border: "1px solid var(--z-border-gold)",
-            }}
-          >
-            <BookOpen className="w-5 h-5" style={{ color: "var(--z-gold)" }} />
-          </div>
+        <div className="relative z-10 flex gap-3">
+          <Image
+            src="/logo.png"
+            alt="Zaydoun logo"
+            width={30}
+            height={30}
+            unoptimized
+          />
           <span
             className="text-xl font-bold tracking-wide"
             style={{ color: "var(--z-text-primary)" }}
@@ -189,16 +188,14 @@ export default function LoginPage() {
         style={{ backgroundColor: "var(--z-bg-base)" }}
       >
         {/* Mobile logo */}
-        <div className="lg:hidden mb-10 flex items-center gap-3">
-          <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center"
-            style={{
-              backgroundColor: "var(--z-gold-muted)",
-              border: "1px solid var(--z-border-gold)",
-            }}
-          >
-            <BookOpen className="w-4 h-4" style={{ color: "var(--z-gold)" }} />
-          </div>
+        <div className="lg:hidden mb-10 flex gap-3">
+          <Image
+            src="/logo.png"
+            alt="Zaydoun logo"
+            width={30}
+            height={30}
+            unoptimized
+          />
           <span
             className="text-xl font-bold"
             style={{ color: "var(--z-text-primary)" }}

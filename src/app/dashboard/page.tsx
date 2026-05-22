@@ -19,7 +19,7 @@ const CostChart = dynamic(() => import("@/components/Dashboard/CostChart"), {
   ssr: false,
   loading: () => (
     <div
-      className="h-[180px] rounded-xl animate-pulse"
+      className="h-45 rounded-xl animate-pulse"
       style={{ backgroundColor: "var(--z-bg-overlay)" }}
     />
   ),
@@ -190,7 +190,6 @@ function StatCard({
     </div>
   );
 }
-
 
 // ── Top conversations table ───────────────────────────────────────────────────
 

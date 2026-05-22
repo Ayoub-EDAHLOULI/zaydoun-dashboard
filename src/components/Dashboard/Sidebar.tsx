@@ -3,9 +3,10 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { BookOpen, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/admin-config";
 import { useAuth } from "@/contexts/AuthContext";
+import Image from "next/image";
 
 export default function Sidebar({ isOpen }: { isOpen: boolean }) {
   const pathname = usePathname();
@@ -35,15 +36,13 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
         className="h-16 flex items-center gap-3 px-5 shrink-0"
         style={{ borderBottom: "1px solid var(--z-border)" }}
       >
-        <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-          style={{
-            backgroundColor: "var(--z-gold-muted)",
-            border: "1px solid var(--z-border-gold)",
-          }}
-        >
-          <BookOpen className="w-4 h-4" style={{ color: "var(--z-gold)" }} />
-        </div>
+        <Image
+          src="/logo.png"
+          alt="Zaydoun logo"
+          width={25}
+          height={25}
+          unoptimized
+        />
         <span
           className="text-base font-bold tracking-wide"
           style={{ color: "var(--z-text-primary)" }}
