@@ -125,9 +125,9 @@ export default function RegisterPage() {
     try {
       const { name, email, password } = result.data;
       await authService.register({ name, email, password });
-      await login({ email, password });
+      const user = await login({ email, password });
       notify("Account created!", "success");
-      router.push(getDashboardPath());
+      router.push(getDashboardPath(user.role));
     } catch (error: unknown) {
       const message =
         error instanceof Error ? error.message : "Registration failed";

@@ -6,15 +6,19 @@ import { useAuth } from "@/contexts/AuthContext";
 import { getDashboardPath } from "@/lib/routes";
 
 export default function Home() {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, user } = useAuth();
   const router = useRouter();
   const redirected = useRef(false);
 
   useEffect(() => {
     if (isLoading || redirected.current) return;
     redirected.current = true;
-    router.replace(isAuthenticated ? getDashboardPath() : "/login");
-  }, [isAuthenticated, isLoading, router]);
+    if (isAuthenticated) {
+      router.replace(getDashboardPath(user?.role));
+    } else {
+      router.replace("/login");
+    }
+  }, [isAuthenticated, isLoading, user, router]);
 
   return (
     <div

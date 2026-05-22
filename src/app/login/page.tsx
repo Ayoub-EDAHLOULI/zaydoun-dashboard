@@ -55,9 +55,9 @@ export default function LoginPage() {
 
     setIsLoading(true);
     try {
-      await login(formData);
+      const user = await login(formData);
       notify("Welcome back!", "success");
-      router.push(getDashboardPath());
+      router.push(getDashboardPath(user.role));
     } catch (error: unknown) {
       const message =
         error instanceof Error ? error.message : "Invalid credentials";
