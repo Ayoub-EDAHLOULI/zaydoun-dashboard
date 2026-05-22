@@ -19,6 +19,7 @@ interface AuthContextType {
   user: User | null;
   accessToken: string | null;
   isAuthenticated: boolean;
+  isAdmin: boolean;
   isLoading: boolean;
   login: (credentials: LoginDto) => Promise<User>;
   logout: () => Promise<void>;
@@ -97,6 +98,7 @@ export default function AuthProvider({
         user,
         accessToken,
         isAuthenticated: !!user,
+        isAdmin: user?.role === "ADMIN",
         isLoading,
         login,
         logout,

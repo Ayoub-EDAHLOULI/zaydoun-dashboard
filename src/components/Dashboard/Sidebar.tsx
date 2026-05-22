@@ -10,7 +10,8 @@ import Image from "next/image";
 
 export default function Sidebar({ isOpen }: { isOpen: boolean }) {
   const pathname = usePathname();
-  const { user, logout } = useAuth();
+  const { user, logout, isAdmin } = useAuth();
+  const visibleNav = NAV_ITEMS.filter((item) => !item.adminOnly || isAdmin);
 
   const initials = user?.name
     ? user.name
@@ -54,7 +55,7 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto py-4 px-3">
         <ul className="space-y-0.5">
-          {NAV_ITEMS.map((item) => {
+          {visibleNav.map((item) => {
             const Icon = item.icon;
             const isActive =
               item.href === "/dashboard"
@@ -129,12 +130,26 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
             {initials}
           </div>
           <div className="flex-1 min-w-0">
-            <p
-              className="text-sm font-medium truncate"
-              style={{ color: "var(--z-text-primary)" }}
-            >
-              {user?.name}
-            </p>
+            <div className="flex items-center gap-2">
+              <p
+                className="text-sm font-medium truncate"
+                style={{ color: "var(--z-text-primary)" }}
+              >
+                {user?.name}
+              </p>
+              {isAdmin && (
+                <span
+                  className="shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded"
+                  style={{
+                    backgroundColor: "var(--z-gold-muted)",
+                    color: "var(--z-gold)",
+                    border: "1px solid var(--z-border-gold)",
+                  }}
+                >
+                  ADMIN
+                </span>
+              )}
+            </div>
             <p
               className="text-xs truncate"
               style={{ color: "var(--z-text-muted)" }}

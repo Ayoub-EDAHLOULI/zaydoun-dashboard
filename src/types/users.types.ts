@@ -3,6 +3,16 @@ export interface UserStats {
   totalConversations: number;
 }
 
+export interface AdminUserRow {
+  id: string;
+  name: string | null;
+  email: string;
+  role: "USER" | "ADMIN";
+  isActive: boolean;
+  createdAt: string;
+  stats: UserStats;
+}
+
 export interface UserProfile {
   id: string;
   name: string | null;
