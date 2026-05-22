@@ -56,13 +56,12 @@ function focusHandlers(hasError: boolean) {
 }
 
 function ModalInner(props: Omit<AdminUserModalProps, "isOpen">) {
-  const isCreate = props.mode === "create";
+  const editUser = props.mode === "edit" ? props.user : null;
 
   const [form, setForm] = useState({
-    name: isCreate ? "" : (props.user.name ?? ""),
-    email: isCreate ? "" : props.user.email,
-    password: "",
-    role: isCreate ? "USER" : props.user.role,
+    name: editUser?.name ?? "",
+    email: editUser?.email ?? "",
+    role: (editUser?.role ?? "USER") as "USER" | "ADMIN",
   });
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -78,11 +77,10 @@ function ModalInner(props: Omit<AdminUserModalProps, "isOpen">) {
     e.preventDefault();
 
     let parseResult;
-    if (isCreate) {
+    if (props.mode === "create") {
       parseResult = createAdminUserSchema.safeParse({
         name: form.name || undefined,
         email: form.email,
-        password: form.password,
         role: form.role,
       });
     } else {
@@ -104,7 +102,7 @@ function ModalInner(props: Omit<AdminUserModalProps, "isOpen">) {
 
     setIsLoading(true);
     try {
-      if (isCreate) {
+      if (props.mode === "create") {
         await (props as CreateMode).onSave(
           parseResult.data as CreateAdminUserFormData,
         );
@@ -147,12 +145,15 @@ function ModalInner(props: Omit<AdminUserModalProps, "isOpen">) {
               className="text-base font-semibold"
               style={{ color: "var(--z-text-primary)" }}
             >
-              {isCreate ? "Create user" : "Edit user"}
+              {props.mode === "create" ? "Create user" : "Edit user"}
             </h2>
-            <p className="text-xs mt-0.5" style={{ color: "var(--z-text-muted)" }}>
-              {isCreate
-                ? "Add a new user to the platform"
-                : `Editing ${props.user.name ?? props.user.email}`}
+            <p
+              className="text-xs mt-0.5"
+              style={{ color: "var(--z-text-muted)" }}
+            >
+              {props.mode === "create"
+                ? "A temporary password will be emailed to the user"
+                : `Editing ${editUser?.name ?? editUser?.email ?? ""}`}
             </p>
           </div>
           <button
@@ -190,7 +191,10 @@ function ModalInner(props: Omit<AdminUserModalProps, "isOpen">) {
                 {...focusHandlers(!!errors.name)}
               />
               {errors.name && (
-                <p className="text-xs mt-1 font-medium" style={{ color: "var(--z-error)" }}>
+                <p
+                  className="text-xs mt-1 font-medium"
+                  style={{ color: "var(--z-error)" }}
+                >
                   {errors.name}
                 </p>
               )}
@@ -203,7 +207,9 @@ function ModalInner(props: Omit<AdminUserModalProps, "isOpen">) {
                 Email <span style={{ color: "var(--z-error)" }}>*</span>
               </label>
               <input
-                type="email"
+                type="text"
+                inputMode="email"
+                autoComplete="email"
                 value={form.email}
                 onChange={set("email")}
                 placeholder="user@example.com"
@@ -212,38 +218,15 @@ function ModalInner(props: Omit<AdminUserModalProps, "isOpen">) {
                 {...focusHandlers(!!errors.email)}
               />
               {errors.email && (
-                <p className="text-xs mt-1 font-medium" style={{ color: "var(--z-error)" }}>
+                <p
+                  className="text-xs mt-1 font-medium"
+                  style={{ color: "var(--z-error)" }}
+                >
                   {errors.email}
                 </p>
               )}
             </div>
           </div>
-
-          {/* Password (create only) */}
-          {isCreate && (
-            <div>
-              <label
-                className="block text-sm font-medium mb-1.5"
-                style={{ color: "var(--z-text-secondary)" }}
-              >
-                Password <span style={{ color: "var(--z-error)" }}>*</span>
-              </label>
-              <input
-                type="password"
-                value={form.password}
-                onChange={set("password")}
-                placeholder="Min 8 characters"
-                className={inputClass}
-                style={inputStyle(!!errors.password)}
-                {...focusHandlers(!!errors.password)}
-              />
-              {errors.password && (
-                <p className="text-xs mt-1 font-medium" style={{ color: "var(--z-error)" }}>
-                  {errors.password}
-                </p>
-              )}
-            </div>
-          )}
 
           {/* Role */}
           <div>
@@ -303,7 +286,7 @@ function ModalInner(props: Omit<AdminUserModalProps, "isOpen">) {
             >
               {isLoading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
-              ) : isCreate ? (
+              ) : props.mode === "create" ? (
                 "Create"
               ) : (
                 "Save"

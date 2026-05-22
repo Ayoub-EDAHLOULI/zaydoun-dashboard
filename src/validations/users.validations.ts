@@ -13,7 +13,6 @@ export const createAdminUserSchema = z.object({
     .optional()
     .or(z.literal("")),
   email: z.string().email("Invalid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
   role: z.enum(["USER", "ADMIN"]),
 });
 
