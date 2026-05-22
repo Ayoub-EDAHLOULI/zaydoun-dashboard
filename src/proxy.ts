@@ -1,21 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const COOKIE_NAME = "refreshToken";
-const PUBLIC_PATHS = [
-  "/login",
-  "/register",
-  "/forgot-password",
-  "/reset-password",
-];
+const PROTECTED_PREFIXES = ["/dashboard", "/app"];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const isPublic = PUBLIC_PATHS.some(
+  const isProtected = PROTECTED_PREFIXES.some(
     (p) => pathname === p || pathname.startsWith(`${p}/`),
   );
 
-  if (isPublic) return NextResponse.next();
+  if (!isProtected) return NextResponse.next();
 
   const hasSession = request.cookies.has(COOKIE_NAME);
   if (!hasSession) {
