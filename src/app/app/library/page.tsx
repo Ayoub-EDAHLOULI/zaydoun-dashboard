@@ -1,7 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Upload, BookOpen, Trash2, Play, FileText, RefreshCw } from "lucide-react";
+import {
+  Upload,
+  BookOpen,
+  Trash2,
+  Play,
+  FileText,
+  RefreshCw,
+} from "lucide-react";
 import Swal from "sweetalert2";
 import { booksService } from "@/lib/api/services/books.service";
 import { BookSummary, BookStatus, CreateBookDto } from "@/types/books.types";
@@ -50,11 +57,30 @@ const swalBase = Swal.mixin({
   },
 });
 
-const STATUS_CONFIG: Record<BookStatus, { label: string; bg: string; color: string }> = {
-  PENDING: { label: "Pending", bg: "var(--z-gold-muted)", color: "var(--z-gold)" },
-  PROCESSING: { label: "Processing", bg: "rgba(91,155,213,0.12)", color: "var(--z-info)" },
-  READY: { label: "Ready", bg: "rgba(76,175,125,0.12)", color: "var(--z-success)" },
-  FAILED: { label: "Failed", bg: "rgba(224,92,92,0.12)", color: "var(--z-error)" },
+const STATUS_CONFIG: Record<
+  BookStatus,
+  { label: string; bg: string; color: string }
+> = {
+  PENDING: {
+    label: "Pending",
+    bg: "var(--z-gold-muted)",
+    color: "var(--z-gold)",
+  },
+  PROCESSING: {
+    label: "Processing",
+    bg: "rgba(91,155,213,0.12)",
+    color: "var(--z-info)",
+  },
+  READY: {
+    label: "Ready",
+    bg: "rgba(76,175,125,0.12)",
+    color: "var(--z-success)",
+  },
+  FAILED: {
+    label: "Failed",
+    bg: "rgba(224,92,92,0.12)",
+    color: "var(--z-error)",
+  },
 };
 
 function StatusBadge({ status }: { status: BookStatus }) {
@@ -73,7 +99,10 @@ function LangBadge({ lang }: { lang: string }) {
   return (
     <span
       className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium uppercase"
-      style={{ backgroundColor: "var(--z-bg-overlay)", color: "var(--z-text-muted)" }}
+      style={{
+        backgroundColor: "var(--z-bg-overlay)",
+        color: "var(--z-text-muted)",
+      }}
     >
       {lang}
     </span>
@@ -92,14 +121,24 @@ function BookCard({
   return (
     <div
       className="rounded-xl p-5 flex flex-col gap-3 transition-all duration-150"
-      style={{ backgroundColor: "var(--z-bg-surface)", border: "1px solid var(--z-border)" }}
-      onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--z-border-gold)")}
-      onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--z-border)")}
+      style={{
+        backgroundColor: "var(--z-bg-surface)",
+        border: "1px solid var(--z-border)",
+      }}
+      onMouseEnter={(e) =>
+        (e.currentTarget.style.borderColor = "var(--z-border-gold)")
+      }
+      onMouseLeave={(e) =>
+        (e.currentTarget.style.borderColor = "var(--z-border)")
+      }
     >
       <div className="flex items-start justify-between gap-2">
         <div
           className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-          style={{ backgroundColor: "var(--z-gold-muted)", border: "1px solid var(--z-border-gold)" }}
+          style={{
+            backgroundColor: "var(--z-gold-muted)",
+            border: "1px solid var(--z-border-gold)",
+          }}
         >
           <BookOpen className="w-4 h-4" style={{ color: "var(--z-gold)" }} />
         </div>
@@ -114,7 +153,10 @@ function BookCard({
           {book.title}
         </h3>
         {book.author && (
-          <p className="text-xs mt-0.5 truncate" style={{ color: "var(--z-text-muted)" }}>
+          <p
+            className="text-xs mt-0.5 truncate"
+            style={{ color: "var(--z-text-muted)" }}
+          >
             {book.author}
           </p>
         )}
@@ -124,7 +166,10 @@ function BookCard({
         <div className="flex items-center gap-2">
           <LangBadge lang={book.language} />
           {book.totalPages > 0 && (
-            <span className="flex items-center gap-1 text-xs" style={{ color: "var(--z-text-muted)" }}>
+            <span
+              className="flex items-center gap-1 text-xs"
+              style={{ color: "var(--z-text-muted)" }}
+            >
               <FileText className="w-3 h-3" />
               {book.totalPages}p
             </span>
@@ -138,8 +183,13 @@ function BookCard({
                 onClick={() => onProcess(book.id)}
                 className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
                 style={{ color: "var(--z-info)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(91,155,213,0.12)")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "rgba(91,155,213,0.12)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = "transparent")
+                }
               >
                 <Play className="w-3.5 h-3.5" />
               </button>
@@ -162,8 +212,13 @@ function BookCard({
                 onClick={() => onProcess(book.id, true)}
                 className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
                 style={{ color: "var(--z-error)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(224,92,92,0.12)")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "rgba(224,92,92,0.12)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = "transparent")
+                }
               >
                 <RefreshCw className="w-3.5 h-3.5" />
               </button>
@@ -218,16 +273,25 @@ function EmptyState({ onUpload }: { onUpload: () => void }) {
   return (
     <div
       className="rounded-xl p-12 flex flex-col items-center gap-4 text-center"
-      style={{ backgroundColor: "var(--z-bg-surface)", border: "1px dashed var(--z-border)" }}
+      style={{
+        backgroundColor: "var(--z-bg-surface)",
+        border: "1px dashed var(--z-border)",
+      }}
     >
       <div
         className="w-14 h-14 rounded-full flex items-center justify-center"
-        style={{ backgroundColor: "var(--z-gold-muted)", border: "1px solid var(--z-border-gold)" }}
+        style={{
+          backgroundColor: "var(--z-gold-muted)",
+          border: "1px solid var(--z-border-gold)",
+        }}
       >
         <BookOpen className="w-6 h-6" style={{ color: "var(--z-gold)" }} />
       </div>
       <div>
-        <p className="text-base font-semibold" style={{ color: "var(--z-text-primary)" }}>
+        <p
+          className="text-base font-semibold"
+          style={{ color: "var(--z-text-primary)" }}
+        >
           Your library is empty
         </p>
         <p className="text-sm mt-1" style={{ color: "var(--z-text-muted)" }}>
@@ -238,8 +302,12 @@ function EmptyState({ onUpload }: { onUpload: () => void }) {
         onClick={onUpload}
         className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
         style={{ backgroundColor: "var(--z-gold)", color: "#0d0d0d" }}
-        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--z-gold-light)")}
-        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--z-gold)")}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.backgroundColor = "var(--z-gold-light)")
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.backgroundColor = "var(--z-gold)")
+        }
       >
         <Upload className="w-4 h-4" />
         Upload your first book
@@ -260,14 +328,19 @@ export default function UserLibraryPage() {
       const data = await booksService.list();
       setBooks(data);
     } catch (err: unknown) {
-      notify(err instanceof Error ? err.message : "Failed to load books", "error");
+      notify(
+        err instanceof Error ? err.message : "Failed to load books",
+        "error",
+      );
     } finally {
       setIsLoading(false);
     }
   }, [notify]);
 
   useEffect(() => {
-    const run = async () => { await load(); };
+    const run = async () => {
+      await load();
+    };
     void run();
   }, [load]);
 
@@ -298,10 +371,15 @@ export default function UserLibraryPage() {
     if (!isConfirmed) return;
     try {
       await booksService.process(id);
-      setBooks((prev) => prev.map((b) => (b.id === id ? { ...b, status: "PROCESSING" } : b)));
+      setBooks((prev) =>
+        prev.map((b) => (b.id === id ? { ...b, status: "PROCESSING" } : b)),
+      );
       notify("Processing started", "success");
     } catch (err: unknown) {
-      notify(err instanceof Error ? err.message : "Failed to start processing", "error");
+      notify(
+        err instanceof Error ? err.message : "Failed to start processing",
+        "error",
+      );
     }
   };
 
@@ -330,7 +408,10 @@ export default function UserLibraryPage() {
       <div className="flex items-center justify-center h-48">
         <div
           className="w-7 h-7 rounded-full border-2 animate-spin"
-          style={{ borderColor: "var(--z-gold)", borderTopColor: "transparent" }}
+          style={{
+            borderColor: "var(--z-gold)",
+            borderTopColor: "transparent",
+          }}
         />
       </div>
     );
@@ -338,7 +419,11 @@ export default function UserLibraryPage() {
 
   return (
     <>
-      <UploadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onUpload={handleUpload} />
+      <UploadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onUpload={handleUpload}
+      />
 
       <div className="space-y-6">
         <div className="flex items-center justify-between gap-4">
@@ -348,9 +433,17 @@ export default function UserLibraryPage() {
           <button
             onClick={() => setIsModalOpen(true)}
             className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
-            style={{ backgroundColor: "var(--z-gold)", color: "#0d0d0d", boxShadow: "var(--z-shadow-gold)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--z-gold-light)")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--z-gold)")}
+            style={{
+              backgroundColor: "var(--z-gold)",
+              color: "#0d0d0d",
+              boxShadow: "var(--z-shadow-gold)",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "var(--z-gold-light)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "var(--z-gold)")
+            }
           >
             <Upload className="w-4 h-4" />
             Upload book
@@ -362,7 +455,12 @@ export default function UserLibraryPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {books.map((book) => (
-              <BookCard key={book.id} book={book} onProcess={handleProcess} onDelete={handleDelete} />
+              <BookCard
+                key={book.id}
+                book={book}
+                onProcess={handleProcess}
+                onDelete={handleDelete}
+              />
             ))}
           </div>
         )}

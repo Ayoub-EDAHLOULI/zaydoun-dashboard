@@ -10,7 +10,6 @@ import {
   Clock,
   Sparkles,
 } from "lucide-react";
-import { usersService } from "@/lib/api/services/users.service";
 import { booksService } from "@/lib/api/services/books.service";
 import { conversationsService } from "@/lib/api/services/conversations.service";
 import { useAuth } from "@/contexts/AuthContext";
@@ -52,7 +51,8 @@ function StatCard({
         border: `1px solid ${gold ? "var(--z-border-gold)" : "var(--z-border)"}`,
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = "var(--z-border-gold)";
+        (e.currentTarget as HTMLElement).style.borderColor =
+          "var(--z-border-gold)";
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLElement).style.borderColor = gold
@@ -71,10 +71,16 @@ function StatCard({
           <Icon className="w-5 h-5" style={{ color: "var(--z-gold)" }} />
         </div>
         <div>
-          <p className="text-2xl font-bold" style={{ color: "var(--z-text-primary)" }}>
+          <p
+            className="text-2xl font-bold"
+            style={{ color: "var(--z-text-primary)" }}
+          >
             {value}
           </p>
-          <p className="text-xs mt-0.5" style={{ color: "var(--z-text-muted)" }}>
+          <p
+            className="text-xs mt-0.5"
+            style={{ color: "var(--z-text-muted)" }}
+          >
             {label}
           </p>
         </div>
@@ -111,7 +117,9 @@ export default function AppOverviewPage() {
   }, [notify]);
 
   useEffect(() => {
-    const run = async () => { await load(); };
+    const run = async () => {
+      await load();
+    };
     void run();
   }, [load]);
 
@@ -124,7 +132,10 @@ export default function AppOverviewPage() {
       <div className="flex items-center justify-center h-48">
         <div
           className="w-7 h-7 rounded-full border-2 animate-spin"
-          style={{ borderColor: "var(--z-gold)", borderTopColor: "transparent" }}
+          style={{
+            borderColor: "var(--z-gold)",
+            borderTopColor: "transparent",
+          }}
         />
       </div>
     );
@@ -134,7 +145,10 @@ export default function AppOverviewPage() {
     <div className="space-y-8 max-w-3xl">
       {/* Greeting */}
       <div>
-        <h1 className="text-2xl font-bold" style={{ color: "var(--z-text-primary)" }}>
+        <h1
+          className="text-2xl font-bold"
+          style={{ color: "var(--z-text-primary)" }}
+        >
           Hello, {firstName} 👋
         </h1>
         <p className="text-sm mt-1" style={{ color: "var(--z-text-muted)" }}>
@@ -163,7 +177,10 @@ export default function AppOverviewPage() {
 
       {/* Quick actions */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--z-text-muted)" }}>
+        <p
+          className="text-xs font-semibold uppercase tracking-wider mb-3"
+          style={{ color: "var(--z-text-muted)" }}
+        >
           Quick actions
         </p>
         <div className="flex flex-wrap gap-3">
@@ -175,10 +192,12 @@ export default function AppOverviewPage() {
               color: "#0d0d0d",
             }}
             onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--z-gold-light)")
+              ((e.currentTarget as HTMLElement).style.backgroundColor =
+                "var(--z-gold-light)")
             }
             onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--z-gold)")
+              ((e.currentTarget as HTMLElement).style.backgroundColor =
+                "var(--z-gold)")
             }
           >
             <Upload className="w-4 h-4" />
@@ -194,12 +213,15 @@ export default function AppOverviewPage() {
                 border: "1px solid var(--z-border)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--z-border-gold)";
+                (e.currentTarget as HTMLElement).style.borderColor =
+                  "var(--z-border-gold)";
                 (e.currentTarget as HTMLElement).style.color = "var(--z-gold)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--z-border)";
-                (e.currentTarget as HTMLElement).style.color = "var(--z-text-secondary)";
+                (e.currentTarget as HTMLElement).style.borderColor =
+                  "var(--z-border)";
+                (e.currentTarget as HTMLElement).style.color =
+                  "var(--z-text-secondary)";
               }}
             >
               <Sparkles className="w-4 h-4" />
@@ -213,7 +235,10 @@ export default function AppOverviewPage() {
       {recentConversations.length > 0 && (
         <div>
           <div className="flex items-center justify-between mb-3">
-            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--z-text-muted)" }}>
+            <p
+              className="text-xs font-semibold uppercase tracking-wider"
+              style={{ color: "var(--z-text-muted)" }}
+            >
               Recent conversations
             </p>
             <Link
@@ -234,10 +259,12 @@ export default function AppOverviewPage() {
                   border: "1px solid var(--z-border)",
                 }}
                 onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLElement).style.borderColor = "var(--z-border-gold)")
+                  ((e.currentTarget as HTMLElement).style.borderColor =
+                    "var(--z-border-gold)")
                 }
                 onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLElement).style.borderColor = "var(--z-border)")
+                  ((e.currentTarget as HTMLElement).style.borderColor =
+                    "var(--z-border)")
                 }
               >
                 <div
@@ -247,19 +274,31 @@ export default function AppOverviewPage() {
                     border: "1px solid var(--z-border-gold)",
                   }}
                 >
-                  <MessageSquare className="w-3.5 h-3.5" style={{ color: "var(--z-gold)" }} />
+                  <MessageSquare
+                    className="w-3.5 h-3.5"
+                    style={{ color: "var(--z-gold)" }}
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate" style={{ color: "var(--z-text-primary)" }}>
+                  <p
+                    className="text-sm font-medium truncate"
+                    style={{ color: "var(--z-text-primary)" }}
+                  >
                     {conv.title ?? "Untitled conversation"}
                   </p>
                   {conv.lastMessage && (
-                    <p className="text-xs truncate mt-0.5" style={{ color: "var(--z-text-muted)" }}>
+                    <p
+                      className="text-xs truncate mt-0.5"
+                      style={{ color: "var(--z-text-muted)" }}
+                    >
                       {conv.lastMessage.content}
                     </p>
                   )}
                 </div>
-                <span className="flex items-center gap-1 text-xs shrink-0" style={{ color: "var(--z-text-muted)" }}>
+                <span
+                  className="flex items-center gap-1 text-xs shrink-0"
+                  style={{ color: "var(--z-text-muted)" }}
+                >
                   <Clock className="w-3 h-3" />
                   {timeAgo(conv.updatedAt)}
                 </span>
@@ -288,10 +327,16 @@ export default function AppOverviewPage() {
             <BookOpen className="w-6 h-6" style={{ color: "var(--z-gold)" }} />
           </div>
           <div>
-            <p className="text-base font-semibold" style={{ color: "var(--z-text-primary)" }}>
+            <p
+              className="text-base font-semibold"
+              style={{ color: "var(--z-text-primary)" }}
+            >
               No books yet
             </p>
-            <p className="text-sm mt-1" style={{ color: "var(--z-text-muted)" }}>
+            <p
+              className="text-sm mt-1"
+              style={{ color: "var(--z-text-muted)" }}
+            >
               Upload a PDF to start a conversation with Zaydoun.
             </p>
           </div>
@@ -300,10 +345,12 @@ export default function AppOverviewPage() {
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all"
             style={{ backgroundColor: "var(--z-gold)", color: "#0d0d0d" }}
             onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--z-gold-light)")
+              ((e.currentTarget as HTMLElement).style.backgroundColor =
+                "var(--z-gold-light)")
             }
             onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--z-gold)")
+              ((e.currentTarget as HTMLElement).style.backgroundColor =
+                "var(--z-gold)")
             }
           >
             <Upload className="w-4 h-4" />

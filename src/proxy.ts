@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const COOKIE_NAME = "refreshToken";
-const PUBLIC_PATHS = ["/login", "/forgot-password", "/reset-password"];
+const PUBLIC_PATHS = [
+  "/login",
+  "/register",
+  "/forgot-password",
+  "/reset-password",
+];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

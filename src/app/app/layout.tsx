@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description: "Your AI reading companion — chat with your books.",
 };
 
-export default function UserAppRootLayout({ children }: { children: React.ReactNode }) {
+export default function UserAppRootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return <AppLayout>{children}</AppLayout>;
 }
