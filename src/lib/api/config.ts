@@ -6,5 +6,6 @@ export const API_CONFIG = {
     USERS: "/users",
     BOOKS: "/books",
     CONVERSATIONS: "/conversations",
+    CONTACT: "/contact",
   },
 };

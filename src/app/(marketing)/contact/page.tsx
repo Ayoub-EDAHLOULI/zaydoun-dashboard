@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Mail, MessageSquare, User, Send, CheckCircle2 } from "lucide-react";
 import LandingNav from "@/components/Landing/LandingNav";
 import LandingFooter from "@/components/Landing/LandingFooter";
+import { contactService } from "@/lib/api/services/contact.service";
+import type { ContactDto } from "@/types/contact.types";
 
 const TOPICS = [
   "General question",
@@ -17,7 +19,7 @@ const TOPICS = [
 type Field = "name" | "email" | "topic" | "message";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ContactDto>({
     name: "",
     email: "",
     topic: TOPICS[0],
@@ -49,10 +51,14 @@ export default function ContactPage() {
     }
     setErrors({});
     setLoading(true);
-    // Simulate network delay — replace with real API call
-    await new Promise((r) => setTimeout(r, 900));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      await contactService.submit(form);
+      setSubmitted(true);
+    } catch {
+      setErrors({ message: "Something went wrong. Please try again." });
+    } finally {
+      setLoading(false);
+    }
   }
 
   function fieldStyle(field: Field) {
