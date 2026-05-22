@@ -31,6 +31,7 @@ export default function LandingFooter() {
           {[
             { label: "Features", href: "/features" },
             { label: "Pricing", href: "/pricing" },
+            { label: "Contact", href: "/contact" },
             { label: "Sign in", href: "/login" },
           ].map((item) => (
             <Link
