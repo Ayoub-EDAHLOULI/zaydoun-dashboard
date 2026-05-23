@@ -99,7 +99,7 @@ export default function LoginPage() {
         />
 
         {/* Logo */}
-        <div className="relative z-10 flex gap-3">
+        <Link href="/" className="relative z-10 flex gap-3">
           <Image
             src="/logo.png"
             alt="Zaydoun logo"
@@ -113,7 +113,7 @@ export default function LoginPage() {
           >
             Zaydoun
           </span>
-        </div>
+        </Link>
 
         {/* Headline */}
         <div className="relative z-10 space-y-6">
@@ -189,7 +189,7 @@ export default function LoginPage() {
         style={{ backgroundColor: "var(--z-bg-base)" }}
       >
         {/* Mobile logo */}
-        <div className="lg:hidden mb-10 flex gap-3">
+        <Link href="/" className="lg:hidden mb-10 flex gap-3">
           <Image
             src="/logo.png"
             alt="Zaydoun logo"
@@ -203,7 +203,7 @@ export default function LoginPage() {
           >
             Zaydoun
           </span>
-        </div>
+        </Link>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}

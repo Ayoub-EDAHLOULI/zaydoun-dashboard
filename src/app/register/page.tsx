@@ -166,7 +166,7 @@ export default function RegisterPage() {
           }}
         />
 
-        <div className="relative z-10 flex gap-3">
+        <Link href="/" className="relative z-10 flex gap-3">
           <Image
             src="/logo.png"
             alt="Zaydoun logo"
@@ -180,7 +180,7 @@ export default function RegisterPage() {
           >
             Zaydoun
           </span>
-        </div>
+        </Link>
 
         <div className="relative z-10 space-y-6">
           <div className="space-y-4">
@@ -252,7 +252,7 @@ export default function RegisterPage() {
         className="flex-1 flex flex-col justify-center items-center px-6 py-12 sm:px-14"
         style={{ backgroundColor: "var(--z-bg-base)" }}
       >
-        <div className="lg:hidden mb-10 flex gap-3">
+        <Link href="/" className="lg:hidden mb-10 flex gap-3">
           <Image
             src="/logo.png"
             alt="Zaydoun logo"
@@ -266,7 +266,7 @@ export default function RegisterPage() {
           >
             Zaydoun
           </span>
-        </div>
+        </Link>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
