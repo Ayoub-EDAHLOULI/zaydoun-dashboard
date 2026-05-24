@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { MessageSquare, Trash2, BookOpen, Clock } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { MessageSquare, Trash2, BookOpen, Clock, Plus, X } from "lucide-react";
 import Swal from "sweetalert2";
 import { conversationsService } from "@/lib/api/services/conversations.service";
+import { booksService } from "@/lib/api/services/books.service";
 import { ConversationSummary } from "@/types/conversations.types";
+import { BookSummary } from "@/types/books.types";
 import { useToast } from "@/contexts/ToastContext";
 
 const applyButtonStyles = (popup: HTMLElement, confirmColor: string) => {
@@ -58,11 +61,148 @@ function timeAgo(iso: string): string {
   return new Date(iso).toLocaleDateString();
 }
 
+function BookPickerModal({
+  books,
+  isCreating,
+  onPick,
+  onClose,
+}: {
+  books: BookSummary[];
+  isCreating: boolean;
+  onPick: (bookId: string) => void;
+  onClose: () => void;
+}) {
+  const ready = books.filter((b) => b.status === "READY");
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{
+        backgroundColor: "rgba(0,0,0,0.6)",
+        backdropFilter: "blur(2px)",
+      }}
+    >
+      <div
+        className="w-full max-w-sm rounded-2xl overflow-hidden"
+        style={{
+          backgroundColor: "var(--z-bg-elevated)",
+          border: "1px solid var(--z-border)",
+          boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
+        }}
+      >
+        <div
+          className="flex items-center justify-between px-5 py-4"
+          style={{ borderBottom: "1px solid var(--z-border)" }}
+        >
+          <div>
+            <h2
+              className="text-sm font-semibold"
+              style={{ color: "var(--z-text-primary)" }}
+            >
+              New conversation
+            </h2>
+            <p
+              className="text-xs mt-0.5"
+              style={{ color: "var(--z-text-muted)" }}
+            >
+              Pick a book to chat about
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
+            style={{ color: "var(--z-text-muted)" }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "var(--z-bg-overlay)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "transparent")
+            }
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="p-3 max-h-72 overflow-y-auto">
+          {ready.length === 0 ? (
+            <div className="py-8 text-center">
+              <BookOpen
+                className="w-8 h-8 mx-auto mb-2"
+                style={{ color: "var(--z-text-muted)" }}
+              />
+              <p className="text-sm" style={{ color: "var(--z-text-muted)" }}>
+                No ready books yet. Upload and process a book first.
+              </p>
+            </div>
+          ) : (
+            <ul className="space-y-1">
+              {ready.map((book) => (
+                <li key={book.id}>
+                  <button
+                    onClick={() => onPick(book.id)}
+                    disabled={isCreating}
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all disabled:opacity-50"
+                    style={{ color: "var(--z-text-primary)" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.backgroundColor =
+                        "var(--z-bg-overlay)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.backgroundColor = "transparent")
+                    }
+                  >
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                      style={{
+                        backgroundColor: "var(--z-gold-muted)",
+                        border: "1px solid var(--z-border-gold)",
+                      }}
+                    >
+                      <BookOpen
+                        className="w-3.5 h-3.5"
+                        style={{ color: "var(--z-gold)" }}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate">
+                        {book.title}
+                      </p>
+                      {book.author && (
+                        <p
+                          className="text-xs truncate"
+                          style={{ color: "var(--z-text-muted)" }}
+                        >
+                          {book.author}
+                        </p>
+                      )}
+                    </div>
+                    <span
+                      className="text-xs px-1.5 py-0.5 rounded uppercase font-medium shrink-0"
+                      style={{
+                        backgroundColor: "var(--z-bg-overlay)",
+                        color: "var(--z-text-muted)",
+                      }}
+                    >
+                      {book.language}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ConversationRow({
   conv,
+  onClick,
   onDelete,
 }: {
   conv: ConversationSummary;
+  onClick: () => void;
   onDelete: (id: string, title: string) => void;
 }) {
   const displayTitle = conv.title ?? "Untitled conversation";
@@ -71,11 +211,12 @@ function ConversationRow({
 
   return (
     <div
-      className="flex items-start gap-4 px-5 py-4 rounded-xl transition-all duration-150 group"
+      className="flex items-start gap-4 px-5 py-4 rounded-xl transition-all duration-150 group cursor-pointer"
       style={{
         backgroundColor: "var(--z-bg-surface)",
         border: "1px solid var(--z-border)",
       }}
+      onClick={onClick}
       onMouseEnter={(e) =>
         (e.currentTarget.style.borderColor = "var(--z-border-gold)")
       }
@@ -180,7 +321,7 @@ function ConversationRow({
   );
 }
 
-function EmptyState() {
+function EmptyState({ onNew }: { onNew: () => void }) {
   return (
     <div
       className="rounded-xl p-12 flex flex-col items-center gap-4 text-center"
@@ -206,17 +347,36 @@ function EmptyState() {
           No conversations yet
         </p>
         <p className="text-sm mt-1" style={{ color: "var(--z-text-muted)" }}>
-          Open a book from your library and start chatting with Zaydoun.
+          Start a new chat with any ready book in your library.
         </p>
       </div>
+      <button
+        onClick={onNew}
+        className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+        style={{ backgroundColor: "var(--z-gold)", color: "#0d0d0d" }}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.backgroundColor = "var(--z-gold-light)")
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.backgroundColor = "var(--z-gold)")
+        }
+      >
+        <Plus className="w-4 h-4" />
+        New conversation
+      </button>
     </div>
   );
 }
 
 export default function UserConversationsPage() {
+  const router = useRouter();
   const { notify } = useToast();
+
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showPicker, setShowPicker] = useState(false);
+  const [books, setBooks] = useState<BookSummary[]>([]);
+  const [isCreating, setIsCreating] = useState(false);
 
   const load = useCallback(async () => {
     setIsLoading(true);
@@ -239,6 +399,35 @@ export default function UserConversationsPage() {
     };
     void run();
   }, [load]);
+
+  const openPicker = async () => {
+    if (books.length === 0) {
+      try {
+        const data = await booksService.list();
+        setBooks(data);
+      } catch {
+        notify("Failed to load books", "error");
+        return;
+      }
+    }
+    setShowPicker(true);
+  };
+
+  const handlePickBook = async (bookId: string) => {
+    setIsCreating(true);
+    try {
+      const conv = await conversationsService.create({ bookId });
+      setShowPicker(false);
+      router.push(`/app/conversations/${conv.id}`);
+    } catch (err: unknown) {
+      notify(
+        err instanceof Error ? err.message : "Failed to create conversation",
+        "error",
+      );
+    } finally {
+      setIsCreating(false);
+    }
+  };
 
   const handleDelete = async (id: string, title: string) => {
     const { isConfirmed } = await swalBase.fire({
@@ -275,24 +464,57 @@ export default function UserConversationsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <p className="text-sm" style={{ color: "var(--z-text-muted)" }}>
-        {conversations.length}{" "}
-        {conversations.length === 1 ? "conversation" : "conversations"}
-      </p>
-      {conversations.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <div className="flex flex-col gap-2">
-          {conversations.map((conv) => (
-            <ConversationRow
-              key={conv.id}
-              conv={conv}
-              onDelete={handleDelete}
-            />
-          ))}
-        </div>
+    <>
+      {showPicker && (
+        <BookPickerModal
+          books={books}
+          isCreating={isCreating}
+          onPick={handlePickBook}
+          onClose={() => setShowPicker(false)}
+        />
       )}
-    </div>
+
+      <div className="space-y-6">
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-sm" style={{ color: "var(--z-text-muted)" }}>
+            {conversations.length}{" "}
+            {conversations.length === 1 ? "conversation" : "conversations"}
+          </p>
+          <button
+            onClick={() => void openPicker()}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+            style={{
+              backgroundColor: "var(--z-gold)",
+              color: "#0d0d0d",
+              boxShadow: "var(--z-shadow-gold)",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "var(--z-gold-light)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "var(--z-gold)")
+            }
+          >
+            <Plus className="w-4 h-4" />
+            New conversation
+          </button>
+        </div>
+
+        {conversations.length === 0 ? (
+          <EmptyState onNew={() => void openPicker()} />
+        ) : (
+          <div className="flex flex-col gap-2">
+            {conversations.map((conv) => (
+              <ConversationRow
+                key={conv.id}
+                conv={conv}
+                onClick={() => router.push(`/app/conversations/${conv.id}`)}
+                onDelete={handleDelete}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 }

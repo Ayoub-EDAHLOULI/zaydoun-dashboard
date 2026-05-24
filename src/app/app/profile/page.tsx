@@ -10,6 +10,7 @@ import {
   Eye,
   EyeOff,
   Loader2,
+  Globe,
 } from "lucide-react";
 import { z } from "zod";
 import { usersService } from "@/lib/api/services/users.service";
@@ -18,6 +19,16 @@ import { UserProfile } from "@/types/users.types";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
 import UserModal from "@/components/Dashboard/Users/UserModal";
+
+const REPLY_LANGUAGES = [
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "ar", label: "Arabic", flag: "🇸🇦" },
+  { code: "fr", label: "French", flag: "🇫🇷" },
+  { code: "es", label: "Spanish", flag: "🇪🇸" },
+  { code: "zh", label: "Chinese", flag: "🇨🇳" },
+];
+
+const REPLY_LANG_KEY = "zaydoun_reply_language";
 
 const changePasswordSchema = z
   .object({
@@ -312,6 +323,17 @@ export default function UserProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [replyLang, setReplyLang] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem(REPLY_LANG_KEY) ?? "en";
+    }
+    return "en";
+  });
+
+  const handleReplyLang = (code: string) => {
+    setReplyLang(code);
+    localStorage.setItem(REPLY_LANG_KEY, code);
+  };
 
   useEffect(() => {
     usersService
@@ -381,17 +403,18 @@ export default function UserProfilePage() {
         onSave={handleSave}
       />
 
-      <div className="max-w-2xl space-y-6">
-        {/* Profile card */}
-        <div
-          className="rounded-xl p-6"
-          style={{
-            backgroundColor: "var(--z-bg-surface)",
-            border: "1px solid var(--z-border)",
-          }}
-        >
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-4">
+      <div className="space-y-6">
+        {/* Top row: Profile card (left) + Language card (right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Profile card */}
+          <div
+            className="rounded-xl p-6"
+            style={{
+              backgroundColor: "var(--z-bg-surface)",
+              border: "1px solid var(--z-border)",
+            }}
+          >
+            <div className="flex items-start gap-4">
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold shrink-0"
                 style={{
@@ -402,14 +425,17 @@ export default function UserProfilePage() {
               >
                 {initials}
               </div>
-              <div>
+              <div className="flex-1 min-w-0">
                 <h2
-                  className="text-lg font-semibold"
+                  className="text-lg font-semibold truncate"
                   style={{ color: "var(--z-text-primary)" }}
                 >
                   {profile.name ?? profile.email}
                 </h2>
-                <p className="text-sm" style={{ color: "var(--z-text-muted)" }}>
+                <p
+                  className="text-sm truncate"
+                  style={{ color: "var(--z-text-muted)" }}
+                >
                   {profile.email}
                 </p>
                 {joinedDate && (
@@ -423,25 +449,95 @@ export default function UserProfilePage() {
                 )}
               </div>
             </div>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all"
-              style={{
-                backgroundColor: "var(--z-gold-muted)",
-                color: "var(--z-gold)",
-                border: "1px solid var(--z-border-gold)",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  "rgba(201,168,76,0.25)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = "var(--z-gold-muted)")
-              }
-            >
-              <Pencil className="w-3.5 h-3.5" />
-              Edit
-            </button>
+            <div className="mt-5 flex justify-end">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all"
+                style={{
+                  backgroundColor: "var(--z-gold-muted)",
+                  color: "var(--z-gold)",
+                  border: "1px solid var(--z-border-gold)",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "rgba(201,168,76,0.25)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "var(--z-gold-muted)")
+                }
+              >
+                <Pencil className="w-3.5 h-3.5" />
+                Edit profile
+              </button>
+            </div>
+          </div>
+
+          {/* Language card */}
+          <div
+            className="rounded-xl p-6"
+            style={{
+              backgroundColor: "var(--z-bg-surface)",
+              border: "1px solid var(--z-border)",
+            }}
+          >
+            <div className="flex items-center gap-2.5 mb-4">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                style={{
+                  backgroundColor: "var(--z-gold-muted)",
+                  border: "1px solid var(--z-border-gold)",
+                }}
+              >
+                <Globe className="w-4 h-4" style={{ color: "var(--z-gold)" }} />
+              </div>
+              <div>
+                <h3
+                  className="text-sm font-semibold"
+                  style={{ color: "var(--z-text-primary)" }}
+                >
+                  AI Reply Language
+                </h3>
+                <p className="text-xs" style={{ color: "var(--z-text-muted)" }}>
+                  Zaydoun will respond in this language
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {REPLY_LANGUAGES.map((lang) => {
+                const active = lang.code === replyLang;
+                return (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleReplyLang(lang.code)}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all"
+                    style={{
+                      backgroundColor: active
+                        ? "var(--z-gold-muted)"
+                        : "var(--z-bg-elevated)",
+                      border: `1px solid ${active ? "var(--z-border-gold)" : "var(--z-border)"}`,
+                      color: active ? "var(--z-gold)" : "var(--z-text-muted)",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!active) {
+                        e.currentTarget.style.borderColor =
+                          "var(--z-border-gold)";
+                        e.currentTarget.style.color = "var(--z-gold)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!active) {
+                        e.currentTarget.style.borderColor = "var(--z-border)";
+                        e.currentTarget.style.color = "var(--z-text-muted)";
+                      }
+                    }}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 

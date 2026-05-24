@@ -28,6 +28,14 @@ export const conversationsService = {
     return apiClient.post<MessageData>(`${CONV}/${id}/messages`, data);
   },
 
+  chat(
+    id: string,
+    message: string,
+    languageCode?: string,
+  ): Promise<{ userMessage: MessageData; aiMessage: MessageData }> {
+    return apiClient.post(`${CONV}/${id}/chat`, { message, languageCode });
+  },
+
   delete(id: string): Promise<void> {
     return apiClient.delete<void>(`${CONV}/${id}`);
   },

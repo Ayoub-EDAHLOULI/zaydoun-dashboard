@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import {
   Upload,
   BookOpen,
@@ -8,9 +9,11 @@ import {
   Play,
   FileText,
   RefreshCw,
+  MessageSquare,
 } from "lucide-react";
 import Swal from "sweetalert2";
 import { booksService } from "@/lib/api/services/books.service";
+import { conversationsService } from "@/lib/api/services/conversations.service";
 import { BookSummary, BookStatus, CreateBookDto } from "@/types/books.types";
 import { useToast } from "@/contexts/ToastContext";
 import UploadModal from "@/components/Dashboard/Library/UploadModal";
@@ -113,10 +116,12 @@ function BookCard({
   book,
   onProcess,
   onDelete,
+  onChat,
 }: {
   book: BookSummary;
   onProcess: (id: string, retry?: boolean) => Promise<void>;
   onDelete: (id: string, title: string) => void;
+  onChat: (id: string) => void;
 }) {
   return (
     <div
@@ -235,6 +240,35 @@ function BookCard({
               </span>
             </div>
           )}
+          {book.status === "READY" && (
+            <div className="relative group/tip">
+              <button
+                onClick={() => onChat(book.id)}
+                className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
+                style={{ color: "var(--z-gold)" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "var(--z-gold-muted)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = "transparent")
+                }
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+              </button>
+              <span
+                className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150"
+                style={{
+                  backgroundColor: "var(--z-bg-overlay)",
+                  color: "var(--z-text-primary)",
+                  border: "1px solid var(--z-border)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+                }}
+              >
+                Chat
+              </span>
+            </div>
+          )}
           <div className="relative group/tip">
             <button
               onClick={() => onDelete(book.id, book.title)}
@@ -317,6 +351,7 @@ function EmptyState({ onUpload }: { onUpload: () => void }) {
 }
 
 export default function UserLibraryPage() {
+  const router = useRouter();
   const { notify } = useToast();
   const [books, setBooks] = useState<BookSummary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -378,6 +413,18 @@ export default function UserLibraryPage() {
     } catch (err: unknown) {
       notify(
         err instanceof Error ? err.message : "Failed to start processing",
+        "error",
+      );
+    }
+  };
+
+  const handleChat = async (bookId: string) => {
+    try {
+      const conv = await conversationsService.create({ bookId });
+      router.push(`/app/conversations/${conv.id}`);
+    } catch (err: unknown) {
+      notify(
+        err instanceof Error ? err.message : "Failed to start chat",
         "error",
       );
     }
@@ -460,6 +507,7 @@ export default function UserLibraryPage() {
                 book={book}
                 onProcess={handleProcess}
                 onDelete={handleDelete}
+                onChat={handleChat}
               />
             ))}
           </div>

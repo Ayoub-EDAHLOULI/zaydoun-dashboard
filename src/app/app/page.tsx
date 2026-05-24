@@ -142,14 +142,14 @@ export default function AppOverviewPage() {
   }
 
   return (
-    <div className="space-y-8 max-w-3xl">
+    <div className="space-y-8">
       {/* Greeting */}
       <div>
         <h1
           className="text-2xl font-bold"
           style={{ color: "var(--z-text-primary)" }}
         >
-          Hello, {firstName} 👋
+          Hello, {firstName}!
         </h1>
         <p className="text-sm mt-1" style={{ color: "var(--z-text-muted)" }}>
           {readyBooks.length > 0
