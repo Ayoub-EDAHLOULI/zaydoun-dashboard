@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, Loader2, AlertTriangle } from "lucide-react";
 import { z } from "zod";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
@@ -20,6 +20,8 @@ type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isDeactivated = searchParams.get("deactivated") === "1";
   const { login } = useAuth();
   const { notify } = useToast();
 
@@ -225,6 +227,23 @@ export default function LoginPage() {
               Access your reading dashboard
             </p>
           </div>
+
+          {isDeactivated && (
+            <div
+              className="flex items-start gap-3 px-4 py-3 rounded-xl mb-6 text-sm"
+              style={{
+                backgroundColor: "rgba(224,92,92,0.08)",
+                border: "1px solid rgba(224,92,92,0.3)",
+                color: "var(--z-error, #e05c5c)",
+              }}
+            >
+              <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
+              <span>
+                Your account has been deactivated. Please contact support if you
+                think this is a mistake.
+              </span>
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}

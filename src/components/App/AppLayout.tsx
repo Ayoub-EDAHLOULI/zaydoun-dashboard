@@ -8,29 +8,41 @@ import { useAuth } from "@/contexts/AuthContext";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { isLoading, isAuthenticated } = useAuth();
+  const { isLoading, isAuthenticated, user } = useAuth();
   const router = useRouter();
+
+  const isActive = user?.isActive !== false;
 
   useEffect(() => {
     if (isLoading) return;
     if (!isAuthenticated) router.replace("/login");
-  }, [isLoading, isAuthenticated, router]);
+    else if (!isActive) router.replace("/login?deactivated=1");
+  }, [isLoading, isAuthenticated, isActive, router]);
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "var(--z-bg-base)" }}>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: "var(--z-bg-base)" }}
+      >
         <div
           className="w-8 h-8 rounded-full border-2 animate-spin"
-          style={{ borderColor: "var(--z-gold)", borderTopColor: "transparent" }}
+          style={{
+            borderColor: "var(--z-gold)",
+            borderTopColor: "transparent",
+          }}
         />
       </div>
     );
   }
 
-  if (!isAuthenticated) return null;
+  if (!isAuthenticated || !isActive) return null;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ backgroundColor: "var(--z-bg-base)" }}>
+    <div
+      className="flex h-screen overflow-hidden"
+      style={{ backgroundColor: "var(--z-bg-base)" }}
+    >
       <AppSidebar isOpen={isSidebarOpen} />
 
       {isSidebarOpen && (

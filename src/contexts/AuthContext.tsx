@@ -47,6 +47,11 @@ export default function AuthProvider({
         setAccessTokenStore(data.accessToken);
         setAccessToken(data.accessToken);
         const profile = await authService.getProfile(data.accessToken);
+        if (profile.isActive === false) {
+          setAccessTokenStore(null);
+          router.replace("/login?deactivated=1");
+          return;
+        }
         setUser(profile);
       })
       .catch(() => {
@@ -55,7 +60,7 @@ export default function AuthProvider({
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [router]);
 
   // Token refresh event from fetchWithAuth
   useEffect(() => {
