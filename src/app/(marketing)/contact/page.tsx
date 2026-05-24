@@ -7,6 +7,7 @@ import LandingNav from "@/components/Landing/LandingNav";
 import LandingFooter from "@/components/Landing/LandingFooter";
 import { contactService } from "@/lib/api/services/contact.service";
 import type { ContactDto } from "@/types/contact.types";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const TOPICS = [
   "General question",
@@ -25,13 +26,16 @@ export default function ContactPage() {
     topic: TOPICS[0],
     message: "",
   });
-  const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [errors, setErrors] = useState<
+    Partial<Record<Field | "captcha", string>>
+  >({});
   const [focused, setFocused] = useState<Field | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
   function validate() {
-    const e: Partial<Record<Field, string>> = {};
+    const e: Partial<Record<Field | "captcha", string>> = {};
     if (!form.name.trim()) e.name = "Name is required.";
     if (!form.email.trim()) e.email = "Email is required.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
@@ -39,6 +43,9 @@ export default function ContactPage() {
     if (!form.message.trim()) e.message = "Message is required.";
     else if (form.message.trim().length < 10)
       e.message = "Message must be at least 10 characters.";
+
+    if (!captchaToken) e.captcha = "Please verify you are human.";
+
     return e;
   }
 
@@ -52,7 +59,7 @@ export default function ContactPage() {
     setErrors({});
     setLoading(true);
     try {
-      await contactService.submit(form);
+      await contactService.submit({ ...form, captchaToken });
       setSubmitted(true);
     } catch {
       setErrors({ message: "Something went wrong. Please try again." });
@@ -391,6 +398,23 @@ export default function ContactPage() {
                         style={{ color: "var(--z-error, #e05c5c)" }}
                       >
                         {errors.message}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* reCAPTCHA Widget */}
+                  <div className="flex flex-col gap-1.5 mt-2">
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      onChange={(token) => setCaptchaToken(token)}
+                      theme="dark"
+                    />
+                    {errors.captcha && (
+                      <p
+                        className="text-xs"
+                        style={{ color: "var(--z-error, #e05c5c)" }}
+                      >
+                        {errors.captcha}
                       </p>
                     )}
                   </div>

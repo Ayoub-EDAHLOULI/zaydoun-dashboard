@@ -3,4 +3,5 @@ export interface ContactDto {
   email: string;
   topic: string;
   message: string;
+  captchaToken?: string | null;
 }
