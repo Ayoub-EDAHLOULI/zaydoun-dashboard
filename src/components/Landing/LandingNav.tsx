@@ -4,10 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { getDashboardPath } from "@/lib/routes";
 
 export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isAuthenticated, isLoading, user } = useAuth();
+  const appPath = getDashboardPath(user?.role);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -72,42 +76,66 @@ export default function LandingNav() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/login"
-            className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
-            style={{ color: "var(--z-text-secondary)" }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.color = "var(--z-text-primary)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.color = "var(--z-text-secondary)")
-            }
-          >
-            Sign in
-          </Link>
-          <Link
-            href="/register"
-            className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200"
-            style={{
-              backgroundColor: "var(--z-gold)",
-              color: "#0d0d0d",
-              boxShadow: "0 0 16px rgba(201,168,76,0.25)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--z-gold-light)";
-              e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow =
-                "0 4px 20px rgba(201,168,76,0.4)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--z-gold)";
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow =
-                "0 0 16px rgba(201,168,76,0.25)";
-            }}
-          >
-            Get started free
-          </Link>
+          {!isLoading && isAuthenticated ? (
+            <Link
+              href={appPath}
+              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200"
+              style={{
+                backgroundColor: "var(--z-gold)",
+                color: "#0d0d0d",
+                boxShadow: "0 0 16px rgba(201,168,76,0.25)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--z-gold-light)";
+                e.currentTarget.style.transform = "translateY(-1px)";
+                e.currentTarget.style.boxShadow = "0 4px 20px rgba(201,168,76,0.4)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--z-gold)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 0 16px rgba(201,168,76,0.25)";
+              }}
+            >
+              Go to Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
+                style={{ color: "var(--z-text-secondary)" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = "var(--z-text-primary)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = "var(--z-text-secondary)")
+                }
+              >
+                Sign in
+              </Link>
+              <Link
+                href="/register"
+                className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200"
+                style={{
+                  backgroundColor: "var(--z-gold)",
+                  color: "#0d0d0d",
+                  boxShadow: "0 0 16px rgba(201,168,76,0.25)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "var(--z-gold-light)";
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                  e.currentTarget.style.boxShadow = "0 4px 20px rgba(201,168,76,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "var(--z-gold)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 0 16px rgba(201,168,76,0.25)";
+                }}
+              >
+                Get started free
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile hamburger */}
@@ -148,25 +176,38 @@ export default function LandingNav() {
             className="flex flex-col gap-2 mt-2 pt-3"
             style={{ borderTop: "1px solid var(--z-border)" }}
           >
-            <Link
-              href="/login"
-              onClick={() => setMenuOpen(false)}
-              className="px-4 py-2.5 text-sm font-medium rounded-lg text-center transition-all"
-              style={{
-                border: "1px solid var(--z-border)",
-                color: "var(--z-text-secondary)",
-              }}
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/register"
-              onClick={() => setMenuOpen(false)}
-              className="px-4 py-2.5 text-sm font-semibold rounded-lg text-center transition-all"
-              style={{ backgroundColor: "var(--z-gold)", color: "#0d0d0d" }}
-            >
-              Get started free
-            </Link>
+            {!isLoading && isAuthenticated ? (
+              <Link
+                href={appPath}
+                onClick={() => setMenuOpen(false)}
+                className="px-4 py-2.5 text-sm font-semibold rounded-lg text-center transition-all"
+                style={{ backgroundColor: "var(--z-gold)", color: "#0d0d0d" }}
+              >
+                Go to Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="px-4 py-2.5 text-sm font-medium rounded-lg text-center transition-all"
+                  style={{
+                    border: "1px solid var(--z-border)",
+                    color: "var(--z-text-secondary)",
+                  }}
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/register"
+                  onClick={() => setMenuOpen(false)}
+                  className="px-4 py-2.5 text-sm font-semibold rounded-lg text-center transition-all"
+                  style={{ backgroundColor: "var(--z-gold)", color: "#0d0d0d" }}
+                >
+                  Get started free
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

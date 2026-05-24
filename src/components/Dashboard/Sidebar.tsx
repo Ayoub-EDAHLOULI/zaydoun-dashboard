@@ -33,7 +33,8 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
       }}
     >
       {/* Logo */}
-      <div
+      <Link
+        href="/dashboard"
         className="h-16 flex items-center gap-3 px-5 shrink-0"
         style={{ borderBottom: "1px solid var(--z-border)" }}
       >
@@ -50,7 +51,7 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
         >
           Zaydoun
         </span>
-      </div>
+      </Link>
 
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto py-4 px-3">
