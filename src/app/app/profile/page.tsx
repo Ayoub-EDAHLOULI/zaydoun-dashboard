@@ -324,7 +324,9 @@ export default function UserProfilePage() {
   const handleSave = async ({ name }: { name: string }) => {
     try {
       const updated = await usersService.updateMe({ name });
-      setProfile(updated);
+      setProfile((prev) =>
+        prev ? { ...prev, ...updated, stats: prev.stats } : prev,
+      );
       updateUser({
         id: updated.id,
         name: updated.name ?? "",
