@@ -243,7 +243,7 @@ export default function Hero() {
                 className="text-5xl sm:text-6xl font-bold leading-[1.05] tracking-tight"
                 style={{ color: "var(--z-text-primary)" }}
               >
-                Your books,
+                Your AI voice
                 <br />
                 <span
                   style={{
@@ -251,15 +251,15 @@ export default function Hero() {
                     textShadow: "0 0 40px rgba(201,168,76,0.3)",
                   }}
                 >
-                  finally talk back.
+                  reading assistant.
                 </span>
               </h1>
               <p
                 className="text-lg leading-relaxed max-w-lg"
                 style={{ color: "var(--z-text-muted)" }}
               >
-                Upload any PDF and have a deep, voice-first conversation with it
-                — page-accurate answers, in 5 languages, in seconds.
+                Upload any PDF and have a hands-free, voice-first conversation
+                with it — page-accurate answers, in 5 languages, in seconds.
               </p>
             </div>
 

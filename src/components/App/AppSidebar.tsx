@@ -3,15 +3,44 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, BookOpen, MessageSquare, User, LogOut } from "lucide-react";
+import {
+  LayoutDashboard,
+  BookOpen,
+  MessageSquare,
+  User,
+  LogOut,
+} from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import Image from "next/image";
 
 const NAV = [
-  { id: "overview", label: "Overview", href: "/app", icon: LayoutDashboard, exact: true },
-  { id: "library", label: "My Library", href: "/app/library", icon: BookOpen, separator: true },
-  { id: "conversations", label: "Conversations", href: "/app/conversations", icon: MessageSquare },
-  { id: "profile", label: "Profile", href: "/app/profile", icon: User, separator: true },
+  {
+    id: "overview",
+    label: "Overview",
+    href: "/app",
+    icon: LayoutDashboard,
+    exact: true,
+  },
+  {
+    id: "library",
+    label: "My Library",
+    href: "/app/library",
+    icon: BookOpen,
+    separator: true,
+  },
+  {
+    id: "conversations",
+    label: "Conversations",
+    href: "/app/conversations",
+    icon: MessageSquare,
+  },
+  {
+    id: "profile",
+    label: "Profile",
+    href: "/app/profile",
+    icon: User,
+    separator: true,
+  },
 ];
 
 export default function AppSidebar({ isOpen }: { isOpen: boolean }) {
@@ -19,8 +48,13 @@ export default function AppSidebar({ isOpen }: { isOpen: boolean }) {
   const { user, logout } = useAuth();
 
   const initials = user?.name
-    ? user.name.split(" ").map((w) => w[0]).join("").toUpperCase().slice(0, 2)
-    : user?.email?.[0]?.toUpperCase() ?? "?";
+    ? user.name
+        .split(" ")
+        .map((w) => w[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2)
+    : (user?.email?.[0]?.toUpperCase() ?? "?");
 
   return (
     <aside
@@ -33,15 +67,25 @@ export default function AppSidebar({ isOpen }: { isOpen: boolean }) {
       }}
     >
       {/* Logo */}
-      <div
+      <Link
+        href="/"
         className="h-16 flex items-center gap-3 px-5 shrink-0"
         style={{ borderBottom: "1px solid var(--z-border)" }}
       >
-        <Image src="/logo.png" alt="Zaydoun logo" width={25} height={25} unoptimized />
-        <span className="text-base font-bold tracking-wide" style={{ color: "var(--z-text-primary)" }}>
+        <Image
+          src="/logo.png"
+          alt="Zaydoun logo"
+          width={25}
+          height={25}
+          unoptimized
+        />
+        <span
+          className="text-base font-bold tracking-wide"
+          style={{ color: "var(--z-text-primary)" }}
+        >
           Zaydoun
         </span>
-      </div>
+      </Link>
 
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto py-4 px-3">
@@ -58,7 +102,10 @@ export default function AppSidebar({ isOpen }: { isOpen: boolean }) {
                   <li>
                     <div
                       className="my-3 mx-1"
-                      style={{ height: "1px", backgroundColor: "var(--z-border)" }}
+                      style={{
+                        height: "1px",
+                        backgroundColor: "var(--z-border)",
+                      }}
                     />
                   </li>
                 )}
@@ -67,13 +114,18 @@ export default function AppSidebar({ isOpen }: { isOpen: boolean }) {
                     href={item.href}
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150"
                     style={{
-                      backgroundColor: isActive ? "var(--z-gold-muted)" : "transparent",
+                      backgroundColor: isActive
+                        ? "var(--z-gold-muted)"
+                        : "transparent",
                       color: isActive ? "var(--z-gold)" : "var(--z-text-muted)",
-                      border: isActive ? "1px solid var(--z-border-gold)" : "1px solid transparent",
+                      border: isActive
+                        ? "1px solid var(--z-border-gold)"
+                        : "1px solid transparent",
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
-                        e.currentTarget.style.backgroundColor = "var(--z-bg-elevated)";
+                        e.currentTarget.style.backgroundColor =
+                          "var(--z-bg-elevated)";
                         e.currentTarget.style.color = "var(--z-text-secondary)";
                       }
                     }}
@@ -95,7 +147,10 @@ export default function AppSidebar({ isOpen }: { isOpen: boolean }) {
       </nav>
 
       {/* User footer */}
-      <div className="p-4 shrink-0" style={{ borderTop: "1px solid var(--z-border)" }}>
+      <div
+        className="p-4 shrink-0"
+        style={{ borderTop: "1px solid var(--z-border)" }}
+      >
         <div className="flex items-center gap-3">
           <div
             className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
@@ -108,10 +163,16 @@ export default function AppSidebar({ isOpen }: { isOpen: boolean }) {
             {initials}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium truncate" style={{ color: "var(--z-text-primary)" }}>
+            <p
+              className="text-sm font-medium truncate"
+              style={{ color: "var(--z-text-primary)" }}
+            >
               {user?.name ?? user?.email}
             </p>
-            <p className="text-xs truncate" style={{ color: "var(--z-text-muted)" }}>
+            <p
+              className="text-xs truncate"
+              style={{ color: "var(--z-text-muted)" }}
+            >
               {user?.email}
             </p>
           </div>
