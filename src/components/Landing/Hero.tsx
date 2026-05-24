@@ -233,7 +233,7 @@ export default function Hero() {
                 }}
               >
                 <Zap className="w-3 h-3" />
-                Powered by RAG + Whisper AI
+                Powered by RAG · Whisper · Claude
               </div>
             </div>
 
@@ -259,7 +259,7 @@ export default function Hero() {
                 style={{ color: "var(--z-text-muted)" }}
               >
                 Upload any PDF and have a deep, voice-first conversation with it
-                — page-accurate answers, Arabic & English, in seconds.
+                — page-accurate answers, in 5 languages, in seconds.
               </p>
             </div>
 
@@ -318,7 +318,7 @@ export default function Hero() {
               {[
                 { value: "2 books", label: "free to start" },
                 { value: "< 1s", label: "answer latency" },
-                { value: "Arabic", label: "native RTL" },
+                { value: "5 langs", label: "incl. Arabic RTL" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <p

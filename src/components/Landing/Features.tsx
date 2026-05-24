@@ -32,7 +32,7 @@ const FEATURES = [
   },
   {
     icon: LayoutDashboard,
-    title: "Dual-Hub Architecture",
+    title: "Admin + Reader Portals",
     description:
       "Separate admin and user workspaces. Admins monitor all usage, costs and users — while readers get a clean, focused library with no distractions.",
     accent: "var(--z-success)",
@@ -42,13 +42,13 @@ const FEATURES = [
   },
   {
     icon: Globe,
-    title: "Arabic & English Native",
+    title: "5 Languages, Natively",
     description:
-      "Full RTL rendering for Arabic text. Upload books in either language and converse naturally — the model adapts to your language, not the other way around.",
+      "English, Arabic (full RTL), French, Spanish, and Chinese — upload in any, converse in any. The model adapts to your language, not the other way around.",
     accent: "var(--z-warning)",
     accentBg: "rgba(230,168,23,0.12)",
     accentBorder: "rgba(230,168,23,0.25)",
-    tags: ["Arabic RTL", "Bilingual", "Auto-detect"],
+    tags: ["Arabic RTL", "5 languages", "Auto-detect"],
   },
   {
     icon: BookOpen,

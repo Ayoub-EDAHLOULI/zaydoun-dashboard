@@ -18,7 +18,7 @@ const FAQS = [
   {
     question: "Does Zaydoun automatically detect my language?",
     answer:
-      "Yes. Both Arabic and English are supported natively with automatic detection. Arabic text is rendered with full RTL layout. You can upload a book in Arabic, ask a question in English, and the model will respond in whichever language you used. Mixed-language books are handled gracefully — each chunk is indexed in the language it was written in.",
+      "Yes. English, Arabic, French, Spanish, and Chinese are all supported with automatic detection. Arabic text is rendered with full RTL layout. You can upload a book in one language, ask a question in another, and the model responds in whichever you used. You can also pin a preferred reply language in your profile settings.",
   },
   {
     question: "What file formats are supported for upload?",

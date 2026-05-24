@@ -11,7 +11,7 @@ const STEPS = [
     description:
       "Drag any PDF into your library. Zaydoun instantly extracts every page, preserving structure, headings, and page numbers — ready in seconds.",
     detail:
-      "Supports PDFs up to 500 pages. Arabic and English detected automatically.",
+      "Supports PDFs up to 500 pages. 5 languages detected automatically.",
   },
   {
     number: "02",

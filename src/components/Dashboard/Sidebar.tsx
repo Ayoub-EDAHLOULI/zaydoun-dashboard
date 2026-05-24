@@ -34,7 +34,7 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
     >
       {/* Logo */}
       <Link
-        href="/dashboard"
+        href="/"
         className="h-16 flex items-center gap-3 px-5 shrink-0"
         style={{ borderBottom: "1px solid var(--z-border)" }}
       >
