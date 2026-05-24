@@ -126,7 +126,7 @@ export default function FAQ() {
                 className="text-xs font-semibold tracking-[0.2em] uppercase"
                 style={{ color: "var(--z-gold)" }}
               >
-                Got questions
+                Common questions
               </p>
               <h2
                 className="text-3xl sm:text-4xl font-bold"
