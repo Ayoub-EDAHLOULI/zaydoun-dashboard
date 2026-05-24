@@ -26,7 +26,10 @@ export const authService = {
   },
 
   resetPassword(token: string, newPassword: string): Promise<void> {
-    return apiClient.post<void>(`${AUTH}/reset-password`, { token, newPassword });
+    return apiClient.post<void>(`${AUTH}/reset-password`, {
+      token,
+      newPassword,
+    });
   },
 
   async refreshToken(): Promise<{ accessToken: string }> {
@@ -52,6 +55,6 @@ export const authService = {
   },
 
   changePassword(data: ChangePasswordDto, accessToken: string): Promise<void> {
-    return apiClient.post<void>(`${AUTH}/change-password`, data, accessToken);
+    return apiClient.patch<void>(`${AUTH}/change-password`, data, accessToken);
   },
 };
