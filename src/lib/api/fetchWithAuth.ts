@@ -96,12 +96,14 @@ export async function fetchWithAuth<T>(
 
   if (!response.ok) {
     const text = await response.text().catch(() => "");
+    let message = text || response.statusText;
     try {
       const body = JSON.parse(text) as { message?: string };
-      throw new Error(body.message || response.statusText);
+      if (body.message) message = body.message;
     } catch {
-      throw new Error(text || response.statusText);
+      // not JSON — use raw text
     }
+    throw new Error(message);
   }
 
   return parseResponse<T>(response);
