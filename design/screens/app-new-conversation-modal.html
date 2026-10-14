@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaydoun · New conversation</title>
+<!-- Zaydoun redesign · static design reference. Not production code: rebuild with Next.js + Tailwind v4 + Lucide (see ../README.md). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Amiri:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;background:#0d0d0d}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+button,input{font:inherit}
+button{cursor:pointer}
+</style>
+</head>
+<body>
+<div style="position: relative; width: 1440px; height: 1000px; overflow: hidden; background: #0d0d0d; color: #f5f0e8; font-family: Inter, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; display: flex">
+    <div style="width: 264px; height: 100%; background: #1a1a1a; border-right: 1px solid #2a2825"></div>
+    <div style="flex: 1; padding: 40px 48px; display: flex; flex-direction: column; gap: 16px">
+      <div style="width: 280px; height: 40px; border-radius: 6px; background: #1a1a1a"></div>
+      <div style="height: 80px; border-radius: 12px; background: #1a1a1a; margin-top: 40px"></div>
+      <div style="height: 80px; border-radius: 12px; background: #1a1a1a"></div>
+      <div style="height: 80px; border-radius: 12px; background: #1a1a1a"></div>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.65)"></div>
+
+  <div role="dialog" aria-modal="true" aria-labelledby="nc-t" style="position: absolute; left: 50%; top: 110px; width: 560px; margin-left: -280px; box-sizing: border-box; padding: 32px; border-radius: 16px; background: #2e2e2e; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.9), 0 0 0 1px #3d3a37; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h1 id="nc-t" style="margin: 0; font: 400 30px/1.15 Newsreader, serif">New conversation</h1>
+        <p style="margin: 0; font-size: 14px; color: #c4bdb0">Pick a book Zaydoun has finished reading, and the language he should answer in.</p>
+      </div>
+      <button type="button" aria-label="Close" style="width: 44px; height: 44px; margin: -8px -8px 0 0; border: 0; border-radius: 8px; background: transparent; color: #c4bdb0; display: flex; align-items: center; justify-content: center"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+    </div>
+
+    <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 10px">
+      <legend style="margin-bottom: 10px; font-size: 13px; font-weight: 500; color: #c4bdb0">Book</legend>
+      <label style="display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 12px; background: rgba(201,168,76,0.12); border: 1px solid #c9a84c; cursor: pointer">
+        <input type="radio" name="nc-book" checked style="width: 18px; height: 18px; accent-color: #c9a84c; margin: 0">
+        <span dir="rtl" style="width: 36px; height: 48px; flex: none; box-sizing: border-box; border-radius: 2px 5px 5px 2px; background: #242424; border-left: 3px solid #a07c30; padding: 5px 4px; font: 700 10px/1.2 Amiri, serif; color: #e0c272">المقدمة</span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="font: 500 17px/1.2 Newsreader, serif">Al-Muqaddimah</span><span style="font-size: 13px; color: #c4bdb0">Ibn Khaldun · Arabic · 512 pages</span></span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 4px; background: rgba(76,175,125,0.12); color: #4caf7d; font-size: 12px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 50%; background: #4caf7d"></span>Ready</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 12px; background: #242424; border: 1px solid #2a2825; opacity: 0.6; cursor: not-allowed">
+        <input type="radio" name="nc-book" disabled style="width: 18px; height: 18px; margin: 0">
+        <span style="width: 36px; height: 48px; flex: none; box-sizing: border-box; border-radius: 2px 5px 5px 2px; background: #1a1a1a; border-left: 3px solid #3d3a37"></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="font: 500 17px/1.2 Newsreader, serif">Meditations</span><span style="font-size: 13px; color: #c4bdb0">Still being read. Available when it's Ready.</span></span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 4px; background: rgba(230,168,23,0.12); color: #e6a817; font-size: 12px; font-weight: 500">Processing</span>
+      </label>
+    </fieldset>
+
+    <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 10px">
+      <legend style="margin-bottom: 10px; font-size: 13px; font-weight: 500; color: #c4bdb0">Zaydoun replies in</legend>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <label style="height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid #c9a84c; color: #e0c272; font-size: 14px; font-weight: 500; cursor: pointer"><input type="radio" name="nc-lang" checked style="position: absolute; opacity: 0; width: 1px; height: 1px"><svg class="i" width="14" height="14" viewBox="0 0 24 24" style="stroke-width: 2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>English</label>
+        <label style="height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 999px; border: 1px solid #3d3a37; font: 400 17px/1 Amiri, serif; cursor: pointer"><input type="radio" name="nc-lang" style="position: absolute; opacity: 0; width: 1px; height: 1px">العربية</label>
+        <label style="height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 999px; border: 1px solid #3d3a37; font-size: 14px; cursor: pointer"><input type="radio" name="nc-lang" style="position: absolute; opacity: 0; width: 1px; height: 1px">Français</label>
+        <label style="height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 999px; border: 1px solid #3d3a37; font-size: 14px; cursor: pointer"><input type="radio" name="nc-lang" style="position: absolute; opacity: 0; width: 1px; height: 1px">Español</label>
+        <label style="height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 999px; border: 1px solid #3d3a37; font-size: 14px; cursor: pointer"><input type="radio" name="nc-lang" style="position: absolute; opacity: 0; width: 1px; height: 1px">中文</label>
+      </div>
+      <span style="font-size: 13px; color: #c4bdb0">Defaults to your preference from Profile. You can change it later in the conversation.</span>
+    </fieldset>
+
+    <div style="display: flex; justify-content: flex-end; gap: 10px; padding-top: 8px; border-top: 1px solid #3d3a37">
+      <button type="button" style="height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: transparent; color: #f5f0e8; font-size: 15px; font-weight: 500">Cancel</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #c9a84c; color: #0d0d0d; font-size: 15px; font-weight: 600">Start talking</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

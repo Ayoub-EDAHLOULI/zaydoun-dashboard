@@ -1,0 +1,81 @@
+/* Copied from design/tokens.css (the redesign reference). Keep the two in sync. */
+
+@theme {
+  /* Surfaces */
+  --color-bg-base: #0d0d0d;
+  --color-bg-surface: #1a1a1a;
+  --color-bg-elevated: #242424;
+  --color-bg-overlay: #2e2e2e;
+
+  /* Gold */
+  --color-gold: #c9a84c;
+  --color-gold-light: #e0c272;
+  --color-gold-dark: #a07c30;
+  --color-gold-muted: rgba(201, 168, 76, 0.15);
+  --color-gold-chart: #6e5520;          /* past-day bars in charts */
+
+  /* Text */
+  --color-text-primary: #f5f0e8;
+  --color-text-secondary: #c4bdb0;      /* use for ALL small captions/hints */
+  --color-text-muted: #6b6560;          /* ~3.4:1 on bg-base: decorative or 24px+ only */
+  --color-text-disabled: #3d3a37;
+
+  /* Borders */
+  --color-border: #2a2825;
+  --color-border-subtle: #1e1c1a;
+  --color-border-strong: #3d3a37;       /* borders on bg-overlay surfaces */
+  --color-border-gold: rgba(201, 168, 76, 0.3);
+
+  /* Status */
+  --color-success: #4caf7d;
+  --color-warning: #e6a817;
+  --color-error: #e05c5c;
+  --color-error-text: #e87878;          /* error text on dark fills, better contrast */
+  --color-info: #5b9bd5;
+  --color-info-text: #7fb2e0;
+
+  /* Radii */
+  --radius-xs: 4px;   /* badges */
+  --radius-sm: 8px;   /* buttons, inputs */
+  --radius-md: 12px;  /* cards */
+  --radius-lg: 16px;  /* modals, big panels */
+
+  /* Type */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;   /* display + Zaydoun's voice */
+  --font-arabic: var(--font-amiri), "Scheherazade New", serif;
+
+  /* Shadows & glow */
+  --shadow-overlay: 0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px #3d3a37;
+  --shadow-gold-glow: 0 0 32px -8px rgba(201, 168, 76, 0.35);
+  --shadow-orb: 0 0 90px rgba(201, 168, 76, 0.45), inset 0 -18px 40px rgba(0, 0, 0, 0.35);
+
+  /* Motion */
+  --animate-orb-breathe: orb-breathe 3.2s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.4s linear infinite;
+
+  @keyframes orb-breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+}
+
+/* The orb gradient, used by <Orb /> */
+:root {
+  --orb-gradient: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #e0c272 20%, #c9a84c 46%, #a07c30 76%, #4a3712 100%);
+  --orb-gradient-small: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%);
+}
+
+/* Focus ring everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

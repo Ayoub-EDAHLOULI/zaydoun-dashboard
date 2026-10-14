@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaydoun · Conversation</title>
+<!-- Zaydoun redesign · static design reference. Not production code: rebuild with Next.js + Tailwind v4 + Lucide (see ../README.md). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Amiri:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;background:#0d0d0d}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+a{color:#c4bdb0;text-decoration:none}a:hover{color:#f5f0e8}
+button,textarea,select{font:inherit}
+button{cursor:pointer}
+</style>
+</head>
+<body>
+<div style="width: 100%; height: 960px; background: #0d0d0d; color: #f5f0e8; font-family: Inter, sans-serif; display: flex; flex-wrap: wrap; overflow: hidden">
+
+  <aside aria-label="App" style="flex: 0 0 72px; height: 960px; box-sizing: border-box; padding: 16px 0; background: #1a1a1a; border-right: 1px solid #2a2825; display: flex; flex-direction: column; align-items: center; gap: 20px">
+    <img src="../assets/logo.png" alt="Zaydoun" style="width: 36px; height: 36px; border-radius: 9px">
+    <nav style="display: flex; flex-direction: column; gap: 6px">
+      <a href="#" aria-label="Home" title="Home" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></a>
+      <a href="app-library.html" aria-label="Library" title="Library" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></a>
+      <a href="#" aria-label="Conversations" aria-current="page" title="Conversations" style="width: 44px; height: 44px; border-radius: 10px; background: rgba(201,168,76,0.15); color: #e0c272; display: flex; align-items: center; justify-content: center"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+      <a href="#" aria-label="Profile" title="Profile" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg></a>
+    </nav>
+    <span style="margin-top: auto; width: 36px; height: 36px; border-radius: 50%; background: #242424; border: 1px solid #2a2825; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #e0c272">AB</span>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; height: 960px; display: flex; flex-direction: column">
+    <header style="height: 72px; flex: none; box-sizing: border-box; padding: 0 24px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #1e1c1a">
+      <a href="#" aria-label="Back to conversations" style="width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg></a>
+      <div style="width: 30px; height: 40px; flex: none; border-radius: 2px 5px 5px 2px; background: #2e2e2e; border-left: 3px solid #a07c30"></div>
+      <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+        <h1 style="margin: 0; font: 500 19px/1.2 Newsreader, serif">Al-Muqaddimah</h1>
+        <span style="font-size: 13px; color: #c4bdb0">Ibn Khaldun · started Oct 12</span>
+      </div>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 8px">
+        <label for="reply-lang" style="font-size: 13px; color: #c4bdb0">Replies in</label>
+        <div style="position: relative">
+          <select id="reply-lang" style="height: 40px; padding: 0 34px 0 12px; border-radius: 8px; border: 1px solid #2a2825; background: #1a1a1a; color: #f5f0e8; font-size: 14px; appearance: none"><option>English</option><option>العربية</option><option>Français</option><option>Español</option><option>中文</option></select>
+          <svg class="i" width="16" height="16" viewBox="0 0 24 24" style="position: absolute; right: 12px; top: 12px; color: #c4bdb0; pointer-events: none" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+        </div>
+        <button type="button" aria-label="Conversation actions" style="width: 40px; height: 40px; border: 0; border-radius: 8px; background: transparent; color: #c4bdb0; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+      </div>
+    </header>
+
+    <div role="log" aria-label="Conversation" style="flex: 1; min-height: 0; overflow: hidden; padding: 32px 24px 0">
+      <div style="max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 12px; color: #c4bdb0"><span style="flex: 1; height: 1px; background: #1e1c1a"></span>Today<span style="flex: 1; height: 1px; background: #1e1c1a"></span></div>
+
+        <div style="align-self: flex-end; max-width: 75%; padding: 12px 16px; border-radius: 16px 16px 4px 16px; background: #242424; font-size: 15px; line-height: 1.55">Is ʿasabiyya just a fancy word for tribalism?</div>
+
+        <article style="display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%); box-shadow: 0 0 12px rgba(201,168,76,0.4)"></span>
+            <span style="font-size: 13px; font-weight: 600; color: #e0c272">Zaydoun</span>
+          </div>
+          <p style="margin: 0; font: 400 19px/1.7 Newsreader, serif">Not quite, and that's the trap most summaries fall into. ʿAsabiyya is group feeling: the solidarity that lets people act as one and defend each other.</p>
+          <p style="margin: 0; font: 400 19px/1.7 Newsreader, serif">Kinship is where it starts, but Ibn Khaldun is clear that alliance and shared hardship can build it too. So it's less “my tribe first” and more the social glue that makes a group capable of founding a state. Wakha, here's the twist: the same glue is what wears out.</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+            <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 500"><svg class="i" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Page 118</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 500"><svg class="i" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Page 121</span>
+            <button type="button" aria-label="Copy answer" style="margin-left: auto; width: 36px; height: 36px; border: 0; border-radius: 8px; background: transparent; color: #c4bdb0; display: flex; align-items: center; justify-content: center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
+          </div>
+        </article>
+
+        <div style="align-self: flex-end; max-width: 75%; padding: 12px 16px; border-radius: 16px 16px 4px 16px; background: #242424; font-size: 15px; line-height: 1.55">Okay, so why doesn't it last? Every dynasty he describes seems to fall apart.</div>
+
+        <div role="status" style="display: flex; align-items: center; gap: 14px">
+          <span style="width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%); box-shadow: 0 0 0 6px rgba(201,168,76,0.12), 0 0 22px rgba(201,168,76,0.55)"></span>
+          <span style="font: italic 400 17px/1 Newsreader, serif; color: #c4bdb0">Finding the right passages…</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex: none; padding: 16px 24px 24px">
+      <div style="max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: flex-end; gap: 6px; padding: 8px 8px 8px 18px; border-radius: 16px; background: #1a1a1a; border: 1px solid #2a2825; box-shadow: 0 -20px 40px -10px rgba(13,13,13,0.9)">
+          <label for="composer" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Message Zaydoun</label>
+          <textarea id="composer" rows="2" placeholder="Ask, push back, or ask for an example…" style="flex: 1; min-height: 48px; padding: 8px 0; border: 0; background: transparent; color: #f5f0e8; font-size: 15px; line-height: 1.5; resize: none; outline: none"></textarea>
+          <div style="display: flex; align-items: center; gap: 4px">
+            <button type="button" disabled aria-label="Voice input, coming soon" title="Voice on the web is coming soon" style="position: relative; height: 40px; padding: 0 10px; border: 0; border-radius: 10px; background: transparent; color: #6b6560; display: flex; align-items: center; gap: 6px; cursor: not-allowed"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg><span style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: #c4bdb0; padding: 2px 6px; border-radius: 4px; border: 1px solid #2a2825">SOON</span></button>
+            <button type="button" disabled aria-label="Send" style="width: 40px; height: 40px; border: 0; border-radius: 10px; background: #242424; color: #6b6560; display: flex; align-items: center; justify-content: center; cursor: not-allowed"><svg class="i" width="18" height="18" viewBox="0 0 24 24" style="stroke-width: 2.2" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></button>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 16px; font-size: 12px; color: #c4bdb0">
+          <span>Answers come only from this book, with the page.</span>
+          <span style="font-variant-numeric: tabular-nums">11 of 15 messages left today</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <aside aria-label="About this book" style="flex: 0 1 320px; height: 960px; box-sizing: border-box; padding: 28px 24px; background: #0d0d0d; border-left: 1px solid #1e1c1a; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; gap: 16px; align-items: flex-start">
+      <div dir="rtl" style="width: 76px; height: 100px; flex: none; box-sizing: border-box; border-radius: 2px 6px 6px 2px; background: #2e2e2e; border-left: 4px solid #a07c30; padding: 10px 8px; display: flex; flex-direction: column; justify-content: space-between">
+        <span style="font: 700 15px/1.2 Amiri, serif; color: #e0c272">المقدمة</span>
+        <span style="font: 400 10px/1.2 Amiri, serif; color: #c4bdb0">ابن خلدون</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font: 500 18px/1.25 Newsreader, serif">Al-Muqaddimah</span>
+        <span style="font-size: 13px; color: #c4bdb0">Ibn Khaldun</span>
+        <span style="font-size: 13px; color: #c4bdb0">Arabic · 512 pages</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #c4bdb0">Pages cited here</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 500">Page 118</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 500">Page 121</span>
+      </div>
+      <span style="font-size: 13px; line-height: 1.5; color: #c4bdb0">A running index of where this conversation has been in the book.</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #c4bdb0">Other conversations</span>
+      <a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 10px; border: 1px solid #2a2825; color: #f5f0e8">
+        <span style="font-size: 14px; font-weight: 500">Bedouin vs sedentary life</span>
+        <span style="font-size: 12px; color: #c4bdb0">العربية · Oct 10</span>
+      </a>
+      <a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 10px; border: 1px solid #2a2825; color: #f5f0e8">
+        <span style="font-size: 14px; font-weight: 500">Taxes and the end of dynasties</span>
+        <span style="font-size: 12px; color: #c4bdb0">English · Oct 8</span>
+      </a>
+    </div>
+  </aside>
+</div>
+</body>
+</html>

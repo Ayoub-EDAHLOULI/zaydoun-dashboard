@@ -1,0 +1,23 @@
+// Zaydoun design-system components (see design/README.md)
+export { Button, buttonClasses } from "./Button";
+export type { ButtonVariant, ButtonSize } from "./Button";
+export { Input, Select, Textarea } from "./Field";
+export { FileDropZone } from "./FileDropZone";
+export { StatusBadge, Badge, PageTag } from "./Badges";
+export { Orb } from "./Orb";
+export { Switch } from "./Switch";
+export { Avatar } from "./Avatar";
+export { ActionMenu } from "./ActionMenu";
+export type { ActionMenuItem } from "./ActionMenu";
+export { BookCard, BookCover } from "./BookCard";
+export type { BookCardAction } from "./BookCard";
+export { StatCard, KpiCard } from "./StatCard";
+export { SidebarNav, NavItem, isNavActive } from "./SidebarNav";
+export type { NavLink } from "./SidebarNav";
+export { SegmentedControl } from "./SegmentedControl";
+export type { SegmentOption } from "./SegmentedControl";
+export { Modal, ConfirmDialog } from "./Modal";
+export { DataTable } from "./DataTable";
+export type { DataTableColumn } from "./DataTable";
+export { ChatMessage, ThinkingIndicator, Composer } from "./Chat";
+export { LimitBanner, EmptyState, Skeleton, BookCardSkeleton } from "./Feedback";

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../styles/tokens.css";
 
 :root {
   /* Backgrounds */
@@ -43,48 +44,53 @@
   --z-radius-xl: 16px;
 
   /* Typography */
-  --z-font-sans: "Inter", system-ui, sans-serif;
-  --z-font-arabic: "Amiri", "Scheherazade New", serif;
+  /* Legacy aliases — point at the next/font families loaded in app/layout.tsx */
+  --z-font-sans: var(--font-inter), system-ui, sans-serif;
+  --z-font-arabic: var(--font-amiri), "Scheherazade New", serif;
 }
 
-html,
-body {
-  height: 100%;
-}
+/* Base element styles live in a layer so Tailwind utilities can override them
+   (unlayered CSS beats every utility in Tailwind v4). */
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
 
-body {
-  font-family: var(--z-font-sans);
-  background-color: var(--z-bg-base);
-  color: var(--z-text-primary);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  body {
+    font-family: var(--z-font-sans);
+    background-color: var(--z-bg-base);
+    color: var(--z-text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-ul {
-  list-style: none;
-}
+  ul {
+    list-style: none;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--z-text-primary);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--z-text-primary);
+  }
 
-/* Arabic text utility */
-.font-arabic {
-  font-family: var(--z-font-arabic);
-  direction: rtl;
+  /* Arabic text utility */
+  .font-arabic {
+    font-family: var(--z-font-arabic);
+    direction: rtl;
+  }
 }
 
 /* Scrollbar */
@@ -107,4 +113,21 @@ h6 {
 ::selection {
   background: var(--z-gold-muted);
   color: var(--z-gold-light);
+}
+
+/* Toasts (react-toastify) — styled to the design system's toast */
+:root {
+  --toastify-color-dark: var(--color-bg-overlay);
+  --toastify-text-color-dark: var(--color-text-primary);
+  --toastify-font-family: var(--font-sans);
+  --toastify-toast-bd-radius: var(--radius-md);
+  --toastify-toast-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.7),
+    0 0 0 1px var(--color-border-strong);
+  --toastify-toast-min-height: 52px;
+  --toastify-toast-padding: 14px 16px;
+}
+
+.Toastify__toast {
+  font-size: 14px;
+  line-height: 1.45;
 }

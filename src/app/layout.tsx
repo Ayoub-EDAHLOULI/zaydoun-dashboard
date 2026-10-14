@@ -1,9 +1,32 @@
 import type { Metadata } from "next";
+import { Inter, Newsreader, Amiri } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/contexts/AuthContext";
 import ToastProvider from "@/contexts/ToastContext";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://zaydoun.ai";
+
+// Font variables are consumed by styles/tokens.css (font-sans / font-serif / font-arabic)
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  variable: "--font-newsreader",
+  display: "swap",
+});
+
+const amiri = Amiri({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-amiri",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
@@ -163,7 +186,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html
+      lang="en"
+      className={`h-full ${inter.variable} ${newsreader.variable} ${amiri.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"

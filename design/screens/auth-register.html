@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaydoun · Create account</title>
+<!-- Zaydoun redesign · static design reference. Not production code: rebuild with Next.js + Tailwind v4 + Lucide (see ../README.md). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap">
+<style>
+body{margin:0;background:#0d0d0d}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+a{color:#e0c272;text-decoration:none}a:hover{color:#f5f0e8}
+button,input{font:inherit}
+button{cursor:pointer}
+</style>
+</head>
+<body>
+<div style="width: 100%; min-height: 900px; background: #0d0d0d; color: #f5f0e8; font-family: Inter, sans-serif; display: flex; flex-wrap: wrap">
+  <aside style="flex: 1 1 520px; position: relative; overflow: hidden; min-height: 900px; box-sizing: border-box; padding: 48px 64px; background: #1a1a1a; border-right: 1px solid #2a2825; display: flex; flex-direction: column">
+    <a href="marketing-home.html" style="display: flex; align-items: center; gap: 10px; color: #f5f0e8"><img src="../assets/logo.png" alt="" style="width: 36px; height: 36px; border-radius: 9px"><span style="font-size: 19px; font-weight: 600">Zaydoun</span></a>
+    <div aria-hidden="true" style="position: absolute; right: -140px; top: 160px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.2) 0%, rgba(201,168,76,0) 62%)"></div>
+    <div aria-hidden="true" style="position: absolute; right: 20px; top: 300px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #e0c272 20%, #c9a84c 46%, #a07c30 76%, #4a3712 100%); box-shadow: 0 0 90px rgba(201,168,76,0.45)"></div>
+    <div style="position: relative; margin-top: auto; display: flex; flex-direction: column; gap: 24px; max-width: 440px">
+      <p style="margin: 0; font: 400 46px/1.08 Newsreader, serif; letter-spacing: -0.02em">Bring a book. <em style="font-style: italic; color: #e0c272">He's already curious.</em></p>
+      <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #c4bdb0">
+        <li style="display: flex; gap: 14px"><span style="font: 400 18px/1.2 Newsreader, serif; color: #e0c272; width: 22px">1</span>Upload a PDF</li>
+        <li style="display: flex; gap: 14px"><span style="font: 400 18px/1.2 Newsreader, serif; color: #e0c272; width: 22px">2</span>Zaydoun reads it, page by page</li>
+        <li style="display: flex; gap: 14px"><span style="font: 400 18px/1.2 Newsreader, serif; color: #e0c272; width: 22px">3</span>Ask your first question</li>
+      </ol>
+    </div>
+    <span style="position: relative; margin-top: 48px; font-size: 13px; color: #c4bdb0">© 2026 Zaydoun</span>
+  </aside>
+
+  <main style="flex: 1 1 520px; min-width: 0; box-sizing: border-box; padding: 48px; display: flex; align-items: center; justify-content: center">
+    <form aria-labelledby="rg-t" style="width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px">
+        <h1 id="rg-t" style="margin: 0; font: 400 40px/1.1 Newsreader, serif; letter-spacing: -0.02em">Create your account</h1>
+        <p style="margin: 0; font-size: 15px; color: #c4bdb0">Free to start. No card needed.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="rg-name" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Full name</label>
+        <input id="rg-name" type="text" autocomplete="name" value="Amina Benali" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 8px; border: 1px solid #2a2825; background: #242424; color: #f5f0e8; font-size: 15px; outline: none">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="rg-email" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Email</label>
+        <input id="rg-email" type="email" autocomplete="email" value="amina@reader.ma" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 8px; border: 1px solid #2a2825; background: #242424; color: #f5f0e8; font-size: 15px; outline: none">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="rg-pw" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Password</label>
+        <input id="rg-pw" type="password" autocomplete="new-password" aria-describedby="rg-pw-h" value="••••••••••" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 8px; border: 1px solid #2a2825; background: #242424; color: #f5f0e8; font-size: 15px; outline: none">
+        <span id="rg-pw-h" style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #4caf7d"><svg class="i" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>At least 8 characters</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="rg-pw2" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Confirm password</label>
+        <input id="rg-pw2" type="password" autocomplete="new-password" aria-invalid="true" aria-describedby="rg-pw2-e" value="•••••••" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 8px; border: 1px solid #e05c5c; background: #242424; color: #f5f0e8; font-size: 15px; outline: none">
+        <span id="rg-pw2-e" style="font-size: 12px; color: #e87878">Passwords don't match yet.</span>
+      </div>
+      <button type="submit" style="height: 52px; margin-top: 4px; border: 0; border-radius: 10px; background: #c9a84c; color: #0d0d0d; font-size: 16px; font-weight: 600">Create account</button>
+      <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #c4bdb0; text-align: center">By creating an account you agree to the <a href="#">Terms</a> and <a href="#">Privacy policy</a>.</p>
+      <p style="margin: 4px 0 0; padding-top: 18px; border-top: 1px solid #2a2825; text-align: center; font-size: 15px; color: #c4bdb0">Already have an account? <a href="auth-login.html" style="font-weight: 500">Log in</a></p>
+    </form>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaydoun · Admin overview mobile</title>
+<!-- Zaydoun redesign · static design reference. Not production code: rebuild with Next.js + Tailwind v4 + Lucide (see ../README.md). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Amiri:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;background:#0d0d0d}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+a{color:#e0c272;text-decoration:none}
+button{font:inherit;cursor:pointer}
+</style>
+</head>
+<body>
+<div style="width: 390px; min-height: 1900px; background: #0d0d0d; color: #f5f0e8; font-family: Inter, sans-serif">
+  <header style="height: 60px; padding: 0 8px; display: flex; align-items: center; gap: 4px; border-bottom: 1px solid #1e1c1a">
+    <button type="button" aria-label="Open navigation" style="width: 44px; height: 44px; border: 0; border-radius: 8px; background: transparent; color: #f5f0e8; display: flex; align-items: center; justify-content: center"><svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button>
+    <span style="font-size: 17px; font-weight: 600">Overview</span>
+    <span style="margin-left: 8px; display: inline-flex; align-items: center; height: 22px; padding: 0 7px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 11px; font-weight: 600; letter-spacing: 0.06em">ADMIN</span>
+    <span style="margin-left: auto; margin-right: 4px; width: 36px; height: 36px; border-radius: 50%; background: #242424; border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #e0c272">AE</span>
+  </header>
+
+  <div style="padding: 20px 16px 48px; display: flex; flex-direction: column; gap: 20px">
+    <div role="tablist" aria-label="Period" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 4px; gap: 2px; border-radius: 10px; background: #1a1a1a; border: 1px solid #2a2825">
+      <button type="button" role="tab" aria-selected="false" style="height: 40px; border: 0; border-radius: 7px; background: transparent; color: #c4bdb0; font-size: 14px">Today</button>
+      <button type="button" role="tab" aria-selected="true" style="height: 40px; border: 0; border-radius: 7px; background: #2e2e2e; color: #f5f0e8; font-size: 14px; font-weight: 500">7 days</button>
+      <button type="button" role="tab" aria-selected="false" style="height: 40px; border: 0; border-radius: 7px; background: transparent; color: #c4bdb0; font-size: 14px">30 days</button>
+      <button type="button" role="tab" aria-selected="false" style="height: 40px; border: 0; border-radius: 7px; background: transparent; color: #c4bdb0; font-size: 14px">All</button>
+    </div>
+
+    <section aria-label="Key numbers" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825">
+        <span style="font-size: 13px; font-weight: 500; color: #c4bdb0">Total cost</span>
+        <span style="font: 500 28px/1 Inter, sans-serif; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">$4.82</span>
+        <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: #c4bdb0"><svg class="i" width="14" height="14" viewBox="0 0 24 24" style="color: #f5f0e8" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><b style="color: #f5f0e8; font-weight: 500">12%</b> vs prev.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825">
+        <span style="font-size: 13px; font-weight: 500; color: #c4bdb0">Messages</span>
+        <span style="font: 500 28px/1 Inter, sans-serif; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">1,284</span>
+        <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: #c4bdb0"><svg class="i" width="14" height="14" viewBox="0 0 24 24" style="color: #f5f0e8" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><b style="color: #f5f0e8; font-weight: 500">8%</b> vs prev.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825">
+        <span style="font-size: 13px; font-weight: 500; color: #c4bdb0">Tokens used</span>
+        <span style="font: 500 28px/1 Inter, sans-serif; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">2.1M</span>
+        <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: #c4bdb0"><svg class="i" width="14" height="14" viewBox="0 0 24 24" style="color: #f5f0e8" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><b style="color: #f5f0e8; font-weight: 500">5%</b> vs prev.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825">
+        <span style="font-size: 13px; font-weight: 500; color: #c4bdb0">Audio</span>
+        <span style="font: 500 28px/1 Inter, sans-serif; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">3h 12m</span>
+        <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: #c4bdb0"><svg class="i" width="14" height="14" viewBox="0 0 24 24" style="color: #f5f0e8" aria-hidden="true"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg><b style="color: #f5f0e8; font-weight: 500">4%</b> vs prev.</span>
+      </div>
+    </section>
+
+    <figure style="margin: 0; padding: 18px 16px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825; display: flex; flex-direction: column; gap: 16px">
+      <figcaption style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 15px; font-weight: 600">Cost per day</span><span style="font-size: 12px; color: #c4bdb0">max $0.92 · Tue</span></figcaption>
+      <div role="img" aria-label="Daily cost from Oct 8 to Oct 14: 0.52, 0.61, 0.48, 0.83, 0.74, 0.92, 0.72 dollars" style="position: relative; height: 190px">
+        <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; border-top: 1px solid #1e1c1a"></div>
+        <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 80px; border-top: 1px solid #1e1c1a"></div>
+        <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 160px; border-top: 1px solid #2a2825"></div>
+        <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 160px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; align-items: end">
+          <div style="height: 83px; border-radius: 3px 3px 0 0; background: #6e5520"></div>
+          <div style="height: 98px; border-radius: 3px 3px 0 0; background: #6e5520"></div>
+          <div style="height: 77px; border-radius: 3px 3px 0 0; background: #6e5520"></div>
+          <div style="height: 133px; border-radius: 3px 3px 0 0; background: #6e5520"></div>
+          <div style="height: 118px; border-radius: 3px 3px 0 0; background: #6e5520"></div>
+          <div style="height: 147px; border-radius: 3px 3px 0 0; background: #6e5520"></div>
+          <div style="height: 115px; border-radius: 3px 3px 0 0; background: #c9a84c"></div>
+        </div>
+        <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 170px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; font-size: 11px; color: #c4bdb0; text-align: center"><span>T</span><span>F</span><span>S</span><span>S</span><span>M</span><span>T</span><span style="color: #f5f0e8; font-weight: 600">Now</span></div>
+      </div>
+    </figure>
+
+    <section aria-labelledby="m-conv-t" style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 id="m-conv-t" style="margin: 0; font-size: 15px; font-weight: 600">Most expensive conversations</h2>
+        <a href="#" style="font-size: 14px">See all</a>
+      </div>
+      <a href="#" style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825; color: #f5f0e8">
+        <div style="display: flex; justify-content: space-between; gap: 12px"><span style="font-size: 15px; font-weight: 500">Why dynasties fall</span><span style="font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums">$0.61</span></div>
+        <span style="font-size: 13px; color: #c4bdb0">Amina Benali · Al-Muqaddimah</span>
+        <span style="font-size: 12px; color: #c4bdb0; font-variant-numeric: tabular-nums">42 msgs · 186k tokens · 14m audio</span>
+      </a>
+      <a href="#" style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825; color: #f5f0e8">
+        <div style="display: flex; justify-content: space-between; gap: 12px"><span style="font-size: 15px; font-weight: 500">A stoic morning</span><span style="font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums">$0.55</span></div>
+        <span style="font-size: 13px; color: #c4bdb0">Youssef K. · Meditations</span>
+        <span style="font-size: 12px; color: #c4bdb0; font-variant-numeric: tabular-nums">38 msgs · 152k tokens · 22m audio</span>
+      </a>
+      <a href="#" style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825; color: #f5f0e8">
+        <div style="display: flex; justify-content: space-between; gap: 12px"><span style="font-size: 15px; font-weight: 500">Virtù vs fortuna</span><span style="font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums">$0.38</span></div>
+        <span style="font-size: 13px; color: #c4bdb0">Salma R. · The Prince</span>
+        <span style="font-size: 12px; color: #c4bdb0; font-variant-numeric: tabular-nums">31 msgs · 121k tokens · no audio</span>
+      </a>
+    </section>
+
+    <section aria-label="Loading state example" style="display: flex; flex-direction: column; gap: 12px; padding-top: 8px; border-top: 1px dashed #2a2825">
+      <span style="font-size: 12px; color: #c4bdb0">While loading</span>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <div style="height: 104px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px"><div style="width: 60%; height: 12px; border-radius: 4px; background: #242424"></div><div style="width: 75%; height: 26px; border-radius: 4px; background: #242424"></div></div>
+        <div style="height: 104px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px"><div style="width: 60%; height: 12px; border-radius: 4px; background: #242424"></div><div style="width: 75%; height: 26px; border-radius: 4px; background: #242424"></div></div>
+      </div>
+      <div style="height: 220px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825"></div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

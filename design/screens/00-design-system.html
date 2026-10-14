@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaydoun design system</title>
+<!-- Zaydoun redesign · static design reference. Not production code: rebuild with Next.js + Tailwind v4 + Lucide (see ../README.md). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Amiri:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;background:#0d0d0d}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+a{color:#e0c272;text-decoration:none}a:hover{color:#f5f0e8}
+button,input,textarea,select{font:inherit}
+</style>
+</head>
+<body>
+<div style="width: 1440px; min-height: 4100px; box-sizing: border-box; padding: 80px; background: #0d0d0d; color: #f5f0e8; font-family: Inter, sans-serif; display: flex; flex-direction: column; gap: 72px">
+
+  <header style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid #2a2825">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <img src="../assets/logo.png" alt="Zaydoun logo" style="width: 44px; height: 44px; border-radius: 10px">
+        <span style="font: 600 20px/1 Inter, sans-serif; letter-spacing: -0.01em">Zaydoun</span>
+      </div>
+      <h1 style="margin: 0; font: 400 64px/1.05 Newsreader, Georgia, serif; letter-spacing: -0.02em">A study at night.</h1>
+      <p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 1.6; color: #c4bdb0">Dark surfaces, gold used like lamplight. Gold marks only what matters: the primary action, the active place, a cited page, and Zaydoun himself.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px; text-align: right; font-size: 13px; color: #c4bdb0">
+      <span>Newsreader: display &amp; Zaydoun's voice</span>
+      <span>Inter: interface</span>
+      <span style="font-family: Amiri, serif; font-size: 17px">أميري — للعربية</span>
+    </div>
+  </header>
+
+  <!-- COLORS -->
+  <section style="display: flex; flex-direction: column; gap: 24px">
+    <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Color tokens</h2>
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #0d0d0d; border: 1px solid #2a2825"></div><span style="font-size: 13px; font-weight: 500">bg-base</span><span style="font-size: 12px; color: #c4bdb0">#0d0d0d</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #1a1a1a; border: 1px solid #2a2825"></div><span style="font-size: 13px; font-weight: 500">bg-surface</span><span style="font-size: 12px; color: #c4bdb0">#1a1a1a</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #242424"></div><span style="font-size: 13px; font-weight: 500">bg-elevated</span><span style="font-size: 12px; color: #c4bdb0">#242424</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #2e2e2e"></div><span style="font-size: 13px; font-weight: 500">bg-overlay</span><span style="font-size: 12px; color: #c4bdb0">#2e2e2e</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #2a2825"></div><span style="font-size: 13px; font-weight: 500">border</span><span style="font-size: 12px; color: #c4bdb0">#2a2825</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #1e1c1a; border: 1px solid #2a2825"></div><span style="font-size: 13px; font-weight: 500">border-subtle</span><span style="font-size: 12px; color: #c4bdb0">#1e1c1a</span></div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #c9a84c"></div><span style="font-size: 13px; font-weight: 500">gold</span><span style="font-size: 12px; color: #c4bdb0">#c9a84c · primary</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #e0c272"></div><span style="font-size: 13px; font-weight: 500">gold-light</span><span style="font-size: 12px; color: #c4bdb0">#e0c272 · hover</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #a07c30"></div><span style="font-size: 13px; font-weight: 500">gold-dark</span><span style="font-size: 12px; color: #c4bdb0">#a07c30 · pressed</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: rgba(201,168,76,0.15)"></div><span style="font-size: 13px; font-weight: 500">gold-muted</span><span style="font-size: 12px; color: #c4bdb0">gold @ 15%</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #0d0d0d; border: 1px solid rgba(201,168,76,0.3)"></div><span style="font-size: 13px; font-weight: 500">border-gold</span><span style="font-size: 12px; color: #c4bdb0">gold @ 30%</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #1a1a1a; border: 1px solid #2a2825; display: flex; align-items: center; justify-content: center; gap: 10px; font: 500 22px/1 Newsreader, serif"><span style="color: #f5f0e8">Aa</span><span style="color: #c4bdb0">Aa</span><span style="color: #6b6560">Aa</span><span style="color: #3d3a37">Aa</span></div><span style="font-size: 13px; font-weight: 500">text ramp</span><span style="font-size: 12px; color: #c4bdb0">primary · secondary · muted · disabled</span></div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #4caf7d"></div><span style="font-size: 13px; font-weight: 500">success</span><span style="font-size: 12px; color: #c4bdb0">#4caf7d · Ready</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #e6a817"></div><span style="font-size: 13px; font-weight: 500">warning</span><span style="font-size: 12px; color: #c4bdb0">#e6a817 · Processing</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #e05c5c"></div><span style="font-size: 13px; font-weight: 500">error</span><span style="font-size: 12px; color: #c4bdb0">#e05c5c · Failed</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; border-radius: 8px; background: #5b9bd5"></div><span style="font-size: 13px; font-weight: 500">info</span><span style="font-size: 12px; color: #c4bdb0">#5b9bd5 · Pending</span></div>
+      <div style="grid-column: span 2; display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 12px; background: rgba(230,168,23,0.08); border: 1px solid rgba(230,168,23,0.25)">
+        <svg class="i" width="18" height="18" viewBox="0 0 24 24" style="color: #e6a817; margin-top: 2px"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+        <span style="font-size: 13px; line-height: 1.55; color: #c4bdb0"><b style="color: #f5f0e8; font-weight: 600">Contrast rule.</b> text-muted is ~3.4:1 on bg-base and ~3:1 on bg-surface, below the 4.5:1 needed for small text. Use it only for decorative or 24px+ text. Captions and hints use text-secondary.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE / SPACING / RADII / GLOW -->
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px">
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Type scale</h2>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid #2a2825">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #1e1c1a"><span style="font: 400 56px/1.05 Newsreader, serif; letter-spacing: -0.02em">Display XL</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap">Newsreader 56/60 · −2%</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #1e1c1a"><span style="font: 400 40px/1.1 Newsreader, serif; letter-spacing: -0.015em">Display L</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap">Newsreader 40/44</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #1e1c1a"><span style="font: 500 28px/1.2 Newsreader, serif">Heading serif</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap">Newsreader 28/34</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #1e1c1a"><span style="font: 600 20px/1.3 Inter, sans-serif; letter-spacing: -0.01em">Heading UI</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap">Inter 600 20/26</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #1e1c1a"><span style="font: 400 18px/1.65 Newsreader, serif">Zaydoun speaks in the reading voice.</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap">Newsreader 18/30</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #1e1c1a"><span style="font: 400 15px/1.55 Inter, sans-serif">Body UI, buttons and inputs</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap">Inter 15/23</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #1e1c1a"><span style="font: 500 13px/1.4 Inter, sans-serif; color: #c4bdb0">Caption and meta</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap">Inter 500 13/18</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #1e1c1a"><span style="font: 500 12px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Eyebrow</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap">Inter 500 12 · +14%</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 0" dir="rtl"><span style="font: 400 22px/1.8 Amiri, serif">العصبية هي أساس الملك</span><span style="font-size: 12px; color: #c4bdb0; white-space: nowrap; font-family: Inter, sans-serif" dir="ltr">Amiri 22/40 · RTL</span></div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Spacing · 4px base</h2>
+        <div style="display: flex; align-items: flex-end; gap: 18px">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 4px; height: 4px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">4</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 8px; height: 8px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">8</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 12px; height: 12px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">12</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 16px; height: 16px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">16</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 24px; height: 24px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">24</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 32px; height: 32px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">32</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 48px; height: 48px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">48</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 64px; height: 64px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">64</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><div style="width: 96px; height: 96px; background: #c9a84c; border-radius: 1px"></div><span style="font-size: 12px; color: #c4bdb0">96</span></div>
+        </div>
+        <span style="font-size: 13px; color: #c4bdb0">Maps 1:1 to Tailwind (1 = 4px). Page gutter 16 mobile / 40 desktop; section rhythm 96–128.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Radii</h2>
+        <div style="display: flex; gap: 20px">
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><div style="width: 72px; height: 72px; background: #242424; border: 1px solid #2a2825; border-radius: 4px"></div><span style="font-size: 12px; color: #c4bdb0">4 · badge</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><div style="width: 72px; height: 72px; background: #242424; border: 1px solid #2a2825; border-radius: 8px"></div><span style="font-size: 12px; color: #c4bdb0">8 · control</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><div style="width: 72px; height: 72px; background: #242424; border: 1px solid #2a2825; border-radius: 12px"></div><span style="font-size: 12px; color: #c4bdb0">12 · card</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><div style="width: 72px; height: 72px; background: #242424; border: 1px solid #2a2825; border-radius: 16px"></div><span style="font-size: 12px; color: #c4bdb0">16 · modal</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><div style="width: 72px; height: 72px; background: #242424; border: 1px solid #2a2825; border-radius: 999px"></div><span style="font-size: 12px; color: #c4bdb0">full · chip</span></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Elevation &amp; glow</h2>
+        <div style="display: flex; gap: 28px; align-items: center">
+          <div style="display: flex; flex-direction: column; gap: 10px; align-items: center"><div style="width: 96px; height: 72px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825"></div><span style="font-size: 12px; color: #c4bdb0">flat · border</span></div>
+          <div style="display: flex; flex-direction: column; gap: 10px; align-items: center"><div style="width: 96px; height: 72px; border-radius: 12px; background: #2e2e2e; box-shadow: 0 24px 48px -12px rgba(0,0,0,0.7), 0 0 0 1px #2a2825"></div><span style="font-size: 12px; color: #c4bdb0">overlay</span></div>
+          <div style="display: flex; flex-direction: column; gap: 10px; align-items: center"><div style="width: 96px; height: 72px; border-radius: 12px; background: #1a1a1a; border: 1px solid rgba(201,168,76,0.3); box-shadow: 0 0 32px -8px rgba(201,168,76,0.35)"></div><span style="font-size: 12px; color: #c4bdb0">gold glow</span></div>
+          <div style="display: flex; flex-direction: column; gap: 10px; align-items: center">
+            <div style="position: relative; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center">
+              <div style="position: absolute; inset: -14px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.2)"></div>
+              <div style="width: 72px; height: 72px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #e0c272 22%, #c9a84c 48%, #a07c30 78%, #5c4519 100%); box-shadow: 0 0 40px rgba(201,168,76,0.45); display: flex; align-items: center; justify-content: center; color: #1a1408">
+                <svg class="i" width="28" height="28" viewBox="0 0 24 24" style="stroke-width: 1.6" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+              </div>
+            </div>
+            <span style="font-size: 12px; color: #c4bdb0">the orb</span>
+          </div>
+        </div>
+        <span style="font-size: 13px; line-height: 1.55; color: #c4bdb0">The orb is the only glowing object. It breathes (scale 1 → 1.04, 3.2s) while Zaydoun is thinking and sits still otherwise.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section style="display: flex; flex-direction: column; gap: 24px">
+    <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Buttons · 44px tall</h2>
+    <div style="display: grid; grid-template-columns: 140px repeat(5, minmax(0, 1fr)); gap: 16px 20px; align-items: center">
+      <span></span>
+      <span style="font-size: 12px; color: #c4bdb0">Default</span>
+      <span style="font-size: 12px; color: #c4bdb0">Hover</span>
+      <span style="font-size: 12px; color: #c4bdb0">Pressed</span>
+      <span style="font-size: 12px; color: #c4bdb0">Focus</span>
+      <span style="font-size: 12px; color: #c4bdb0">Disabled</span>
+
+      <span style="font-size: 13px; font-weight: 500">Primary</span>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #c9a84c; color: #0d0d0d; font-weight: 600; font-size: 15px">Start conversation</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #e0c272; color: #0d0d0d; font-weight: 600; font-size: 15px">Start conversation</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #a07c30; color: #0d0d0d; font-weight: 600; font-size: 15px">Start conversation</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #c9a84c; color: #0d0d0d; font-weight: 600; font-size: 15px; box-shadow: 0 0 0 2px #0d0d0d, 0 0 0 4px #e0c272">Start conversation</button>
+      <button type="button" disabled style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #242424; color: #6b6560; font-weight: 600; font-size: 15px; cursor: not-allowed">Start conversation</button>
+
+      <span style="font-size: 13px; font-weight: 500">Secondary</span>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 1px solid #2a2825; border-radius: 8px; background: #242424; color: #f5f0e8; font-weight: 500; font-size: 15px">See pricing</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 1px solid #3d3a37; border-radius: 8px; background: #2e2e2e; color: #f5f0e8; font-weight: 500; font-size: 15px">See pricing</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 1px solid #2a2825; border-radius: 8px; background: #1a1a1a; color: #f5f0e8; font-weight: 500; font-size: 15px">See pricing</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 1px solid #2a2825; border-radius: 8px; background: #242424; color: #f5f0e8; font-weight: 500; font-size: 15px; box-shadow: 0 0 0 2px #0d0d0d, 0 0 0 4px #c9a84c">See pricing</button>
+      <button type="button" disabled style="height: 44px; padding: 0 20px; border: 1px solid #1e1c1a; border-radius: 8px; background: #1a1a1a; color: #3d3a37; font-weight: 500; font-size: 15px; cursor: not-allowed">See pricing</button>
+
+      <span style="font-size: 13px; font-weight: 500">Ghost</span>
+      <button type="button" style="height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: transparent; color: #c4bdb0; font-weight: 500; font-size: 15px">Cancel</button>
+      <button type="button" style="height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: #242424; color: #f5f0e8; font-weight: 500; font-size: 15px">Cancel</button>
+      <button type="button" style="height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: #2e2e2e; color: #f5f0e8; font-weight: 500; font-size: 15px">Cancel</button>
+      <button type="button" style="height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: transparent; color: #f5f0e8; font-weight: 500; font-size: 15px; box-shadow: 0 0 0 2px #c9a84c">Cancel</button>
+      <button type="button" disabled style="height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: transparent; color: #3d3a37; font-weight: 500; font-size: 15px; cursor: not-allowed">Cancel</button>
+
+      <span style="font-size: 13px; font-weight: 500">Destructive</span>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #e05c5c; color: #0d0d0d; font-weight: 600; font-size: 15px">Delete book</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #e87878; color: #0d0d0d; font-weight: 600; font-size: 15px">Delete book</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #b84545; color: #0d0d0d; font-weight: 600; font-size: 15px">Delete book</button>
+      <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #e05c5c; color: #0d0d0d; font-weight: 600; font-size: 15px; box-shadow: 0 0 0 2px #0d0d0d, 0 0 0 4px #e05c5c">Delete book</button>
+      <button type="button" disabled style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #242424; color: #6b6560; font-weight: 600; font-size: 15px; cursor: not-allowed">Delete book</button>
+    </div>
+  </section>
+
+  <!-- FORMS -->
+  <section style="display: flex; flex-direction: column; gap: 24px">
+    <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Form controls</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="ds-in1" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Email · default</label>
+        <input id="ds-in1" type="email" placeholder="you@example.com" style="height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 8px; border: 1px solid #2a2825; background: #242424; color: #f5f0e8; font-size: 15px; outline: none">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="ds-in2" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Email · focus</label>
+        <input id="ds-in2" type="email" value="amina@reader.ma" style="height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 8px; border: 1px solid #c9a84c; background: #242424; color: #f5f0e8; font-size: 15px; outline: none; box-shadow: 0 0 0 3px rgba(201,168,76,0.15)">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="ds-in3" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Password · error</label>
+        <input id="ds-in3" type="password" value="short" style="height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 8px; border: 1px solid #e05c5c; background: #242424; color: #f5f0e8; font-size: 15px; outline: none">
+        <span style="font-size: 12px; color: #e05c5c">Use at least 8 characters.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="ds-in4" style="font-size: 13px; font-weight: 500; color: #6b6560">Email · disabled</label>
+        <input id="ds-in4" type="email" value="amina@reader.ma" disabled style="height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 8px; border: 1px solid #1e1c1a; background: #1a1a1a; color: #6b6560; font-size: 15px">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="ds-sel" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Reply language</label>
+        <div style="position: relative">
+          <select id="ds-sel" style="width: 100%; height: 44px; padding: 0 40px 0 14px; border-radius: 8px; border: 1px solid #2a2825; background: #242424; color: #f5f0e8; font-size: 15px; appearance: none">
+            <option>English</option><option>العربية</option><option>Français</option><option>Español</option><option>中文</option>
+          </select>
+          <svg class="i" width="18" height="18" viewBox="0 0 24 24" style="position: absolute; right: 14px; top: 13px; color: #c4bdb0; pointer-events: none" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+        </div>
+      </div>
+      <div style="grid-column: span 3; display: flex; flex-direction: column; gap: 8px">
+        <label for="ds-ta" style="font-size: 13px; font-weight: 500; color: #c4bdb0">Message</label>
+        <textarea id="ds-ta" rows="3" placeholder="Tell us what's on your mind" style="box-sizing: border-box; padding: 12px 14px; border-radius: 8px; border: 1px solid #2a2825; background: #242424; color: #f5f0e8; font-size: 15px; line-height: 1.5; resize: vertical"></textarea>
+      </div>
+      <div style="grid-column: span 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 32px; border-radius: 12px; border: 1.5px dashed #3d3a37; background: #1a1a1a; text-align: center">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #242424; display: flex; align-items: center; justify-content: center; color: #c4bdb0"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg></div>
+        <span style="font-size: 15px; font-weight: 500">Drop a PDF here, or <a href="#">browse</a></span>
+        <span style="font-size: 13px; color: #c4bdb0">PDF only · up to 50 MB · drop zone, idle</span>
+      </div>
+      <div style="grid-column: span 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 32px; border-radius: 12px; border: 1.5px dashed #c9a84c; background: rgba(201,168,76,0.08); text-align: center">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(201,168,76,0.15); display: flex; align-items: center; justify-content: center; color: #e0c272"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path></svg></div>
+        <span style="font-size: 15px; font-weight: 500; color: #e0c272">Release to add “al-muqaddimah.pdf”</span>
+        <span style="font-size: 13px; color: #c4bdb0">drop zone, file over target</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BADGES, NAV, TABS, KPI, BOOK CARD -->
+  <section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Status badges</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px">
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 4px; background: rgba(91,155,213,0.12); color: #7fb2e0; font-size: 12px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 50%; background: #5b9bd5"></span>Pending</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 4px; background: rgba(230,168,23,0.12); color: #e6a817; font-size: 12px; font-weight: 500"><svg class="i" width="12" height="12" viewBox="0 0 24 24" style="stroke-width: 2.4" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>Processing</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 4px; background: rgba(76,175,125,0.12); color: #4caf7d; font-size: 12px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 50%; background: #4caf7d"></span>Ready</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 4px; background: rgba(224,92,92,0.12); color: #e87878; font-size: 12px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 50%; background: #e05c5c"></span>Failed</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px">
+        <span style="display: inline-flex; align-items: center; height: 24px; padding: 0 9px; border-radius: 4px; border: 1px solid #2a2825; color: #c4bdb0; font-size: 12px; font-weight: 500">AR · Arabic</span>
+        <span style="display: inline-flex; align-items: center; height: 24px; padding: 0 9px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 600; letter-spacing: 0.06em">ADMIN</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 500"><svg class="i" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Page 118</span>
+      </div>
+      <span style="font-size: 13px; line-height: 1.55; color: #c4bdb0">Status always pairs a word with color; Processing also gets a spinner so it reads without hue.</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Sidebar nav item</h2>
+      <nav aria-label="Nav item states" style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825">
+        <a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 12px; border-radius: 8px; color: #c4bdb0; font-size: 15px"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Home <span style="margin-left: auto; font-size: 12px; color: #6b6560">default</span></a>
+        <a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 12px; border-radius: 8px; background: #242424; color: #f5f0e8; font-size: 15px"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Conversations <span style="margin-left: auto; font-size: 12px; color: #c4bdb0">hover</span></a>
+        <a href="#" aria-current="page" style="position: relative; display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 12px; border-radius: 8px; background: rgba(201,168,76,0.15); color: #e0c272; font-size: 15px; font-weight: 500"><span style="position: absolute; left: -12px; top: 12px; width: 3px; height: 20px; border-radius: 0 3px 3px 0; background: #c9a84c"></span><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>Library <span style="margin-left: auto; font-size: 12px; color: #c4bdb0">active</span></a>
+      </nav>
+      <h2 style="margin: 8px 0 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Period switcher</h2>
+      <div role="tablist" aria-label="Period" style="display: inline-flex; align-self: flex-start; padding: 4px; gap: 2px; border-radius: 10px; background: #1a1a1a; border: 1px solid #2a2825">
+        <button type="button" role="tab" aria-selected="false" style="height: 36px; padding: 0 14px; border: 0; border-radius: 7px; background: transparent; color: #c4bdb0; font-size: 14px">Today</button>
+        <button type="button" role="tab" aria-selected="true" style="height: 36px; padding: 0 14px; border: 0; border-radius: 7px; background: #2e2e2e; color: #f5f0e8; font-size: 14px; font-weight: 500; box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset">7 days</button>
+        <button type="button" role="tab" aria-selected="false" style="height: 36px; padding: 0 14px; border: 0; border-radius: 7px; background: transparent; color: #c4bdb0; font-size: 14px">30 days</button>
+        <button type="button" role="tab" aria-selected="false" style="height: 36px; padding: 0 14px; border: 0; border-radius: 7px; background: transparent; color: #c4bdb0; font-size: 14px">All time</button>
+      </div>
+      <span style="font-size: 13px; color: #c4bdb0">Selected tab lifts to bg-overlay; gold is saved for nav and actions.</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">KPI card</h2>
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <span style="font-size: 13px; font-weight: 500; color: #c4bdb0">Total cost</span>
+          <svg class="i" width="18" height="18" viewBox="0 0 24 24" style="color: #6b6560" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle><path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path><path d="M7 6h1v4"></path><path d="m16.71 13.88.7.71-2.82 2.82"></path></svg>
+        </div>
+        <span style="font: 500 36px/1 Inter, sans-serif; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">$4.82</span>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 13px">
+          <span style="display: inline-flex; align-items: center; gap: 4px; color: #f5f0e8; font-weight: 500"><svg class="i" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>12%</span>
+          <span style="color: #c4bdb0">vs previous 7 days</span>
+        </div>
+      </div>
+      <span style="font-size: 13px; line-height: 1.55; color: #c4bdb0">Deltas are neutral (arrow + number, no green/red). "Cost up" and "messages up" aren't good or bad on their own.</span>
+    </div>
+  </section>
+
+  <!-- CARDS, TABLE ROW -->
+  <section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Book card</h2>
+      <article style="display: flex; flex-direction: column; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825; overflow: hidden">
+        <div style="position: relative; height: 168px; background: #242424; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; border-bottom: 1px solid #2a2825">
+          <div style="width: 112px; height: 140px; border-radius: 3px 8px 8px 3px; background: #2e2e2e; border-left: 6px solid #a07c30; box-shadow: 0 12px 24px -8px rgba(0,0,0,0.7); display: flex; flex-direction: column; justify-content: space-between; padding: 14px 12px; box-sizing: border-box" dir="rtl">
+            <span style="font: 700 18px/1.25 Amiri, serif; color: #e0c272">المقدمة</span>
+            <span style="font: 400 12px/1.3 Amiri, serif; color: #c4bdb0">ابن خلدون</span>
+          </div>
+          <span style="position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 4px; background: rgba(13,13,13,0.7); color: #4caf7d; font-size: 12px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 50%; background: #4caf7d"></span>Ready</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding: 16px">
+          <span style="font: 500 19px/1.25 Newsreader, serif">Al-Muqaddimah</span>
+          <span style="font-size: 13px; color: #c4bdb0">Ibn Khaldun · Arabic · 512 pages</span>
+          <div style="display: flex; gap: 8px; margin-top: 10px">
+            <button type="button" style="flex: 1; height: 40px; border: 0; border-radius: 8px; background: #c9a84c; color: #0d0d0d; font-weight: 600; font-size: 14px">Talk to this book</button>
+            <button type="button" aria-label="More actions" style="width: 40px; height: 40px; border: 1px solid #2a2825; border-radius: 8px; background: #242424; color: #c4bdb0; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Empty state</h2>
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 40px 28px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825">
+        <div style="position: relative; width: 56px; height: 56px; margin-bottom: 8px">
+          <div style="position: absolute; inset: -10px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.18)"></div>
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #e0c272 22%, #c9a84c 48%, #a07c30 78%, #5c4519 100%); opacity: 0.85; box-shadow: 0 0 28px rgba(201,168,76,0.35)"></div>
+        </div>
+        <span style="font: 500 22px/1.25 Newsreader, serif">Your shelf is empty</span>
+        <span style="font-size: 14px; line-height: 1.55; color: #c4bdb0; max-width: 260px">Upload a PDF and Zaydoun will read it, page by page, before your first question.</span>
+        <button type="button" style="margin-top: 6px; height: 44px; padding: 0 18px; border: 0; border-radius: 8px; background: #c9a84c; color: #0d0d0d; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>Upload a book</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Skeleton</h2>
+      <div style="display: flex; flex-direction: column; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825; overflow: hidden">
+        <div style="height: 168px; background: #1e1c1a; border-bottom: 1px solid #2a2825"></div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px">
+          <div style="height: 18px; width: 70%; border-radius: 4px; background: #242424"></div>
+          <div style="height: 12px; width: 45%; border-radius: 4px; background: #242424"></div>
+          <div style="display: flex; gap: 8px; margin-top: 10px"><div style="flex: 1; height: 40px; border-radius: 8px; background: #242424"></div><div style="width: 40px; height: 40px; border-radius: 8px; background: #242424"></div></div>
+        </div>
+      </div>
+      <span style="font-size: 13px; color: #c4bdb0">Shimmer: a 1.4s gradient sweep, off under prefers-reduced-motion.</span>
+    </div>
+  </section>
+
+  <!-- TABLE ROW -->
+  <section style="display: flex; flex-direction: column; gap: 20px">
+    <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Table row</h2>
+    <div style="border-radius: 12px; border: 1px solid #2a2825; overflow: hidden; background: #1a1a1a">
+      <div style="display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr 1fr 64px; gap: 16px; align-items: center; height: 44px; padding: 0 20px; background: #1e1c1a; font-size: 12px; font-weight: 500; color: #c4bdb0; letter-spacing: 0.04em">
+        <span>User</span><span>Role</span><span>Status</span><span>Books · Chats</span><span>Joined</span><span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr 1fr 64px; gap: 16px; align-items: center; min-height: 64px; padding: 0 20px; border-top: 1px solid #2a2825; font-size: 14px">
+        <div style="display: flex; align-items: center; gap: 12px"><span style="width: 36px; height: 36px; border-radius: 50%; background: #242424; border: 1px solid #2a2825; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #e0c272">AB</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Amina Benali</span><span style="font-size: 13px; color: #c4bdb0">amina@reader.ma</span></span></div>
+        <span style="font-size: 13px; color: #c4bdb0">User</span>
+        <label style="display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: #c4bdb0"><span style="position: relative; width: 36px; height: 20px; border-radius: 999px; background: #4caf7d"><span style="position: absolute; top: 2px; left: 18px; width: 16px; height: 16px; border-radius: 50%; background: #f5f0e8"></span></span>Active</label>
+        <span style="color: #c4bdb0; font-variant-numeric: tabular-nums">2 · 14</span>
+        <span style="color: #c4bdb0">Oct 2, 2026</span>
+        <button type="button" aria-label="Actions for Amina Benali" style="width: 40px; height: 40px; border: 0; border-radius: 8px; background: transparent; color: #c4bdb0; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+      </div>
+      <div style="display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr 1fr 64px; gap: 16px; align-items: center; min-height: 64px; padding: 0 20px; border-top: 1px solid #2a2825; font-size: 14px; background: #242424">
+        <div style="display: flex; align-items: center; gap: 12px"><span style="width: 36px; height: 36px; border-radius: 50%; background: #1a1a1a; border: 1px solid #2a2825; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #c4bdb0">YK</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Youssef K.</span><span style="font-size: 13px; color: #c4bdb0">youssef@lab.ma · hover</span></span></div>
+        <span style="display: inline-flex; align-self: center; justify-self: start; align-items: center; height: 24px; padding: 0 9px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 600; letter-spacing: 0.06em">ADMIN</span>
+        <label style="display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: #c4bdb0"><span style="position: relative; width: 36px; height: 20px; border-radius: 999px; background: #3d3a37"><span style="position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #c4bdb0"></span></span>Inactive</label>
+        <span style="color: #c4bdb0; font-variant-numeric: tabular-nums">0 · 0</span>
+        <span style="color: #c4bdb0">Sep 18, 2026</span>
+        <button type="button" aria-label="Actions for Youssef K." style="width: 40px; height: 40px; border: 0; border-radius: 8px; background: #2e2e2e; color: #f5f0e8; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAT -->
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px">
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Chat · messages</h2>
+      <div style="display: flex; flex-direction: column; gap: 28px; padding: 28px; border-radius: 16px; background: #0d0d0d; border: 1px solid #2a2825">
+        <div style="align-self: flex-end; max-width: 80%; padding: 12px 16px; border-radius: 16px 16px 4px 16px; background: #242424; font-size: 15px; line-height: 1.55">Is ʿasabiyya just a fancy word for tribalism?</div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%); box-shadow: 0 0 12px rgba(201,168,76,0.4)"></span>
+            <span style="font-size: 13px; font-weight: 600; color: #e0c272">Zaydoun</span>
+          </div>
+          <p style="margin: 0; font: 400 18px/1.65 Newsreader, serif; color: #f5f0e8">Not quite, and that's the trap most summaries fall into. Kinship is where it starts, but Ibn Khaldun says shared hardship and alliance can build it too.</p>
+          <div style="display: flex; gap: 8px">
+            <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 500"><svg class="i" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Page 118</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 500"><svg class="i" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Page 121</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="position: relative; width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%); box-shadow: 0 0 0 6px rgba(201,168,76,0.12), 0 0 20px rgba(201,168,76,0.5)"></span>
+          <span style="font: italic 400 16px/1 Newsreader, serif; color: #c4bdb0">Finding the right passages…</span>
+        </div>
+      </div>
+      <span style="font-size: 13px; line-height: 1.55; color: #c4bdb0">Zaydoun is not in a bubble. He gets the reading serif and full width, like a margin note from a friend. You get the compact bubble. Thinking = the orb breathing.</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Chat · RTL &amp; composer</h2>
+      <div style="display: flex; flex-direction: column; gap: 28px; padding: 28px; border-radius: 16px; background: #0d0d0d; border: 1px solid #2a2825">
+        <div dir="rtl" style="align-self: flex-end; max-width: 80%; padding: 10px 16px; border-radius: 16px 16px 4px 16px; background: #242424; font: 400 19px/1.7 Amiri, serif">لماذا تسقط الدول بعد ثلاثة أجيال؟</div>
+        <div dir="rtl" style="display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%); box-shadow: 0 0 12px rgba(201,168,76,0.4)"></span>
+            <span style="font: 700 15px/1 Amiri, serif; color: #e0c272">زيدون</span>
+          </div>
+          <p style="margin: 0; font: 400 21px/1.85 Amiri, serif; color: #f5f0e8">لأن العصبية تضعف جيلاً بعد جيل، فيرث الأحفاد المُلك دون الخشونة التي صنعته.</p>
+          <div style="display: flex; gap: 8px">
+            <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font: 500 14px/1 Amiri, serif"><svg class="i" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>صفحة 168</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; align-items: flex-end; gap: 8px; padding: 8px 8px 8px 16px; border-radius: 14px; background: #1a1a1a; border: 1px solid #2a2825">
+            <label for="ds-composer" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Message Zaydoun</label>
+            <textarea id="ds-composer" rows="1" placeholder="Ask about this book…" style="flex: 1; min-height: 28px; padding: 6px 0; border: 0; background: transparent; color: #f5f0e8; font-size: 15px; resize: none; outline: none"></textarea>
+            <button type="button" disabled aria-label="Voice input, coming soon" style="width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; color: #6b6560; display: flex; align-items: center; justify-content: center; cursor: not-allowed"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg></button>
+            <button type="button" aria-label="Send" style="width: 40px; height: 40px; border: 0; border-radius: 10px; background: #c9a84c; color: #0d0d0d; display: flex; align-items: center; justify-content: center"><svg class="i" width="18" height="18" viewBox="0 0 24 24" style="stroke-width: 2.2" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></button>
+          </div>
+          <span style="font-size: 12px; color: #c4bdb0">11 of 15 messages left today</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; background: #1a1a1a; border: 1px solid rgba(201,168,76,0.3)">
+          <svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #e0c272" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <div style="display: flex; flex-direction: column; gap: 3px; flex: 1"><span style="font-size: 14px; font-weight: 500">You've used today's 15 messages</span><span style="font-size: 13px; color: #c4bdb0">Zaydoun will be back at midnight. Past conversations stay open to read.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL & TOASTS -->
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px">
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Confirm dialog</h2>
+      <div role="dialog" aria-labelledby="ds-dlg-t" style="display: flex; flex-direction: column; gap: 20px; padding: 28px; border-radius: 16px; background: #2e2e2e; box-shadow: 0 24px 48px -12px rgba(0,0,0,0.7), 0 0 0 1px #3d3a37">
+        <div style="display: flex; gap: 16px">
+          <span style="width: 44px; height: 44px; flex: none; border-radius: 12px; background: rgba(224,92,92,0.12); color: #e87878; display: flex; align-items: center; justify-content: center"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg></span>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span id="ds-dlg-t" style="font-size: 18px; font-weight: 600">Delete “Meditations”?</span>
+            <span style="font-size: 14px; line-height: 1.55; color: #c4bdb0">This removes the book and its 3 conversations. It frees one of your two free slots. This can't be undone.</span>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px">
+          <button type="button" style="height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: transparent; color: #f5f0e8; font-weight: 500; font-size: 15px">Keep it</button>
+          <button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 8px; background: #e05c5c; color: #0d0d0d; font-weight: 600; font-size: 15px">Delete book</button>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <h2 style="margin: 0; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Toasts</h2>
+      <div role="status" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: #2e2e2e; box-shadow: 0 16px 32px -12px rgba(0,0,0,0.7), 0 0 0 1px #3d3a37">
+        <svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #4caf7d" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+        <span style="flex: 1; font-size: 14px">“Al-Muqaddimah” is ready to talk.</span>
+        <a href="#" style="font-size: 14px; font-weight: 500">Open</a>
+      </div>
+      <div role="alert" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: #2e2e2e; box-shadow: 0 16px 32px -12px rgba(0,0,0,0.7), 0 0 0 1px #3d3a37">
+        <svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #e05c5c" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+        <span style="flex: 1; font-size: 14px">We couldn't read that PDF. Is it a scan without text?</span>
+        <a href="#" style="font-size: 14px; font-weight: 500">Retry</a>
+      </div>
+      <div role="status" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: #2e2e2e; box-shadow: 0 16px 32px -12px rgba(0,0,0,0.7), 0 0 0 1px #3d3a37">
+        <svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #7fb2e0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+        <span style="flex: 1; font-size: 14px">Temporary password sent to amina@reader.ma.</span>
+      </div>
+      <span style="font-size: 13px; color: #c4bdb0">Bottom-right on desktop, top on mobile. 5s, pause on hover.</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

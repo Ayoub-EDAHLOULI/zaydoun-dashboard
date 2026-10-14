@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaydoun · Talk to your books</title>
+<!-- Zaydoun redesign · static design reference. Not production code: rebuild with Next.js + Tailwind v4 + Lucide (see ../README.md). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Amiri:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;background:#0d0d0d}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+a{color:#c4bdb0;text-decoration:none}a:hover{color:#f5f0e8}
+button{font:inherit;cursor:pointer}
+details>summary{list-style:none}details>summary::-webkit-details-marker{display:none}
+</style>
+</head>
+<body>
+<div style="width: 100%; min-height: 8000px; background: #0d0d0d; color: #f5f0e8; font-family: Inter, sans-serif; overflow: hidden">
+
+  <!-- NAV -->
+  <header style="border-bottom: 1px solid #1e1c1a">
+    <nav aria-label="Main" style="max-width: 1200px; margin: 0 auto; padding: 0 40px; height: 76px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap">
+      <a href="#" style="display: flex; align-items: center; gap: 10px; color: #f5f0e8">
+        <img src="../assets/logo.png" alt="" style="width: 34px; height: 34px; border-radius: 8px">
+        <span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em">Zaydoun</span>
+      </a>
+      <div style="display: flex; gap: 4px; margin-left: 24px">
+        <a href="marketing-features.html" style="height: 44px; display: flex; align-items: center; padding: 0 14px; font-size: 15px">Features</a>
+        <a href="#how" style="height: 44px; display: flex; align-items: center; padding: 0 14px; font-size: 15px">How it works</a>
+        <a href="#faq" style="height: 44px; display: flex; align-items: center; padding: 0 14px; font-size: 15px">FAQ</a>
+        <a href="marketing-contact.html" style="height: 44px; display: flex; align-items: center; padding: 0 14px; font-size: 15px">Contact</a>
+      </div>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 8px">
+        <a href="auth-login.html" style="height: 44px; display: flex; align-items: center; padding: 0 16px; font-size: 15px; color: #f5f0e8">Log in</a>
+        <a href="#" style="height: 44px; display: flex; align-items: center; padding: 0 18px; border-radius: 8px; background: #c9a84c; color: #0d0d0d; font-size: 15px; font-weight: 600">Get started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 96px 40px 96px; display: flex; flex-wrap: wrap; align-items: center; gap: 64px">
+      <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+        <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">A reading companion with opinions</span>
+        <h1 style="margin: 0; font: 400 84px/0.98 Newsreader, Georgia, serif; letter-spacing: -0.03em">Talk to your <em style="font-style: italic; color: #e0c272">books.</em></h1>
+        <p style="margin: 0; max-width: 500px; font-size: 19px; line-height: 1.6; color: #c4bdb0">Upload a PDF and Zaydoun reads it page by page. Then ask, argue, or get lost in a chapter together. Every answer points you to the page it came from.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px">
+          <a href="#" style="height: 52px; display: inline-flex; align-items: center; gap: 10px; padding: 0 24px; border-radius: 10px; background: #c9a84c; color: #0d0d0d; font-size: 16px; font-weight: 600">Start free <svg class="i" width="18" height="18" viewBox="0 0 24 24" style="stroke-width: 2" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+          <a href="#ask" style="height: 52px; display: inline-flex; align-items: center; padding: 0 22px; border-radius: 10px; border: 1px solid #2a2825; background: #1a1a1a; color: #f5f0e8; font-size: 16px; font-weight: 500">See what it can do</a>
+        </div>
+      </div>
+      <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; align-items: center">
+        <div style="position: relative; width: 220px; height: 220px; margin: 30px 0 56px; display: flex; align-items: center; justify-content: center">
+          <div style="position: absolute; inset: -110px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.22) 0%, rgba(201,168,76,0.06) 40%, rgba(201,168,76,0) 68%)"></div>
+          <div style="position: absolute; inset: -56px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.12)"></div>
+          <div style="position: absolute; inset: -26px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.22)"></div>
+          <div style="position: relative; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #e0c272 20%, #c9a84c 46%, #a07c30 76%, #4a3712 100%); box-shadow: 0 0 90px rgba(201,168,76,0.45), inset 0 -18px 40px rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; color: #1a1408">
+            <svg class="i" width="72" height="72" viewBox="0 0 24 24" style="stroke-width: 1.4" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+          </div>
+        </div>
+        <figure aria-label="Sample conversation" style="margin: 0; width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px">
+          <div style="align-self: flex-end; max-width: 78%; padding: 12px 16px; border-radius: 16px 16px 4px 16px; background: #242424; border: 1px solid #2a2825; font-size: 15px; line-height: 1.5">Is ʿasabiyya just a fancy word for tribalism?</div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px 22px; border-radius: 16px; background: #1a1a1a; border: 1px solid #2a2825; box-shadow: 0 30px 60px -24px rgba(0,0,0,0.8)">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <span style="width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%); box-shadow: 0 0 12px rgba(201,168,76,0.4)"></span>
+              <span style="font-size: 13px; font-weight: 600; color: #e0c272">Zaydoun</span>
+              <span style="margin-left: auto; font-size: 12px; color: #c4bdb0">Al-Muqaddimah</span>
+            </div>
+            <p style="margin: 0; font: 400 18px/1.6 Newsreader, serif">Not quite, and that's the trap most summaries fall into. Kinship is where it starts, but shared hardship can build it too. Think social glue, not “my tribe first”.</p>
+            <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font-size: 12px; font-weight: 500"><svg class="i" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Page 118</span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- PROOF STRIP -->
+    <section aria-label="At a glance" style="border-top: 1px solid #1e1c1a; border-bottom: 1px solid #1e1c1a; background: #0d0d0d">
+      <ul style="list-style: none; max-width: 1200px; margin: 0 auto; padding: 28px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px">
+        <li style="display: flex; align-items: center; gap: 12px; font-size: 15px"><svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Every answer cites a page</li>
+        <li style="display: flex; align-items: center; gap: 12px; font-size: 15px"><svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>5 languages, Arabic RTL</li>
+        <li style="display: flex; align-items: center; gap: 12px; font-size: 15px"><svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>Hands-free voice on mobile</li>
+        <li style="display: flex; align-items: center; gap: 12px; font-size: 15px"><svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Your books stay yours</li>
+      </ul>
+    </section>
+
+    <!-- ASK ANYTHING (interactive) -->
+    <section id="ask" aria-labelledby="ask-t" style="max-width: 1200px; margin: 0 auto; padding: 128px 40px 112px; display: flex; flex-direction: column; gap: 56px">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px">
+          <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">More than search</span>
+          <h2 id="ask-t" style="margin: 0; font: 400 56px/1.04 Newsreader, serif; letter-spacing: -0.02em">Explain it. Argue with it. <em style="font-style: italic; color: #e0c272">Find it.</em></h2>
+        </div>
+        <p style="margin: 0; max-width: 380px; font-size: 16px; line-height: 1.6; color: #c4bdb0">Zaydoun has read the whole book, so you can ask the way you'd ask a friend who has too. Pick a way in:</p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+        <div role="tablist" aria-label="Ways to ask" style="flex: 1 1 300px; max-width: 380px; display: flex; flex-direction: column; gap: 8px">
+            <button type="button" role="tab" data-mode="0" aria-selected="false" class="mode-tab" style="display: flex; align-items: flex-start; gap: 16px; padding: 20px; border-radius: 12px; text-align: left">
+              <span class="mode-num" style="font: 400 28px/1 Newsreader, serif; width: 34px">01</span>
+              <span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 17px; font-weight: 600; color: #f5f0e8">Explain</span><span class="mode-hint" style="font-size: 14px; line-height: 1.5">A hard passage, made clear.</span></span>
+            </button>
+            <button type="button" role="tab" data-mode="1" aria-selected="true" class="mode-tab" style="display: flex; align-items: flex-start; gap: 16px; padding: 20px; border-radius: 12px; text-align: left">
+              <span class="mode-num" style="font: 400 28px/1 Newsreader, serif; width: 34px">02</span>
+              <span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 17px; font-weight: 600; color: #f5f0e8">Debate</span><span class="mode-hint" style="font-size: 14px; line-height: 1.5">Push back. He pushes back too.</span></span>
+            </button>
+            <button type="button" role="tab" data-mode="2" aria-selected="false" class="mode-tab" style="display: flex; align-items: flex-start; gap: 16px; padding: 20px; border-radius: 12px; text-align: left">
+              <span class="mode-num" style="font: 400 28px/1 Newsreader, serif; width: 34px">03</span>
+              <span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 17px; font-weight: 600; color: #f5f0e8">Find</span><span class="mode-hint" style="font-size: 14px; line-height: 1.5">Where exactly did he say that?</span></span>
+            </button>
+            <button type="button" role="tab" data-mode="3" aria-selected="false" class="mode-tab" style="display: flex; align-items: flex-start; gap: 16px; padding: 20px; border-radius: 12px; text-align: left">
+              <span class="mode-num" style="font: 400 28px/1 Newsreader, serif; width: 34px">04</span>
+              <span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 17px; font-weight: 600; color: #f5f0e8">Connect</span><span class="mode-hint" style="font-size: 14px; line-height: 1.5">Link ideas across chapters.</span></span>
+            </button>
+        </div>
+
+        <div role="tabpanel" style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 22px; padding: 36px; border-radius: 16px; background: #1a1a1a; border: 1px solid #2a2825">
+          <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid #2a2825">
+            <div style="width: 26px; height: 34px; border-radius: 2px 5px 5px 2px; background: #2e2e2e; border-left: 3px solid #a07c30"></div>
+            <span style="display: flex; flex-direction: column; gap: 2px"><span style="font: 500 16px/1.2 Newsreader, serif">Al-Muqaddimah</span><span style="font-size: 12px; color: #c4bdb0">Ibn Khaldun · replies in English</span></span>
+          </div>
+          <div style="align-self: flex-end; max-width: 80%; padding: 12px 16px; border-radius: 16px 16px 4px 16px; background: #242424; font-size: 15px; line-height: 1.55"><span id="mode-q"></span></div>
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <span style="width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%); box-shadow: 0 0 12px rgba(201,168,76,0.4)"></span>
+              <span style="font-size: 13px; font-weight: 600; color: #e0c272">Zaydoun</span>
+            </div>
+            <p style="margin: 0; font: 400 20px/1.65 Newsreader, serif"><span id="mode-a"></span></p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <span id="mode-pages" style="display: contents"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CITATIONS -->
+    <section aria-labelledby="cite-t" style="background: #1a1a1a; border-top: 1px solid #2a2825; border-bottom: 1px solid #2a2825">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 120px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 72px">
+        <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+          <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Page-accurate</span>
+          <h2 id="cite-t" style="margin: 0; font: 400 52px/1.05 Newsreader, serif; letter-spacing: -0.02em">Don't take his word for it. <em style="font-style: italic; color: #e0c272">Check the page.</em></h2>
+          <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #c4bdb0">Zaydoun answers from the passages he finds in your PDF and tags each answer with the pages they came from. Open the book, turn to the page, and read it in the author's own words.</p>
+          <ul style="list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px">
+            <li style="display: flex; gap: 14px; font-size: 15px; line-height: 1.5"><svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c9a84c; margin-top: 1px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Grounded in the book you uploaded, not the internet's summary of it</span></li>
+            <li style="display: flex; gap: 14px; font-size: 15px; line-height: 1.5"><svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c9a84c; margin-top: 1px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Page numbers kept from your PDF, so they match your copy</span></li>
+            <li style="display: flex; gap: 14px; font-size: 15px; line-height: 1.5"><svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c9a84c; margin-top: 1px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>A running list of every page a conversation has touched</span></li>
+          </ul>
+        </div>
+
+        <div aria-hidden="true" style="flex: 1 1 480px; min-width: 0; position: relative; height: 520px">
+          <div style="position: absolute; left: 40px; top: 0; width: 340px; height: 470px; box-sizing: border-box; padding: 40px 36px; border-radius: 4px 10px 10px 4px; background: #242424; border: 1px solid #2a2825; box-shadow: 0 40px 80px -30px rgba(0,0,0,0.9); display: flex; flex-direction: column; gap: 12px">
+            <div style="height: 8px; width: 92%; border-radius: 2px; background: #3d3a37"></div>
+            <div style="height: 8px; width: 100%; border-radius: 2px; background: #3d3a37"></div>
+            <div style="height: 8px; width: 86%; border-radius: 2px; background: #3d3a37"></div>
+            <div style="height: 8px; width: 95%; border-radius: 2px; background: #3d3a37"></div>
+            <div style="height: 8px; width: 60%; border-radius: 2px; background: #3d3a37"></div>
+            <div style="margin: 10px -12px; padding: 12px; border-radius: 6px; background: rgba(201,168,76,0.15); border-left: 3px solid #c9a84c; display: flex; flex-direction: column; gap: 12px">
+              <div style="height: 8px; width: 100%; border-radius: 2px; background: #a07c30"></div>
+              <div style="height: 8px; width: 94%; border-radius: 2px; background: #a07c30"></div>
+              <div style="height: 8px; width: 98%; border-radius: 2px; background: #a07c30"></div>
+              <div style="height: 8px; width: 72%; border-radius: 2px; background: #a07c30"></div>
+            </div>
+            <div style="height: 8px; width: 97%; border-radius: 2px; background: #3d3a37"></div>
+            <div style="height: 8px; width: 89%; border-radius: 2px; background: #3d3a37"></div>
+            <div style="height: 8px; width: 100%; border-radius: 2px; background: #3d3a37"></div>
+            <div style="height: 8px; width: 45%; border-radius: 2px; background: #3d3a37"></div>
+            <span style="margin-top: auto; align-self: center; font: italic 400 14px/1 Newsreader, serif; color: #c4bdb0">118</span>
+          </div>
+          <div style="position: absolute; right: 0; bottom: 0; width: 330px; box-sizing: border-box; padding: 20px; border-radius: 16px; background: #2e2e2e; border: 1px solid #3d3a37; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.9); display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; align-items: center; gap: 8px"><span style="width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%)"></span><span style="font-size: 13px; font-weight: 600; color: #e0c272">Zaydoun</span></div>
+            <p style="margin: 0; font: 400 16px/1.55 Newsreader, serif">Kinship is where it starts, but shared hardship can build it too.</p>
+            <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: #c9a84c; color: #0d0d0d; font-size: 12px; font-weight: 600"><svg class="i" width="12" height="12" viewBox="0 0 24 24" style="stroke-width: 2.2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Page 118</span>
+          </div>
+          <svg style="position: absolute; left: 330px; top: 190px; width: 120px; height: 200px; overflow: visible" viewBox="0 0 120 200" fill="none"><path d="M10 10 C 80 10, 40 180, 110 190" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="4 5" stroke-linecap="round"></path><circle cx="10" cy="10" r="4" fill="#c9a84c"></circle></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section aria-labelledby="lang-t" style="max-width: 1200px; margin: 0 auto; padding: 128px 40px; display: flex; flex-direction: column; gap: 56px">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px">
+          <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Five languages</span>
+          <h2 id="lang-t" style="margin: 0; font: 400 52px/1.05 Newsreader, serif; letter-spacing: -0.02em">Read in one language. <em style="font-style: italic; color: #e0c272">Talk in another.</em></h2>
+        </div>
+        <p style="margin: 0; max-width: 380px; font-size: 16px; line-height: 1.6; color: #c4bdb0">A French novel, answers in Arabic. An Arabic classic, answers in English. Pick the reply language per conversation.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+        <div dir="rtl" lang="ar" style="grid-row: span 2; display: flex; flex-direction: column; gap: 20px; padding: 36px; border-radius: 16px; background: #1a1a1a; border: 1px solid rgba(201,168,76,0.3)">
+          <span style="font: 400 14px/1 Inter, sans-serif; color: #c4bdb0" dir="ltr" lang="en">العربية · right to left, set in Amiri</span>
+          <p style="margin: 0; font: 400 28px/1.9 Amiri, serif">العصبية ليست مجرد قبلية. القرابة هي البداية، لكن الشدائد المشتركة تصنعها أيضاً.</p>
+          <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e0c272; font: 500 16px/1 Amiri, serif">صفحة 118</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: #1a1a1a; border: 1px solid #2a2825">
+          <span style="font-size: 13px; color: #c4bdb0">Français</span>
+          <p lang="fr" style="margin: 0; font: 400 19px/1.6 Newsreader, serif">La ʿasabiyya n'est pas qu'un tribalisme : la parenté la fait naître, l'épreuve partagée la renforce.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: #1a1a1a; border: 1px solid #2a2825">
+          <span style="font-size: 13px; color: #c4bdb0">Español</span>
+          <p lang="es" style="margin: 0; font: 400 19px/1.6 Newsreader, serif">La ʿasabiyya no es solo tribalismo: nace del parentesco, pero también de las penurias compartidas.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: #1a1a1a; border: 1px solid #2a2825">
+          <span style="font-size: 13px; color: #c4bdb0">中文</span>
+          <p lang="zh" style="margin: 0; font: 400 19px/1.7 'Noto Serif SC', 'Songti SC', serif">“群体意识”不只是部落主义：它始于血缘，也可以在共同的苦难中形成。</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: #1a1a1a; border: 1px solid #2a2825">
+          <span style="font-size: 13px; color: #c4bdb0">English</span>
+          <p style="margin: 0; font: 400 19px/1.6 Newsreader, serif">ʿAsabiyya isn't just tribalism: kinship starts it, shared hardship builds it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOICE / MOBILE -->
+    <section aria-labelledby="voice-t" style="background: #1a1a1a; border-top: 1px solid #2a2825; border-bottom: 1px solid #2a2825">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 120px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 80px">
+        <div aria-hidden="true" style="flex: 0 1 320px; display: flex; justify-content: center">
+          <div style="width: 300px; height: 610px; box-sizing: border-box; padding: 14px; border-radius: 48px; background: #070707; border: 1px solid #3d3a37; box-shadow: 0 50px 90px -30px rgba(0,0,0,0.95), 0 0 120px -40px rgba(201,168,76,0.35)">
+            <div style="width: 100%; height: 100%; box-sizing: border-box; border-radius: 36px; background: #0d0d0d; display: flex; flex-direction: column; align-items: center; padding: 56px 24px 32px; gap: 18px">
+              <span style="font-size: 12px; color: #c4bdb0">Al-Muqaddimah</span>
+              <div style="position: relative; width: 140px; height: 140px; margin: 40px 0; display: flex; align-items: center; justify-content: center">
+                <div style="position: absolute; inset: -40px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.14)"></div>
+                <div style="position: absolute; inset: -20px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.28)"></div>
+                <div style="width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #e0c272 20%, #c9a84c 46%, #a07c30 76%, #4a3712 100%); box-shadow: 0 0 70px rgba(201,168,76,0.5)"></div>
+              </div>
+              <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #e0c272">Listening</span>
+              <div style="display: flex; align-items: center; gap: 4px; height: 36px">
+                <span style="width: 4px; height: 10px; border-radius: 2px; background: #a07c30"></span><span style="width: 4px; height: 22px; border-radius: 2px; background: #c9a84c"></span><span style="width: 4px; height: 32px; border-radius: 2px; background: #e0c272"></span><span style="width: 4px; height: 18px; border-radius: 2px; background: #c9a84c"></span><span style="width: 4px; height: 28px; border-radius: 2px; background: #e0c272"></span><span style="width: 4px; height: 14px; border-radius: 2px; background: #c9a84c"></span><span style="width: 4px; height: 24px; border-radius: 2px; background: #c9a84c"></span><span style="width: 4px; height: 8px; border-radius: 2px; background: #a07c30"></span>
+              </div>
+              <span style="margin-top: auto; font: italic 400 16px/1.4 Newsreader, serif; color: #c4bdb0; text-align: center">“So what kills a dynasty, really?”</span>
+            </div>
+          </div>
+        </div>
+        <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+          <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Voice-first on mobile</span>
+          <h2 id="voice-t" style="margin: 0; font: 400 52px/1.05 Newsreader, serif; letter-spacing: -0.02em">Say “Zaydoun”. <em style="font-style: italic; color: #e0c272">Keep walking.</em></h2>
+          <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #c4bdb0">On the commute, at the gym, washing up. Open the app, call his name and talk. He answers out loud, and the conversation is waiting on the web when you sit back down.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+            <a href="#" style="height: 52px; display: inline-flex; align-items: center; gap: 10px; padding: 0 20px; border-radius: 10px; border: 1px solid #3d3a37; background: #0d0d0d; color: #f5f0e8; font-size: 15px; font-weight: 500">Get it for iOS</a>
+            <a href="#" style="height: 52px; display: inline-flex; align-items: center; gap: 10px; padding: 0 20px; border-radius: 10px; border: 1px solid #3d3a37; background: #0d0d0d; color: #f5f0e8; font-size: 15px; font-weight: 500">Get it for Android</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEET ZAYDOUN -->
+    <section aria-labelledby="meet-t" style="max-width: 1200px; margin: 0 auto; padding: 128px 40px; display: flex; flex-wrap: wrap; gap: 64px; align-items: flex-start">
+      <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+        <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Meet Zaydoun</span>
+        <h2 id="meet-t" style="margin: 0; font: 400 52px/1.05 Newsreader, serif; letter-spacing: -0.02em">Not a search box. <em style="font-style: italic; color: #e0c272">A reading partner.</em></h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #c4bdb0">Sharp, warm and a little Moroccan. He'll tell you when an argument is weak, yours or the author's, and drop the odd word of Darija when the moment calls for it.</p>
+      </div>
+      <div style="flex: 1 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825"><span style="font-size: 16px; font-weight: 600">Pushes back</span><span style="font-size: 14px; line-height: 1.55; color: #c4bdb0">Say something half-right and he'll find the half that isn't.</span></div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825"><span style="font-size: 16px; font-weight: 600">Stays on the text</span><span style="font-size: 14px; line-height: 1.55; color: #c4bdb0">Opinions about the book, evidence from the book.</span></div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825"><span style="font-size: 16px; font-weight: 600">Remembers the thread</span><span style="font-size: 14px; line-height: 1.55; color: #c4bdb0">Every conversation is saved. Pick it up next week.</span></div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 12px; background: #1a1a1a; border: 1px solid #2a2825"><span style="font-size: 16px; font-weight: 600">Has a sense of humour</span><span style="font-size: 14px; line-height: 1.55; color: #c4bdb0">Serious about books, not about himself.</span></div>
+      </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section aria-labelledby="who-t" style="border-top: 1px solid #1e1c1a">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 120px 40px; display: flex; flex-direction: column; gap: 48px">
+        <h2 id="who-t" style="margin: 0; font: 400 44px/1.1 Newsreader, serif; letter-spacing: -0.02em; max-width: 640px">For anyone who wants more from a book than a summary.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 1px solid #2a2825">
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 32px 28px 0 0"><svg class="i" width="24" height="24" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg><span style="font-size: 18px; font-weight: 600">Students</span><span style="font-size: 15px; line-height: 1.55; color: #c4bdb0">Get unstuck on a dense chapter the night before the seminar.</span></div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 32px 28px 0; border-left: 1px solid #2a2825"><svg class="i" width="24" height="24" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span style="font-size: 18px; font-weight: 600">Researchers</span><span style="font-size: 15px; line-height: 1.55; color: #c4bdb0">Find where an idea lives and cite the page with confidence.</span></div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 32px 28px 0; border-left: 1px solid #2a2825"><svg class="i" width="24" height="24" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg><span style="font-size: 18px; font-weight: 600">Language learners</span><span style="font-size: 15px; line-height: 1.55; color: #c4bdb0">Read in the language you're learning, discuss in the one you know.</span></div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 32px 0 0 28px; border-left: 1px solid #2a2825"><svg class="i" width="24" height="24" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg><span style="font-size: 18px; font-weight: 600">Commuters</span><span style="font-size: 15px; line-height: 1.55; color: #c4bdb0">Keep reading with your eyes on the road and your hands free.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" aria-labelledby="how-t" style="background: #1a1a1a; border-top: 1px solid #2a2825; border-bottom: 1px solid #2a2825">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 112px 40px; display: flex; flex-direction: column; gap: 56px">
+        <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">How it works</span>
+            <h2 id="how-t" style="margin: 0; font: 400 48px/1.08 Newsreader, serif; letter-spacing: -0.02em">From PDF to conversation<br>in three steps.</h2>
+          </div>
+          <p style="margin: 0; max-width: 360px; font-size: 16px; line-height: 1.6; color: #c4bdb0">No setup, no settings to learn. Bring the book you're already reading.</p>
+        </div>
+        <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; border-top: 1px solid #3d3a37">
+          <li style="display: flex; flex-direction: column; gap: 14px; padding: 32px 32px 0 0"><span style="font: 400 56px/1 Newsreader, serif; color: #a07c30">01</span><span style="font-size: 19px; font-weight: 600">Upload on the web</span><span style="font-size: 15px; line-height: 1.6; color: #c4bdb0">Drop a PDF, add the title and its language. Arabic books welcome.</span></li>
+          <li style="display: flex; flex-direction: column; gap: 14px; padding: 32px 32px 0; border-left: 1px solid #3d3a37"><span style="font: 400 56px/1 Newsreader, serif; color: #a07c30">02</span><span style="font-size: 19px; font-weight: 600">Zaydoun reads it</span><span style="font-size: 15px; line-height: 1.6; color: #c4bdb0">He goes through it page by page and remembers where every idea lives.</span></li>
+          <li style="display: flex; flex-direction: column; gap: 14px; padding: 32px 0 0 32px; border-left: 1px solid #3d3a37"><span style="font: 400 56px/1 Newsreader, serif; color: #a07c30">03</span><span style="font-size: 19px; font-weight: 600">Talk, hands-free</span><span style="font-size: 15px; line-height: 1.6; color: #c4bdb0">Type here on the web, or open the app, say “Zaydoun” and just speak.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PRIVACY -->
+    <section aria-labelledby="priv-t" style="max-width: 1200px; margin: 0 auto; padding: 120px 40px; display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
+      <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+        <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Private by design</span>
+        <h2 id="priv-t" style="margin: 0; font: 400 44px/1.1 Newsreader, serif; letter-spacing: -0.02em">Your shelf is nobody else's business.</h2>
+      </div>
+      <ul style="flex: 1 1 520px; min-width: 0; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+        <li style="display: flex; gap: 18px; padding: 22px 0; border-top: 1px solid #2a2825"><svg class="i" width="22" height="22" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 600">Only you can see your books</span><span style="font-size: 15px; color: #c4bdb0">Each reader's library and conversations are kept separate.</span></span></li>
+        <li style="display: flex; gap: 18px; padding: 22px 0; border-top: 1px solid #2a2825"><svg class="i" width="22" height="22" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 600">Delete anytime</span><span style="font-size: 15px; color: #c4bdb0">Remove a book, a conversation, or your whole account.</span></span></li>
+        <li style="display: flex; gap: 18px; padding: 22px 0; border-top: 1px solid #2a2825; border-bottom: 1px solid #2a2825"><svg class="i" width="22" height="22" viewBox="0 0 24 24" style="color: #c9a84c" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 600">Never used for training</span><span style="font-size: 15px; color: #c4bdb0">Your uploads are read to answer you, nothing more.</span></span></li>
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" aria-labelledby="faq-t" style="border-top: 1px solid #1e1c1a">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 120px 40px; display: flex; flex-wrap: wrap; gap: 64px">
+        <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px">
+          <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a84c">Questions</span>
+          <h2 id="faq-t" style="margin: 0; font: 400 44px/1.1 Newsreader, serif; letter-spacing: -0.02em">Before you ask Zaydoun, ask us.</h2>
+          <a href="marketing-contact.html" style="margin-top: 8px; font-size: 15px; color: #e0c272">Something else? Write to us →</a>
+        </div>
+        <div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; border-top: 1px solid #2a2825">
+          <details open style="border-bottom: 1px solid #2a2825">
+            <summary style="min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; font-size: 17px; font-weight: 500">What kind of files can I upload?<svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #e0c272" aria-hidden="true"><path d="M5 12h14"></path></svg></summary>
+            <p style="margin: 0 0 24px; max-width: 620px; font-size: 15px; line-height: 1.65; color: #c4bdb0">PDFs up to 50 MB. They need real text inside, so a scanned book without a text layer won't work yet. Tell Zaydoun the book's language when you upload it.</p>
+          </details>
+          <details style="border-bottom: 1px solid #2a2825">
+            <summary style="min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; font-size: 17px; font-weight: 500">How do the page citations work?<svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c4bdb0" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary>
+          </details>
+          <details style="border-bottom: 1px solid #2a2825">
+            <summary style="min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; font-size: 17px; font-weight: 500">Can I use it without looking at my phone?<svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c4bdb0" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary>
+          </details>
+          <details style="border-bottom: 1px solid #2a2825">
+            <summary style="min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; font-size: 17px; font-weight: 500">Can I talk about an Arabic book in English?<svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c4bdb0" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary>
+          </details>
+          <details style="border-bottom: 1px solid #2a2825">
+            <summary style="min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; font-size: 17px; font-weight: 500">Who can see my books and conversations?<svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c4bdb0" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary>
+          </details>
+          <details style="border-bottom: 1px solid #2a2825">
+            <summary style="min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; font-size: 17px; font-weight: 500">Is it free?<svg class="i" width="20" height="20" viewBox="0 0 24 24" style="color: #c4bdb0" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section aria-labelledby="cta-t" style="padding: 0 40px 120px">
+      <div style="position: relative; max-width: 1120px; margin: 0 auto; padding: 96px 40px; border-radius: 24px; background: #1a1a1a; border: 1px solid #2a2825; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
+        <div aria-hidden="true" style="position: absolute; left: 50%; top: -220px; width: 520px; height: 520px; margin-left: -260px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.22) 0%, rgba(201,168,76,0) 65%)"></div>
+        <div aria-hidden="true" style="position: relative; width: 72px; height: 72px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #e0c272 20%, #c9a84c 46%, #a07c30 76%, #4a3712 100%); box-shadow: 0 0 50px rgba(201,168,76,0.5)"></div>
+        <h2 id="cta-t" style="position: relative; margin: 0; font: 400 60px/1.02 Newsreader, serif; letter-spacing: -0.02em">Which book first?</h2>
+        <p style="position: relative; margin: 0; max-width: 460px; font-size: 17px; line-height: 1.6; color: #c4bdb0">Bring the one you've been meaning to finish. Zaydoun will meet you on page one.</p>
+        <a href="#" style="position: relative; margin-top: 8px; height: 56px; display: inline-flex; align-items: center; gap: 10px; padding: 0 28px; border-radius: 12px; background: #c9a84c; color: #0d0d0d; font-size: 17px; font-weight: 600">Start free <svg class="i" width="18" height="18" viewBox="0 0 24 24" style="stroke-width: 2" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid #1e1c1a">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 56px 40px 40px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between">
+      <div style="display: flex; flex-direction: column; gap: 14px; max-width: 320px">
+        <div style="display: flex; align-items: center; gap: 10px"><img src="../assets/logo.png" alt="" style="width: 30px; height: 30px; border-radius: 7px"><span style="font-size: 17px; font-weight: 600">Zaydoun</span></div>
+        <span style="font: italic 400 16px/1.5 Newsreader, serif; color: #c4bdb0">A reading companion with opinions.</span>
+      </div>
+      <div style="display: flex; gap: 64px; flex-wrap: wrap">
+        <nav aria-label="Product" style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #c4bdb0; margin-bottom: 8px">Product</span><a href="marketing-features.html" style="min-height: 32px; display: flex; align-items: center; font-size: 15px">Features</a><a href="#how" style="min-height: 32px; display: flex; align-items: center; font-size: 15px">How it works</a><a href="#faq" style="min-height: 32px; display: flex; align-items: center; font-size: 15px">FAQ</a></nav>
+        <nav aria-label="Account" style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #c4bdb0; margin-bottom: 8px">Account</span><a href="auth-login.html" style="min-height: 32px; display: flex; align-items: center; font-size: 15px">Log in</a><a href="auth-register.html" style="min-height: 32px; display: flex; align-items: center; font-size: 15px">Create account</a></nav>
+        <nav aria-label="Company" style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #c4bdb0; margin-bottom: 8px">Company</span><a href="marketing-contact.html" style="min-height: 32px; display: flex; align-items: center; font-size: 15px">Contact</a><a href="#" style="min-height: 32px; display: flex; align-items: center; font-size: 15px">Privacy</a><a href="#" style="min-height: 32px; display: flex; align-items: center; font-size: 15px">Terms</a></nav>
+      </div>
+    </div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px 40px 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #c4bdb0; border-top: 1px solid #1e1c1a">
+      <span>© 2026 Zaydoun</span><span>Made in Casablanca</span>
+    </div>
+  </footer>
+</div>
+
+<style>
+.mode-tab{border:1px solid transparent;background:transparent;color:#c4bdb0;cursor:pointer}
+.mode-tab .mode-num{color:#6b6560}
+.mode-tab[aria-selected="true"]{border-color:rgba(201,168,76,0.3);background:#1a1a1a;box-shadow:0 0 32px -12px rgba(201,168,76,0.35)}
+.mode-tab[aria-selected="true"] .mode-num{color:#e0c272}
+.page-chip{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);color:#e0c272;font-size:12px;font-weight:500}
+</style>
+<script>
+(function () {
+  var data = [
+    { q: "Explain the opening of chapter 2 like I am new to this.", a: "Sure. He starts with one simple claim: how people live shapes who they become. Desert life makes people tough and close-knit, city life makes them comfortable. Everything after builds on that contrast.", pages: ["Page 91", "Page 93"] },
+    { q: "Honestly, I think he is just romanticising the desert.", a: "Fair hit, and you are not the first to make it. But notice he never says desert life is better. He says it breeds stronger solidarity, and that cities trade it for comfort. Want me to argue his side harder?", pages: ["Page 104"] },
+    { q: "Where does he talk about taxes rising at the end of a dynasty?", a: "Two places. He first lays it out as a pattern, then comes back to what it does to trade. Start with the first one, it is shorter than you think.", pages: ["Page 279", "Page 283"] },
+    { q: "How does that tie back to ʿasabiyya?", a: "Directly. Rising taxes are a symptom. The rulers have lost the group feeling that once bought them loyalty for free, so now they pay for it in money.", pages: ["Page 121", "Page 281"] }
+  ];
+  var tabs = document.querySelectorAll(".mode-tab");
+  function show(i) {
+    tabs.forEach(function (t) { t.setAttribute("aria-selected", t.dataset.mode == i ? "true" : "false"); });
+    document.getElementById("mode-q").textContent = data[i].q;
+    document.getElementById("mode-a").textContent = data[i].a;
+    var p = document.getElementById("mode-pages"); p.innerHTML = "";
+    data[i].pages.forEach(function (x) { var s = document.createElement("span"); s.className = "page-chip"; s.textContent = x; p.appendChild(s); });
+  }
+  tabs.forEach(function (t) { t.addEventListener("click", function () { show(+t.dataset.mode); }); });
+  show(1);
+})();
+</script>
+</body>
+</html>
