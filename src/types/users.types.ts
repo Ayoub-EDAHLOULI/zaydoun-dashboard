@@ -41,6 +41,7 @@ export interface ConversationUsage {
   id: string;
   title: string | null;
   bookTitle: string;
+  readerName: string;
   messageCount: number;
   inputTokens: number;
   outputTokens: number;
@@ -59,8 +60,12 @@ export interface UsageStats {
   totalConversations: number;
   dailyBreakdown: DailyUsage[];
   topConversations: ConversationUsage[];
+  /** USD by source. Book indexing isn't logged by the API, so it's not here. */
+  costBySource: { answers: number; whisper: number; tts: number };
   costDelta: number | null;
   messagesDelta: number | null;
+  tokensDelta: number | null;
+  audioDelta: number | null;
 }
 
 // GET /users/me/limits — free-tier usage, counted exactly like the API's guards

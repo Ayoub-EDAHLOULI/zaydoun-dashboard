@@ -32,6 +32,11 @@ export const usersService = {
     return apiClient.get<UsageStats>(`${USERS}/me/stats?period=${period}`);
   },
 
+  // Admin only: usage across all readers
+  getPlatformStats(period: UsagePeriod): Promise<UsageStats> {
+    return apiClient.get<UsageStats>(`${USERS}/stats?period=${period}`);
+  },
+
   getLimits(): Promise<TierLimits> {
     return apiClient.get<TierLimits>(`${USERS}/me/limits`);
   },
