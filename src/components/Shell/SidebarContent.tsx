@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { LogOut, X } from "lucide-react";
+import { ArrowLeftRight, LogOut, X } from "lucide-react";
 import { Avatar, Badge, SidebarNav } from "@/components/ui";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLimits } from "@/contexts/LimitsContext";
@@ -68,6 +68,45 @@ function UsageCard() {
 }
 
 // ---------------------------------------------------------------------------
+// Switch between the reader app and the admin area (admins only).
+// Admins chat in the reader app, so they need a way back to /dashboard.
+// ---------------------------------------------------------------------------
+
+const SWITCH = {
+  reader: { href: "/dashboard", label: "Admin dashboard" },
+  admin: { href: "/app", label: "Reader app" },
+} as const;
+
+function AreaSwitch({
+  area,
+  collapsed = false,
+  onNavigate,
+}: {
+  area: ShellArea;
+  collapsed?: boolean;
+  onNavigate?: () => void;
+}) {
+  const { isAdmin } = useAuth();
+  if (!isAdmin) return null;
+  const target = SWITCH[area];
+  return (
+    <Link
+      href={target.href}
+      onClick={onNavigate}
+      aria-label={collapsed ? target.label : undefined}
+      title={collapsed ? target.label : undefined}
+      className={cn(
+        "flex h-11 items-center gap-3 rounded-sm border border-border text-sm text-text-secondary transition-colors hover:border-border-strong hover:bg-bg-elevated hover:text-text-primary",
+        collapsed ? "w-11 justify-center" : "px-3",
+      )}
+    >
+      <ArrowLeftRight size={18} aria-hidden />
+      {!collapsed && target.label}
+    </Link>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Sidebar content — shared by the desktop sidebar and the mobile drawer
 // ---------------------------------------------------------------------------
 
@@ -123,6 +162,7 @@ export function SidebarContent({
 
       <div className="mt-auto flex flex-col gap-4">
         {area === "reader" && <UsageCard />}
+        <AreaSwitch area={area} onNavigate={onNavigate} />
 
         <div className="flex items-center gap-2.5 border-t border-border px-1 pt-3">
           <Avatar name={user?.name} email={user?.email} highlight />
@@ -159,10 +199,13 @@ export function RailContent({ area }: { area: ShellArea }) {
         <Image src="/logo.png" alt="" width={36} height={36} className="rounded-[9px]" />
       </Link>
       <SidebarNav links={NAV[area]} ariaLabel="App" collapsed />
+      <div className="mt-auto">
+        <AreaSwitch area={area} collapsed />
+      </div>
       <Link
         href={area === "admin" ? "/dashboard/profile" : "/app/profile"}
         aria-label="Profile"
-        className="mt-auto rounded-full"
+        className="rounded-full"
       >
         <Avatar name={user?.name} email={user?.email} highlight />
       </Link>
