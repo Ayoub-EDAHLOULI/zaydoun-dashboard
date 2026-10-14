@@ -317,7 +317,7 @@ function ChangePasswordSection({
 }
 
 export default function UserProfilePage() {
-  const { updateUser, accessToken } = useAuth();
+  const { user, updateUser, accessToken } = useAuth();
   const { notify } = useToast();
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -349,12 +349,8 @@ export default function UserProfilePage() {
       setProfile((prev) =>
         prev ? { ...prev, ...updated, stats: prev.stats } : prev,
       );
-      updateUser({
-        id: updated.id,
-        name: updated.name ?? "",
-        email: updated.email,
-        role: "USER",
-      });
+      // Merge into the session user so role/isActive are preserved
+      if (user) updateUser({ ...user, name: updated.name ?? "" });
       notify("Profile updated", "success");
     } catch (err: unknown) {
       notify(err instanceof Error ? err.message : "Update failed", "error");

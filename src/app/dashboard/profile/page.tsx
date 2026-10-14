@@ -50,7 +50,7 @@ function StatCard({
 }
 
 export default function ProfilePage() {
-  const { updateUser } = useAuth();
+  const { user, updateUser } = useAuth();
   const { notify } = useToast();
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -68,12 +68,12 @@ export default function ProfilePage() {
   const handleSave = async ({ name }: { name: string }) => {
     try {
       const updated = await usersService.updateMe({ name });
-      setProfile(updated);
-      updateUser({
-        id: updated.id,
-        name: updated.name ?? "",
-        email: updated.email,
-      });
+      // PATCH /users/me returns no stats — keep the ones already loaded
+      setProfile((prev) =>
+        prev ? { ...prev, ...updated, stats: prev.stats } : prev,
+      );
+      // Merge into the session user so role/isActive are preserved
+      if (user) updateUser({ ...user, name: updated.name ?? "" });
       notify("Profile updated", "success");
     } catch (err: unknown) {
       notify(err instanceof Error ? err.message : "Update failed", "error");
