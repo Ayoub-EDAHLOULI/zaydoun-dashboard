@@ -103,8 +103,7 @@ type Common = {
 // ---------------------------------------------------------------------------
 
 export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
-    Common {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">, Common {
   /** Icon shown inside the field on the left (e.g. Search) */
   icon?: LucideIcon;
 }
@@ -154,7 +153,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           className={cn(
             controlClasses(!!error, surface),
             "h-11 px-3.5",
-            Icon && "pl-[42px]",
+            Icon && "pl-10.5",
             className,
           )}
           {...rest}
@@ -169,8 +168,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 // ---------------------------------------------------------------------------
 
 export interface SelectProps
-  extends SelectHTMLAttributes<HTMLSelectElement>,
-    Common {}
+  extends SelectHTMLAttributes<HTMLSelectElement>, Common {}
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   function Select(
@@ -235,8 +233,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 // ---------------------------------------------------------------------------
 
 export interface TextareaProps
-  extends TextareaHTMLAttributes<HTMLTextAreaElement>,
-    Common {}
+  extends TextareaHTMLAttributes<HTMLTextAreaElement>, Common {}
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   function Textarea(

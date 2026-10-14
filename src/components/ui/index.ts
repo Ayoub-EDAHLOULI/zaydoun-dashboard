@@ -9,7 +9,7 @@ export { Switch } from "./Switch";
 export { Avatar } from "./Avatar";
 export { ActionMenu } from "./ActionMenu";
 export type { ActionMenuItem } from "./ActionMenu";
-export { BookCard, BookCover } from "./BookCard";
+export { BookCard, BookCover, BookSpine } from "./BookCard";
 export type { BookCardAction } from "./BookCard";
 export { StatCard, KpiCard } from "./StatCard";
 export { SidebarNav, NavItem, isNavActive } from "./SidebarNav";

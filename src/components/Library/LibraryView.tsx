@@ -44,13 +44,24 @@ export default function LibraryView() {
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
-  const [uploadOpen, setUploadOpen] = useState(false);
+  // Opened straight away when arriving from Home's "Upload a book" (#upload).
+  // Safe to read location here: the shell only renders pages client-side.
+  const [uploadOpen, setUploadOpen] = useState(
+    () => typeof window !== "undefined" && window.location.hash === "#upload",
+  );
   const [talkBookId, setTalkBookId] = useState<string | null>(null);
   // Kept after closing so the dialog keeps its text while it animates out
   const [toDelete, setToDelete] = useState<BookSummary | null>(null);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [talkOpen, setTalkOpen] = useState(false);
   const [processingIds, setProcessingIds] = useState<Set<string>>(new Set());
+
+  // Drop the #upload hash so a refresh doesn't reopen the dialog
+  useEffect(() => {
+    if (window.location.hash === "#upload") {
+      history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
 
   // ── Load ────────────────────────────────────────────────────────────────
   useEffect(() => {

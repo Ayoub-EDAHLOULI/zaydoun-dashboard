@@ -7,6 +7,7 @@ import { ArrowLeft, Settings2, Trash2 } from "lucide-react";
 import {
   ActionMenu,
   BookCover,
+  BookSpine,
   Button,
   ChatMessage,
   Composer,
@@ -322,7 +323,7 @@ export default function ChatView({ id }: { id: string }) {
           </Link>
           {book && (
             <span className="hidden md:block">
-              <MiniSpine arabic={isArabic(book.language, book.title)} />
+              <BookSpine />
             </span>
           )}
           <div className="flex min-w-0 flex-1 flex-col gap-0.5">
@@ -493,18 +494,5 @@ export default function ChatView({ id }: { id: string }) {
         cancelLabel="Keep it"
       />
     </div>
-  );
-}
-
-// Thin book spine next to the title, as in the mockup
-function MiniSpine({ arabic }: { arabic: boolean }) {
-  return (
-    <span
-      aria-hidden
-      className={cn(
-        "block h-10 w-[30px] rounded-[2px_5px_5px_2px] border-l-[3px] border-gold-dark bg-bg-elevated",
-        arabic && "bg-bg-overlay",
-      )}
-    />
   );
 }

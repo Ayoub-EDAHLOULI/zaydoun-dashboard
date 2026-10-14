@@ -81,6 +81,31 @@ export function BookCover({
 }
 
 // ---------------------------------------------------------------------------
+// BookSpine — a tiny book shape for list rows and headers
+// ---------------------------------------------------------------------------
+
+export function BookSpine({
+  dimmed = false,
+  size = "md",
+}: {
+  /** Grey spine for books that aren't ready */
+  dimmed?: boolean;
+  /** md 30×40 (rows, headers) · sm 24×32 (compact lists) */
+  size?: "sm" | "md";
+}) {
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "block shrink-0 rounded-[2px_5px_5px_2px] border-l-[3px]",
+        size === "md" ? "h-10 w-[30px]" : "h-8 w-6",
+        dimmed ? "border-border-strong bg-bg-elevated" : "border-gold-dark bg-bg-overlay",
+      )}
+    />
+  );
+}
+
+// ---------------------------------------------------------------------------
 // BookCard
 // ---------------------------------------------------------------------------
 

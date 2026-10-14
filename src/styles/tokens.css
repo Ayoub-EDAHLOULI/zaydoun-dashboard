@@ -69,6 +69,7 @@
   --text-26: calc(26px * var(--font-scale));
   --text-32: calc(32px * var(--font-scale));
   --text-40: calc(40px * var(--font-scale));
+  --text-48: calc(48px * var(--font-scale));
   --text-56: calc(56px * var(--font-scale));
 
   /* Shadows & glow */

@@ -2,7 +2,12 @@ import { forwardRef, type ButtonHTMLAttributes } from "react";
 import { LoaderCircle } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "destructive";
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "ghost"
+  | "destructive"
+  | "destructive-outline";
 export type ButtonSize = "sm" | "md" | "lg";
 
 const VARIANTS: Record<ButtonVariant, string> = {
@@ -14,6 +19,9 @@ const VARIANTS: Record<ButtonVariant, string> = {
     "bg-transparent text-text-secondary font-medium enabled:hover:bg-bg-elevated enabled:hover:text-text-primary enabled:active:bg-bg-overlay disabled:text-text-disabled",
   destructive:
     "bg-error text-bg-base font-semibold focus-visible:outline-error enabled:hover:bg-error-text enabled:active:brightness-[0.82] disabled:bg-bg-elevated disabled:text-text-muted",
+  // Danger zones: opens a confirm, so it shouldn't look like the final action
+  "destructive-outline":
+    "border border-error/45 bg-transparent text-error-text font-semibold focus-visible:outline-error enabled:hover:bg-error/12 disabled:text-text-disabled",
 };
 
 const SIZES: Record<ButtonSize, string> = {

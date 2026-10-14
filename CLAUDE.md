@@ -40,7 +40,7 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 ## Redesign (in progress)
 
 - The visual reference is `design/` (README + HTML mockups); it is not committed.
-- Order of work: tokens → components → shell → Library → Conversation → Admin overview → the rest. Tokens, components, shell, Library, Conversation (chat) and Admin overview are done.
+- Order of work: tokens → components → shell → Library → Conversation → Admin overview → the rest. Tokens, components, shell, Library, Conversation (chat), Admin overview, Home, the Conversations list and Profile are done. Still to do: admin Users (+ Add user), auth pages, marketing pages.
 - Tokens are copied into `src/styles/tokens.css`, which generates utilities like `bg-bg-surface`, `text-gold`, `rounded-md`, `font-serif`. Never use raw hex values.
 - Fonts (Inter, Newsreader, Amiri) load via next/font in `app/layout.tsx`.
 - **Font sizes** all derive from `--font-scale` in `src/styles/tokens.css`, which is currently 0.93, a bit smaller than the mockups at Ayoub's request.
