@@ -40,6 +40,14 @@ export const conversationsService = {
     });
   },
 
+  // Change the reply language for the rest of the conversation
+  update(
+    id: string,
+    data: { languageCode: string },
+  ): Promise<Omit<ConversationSummary, "lastMessage">> {
+    return apiClient.patch<Omit<ConversationSummary, "lastMessage">>(`${CONV}/${id}`, data);
+  },
+
   delete(id: string): Promise<void> {
     return apiClient.delete<void>(`${CONV}/${id}`);
   },

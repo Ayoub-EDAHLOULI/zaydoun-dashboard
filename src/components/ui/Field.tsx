@@ -22,6 +22,8 @@ interface FieldProps {
   hint?: ReactNode;
   error?: ReactNode;
   disabled?: boolean;
+  /** Label beside the control instead of above it (no hint/error row) */
+  inline?: boolean;
   className?: string;
   children: ReactNode;
 }
@@ -33,11 +35,18 @@ function Field({
   hint,
   error,
   disabled,
+  inline,
   className,
   children,
 }: FieldProps) {
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div
+      className={cn(
+        "flex",
+        inline ? "flex-row items-center gap-2.5" : "flex-col gap-2",
+        className,
+      )}
+    >
       <label
         htmlFor={id}
         className={cn(
@@ -68,9 +77,11 @@ function describedBy(id: string, error?: ReactNode, hint?: ReactNode) {
   return undefined;
 }
 
-const controlClasses = (hasError: boolean) =>
+const controlClasses = (hasError: boolean, surface?: boolean) =>
   cn(
-    "w-full rounded-sm border bg-bg-elevated text-[15px] text-text-primary placeholder:text-text-muted transition-[border-color,box-shadow]",
+    "w-full rounded-sm border text-[15px]",
+    surface ? "bg-bg-surface" : "bg-bg-elevated",
+    "text-text-primary placeholder:text-text-muted transition-[border-color,box-shadow]",
     "focus-visible:outline-none focus:border-gold focus:shadow-[0_0_0_3px_var(--color-gold-muted)]",
     "disabled:cursor-not-allowed disabled:border-border-subtle disabled:bg-bg-surface disabled:text-text-muted",
     hasError ? "border-error" : "border-border",
@@ -82,6 +93,9 @@ type Common = {
   hint?: ReactNode;
   error?: ReactNode;
   wrapperClassName?: string;
+  inline?: boolean;
+  /** Darker fill, for controls sitting directly on the page (search, toolbars) */
+  surface?: boolean;
 };
 
 // ---------------------------------------------------------------------------
@@ -103,6 +117,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     hint,
     error,
     wrapperClassName,
+    surface,
     icon: Icon,
     className,
     disabled,
@@ -137,7 +152,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           aria-invalid={!!error || undefined}
           aria-describedby={describedBy(fieldId, error, hint)}
           className={cn(
-            controlClasses(!!error),
+            controlClasses(!!error, surface),
             "h-11 px-3.5",
             Icon && "pl-[42px]",
             className,
@@ -166,6 +181,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       hint,
       error,
       wrapperClassName,
+      inline,
+      surface,
       className,
       disabled,
       children,
@@ -183,6 +200,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         hint={hint}
         error={error}
         disabled={disabled}
+        inline={inline}
         className={wrapperClassName}
       >
         <div className="relative">
@@ -193,7 +211,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             aria-invalid={!!error || undefined}
             aria-describedby={describedBy(fieldId, error, hint)}
             className={cn(
-              controlClasses(!!error),
+              controlClasses(!!error, surface),
               "h-11 cursor-pointer appearance-none pr-10 pl-3.5",
               className,
             )}
@@ -229,6 +247,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       hint,
       error,
       wrapperClassName,
+      surface,
       className,
       disabled,
       rows = 4,
@@ -256,7 +275,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={!!error || undefined}
           aria-describedby={describedBy(fieldId, error, hint)}
           className={cn(
-            controlClasses(!!error),
+            controlClasses(!!error, surface),
             "resize-y px-3.5 py-3 leading-normal",
             className,
           )}

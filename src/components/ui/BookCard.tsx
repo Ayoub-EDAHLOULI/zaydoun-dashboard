@@ -23,7 +23,8 @@ export function BookCover({
   language?: string;
   /** Dims to 60% while the book is being processed */
   dimmed?: boolean;
-  size?: "sm" | "md";
+  /** md 128×160 (cards) · sm 112×140 · xs 76×100 (side panels) */
+  size?: "xs" | "sm" | "md";
 }) {
   const arabic = isArabic(language, title);
   return (
@@ -32,7 +33,11 @@ export function BookCover({
       lang={arabic ? "ar" : language}
       className={cn(
         "flex flex-col justify-between overflow-hidden rounded-[3px_8px_8px_3px] border-l-[6px] shadow-[0_16px_28px_-10px_rgba(0,0,0,0.8)]",
-        size === "md" ? "h-40 w-32 px-3.5 py-4" : "h-[140px] w-28 px-3 py-3.5",
+        size === "md"
+          ? "h-40 w-32 px-3.5 py-4"
+          : size === "sm"
+            ? "h-[140px] w-28 px-3 py-3.5"
+            : "h-[100px] w-[76px] border-l-4 px-2 py-2.5",
         dimmed
           ? "border-border-strong bg-bg-elevated opacity-60"
           : "border-gold-dark bg-bg-overlay",
@@ -44,11 +49,15 @@ export function BookCover({
           arabic
             ? cn(
                 "font-arabic font-bold leading-[1.25] text-gold-light",
-                size === "md" ? "text-[22px]" : "text-lg",
+                size === "md" ? "text-[22px]" : size === "sm" ? "text-lg" : "text-sm",
               )
             : cn(
                 "font-serif font-medium leading-[1.2] text-text-primary",
-                size === "md" ? "text-lg tracking-[-0.01em]" : "text-base",
+                size === "md"
+                  ? "text-lg tracking-[-0.01em]"
+                  : size === "sm"
+                    ? "text-base"
+                    : "text-xs",
               ),
         )}
       >
@@ -61,6 +70,7 @@ export function BookCover({
             arabic
               ? "font-arabic text-[13px] leading-[1.3]"
               : "font-serif text-xs italic leading-[1.3]",
+            size === "xs" && "text-[10px]",
           )}
         >
           {author}

@@ -214,7 +214,7 @@ function DialogBody({
       </fieldset>
 
       <div className="flex flex-col-reverse gap-2.5 md:flex-row md:justify-end">
-        <Button variant="ghost" onClick={onCancel} disabled={busy} className="text-text-primary">
+        <Button variant="ghost" onClick={onCancel} disabled={busy}>
           Cancel
         </Button>
         <Button onClick={start} loading={busy} disabled={!bookId}>

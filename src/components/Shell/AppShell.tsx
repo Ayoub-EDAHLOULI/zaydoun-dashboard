@@ -141,8 +141,13 @@ export default function AppShell({
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          {/* Mobile top bar */}
-          <header className="flex h-[60px] shrink-0 items-center gap-1 border-b border-border-subtle px-2 md:hidden">
+          {/* Mobile top bar — the chat screen brings its own header instead */}
+          <header
+            className={cn(
+              "h-[60px] shrink-0 items-center gap-1 border-b border-border-subtle px-2",
+              rail ? "hidden" : "flex md:hidden",
+            )}
+          >
             <button
               ref={menuButtonRef}
               type="button"

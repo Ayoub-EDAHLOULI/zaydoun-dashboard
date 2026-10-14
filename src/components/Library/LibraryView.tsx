@@ -290,7 +290,7 @@ export default function LibraryView() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               wrapperClassName="flex-[1_1_280px] max-w-[420px]"
-              className="bg-bg-surface"
+              surface
             />
             <SegmentedControl
               ariaLabel="Filter by status"

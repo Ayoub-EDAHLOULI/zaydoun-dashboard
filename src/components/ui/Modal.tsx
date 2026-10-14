@@ -255,7 +255,7 @@ export function ConfirmDialog({
       dismissible={!busy}
       footer={
         <>
-          <Button variant="ghost" onClick={onClose} disabled={busy} className="text-text-primary">
+          <Button variant="ghost" onClick={onClose} disabled={busy}>
             {cancelLabel}
           </Button>
           <Button
