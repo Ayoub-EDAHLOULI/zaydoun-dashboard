@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Zaydoun",
   },
   description:
-    "Zaydoun is an AI-powered voice reading assistant. Upload any PDF, ask questions hands-free, and get page-accurate answers in 5 languages. Powered by RAG, Whisper STT, and Claude.",
+    "Zaydoun is an AI-powered voice reading assistant. Upload any PDF, ask questions hands-free, and get page-accurate answers in 5 languages. Powered by RAG, Whisper STT, and GPT-4o mini.",
   keywords: [
     // Primary
     "AI voice assistant for reading",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: "Zaydoun",
     title: "Zaydoun — AI Voice Assistant for Books | Chat with Any PDF",
     description:
-      "Upload any PDF and have a deep, voice-first conversation with it. Page-accurate answers in 5 languages — hands-free, powered by RAG and Claude.",
+      "Upload any PDF and have a deep, voice-first conversation with it. Page-accurate answers in 5 languages — hands-free, powered by RAG and GPT-4o mini.",
     images: [
       {
         url: "/opengraph-image.png",
@@ -115,7 +115,7 @@ const jsonLdSoftwareApp = {
   applicationSubCategory: "AI Voice Assistant",
   operatingSystem: "iOS, Android, Web",
   description:
-    "Zaydoun is an AI-powered voice reading assistant. Upload any PDF, ask questions hands-free, and get page-accurate answers in 5 languages using RAG, Whisper STT, and Claude.",
+    "Zaydoun is an AI-powered voice reading assistant. Upload any PDF, ask questions hands-free, and get page-accurate answers in 5 languages using RAG, Whisper STT, and GPT-4o mini.",
   offers: [
     {
       "@type": "Offer",

@@ -233,7 +233,7 @@ export default function Hero() {
                 }}
               >
                 <Zap className="w-3 h-3" />
-                Powered by RAG · Whisper · Claude
+                Powered by RAG · Whisper · GPT-4o mini
               </div>
             </div>
 

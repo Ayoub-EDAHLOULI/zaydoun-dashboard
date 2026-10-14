@@ -28,7 +28,7 @@ const FAQS = [
   {
     question: "How fast are answers? What powers the retrieval?",
     answer:
-      "Typical answer latency is under one second from the moment you finish speaking. The retrieval layer uses pgvector with approximate nearest-neighbour (ANN) search over OpenAI embeddings — this gives semantic accuracy with near-zero query overhead. The generation layer runs on a low-latency Claude model endpoint.",
+      "Typical answer latency is under one second from the moment you finish speaking. The retrieval layer uses pgvector with approximate nearest-neighbour (ANN) search over OpenAI embeddings — this gives semantic accuracy with near-zero query overhead. The generation layer runs on OpenAI's low-latency GPT-4o mini model.",
   },
   {
     question: "Can I use Zaydoun on my phone without looking at the screen?",

@@ -13,7 +13,7 @@ This project leverages a modern React ecosystem optimized for speed, animations,
 * **Icons:** [Lucide React](https://lucide.dev/)
 * **Validation:** [Zod](https://zod.dev/)
 * **Notifications:** [React Toastify](https://fkhadra.github.io/react-toastify/) & [SweetAlert2](https://sweetalert2.github.io/)
-* **i18n:** [next-intl](https://next-intl-docs.vercel.app/) for multi-language support (English, French, Arabic/Darija)
+* **i18n:** English only for now (mobile app has en/ar/fr/es/zh)
 * **Rich Text:** `react-quill-new`
 
 ## 📂 Core Features Planned

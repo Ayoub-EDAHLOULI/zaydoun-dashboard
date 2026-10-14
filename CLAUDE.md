@@ -38,7 +38,7 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 
 ## Known issues
 
-- **Broken chat reply handling.** `conversationsService.chat()` is typed to return `{ userMessage, aiMessage }`, but the API returns `{ userText, aiMessage }`. As a result, `app/app/conversations/[id]/page.tsx` pushes `undefined` into `messages`. Fix the type and keep the optimistic user message instead.
-- `next-intl` is installed but unused, despite what the README says. The site is English-only.
-- The SEO copy in `app/layout.tsx` says "powered by … Claude", but the backend uses OpenAI. It also includes a hardcoded `aggregateRating`.
+- The site is English-only; there's no i18n library.
+- The SEO JSON-LD in `app/layout.tsx` includes a hardcoded `aggregateRating`.
+- When updating the logged-in user, merge into it (`updateUser({ ...user, name })`). Rebuilding the object drops `role`, and admins get bounced to `/login`.
 - `next.config.ts` image `remotePatterns` only allows `localhost:5000`.
