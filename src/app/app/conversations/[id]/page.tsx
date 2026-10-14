@@ -161,16 +161,13 @@ export default function ConversationChatPage() {
     setMessages((prev) => [...prev, optimisticUser]);
 
     try {
-      const { userMessage, aiMessage } = await conversationsService.chat(
+      // The API only returns the AI reply — keep the optimistic user bubble
+      const { aiMessage } = await conversationsService.chat(
         id,
         text,
         conversation?.languageCode,
       );
-      setMessages((prev) => [
-        ...prev.filter((m) => m.id !== optimisticUser.id),
-        userMessage,
-        aiMessage,
-      ]);
+      setMessages((prev) => [...prev, aiMessage]);
     } catch (err: unknown) {
       setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id));
       notify(

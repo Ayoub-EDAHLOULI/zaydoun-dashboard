@@ -10,6 +10,11 @@ export interface MessageData {
   createdAt: string;
 }
 
+export interface ChatResult {
+  userText: string;
+  aiMessage: MessageData;
+}
+
 export interface ConversationSummary {
   id: string;
   bookId: string;
