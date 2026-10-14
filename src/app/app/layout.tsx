@@ -1,4 +1,4 @@
-import AppLayout from "@/components/App/AppLayout";
+import AppShell from "@/components/Shell/AppShell";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,5 +14,5 @@ export default function UserAppRootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <AppLayout>{children}</AppLayout>;
+  return <AppShell area="reader">{children}</AppShell>;
 }

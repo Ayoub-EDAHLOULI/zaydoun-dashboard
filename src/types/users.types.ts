@@ -62,3 +62,11 @@ export interface UsageStats {
   costDelta: number | null;
   messagesDelta: number | null;
 }
+
+// GET /users/me/limits — free-tier usage, counted exactly like the API's guards
+export interface TierLimits {
+  /** ADMINs are exempt from all limits */
+  unlimited: boolean;
+  books: { used: number; limit: number };
+  messages: { used: number; limit: number; resetsAt: string };
+}

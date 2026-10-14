@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/Dashboard/Layout";
+import AppShell from "@/components/Shell/AppShell";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,5 +15,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return <AppShell area="admin">{children}</AppShell>;
 }

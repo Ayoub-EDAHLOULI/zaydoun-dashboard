@@ -13,7 +13,7 @@ export { BookCard, BookCover } from "./BookCard";
 export type { BookCardAction } from "./BookCard";
 export { StatCard, KpiCard } from "./StatCard";
 export { SidebarNav, NavItem, isNavActive } from "./SidebarNav";
-export type { NavLink } from "./SidebarNav";
+export type { NavLink, NavSection, NavEntry } from "./SidebarNav";
 export { SegmentedControl } from "./SegmentedControl";
 export type { SegmentOption } from "./SegmentedControl";
 export { Modal, ConfirmDialog } from "./Modal";

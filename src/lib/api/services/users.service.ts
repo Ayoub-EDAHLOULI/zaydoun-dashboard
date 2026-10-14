@@ -6,6 +6,7 @@ import {
   AdminUserRow,
   UsageStats,
   UsagePeriod,
+  TierLimits,
 } from "@/types/users.types";
 import {
   CreateAdminUserFormData,
@@ -29,6 +30,10 @@ export const usersService = {
 
   getStats(period: UsagePeriod): Promise<UsageStats> {
     return apiClient.get<UsageStats>(`${USERS}/me/stats?period=${period}`);
+  },
+
+  getLimits(): Promise<TierLimits> {
+    return apiClient.get<TierLimits>(`${USERS}/me/limits`);
   },
 
   // ── Admin ──────────────────────────────────────────────────────────────

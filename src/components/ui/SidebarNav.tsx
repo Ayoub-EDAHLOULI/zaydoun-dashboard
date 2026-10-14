@@ -13,6 +13,15 @@ export interface NavLink {
   exact?: boolean;
 }
 
+/** A small uppercase label between groups of links (e.g. "Manage") */
+export interface NavSection {
+  section: string;
+}
+
+export type NavEntry = NavLink | NavSection;
+
+const isSection = (e: NavEntry): e is NavSection => "section" in e;
+
 export function isNavActive(pathname: string, link: NavLink): boolean {
   if (pathname === link.href) return true;
   return !link.exact && pathname.startsWith(`${link.href}/`);
@@ -66,7 +75,8 @@ export function NavItem({
 }
 
 // ---------------------------------------------------------------------------
-// SidebarNav — a list of NavItems; the active one comes from the URL.
+// SidebarNav — NavItems (and optional section labels); the active one comes
+// from the URL.
 // Expects to sit inside a container with 16px side padding (12px collapsed).
 // ---------------------------------------------------------------------------
 
@@ -76,7 +86,7 @@ export function SidebarNav({
   collapsed = false,
   onNavigate,
 }: {
-  links: NavLink[];
+  links: NavEntry[];
   ariaLabel: string;
   collapsed?: boolean;
   onNavigate?: () => void;
@@ -87,15 +97,28 @@ export function SidebarNav({
       aria-label={ariaLabel}
       className={cn("flex flex-col gap-0.5", collapsed && "items-center")}
     >
-      {links.map((link) => (
-        <NavItem
-          key={link.href}
-          link={link}
-          active={isNavActive(pathname, link)}
-          collapsed={collapsed}
-          onNavigate={onNavigate}
-        />
-      ))}
+      {links.map((entry) =>
+        isSection(entry) ? (
+          collapsed ? (
+            <span key={entry.section} aria-hidden className="my-2 h-px w-8 bg-border" />
+          ) : (
+            <span
+              key={entry.section}
+              className="mx-3 mt-4 mb-1.5 text-[11px] font-medium tracking-[0.12em] text-text-secondary uppercase"
+            >
+              {entry.section}
+            </span>
+          )
+        ) : (
+          <NavItem
+            key={entry.href}
+            link={entry}
+            active={isNavActive(pathname, entry)}
+            collapsed={collapsed}
+            onNavigate={onNavigate}
+          />
+        ),
+      )}
     </nav>
   );
 }

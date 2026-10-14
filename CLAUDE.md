@@ -15,8 +15,14 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 - `/`: landing page, built from `components/Landing/*`.
 - `(marketing)/features|pricing|contact`: marketing pages. The contact form uses reCAPTCHA through `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`.
 - `/login`, `/register`, `/forgot-password`, `/reset-password`: public auth pages.
-- `/app/*`: the **USER** web app (home, library, conversations, `conversations/[id]` chat, profile). Its shell is `components/App/AppLayout.tsx` + `AppSidebar` + `AppHeader`.
-- `/dashboard/*`: the **ADMIN** dashboard (overview with `CostChart`, library, conversations, users, profile). Its shell is `components/Dashboard/Layout.tsx`, and it redirects non-admins to `/login`. Sidebar items come from `lib/admin-config.ts` (`NAV_ITEMS`, `adminOnly`).
+- `/app/*`: the **USER** web app (home, library, conversations, `conversations/[id]` chat, profile).
+- `/dashboard/*`: the **ADMIN** dashboard (overview with `CostChart`, library, conversations, users, profile). It redirects non-admins to `/login`.
+- Both areas use one shell, `components/Shell/AppShell.tsx` (`area="reader" | "admin"`):
+  - On desktop it shows a 256px sidebar; on `/app/conversations/[id]` that becomes a 72px icon rail.
+  - Below 768px it shows a 60px top bar with a drawer instead.
+  - Nav links and mobile page titles live in `components/Shell/navigation.ts`.
+  - There is **no desktop header**: each page renders its own serif `<h1>`.
+  - The shell already pads `<main>` (16px sides on mobile, 48px on desktop), so pages don't add outer padding. The rail/chat route gets no padding.
 - After login, `lib/routes.ts > getDashboardPath(role)` sends USER to `/app` and ADMIN to `/dashboard`.
 - Each route folder has a `layout.tsx` whose only job is to export `metadata` for SEO. Pages themselves are `"use client"`.
 
@@ -31,9 +37,20 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 - **Validation:** zod schemas live in `src/validations/`.
 - **Notifications:** use `useToast().notify(msg, type)` from `contexts/ToastContext.tsx`, which wraps react-toastify. Confirm dialogs use sweetalert2.
 
+## Redesign (in progress)
+
+- The visual reference is `design/` (README + HTML mockups); it is not committed.
+- Order of work: tokens → components → shell → Library → Conversation → Admin overview → the rest. The first three are done.
+- Tokens are copied into `src/styles/tokens.css`, which generates utilities like `bg-bg-surface`, `text-gold`, `rounded-md`, `font-serif`. Never use raw hex values.
+- Fonts (Inter, Newsreader, Amiri) load via next/font in `app/layout.tsx`.
+- Shared components live in `src/components/ui`, imported via `@/components/ui`. A dev-only preview is at `/dev/ui`.
+- `contexts/LimitsContext.tsx` (`useLimits()`) exposes `GET /users/me/limits` for free-tier usage. Call `refreshLimits()` after an upload, delete or message.
+
 ## Styling
 
-- Use the CSS variables defined in `app/globals.css` (`--z-bg-base`, `--z-gold`, `--z-text-primary`, …). The codebase usually applies them through inline `style={{ … "var(--z-…)" }}`, mixed with Tailwind utility classes for layout.
+- **New code** uses the token utilities and `@/components/ui`.
+- Old pages still use the legacy `--z-*` CSS variables through inline `style={{ … }}`. Replace that as each page gets redesigned.
+- Base element styles in `globals.css` must stay inside `@layer base`. Unlayered CSS overrides every Tailwind utility in v4.
 - Icons come from `lucide-react`. Animations use `framer-motion`.
 
 ## Known issues
