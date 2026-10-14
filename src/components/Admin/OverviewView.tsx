@@ -78,7 +78,7 @@ function CostBySource({ stats }: { stats: UsageStats }) {
           );
         })}
       </div>
-      <p className="mt-auto text-[13px] leading-normal text-text-secondary">
+      <p className="mt-auto text-13 leading-normal text-text-secondary">
         Indexing books isn&apos;t included: the API doesn&apos;t log embedding costs yet.
       </p>
     </figure>
@@ -174,7 +174,7 @@ export default function OverviewView() {
     <div className="flex flex-col gap-7">
       <header className="flex flex-wrap items-end justify-between gap-5">
         <div className="flex flex-col gap-2">
-          <h1 className="font-serif text-[32px] leading-[1.1] font-normal tracking-[-0.02em] md:text-[40px]">
+          <h1 className="font-serif text-32 leading-[1.1] font-normal tracking-[-0.02em] md:text-40">
             Overview
           </h1>
           <p className="text-sm text-text-secondary">

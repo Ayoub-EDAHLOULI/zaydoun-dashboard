@@ -18,7 +18,7 @@ const VARIANTS: Record<ButtonVariant, string> = {
 
 const SIZES: Record<ButtonSize, string> = {
   sm: "h-10 px-4 text-sm",
-  md: "h-11 px-5 text-[15px]",
+  md: "h-11 px-5 text-15",
   lg: "h-[52px] px-6 text-base", // marketing CTAs
 };
 

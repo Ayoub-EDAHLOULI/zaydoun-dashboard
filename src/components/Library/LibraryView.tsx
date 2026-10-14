@@ -239,7 +239,7 @@ export default function LibraryView() {
     <div className="flex flex-col gap-7">
       <header className="flex flex-wrap items-end justify-between gap-5">
         <div className="flex flex-col gap-2">
-          <h1 className="font-serif text-[32px] leading-[1.1] font-normal tracking-[-0.02em] md:text-[40px]">
+          <h1 className="font-serif text-32 leading-[1.1] font-normal tracking-[-0.02em] md:text-40">
             Library
           </h1>
           {!isLoading && <p className="text-sm text-text-secondary">{summary}</p>}
@@ -337,8 +337,8 @@ export default function LibraryView() {
                   <span className="flex size-11 items-center justify-center rounded-md bg-bg-surface text-text-muted">
                     <Plus size={20} aria-hidden />
                   </span>
-                  <span className="text-[15px] font-medium text-text-secondary">No free slot</span>
-                  <span className="max-w-[220px] text-[13px] leading-relaxed text-text-secondary">
+                  <span className="text-15 font-medium text-text-secondary">No free slot</span>
+                  <span className="max-w-[220px] text-13 leading-relaxed text-text-secondary">
                     Your free books are all on the shelf. Delete one from its ··· menu to upload
                     another.
                   </span>

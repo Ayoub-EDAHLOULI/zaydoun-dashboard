@@ -158,11 +158,11 @@ export default function AppShell({
             >
               <Menu size={22} aria-hidden />
             </button>
-            <span className="truncate text-[17px] font-semibold">
+            <span className="truncate text-17 font-semibold">
               {pageTitle(pathname)}
             </span>
             {area === "admin" && (
-              <Badge tone="gold" className="ml-2 h-[22px] px-[7px] text-[11px]">
+              <Badge tone="gold" className="ml-2 h-[22px] px-[7px] text-11">
                 ADMIN
               </Badge>
             )}

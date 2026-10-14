@@ -117,7 +117,7 @@ export function CostPerDayChart({
         <span className="text-base font-semibold">
           {buckets.length > 31 ? "Cost per month" : "Cost per day"}
         </span>
-        <span className="flex items-baseline gap-3 text-[13px] text-text-secondary">
+        <span className="flex items-baseline gap-3 text-13 text-text-secondary">
           USD
           <button
             type="button"

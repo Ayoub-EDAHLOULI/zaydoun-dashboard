@@ -55,7 +55,7 @@ export function LimitBanner({
         <Icon size={20} aria-hidden />
       </span>
       <div className="flex min-w-0 flex-[1_1_280px] flex-col gap-0.5">
-        <span className="text-[15px] font-semibold">
+        <span className="text-15 font-semibold">
           {title ?? defaultTitle}
         </span>
         {/* The reset time depends on the viewer's timezone */}
@@ -95,7 +95,7 @@ export function EmptyState({
       )}
     >
       <Orb size={56} rings={1} muted className="mb-2" />
-      <h3 className="font-serif text-[22px] leading-[1.25] font-medium">
+      <h3 className="font-serif text-22 leading-[1.25] font-medium">
         {title}
       </h3>
       {description && (

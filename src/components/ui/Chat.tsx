@@ -47,8 +47,8 @@ export function ChatMessage({
           className={cn(
             "max-w-[80%] rounded-[16px_16px_4px_16px] bg-bg-elevated px-4 whitespace-pre-wrap break-words",
             arabic
-              ? "py-2.5 font-arabic text-[19px] leading-[1.7]"
-              : "py-3 text-[15px] leading-[1.55]",
+              ? "py-2.5 font-arabic text-19 leading-[1.7]"
+              : "py-3 text-15 leading-[1.55]",
           )}
         >
           {content}
@@ -68,7 +68,7 @@ export function ChatMessage({
         <span
           className={cn(
             "font-semibold text-gold-light",
-            arabic ? "font-arabic text-[15px] font-bold" : "text-[13px]",
+            arabic ? "font-arabic text-15 font-bold" : "text-13",
           )}
         >
           {arabic ? "زيدون" : "Zaydoun"}
@@ -78,8 +78,8 @@ export function ChatMessage({
         className={cn(
           "whitespace-pre-wrap break-words text-text-primary",
           arabic
-            ? "font-arabic text-[21px] leading-[1.85]"
-            : "font-serif text-[19px] leading-[1.65]",
+            ? "font-arabic text-21 leading-[1.85]"
+            : "font-serif text-19 leading-[1.65]",
         )}
       >
         {content}
@@ -210,7 +210,7 @@ export function Composer({
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={onKeyDown}
-          className="min-h-7 flex-1 resize-none self-center bg-transparent py-1.5 text-[15px] leading-normal text-text-primary placeholder:text-text-muted focus-visible:outline-none disabled:cursor-not-allowed"
+          className="min-h-7 flex-1 resize-none self-center bg-transparent py-1.5 text-15 leading-normal text-text-primary placeholder:text-text-muted focus-visible:outline-none disabled:cursor-not-allowed"
         />
         <span className="relative">
           <button
@@ -223,7 +223,7 @@ export function Composer({
           </button>
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-1.5 left-1/2 -translate-x-1/2 rounded-xs bg-bg-elevated px-1 text-[9px] font-semibold tracking-[0.08em] text-text-secondary"
+            className="pointer-events-none absolute -top-1.5 left-1/2 -translate-x-1/2 rounded-xs bg-bg-elevated px-1 text-9 font-semibold tracking-[0.08em] text-text-secondary"
           >
             SOON
           </span>

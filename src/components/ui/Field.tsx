@@ -50,7 +50,7 @@ function Field({
       <label
         htmlFor={id}
         className={cn(
-          "text-[13px] font-medium",
+          "text-13 font-medium",
           disabled ? "text-text-muted" : "text-text-secondary",
           hideLabel && "sr-only",
         )}
@@ -79,7 +79,7 @@ function describedBy(id: string, error?: ReactNode, hint?: ReactNode) {
 
 const controlClasses = (hasError: boolean, surface?: boolean) =>
   cn(
-    "w-full rounded-sm border text-[15px]",
+    "w-full rounded-sm border text-15",
     surface ? "bg-bg-surface" : "bg-bg-elevated",
     "text-text-primary placeholder:text-text-muted transition-[border-color,box-shadow]",
     "focus-visible:outline-none focus:border-gold focus:shadow-[0_0_0_3px_var(--color-gold-muted)]",

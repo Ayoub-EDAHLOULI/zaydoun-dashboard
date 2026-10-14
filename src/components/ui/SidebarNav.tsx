@@ -52,7 +52,7 @@ export function NavItem({
       aria-label={collapsed ? link.label : undefined}
       title={collapsed ? link.label : undefined}
       className={cn(
-        "relative flex h-11 items-center gap-3 rounded-sm text-[15px] transition-colors",
+        "relative flex h-11 items-center gap-3 rounded-sm text-15 transition-colors",
         collapsed ? "w-11 justify-center" : "px-3",
         active
           ? "bg-gold-muted font-medium text-gold-light"
@@ -104,7 +104,7 @@ export function SidebarNav({
           ) : (
             <span
               key={entry.section}
-              className="mx-3 mt-4 mb-1.5 text-[11px] font-medium tracking-[0.12em] text-text-secondary uppercase"
+              className="mx-3 mt-4 mb-1.5 text-11 font-medium tracking-[0.12em] text-text-secondary uppercase"
             >
               {entry.section}
             </span>

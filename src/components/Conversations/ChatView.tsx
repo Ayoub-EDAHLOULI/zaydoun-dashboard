@@ -121,7 +121,7 @@ function BookPanel({
                 {book.author}
               </span>
             )}
-            <span className="text-[13px] text-text-secondary">
+            <span className="text-13 text-text-secondary">
               {[languageName(book.language), book.totalPages > 0 && `${book.totalPages} pages`]
                 .filter(Boolean)
                 .join(" · ")}
@@ -147,9 +147,9 @@ function BookPanel({
             ))}
           </div>
         ) : (
-          <span className="text-[13px] text-text-secondary">No pages cited yet.</span>
+          <span className="text-13 text-text-secondary">No pages cited yet.</span>
         )}
-        <span className="text-[13px] leading-relaxed text-text-secondary">
+        <span className="text-13 leading-relaxed text-text-secondary">
           A running index of where this conversation has been in the book.
         </span>
       </div>
@@ -339,7 +339,7 @@ export default function ChatView({ id }: { id: string }) {
             ) : (
               <Skeleton className="h-5 w-48" />
             )}
-            <span className="truncate text-xs text-text-secondary md:text-[13px]">
+            <span className="truncate text-xs text-text-secondary md:text-13">
               <span className="md:hidden">Replies in {languageName(lang)}</span>
               <span className="hidden md:inline">{subtitle}</span>
             </span>
@@ -396,7 +396,7 @@ export default function ChatView({ id }: { id: string }) {
             ) : messages.length === 0 && !isSending ? (
               <div className="flex flex-col items-center gap-4 py-16 text-center">
                 <Orb size={56} rings={1} muted className="mb-2" />
-                <h2 className="font-serif text-[26px] leading-tight font-normal">
+                <h2 className="font-serif text-26 leading-tight font-normal">
                   Ask Zaydoun about{" "}
                   <em dir="auto" className="text-gold-light italic">
                     {title || "this book"}

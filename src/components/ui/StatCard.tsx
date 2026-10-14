@@ -38,7 +38,7 @@ export function StatCard({
       )}
     >
       <div className="flex items-center justify-between">
-        <span className="text-[13px] font-medium text-text-secondary">
+        <span className="text-13 font-medium text-text-secondary">
           {label}
         </span>
         {Icon && <Icon size={18} className="text-text-muted" aria-hidden />}
@@ -47,7 +47,7 @@ export function StatCard({
         {value}
       </span>
       {(hasDelta || comparison) && (
-        <div className="flex items-center gap-2 text-[13px]">
+        <div className="flex items-center gap-2 text-13">
           {hasDelta && DeltaIcon && (
             <span className="inline-flex items-center gap-1 font-medium text-text-primary">
               <DeltaIcon size={14} aria-hidden />

@@ -61,6 +61,7 @@
     font-family: var(--z-font-sans);
     background-color: var(--z-bg-base);
     color: var(--z-text-primary);
+    font-size: var(--text-base); /* follows --font-scale */
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

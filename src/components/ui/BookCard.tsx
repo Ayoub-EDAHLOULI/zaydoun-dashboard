@@ -49,7 +49,7 @@ export function BookCover({
           arabic
             ? cn(
                 "font-arabic font-bold leading-[1.25] text-gold-light",
-                size === "md" ? "text-[22px]" : size === "sm" ? "text-lg" : "text-sm",
+                size === "md" ? "text-22" : size === "sm" ? "text-lg" : "text-sm",
               )
             : cn(
                 "font-serif font-medium leading-[1.2] text-text-primary",
@@ -68,9 +68,9 @@ export function BookCover({
           className={cn(
             "line-clamp-2 text-text-secondary",
             arabic
-              ? "font-arabic text-[13px] leading-[1.3]"
+              ? "font-arabic text-13 leading-[1.3]"
               : "font-serif text-xs italic leading-[1.3]",
-            size === "xs" && "text-[10px]",
+            size === "xs" && "text-10",
           )}
         >
           {author}
@@ -166,7 +166,7 @@ export function BookCard({
         </h3>
         {meta.length > 0 && (
           // <bdi> keeps an Arabic author from reordering the rest of the line
-          <p className="text-[13px] text-text-secondary">
+          <p className="text-13 text-text-secondary">
             {meta.map((part, i) => (
               <span key={i}>
                 {i > 0 && " · "}
@@ -175,7 +175,7 @@ export function BookCard({
             ))}
           </p>
         )}
-        {detail && <p className="text-[13px] text-text-secondary">{detail}</p>}
+        {detail && <p className="text-13 text-text-secondary">{detail}</p>}
 
         <div className="mt-auto flex gap-2 pt-3">
           {href && !disabled ? (

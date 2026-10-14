@@ -30,7 +30,7 @@ export function Switch({
       disabled={disabled}
       onClick={() => onChange(!checked)}
       className={cn(
-        "inline-flex min-h-11 items-center gap-2.5 rounded-sm text-[13px] text-text-secondary disabled:cursor-not-allowed disabled:opacity-50",
+        "inline-flex min-h-11 items-center gap-2.5 rounded-sm text-13 text-text-secondary disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
     >

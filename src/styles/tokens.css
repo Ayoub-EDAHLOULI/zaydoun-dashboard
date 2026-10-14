@@ -45,6 +45,32 @@
   --font-serif: var(--font-newsreader), Georgia, serif;   /* display + Zaydoun's voice */
   --font-arabic: var(--font-amiri), "Scheherazade New", serif;
 
+  /* Font sizes — all derive from --font-scale (set in :root below), so one
+     number makes the whole UI's text larger or smaller. Spacing is unaffected.
+     Standard Tailwind sizes are redefined; text-13 etc. are the design's px sizes. */
+  --text-xs: calc(0.75rem * var(--font-scale));
+  --text-sm: calc(0.875rem * var(--font-scale));
+  --text-base: calc(1rem * var(--font-scale));
+  --text-lg: calc(1.125rem * var(--font-scale));
+  --text-xl: calc(1.25rem * var(--font-scale));
+  --text-2xl: calc(1.5rem * var(--font-scale));
+  --text-3xl: calc(1.875rem * var(--font-scale));
+  --text-4xl: calc(2.25rem * var(--font-scale));
+  --text-5xl: calc(3rem * var(--font-scale));
+  --text-9: calc(9px * var(--font-scale));
+  --text-10: calc(10px * var(--font-scale));
+  --text-11: calc(11px * var(--font-scale));
+  --text-13: calc(13px * var(--font-scale));
+  --text-15: calc(15px * var(--font-scale));
+  --text-17: calc(17px * var(--font-scale));
+  --text-19: calc(19px * var(--font-scale));
+  --text-21: calc(21px * var(--font-scale));
+  --text-22: calc(22px * var(--font-scale));
+  --text-26: calc(26px * var(--font-scale));
+  --text-32: calc(32px * var(--font-scale));
+  --text-40: calc(40px * var(--font-scale));
+  --text-56: calc(56px * var(--font-scale));
+
   /* Shadows & glow */
   --shadow-overlay: 0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px #3d3a37;
   --shadow-gold-glow: 0 0 32px -8px rgba(201, 168, 76, 0.35);
@@ -66,6 +92,8 @@
 
 /* The orb gradient, used by <Orb /> */
 :root {
+  /* 1 = the mockups' exact sizes. Lower = smaller text everywhere. */
+  --font-scale: 0.93;
   --orb-gradient: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #e0c272 20%, #c9a84c 46%, #a07c30 76%, #4a3712 100%);
   --orb-gradient-small: radial-gradient(circle at 35% 30%, #f4dfa0 0%, #c9a84c 50%, #7a5c22 100%);
 }

@@ -78,7 +78,7 @@ const USERS: SampleUser[] = [
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="text-[13px] font-medium tracking-[0.14em] text-gold uppercase">
+      <h2 className="text-13 font-medium tracking-[0.14em] text-gold uppercase">
         {title}
       </h2>
       {children}
@@ -110,7 +110,7 @@ export default function UiShowcase() {
           <Avatar name={u.name} highlight={u.role === "USER"} />
           <span className="flex min-w-0 flex-col gap-0.5">
             <span className="truncate font-medium">{u.name}</span>
-            <span className="truncate text-[13px] text-text-secondary">{u.email}</span>
+            <span className="truncate text-13 text-text-secondary">{u.email}</span>
           </span>
         </div>
       ),
@@ -122,7 +122,7 @@ export default function UiShowcase() {
         u.role === "ADMIN" ? (
           <Badge tone="gold">ADMIN</Badge>
         ) : (
-          <span className="text-[13px] text-text-secondary">User</span>
+          <span className="text-13 text-text-secondary">User</span>
         ),
     },
     {
@@ -173,20 +173,20 @@ export default function UiShowcase() {
   return (
     <div className="mx-auto flex max-w-[1280px] flex-col gap-18 px-4 py-12 md:px-10 md:py-20">
       <header className="flex flex-col gap-4 border-b border-border pb-10">
-        <span className="text-[13px] font-medium tracking-[0.14em] text-gold uppercase">
+        <span className="text-13 font-medium tracking-[0.14em] text-gold uppercase">
           Dev preview · not a product page
         </span>
-        <h1 className="font-serif text-[40px] leading-[1.1] tracking-[-0.02em] md:text-[56px]">
+        <h1 className="font-serif text-40 leading-[1.1] tracking-[-0.02em] md:text-56">
           Zaydoun components, <em className="text-gold-light italic">step 1.</em>
         </h1>
-        <p className="max-w-[640px] text-[17px] leading-relaxed text-text-secondary">
+        <p className="max-w-[640px] text-17 leading-relaxed text-text-secondary">
           Every shared component from <code className="text-text-primary">src/components/ui</code>,
           built on the design tokens. Sample data only.
         </p>
-        <div className="flex flex-wrap gap-x-6 gap-y-1 text-[13px] text-text-secondary">
+        <div className="flex flex-wrap gap-x-6 gap-y-1 text-13 text-text-secondary">
           <span className="font-sans">Inter: interface</span>
           <span className="font-serif text-base italic">Newsreader: display &amp; Zaydoun&apos;s voice</span>
-          <span className="font-arabic text-[17px]" lang="ar">أميري — للعربية</span>
+          <span className="font-arabic text-17" lang="ar">أميري — للعربية</span>
         </div>
       </header>
 

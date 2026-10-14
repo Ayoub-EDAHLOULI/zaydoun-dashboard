@@ -43,6 +43,10 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 - Order of work: tokens → components → shell → Library → Conversation → Admin overview → the rest. Tokens, components, shell, Library, Conversation (chat) and Admin overview are done.
 - Tokens are copied into `src/styles/tokens.css`, which generates utilities like `bg-bg-surface`, `text-gold`, `rounded-md`, `font-serif`. Never use raw hex values.
 - Fonts (Inter, Newsreader, Amiri) load via next/font in `app/layout.tsx`.
+- **Font sizes** all derive from `--font-scale` in `src/styles/tokens.css`, which is currently 0.93, a bit smaller than the mockups at Ayoub's request.
+  - Use the scaled sizes: `text-xs`…`text-5xl`, or the design's pixel sizes as `text-13`, `text-15`, etc.
+  - Never use raw `text-[13px]`: it would ignore the scale.
+  - Line heights and spacing are not scaled.
 - Shared components live in `src/components/ui`, imported via `@/components/ui`. A dev-only preview is at `/dev/ui`.
 - `contexts/LimitsContext.tsx` (`useLimits()`) exposes `GET /users/me/limits` for free-tier usage. Call `refreshLimits()` after an upload, delete or message.
 

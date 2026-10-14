@@ -152,7 +152,7 @@ function UploadForm({
         </Select>
       </div>
 
-      {note && <p className="text-[13px] text-text-secondary">{note}</p>}
+      {note && <p className="text-13 text-text-secondary">{note}</p>}
 
       <div className="flex flex-col-reverse gap-2.5 md:flex-row md:justify-end">
         <Button type="submit" loading={busy} fullWidth className="md:w-auto">

@@ -65,7 +65,7 @@ function MiniCover({ book }: { book: BookSummary }) {
       aria-hidden
       dir={arabic ? "rtl" : undefined}
       className={cn(
-        "h-12 w-9 shrink-0 overflow-hidden rounded-[2px_5px_5px_2px] border-l-[3px] px-1 py-[5px] text-[10px] leading-[1.2]",
+        "h-12 w-9 shrink-0 overflow-hidden rounded-[2px_5px_5px_2px] border-l-[3px] px-1 py-[5px] text-10 leading-[1.2]",
         ready ? "border-gold-dark bg-bg-elevated" : "border-border-strong bg-bg-surface",
         arabic ? "font-arabic font-bold text-gold-light" : "font-serif text-text-secondary",
       )}
@@ -116,7 +116,7 @@ function DialogBody({
   return (
     <div className="flex flex-col gap-6">
       <fieldset className="flex flex-col gap-2.5">
-        <legend className="mb-2.5 text-[13px] font-medium text-text-secondary">Book</legend>
+        <legend className="mb-2.5 text-13 font-medium text-text-secondary">Book</legend>
         {ordered.length === 0 && (
           <p className="text-sm text-text-secondary">
             Your shelf is empty. Upload a book from the Library first.
@@ -159,13 +159,13 @@ function DialogBody({
                 <span
                   dir="auto"
                   className={cn(
-                    "truncate text-[17px] leading-[1.2] font-medium",
+                    "truncate text-17 leading-[1.2] font-medium",
                     isArabic(book.language, book.title) ? "font-arabic" : "font-serif",
                   )}
                 >
                   {book.title}
                 </span>
-                <span className="truncate text-[13px] text-text-secondary">{meta}</span>
+                <span className="truncate text-13 text-text-secondary">{meta}</span>
               </span>
               <StatusBadge status={book.status} className="hidden sm:inline-flex" />
             </label>
@@ -174,7 +174,7 @@ function DialogBody({
       </fieldset>
 
       <fieldset className="flex flex-col gap-2.5">
-        <legend className="mb-2.5 text-[13px] font-medium text-text-secondary">
+        <legend className="mb-2.5 text-13 font-medium text-text-secondary">
           Zaydoun replies in
         </legend>
         <div className="flex flex-wrap gap-2">
@@ -189,7 +189,7 @@ function DialogBody({
                   selected
                     ? "border-gold bg-gold-muted font-medium text-gold-light"
                     : "border-border-strong text-text-primary hover:bg-bg-elevated",
-                  l.code === "ar" ? "font-arabic text-[17px]" : "text-sm",
+                  l.code === "ar" ? "font-arabic text-17" : "text-sm",
                   "has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-gold",
                 )}
               >
@@ -208,7 +208,7 @@ function DialogBody({
             );
           })}
         </div>
-        <span className="text-[13px] text-text-secondary">
+        <span className="text-13 text-text-secondary">
           Defaults to your preference from Profile. You can change it later in the conversation.
         </span>
       </fieldset>

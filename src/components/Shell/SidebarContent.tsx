@@ -26,7 +26,7 @@ function UsageMeter({
   const full = used >= limit;
   return (
     <div className="flex flex-col gap-1.5">
-      <div className="flex justify-between text-[13px]">
+      <div className="flex justify-between text-13">
         <span>{label}</span>
         <span className="text-text-secondary tabular-nums">
           {Math.min(used, limit)} of {limit}
@@ -93,10 +93,10 @@ export function SidebarContent({
           className="flex items-center gap-2.5 rounded-sm text-text-primary"
         >
           <Image src="/logo.png" alt="" width={32} height={32} className="rounded-sm" />
-          <span className="text-[17px] font-semibold">Zaydoun</span>
+          <span className="text-17 font-semibold">Zaydoun</span>
         </Link>
         {area === "admin" && (
-          <Badge tone="gold" className="ml-auto h-[22px] px-[7px] text-[11px]">
+          <Badge tone="gold" className="ml-auto h-[22px] px-[7px] text-11">
             ADMIN
           </Badge>
         )}

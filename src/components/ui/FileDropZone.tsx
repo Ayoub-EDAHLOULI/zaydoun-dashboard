@@ -121,26 +121,26 @@ export function FileDropZone({
 
         {isDragOver ? (
           // Browsers don't expose the file name until the drop
-          <span className="text-[15px] font-medium text-gold-light">
+          <span className="text-15 font-medium text-gold-light">
             Release to add this PDF
           </span>
         ) : file ? (
           <>
-            <span className="max-w-full truncate text-[15px] font-medium text-text-primary">
+            <span className="max-w-full truncate text-15 font-medium text-text-primary">
               {file.name}
             </span>
-            <span className="text-[13px] text-text-secondary">
+            <span className="text-13 text-text-secondary">
               {formatSize(file.size)} ·{" "}
               <span className="text-gold-light">Choose another file</span>
             </span>
           </>
         ) : (
           <>
-            <span className="text-[15px] font-medium text-text-primary">
+            <span className="text-15 font-medium text-text-primary">
               Drop a PDF here, or{" "}
               <span className="text-gold-light">browse</span>
             </span>
-            <span className="text-[13px] text-text-secondary">
+            <span className="text-13 text-text-secondary">
               PDF only · up to {maxSizeMB} MB
             </span>
           </>
