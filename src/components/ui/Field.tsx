@@ -79,7 +79,9 @@ function describedBy(id: string, error?: ReactNode, hint?: ReactNode) {
 
 const controlClasses = (hasError: boolean, surface?: boolean) =>
   cn(
-    "w-full rounded-sm border text-15",
+    // 16px below md: iOS Safari zooms into any field under 16px on focus.
+    // Deliberately unscaled (not affected by --font-scale).
+    "w-full rounded-sm border text-15 max-md:text-[16px]",
     surface ? "bg-bg-surface" : "bg-bg-elevated",
     "text-text-primary placeholder:text-text-muted transition-[border-color,box-shadow]",
     "focus-visible:outline-none focus:border-gold focus:shadow-[0_0_0_3px_var(--color-gold-muted)]",
@@ -162,7 +164,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           )}
           {...rest}
         />
-        {end && <div className="absolute top-0 right-0.5 flex h-11 items-center">{end}</div>}
+        {end && (
+          <div className="absolute top-0 right-0.5 flex h-11 items-center">
+            {end}
+          </div>
+        )}
       </div>
     </Field>
   );

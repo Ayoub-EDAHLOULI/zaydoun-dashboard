@@ -44,7 +44,7 @@ export function AuthSplitLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen bg-bg-base">
+    <div className="flex min-h-dvh bg-bg-base">
       <aside className="relative hidden flex-1 flex-col overflow-hidden border-r border-border bg-bg-surface px-16 py-12 lg:flex">
         {/* The sun, its light and the dust in it — behind the text */}
         <SunScene />
@@ -62,11 +62,14 @@ export function AuthSplitLayout({
         </span>
       </aside>
 
-      <main className="flex min-w-0 flex-1 flex-col items-center justify-center gap-10 px-4 py-10 md:px-12">
+      {/* my-auto on the content centres it when there's room and falls back to
+          top-aligned on short screens (justify-center would push the top
+          off-screen, out of reach) */}
+      <main className="flex min-w-0 flex-1 flex-col items-center gap-7 px-4 py-6 sm:gap-10 sm:py-10 md:px-12">
         <div className="w-full max-w-[400px] lg:hidden">
           <Logo size={32} />
         </div>
-        <div className="w-full max-w-[400px]">{children}</div>
+        <div className="my-auto w-full max-w-[400px]">{children}</div>
       </main>
     </div>
   );
@@ -91,7 +94,7 @@ export function AuthCardLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-10 bg-bg-base px-4 py-10">
+    <div className="flex min-h-dvh flex-col items-center gap-7 bg-bg-base px-4 py-6 sm:gap-10 sm:py-10">
       <div className="w-full max-w-[440px]">
         <Logo size={32} />
       </div>

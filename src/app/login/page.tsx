@@ -93,7 +93,7 @@ function LoginForm() {
       onSubmit={submit}
       noValidate
       aria-labelledby="auth-title"
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-4 sm:gap-5"
     >
       <AuthHeading title="Welcome back" subtitle="Log in to your library." />
 

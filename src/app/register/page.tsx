@@ -5,7 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { Button, Input } from "@/components/ui";
-import { AuthHeading, AuthSplitLayout, PasswordInput } from "@/components/Auth/AuthLayout";
+import {
+  AuthHeading,
+  AuthSplitLayout,
+  PasswordInput,
+} from "@/components/Auth/AuthLayout";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
 import { authService } from "@/lib/api/services/auth.service";
@@ -27,14 +31,23 @@ const registerSchema = z
 type Form = z.infer<typeof registerSchema>;
 type Errors = Partial<Record<keyof Form, string>>;
 
-const STEPS = ["Upload a PDF", "Zaydoun reads it, page by page", "Ask your first question"];
+const STEPS = [
+  "Upload a PDF",
+  "Zaydoun reads it, page by page",
+  "Ask your first question",
+];
 
 export default function RegisterPage() {
   const router = useRouter();
   const { login } = useAuth();
   const { notify } = useToast();
 
-  const [form, setForm] = useState<Form>({ name: "", email: "", password: "", confirmPassword: "" });
+  const [form, setForm] = useState<Form>({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [errors, setErrors] = useState<Errors>({});
   const [busy, setBusy] = useState(false);
 
@@ -52,7 +65,8 @@ export default function RegisterPage() {
     });
     if (!parsed.success) {
       const next: Errors = {};
-      for (const issue of parsed.error.issues) next[issue.path[0] as keyof Form] ??= issue.message;
+      for (const issue of parsed.error.issues)
+        next[issue.path[0] as keyof Form] ??= issue.message;
       setErrors(next);
       return;
     }
@@ -65,7 +79,10 @@ export default function RegisterPage() {
       notify(`Welcome, ${name.split(" ")[0]}! Your shelf is ready.`, "success");
       router.push(getDashboardPath(user.role));
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't create your account", "error");
+      notify(
+        err instanceof Error ? err.message : "Couldn't create your account",
+        "error",
+      );
       setBusy(false);
     }
   };
@@ -80,7 +97,10 @@ export default function RegisterPage() {
       aside={
         <ol className="flex flex-col gap-3">
           {STEPS.map((step, i) => (
-            <li key={step} className="flex items-center gap-3 text-15 text-text-secondary">
+            <li
+              key={step}
+              className="flex items-center gap-3 text-15 text-text-secondary"
+            >
               <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-border-gold font-serif text-sm text-gold-light">
                 {i + 1}
               </span>
@@ -90,8 +110,16 @@ export default function RegisterPage() {
         </ol>
       }
     >
-      <form onSubmit={submit} noValidate aria-labelledby="auth-title" className="flex flex-col gap-5">
-        <AuthHeading title="Create your account" subtitle="Free to start. No card needed." />
+      <form
+        onSubmit={submit}
+        noValidate
+        aria-labelledby="auth-title"
+        className="flex flex-col gap-4 sm:gap-5"
+      >
+        <AuthHeading
+          title="Create your account"
+          subtitle="Free to start. No card needed."
+        />
 
         <Input
           label="Full name"
@@ -129,13 +157,22 @@ export default function RegisterPage() {
           disabled={busy}
         />
 
-        <Button type="submit" size="lg" fullWidth loading={busy} className="mt-1">
+        <Button
+          type="submit"
+          size="lg"
+          fullWidth
+          loading={busy}
+          className="mt-1"
+        >
           Create account
         </Button>
 
         <p className="mt-1 border-t border-border pt-4.5 text-center text-15 text-text-secondary">
           Already have an account?{" "}
-          <Link href="/login" className="font-medium text-gold-light hover:text-text-primary">
+          <Link
+            href="/login"
+            className="font-medium text-gold-light hover:text-text-primary"
+          >
             Log in
           </Link>
         </p>

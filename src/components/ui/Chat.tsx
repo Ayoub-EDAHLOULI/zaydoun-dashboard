@@ -121,7 +121,11 @@ function CopyButton({ text }: { text: string }) {
       title={copied ? "Copied" : "Copy answer"}
       className="flex size-8 items-center justify-center rounded-sm text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
     >
-      {copied ? <Check size={16} aria-hidden /> : <Copy size={16} aria-hidden />}
+      {copied ? (
+        <Check size={16} aria-hidden />
+      ) : (
+        <Copy size={16} aria-hidden />
+      )}
     </button>
   );
 }
@@ -210,7 +214,7 @@ export function Composer({
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={onKeyDown}
-          className="min-h-7 flex-1 resize-none self-center bg-transparent py-1.5 text-15 leading-normal text-text-primary placeholder:text-text-muted focus-visible:outline-none disabled:cursor-not-allowed"
+          className="min-h-7 flex-1 resize-none self-center bg-transparent py-1.5 text-15 leading-normal max-md:text-[16px] text-text-primary placeholder:text-text-muted focus-visible:outline-none disabled:cursor-not-allowed"
         />
         <span className="relative">
           <button
