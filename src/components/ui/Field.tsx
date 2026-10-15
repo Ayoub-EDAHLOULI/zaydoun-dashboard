@@ -106,6 +106,8 @@ export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">, Common {
   /** Icon shown inside the field on the left (e.g. Search) */
   icon?: LucideIcon;
+  /** Control inside the field on the right (e.g. a show-password button) */
+  end?: ReactNode;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
@@ -118,6 +120,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     wrapperClassName,
     surface,
     icon: Icon,
+    end,
     className,
     disabled,
     ...rest
@@ -154,10 +157,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
             controlClasses(!!error, surface),
             "h-11 px-3.5",
             Icon && "pl-10.5",
+            !!end && "pr-12",
             className,
           )}
           {...rest}
         />
+        {end && <div className="absolute top-0 right-0.5 flex h-11 items-center">{end}</div>}
       </div>
     </Field>
   );

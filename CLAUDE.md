@@ -40,7 +40,9 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 ## Redesign (in progress)
 
 - The visual reference is `design/` (README + HTML mockups); it is not committed.
-- Order of work: tokens → components → shell → Library → Conversation → Admin overview → the rest. Tokens, components, shell, Library, Conversation (chat), Admin overview, Home, the Conversations list, Profile and admin Users are done. Still to do: auth pages and marketing pages. `sweetalert2` and `recharts` are no longer imported anywhere (left installed).
+- Order of work: tokens → components → shell → Library → Conversation → Admin overview → the rest. Tokens, components, shell, Library, Conversation (chat), Admin overview, Home, the Conversations list, Profile, admin Users and the auth pages are done. Still to do: marketing pages (home, features, contact; remove /pricing).
+- Password rules live in `src/validations/password.ts` and must mirror the API's `passwordSchema`.
+- Never pass a positioning or display class to a component that sets its own (e.g. `<Orb className="absolute">`); wrap it instead. `cn` doesn't merge conflicting classes. `sweetalert2` and `recharts` are no longer imported anywhere (left installed).
 - Tokens are copied into `src/styles/tokens.css`, which generates utilities like `bg-bg-surface`, `text-gold`, `rounded-md`, `font-serif`. Never use raw hex values.
 - Fonts (Inter, Newsreader, Amiri) load via next/font in `app/layout.tsx`.
 - **Font sizes** all derive from `--font-scale` in `src/styles/tokens.css`, which is currently 0.93, a bit smaller than the mockups at Ayoub's request.

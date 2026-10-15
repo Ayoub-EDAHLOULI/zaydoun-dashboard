@@ -11,17 +11,13 @@ import { useToast } from "@/contexts/ToastContext";
 import { LANGUAGES } from "@/lib/languages";
 import { REPLY_LANG_KEY, getReplyLanguagePref } from "@/lib/preferences";
 import { cn } from "@/lib/cn";
+import { PASSWORD_HINT, passwordRule } from "@/validations/password";
 import type { UserProfile } from "@/types/users.types";
 
-// Same rules the API enforces (auth.validation.ts → passwordSchema)
 const passwordSchema = z
   .object({
     currentPassword: z.string().min(1, "Enter your current password."),
-    newPassword: z
-      .string()
-      .min(8, "Use at least 8 characters.")
-      .max(100, "Use at most 100 characters.")
-      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, "Include an uppercase letter, a lowercase letter and a number."),
+    newPassword: passwordRule,
     confirmPassword: z.string(),
   })
   .refine((d) => d.newPassword === d.confirmPassword, {
@@ -278,7 +274,7 @@ export default function ProfileView() {
               value={passwords.newPassword}
               onChange={(e) => setPw("newPassword")(e.target.value)}
               error={pwErrors.newPassword}
-              hint={pwErrors.newPassword ? undefined : "8+ characters, with A–Z, a–z and 0–9."}
+              hint={pwErrors.newPassword ? undefined : PASSWORD_HINT}
             />
             <Input
               label="Confirm new password"

@@ -2,6 +2,7 @@
 export { Button, buttonClasses } from "./Button";
 export type { ButtonVariant, ButtonSize } from "./Button";
 export { Input, Select, Textarea } from "./Field";
+export type { InputProps } from "./Field";
 export { FileDropZone } from "./FileDropZone";
 export { StatusBadge, Badge, PageTag } from "./Badges";
 export { Orb } from "./Orb";
