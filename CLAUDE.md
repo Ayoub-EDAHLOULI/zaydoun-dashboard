@@ -12,11 +12,14 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 
 ## Route map (src/app)
 
-- `/`: landing page, built from `components/Landing/*`.
-- `(marketing)/features|pricing|contact`: marketing pages. The contact form uses reCAPTCHA through `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`.
+- `/`: marketing home (`components/Marketing/HomeSections.tsx`, with the interactive `AskDemo`).
+- `(marketing)/features|contact`: marketing pages. All of them wrap in `components/Marketing/MarketingShell.tsx` (nav, footer, `Eyebrow`, `SectionTitle`, `Container`).
+- The contact form uses reCAPTCHA through `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`.
+- `/pricing` was removed; `next.config.ts` redirects it to `/`.
 - `/login`, `/register`, `/forgot-password`, `/reset-password`: public auth pages.
 - `/app/*`: the **USER** web app (home, library, conversations, `conversations/[id]` chat, profile).
-- `/dashboard/*`: the **ADMIN** dashboard (overview with `CostChart`, library, conversations, users, profile). It redirects non-admins to `/login`.
+- `/dashboard/*`: the **ADMIN** dashboard (overview with `CostPerDayChart`, library, conversations, users, profile). It redirects non-admins to `/login`.
+- Admins can switch between `/app` and `/dashboard` from the bottom of either sidebar.
 - Both areas use one shell, `components/Shell/AppShell.tsx` (`area="reader" | "admin"`):
   - On desktop it shows a 256px sidebar; on `/app/conversations/[id]` that becomes a 72px icon rail.
   - Below 768px it shows a 60px top bar with a drawer instead.
@@ -35,12 +38,12 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
   - Domain calls live in `lib/api/services/*.service.ts`, with their types in `src/types/*.types.ts`.
   - The base URL is `NEXT_PUBLIC_API_URL`, which defaults to `http://localhost:5000/api/v1`.
 - **Validation:** zod schemas live in `src/validations/`.
-- **Notifications:** use `useToast().notify(msg, type)` from `contexts/ToastContext.tsx`, which wraps react-toastify. Confirm dialogs use sweetalert2.
+- **Notifications:** use `useToast().notify(msg, type)` from `contexts/ToastContext.tsx`, which wraps react-toastify. Confirmations use `ConfirmDialog` from `@/components/ui`.
 
-## Redesign (in progress)
+## Redesign
 
 - The visual reference is `design/` (README + HTML mockups); it is not committed.
-- Order of work: tokens → components → shell → Library → Conversation → Admin overview → the rest. Tokens, components, shell, Library, Conversation (chat), Admin overview, Home, the Conversations list, Profile, admin Users and the auth pages are done. Still to do: marketing pages (home, features, contact; remove /pricing).
+- Order of work: tokens → components → shell → Library → Conversation → Admin overview → the rest. **All steps are done** (as of 2026-10-15).
 - Password rules live in `src/validations/password.ts` and must mirror the API's `passwordSchema`.
 - Never pass a positioning or display class to a component that sets its own (e.g. `<Orb className="absolute">`); wrap it instead. `cn` doesn't merge conflicting classes. `sweetalert2` and `recharts` are no longer imported anywhere (left installed).
 - Tokens are copied into `src/styles/tokens.css`, which generates utilities like `bg-bg-surface`, `text-gold`, `rounded-md`, `font-serif`. Never use raw hex values.

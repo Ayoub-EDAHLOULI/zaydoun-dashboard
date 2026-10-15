@@ -3,6 +3,10 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // Pricing was removed in the redesign; keep old links working
+  async redirects() {
+    return [{ source: "/pricing", destination: "/", permanent: true }];
+  },
   images: {
     remotePatterns: [
       {

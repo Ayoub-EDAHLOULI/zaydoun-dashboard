@@ -1,269 +1,218 @@
-// app/(marketing)/features/page.tsx
-"use client";
-
 import Link from "next/link";
-import {
-  Zap,
-  Mic2,
-  LayoutDashboard,
-  BookOpen,
-  Globe,
-  Shield,
-  ArrowRight,
-} from "lucide-react";
-import LandingNav from "@/components/Landing/LandingNav";
-import LandingFooter from "@/components/Landing/LandingFooter";
+import { ArrowRight, Check } from "lucide-react";
+import MarketingShell, { Container, Eyebrow, SectionTitle } from "@/components/Marketing/MarketingShell";
+import { Orb, PageTag, StatusBadge, buttonClasses } from "@/components/ui";
+import { LANGUAGES } from "@/lib/languages";
+import { cn } from "@/lib/cn";
 
-const FEATURES = [
-  {
-    icon: Zap,
-    title: "Instant RAG Retrieval",
-    description:
-      "pgvector-powered semantic search returns page-accurate answers in under a second. No hallucinations — every response is grounded in your book's exact content.",
-    accent: "var(--z-gold)",
-    accentBg: "var(--z-gold-muted)",
-    accentBorder: "var(--z-border-gold)",
-    tags: ["pgvector", "Semantic search", "Sub-second"],
-  },
-  {
-    icon: Mic2,
-    title: "Voice-First Experience",
-    description:
-      "Speak your questions aloud with Whisper STT and hear answers via our TTS engine. Read hands-free on commutes, workouts, or anywhere a screen is inconvenient.",
-    accent: "var(--z-info)",
-    accentBg: "rgba(91,155,213,0.12)",
-    accentBorder: "rgba(91,155,213,0.25)",
-    tags: ["Whisper STT", "TTS playback", "Hands-free"],
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Admin + Reader Portals",
-    description:
-      "Separate admin and user workspaces. Admins monitor all usage, costs and users — while readers get a clean, focused library with no distractions.",
-    accent: "var(--z-success)",
-    accentBg: "rgba(76,175,125,0.12)",
-    accentBorder: "rgba(76,175,125,0.25)",
-    tags: ["Admin console", "User portal", "Role-based"],
-  },
-  {
-    icon: Globe,
-    title: "5 Languages, Natively",
-    description:
-      "English, Arabic (full RTL), French, Spanish, and Chinese — upload in any, converse in any. The model adapts to your language, not the other way around.",
-    accent: "var(--z-warning)",
-    accentBg: "rgba(230,168,23,0.12)",
-    accentBorder: "rgba(230,168,23,0.25)",
-    tags: ["Arabic RTL", "5 languages", "Auto-detect"],
-  },
-  {
-    icon: BookOpen,
-    title: "PDF-First Ingestion",
-    description:
-      "Drag, drop, done. We extract, chunk, and embed your entire PDF — preserving page numbers so every cited answer links back to the exact source page.",
-    accent: "var(--z-gold)",
-    accentBg: "var(--z-gold-muted)",
-    accentBorder: "var(--z-border-gold)",
-    tags: ["PDF parsing", "Page citations", "Auto-embed"],
-  },
-  {
-    icon: Shield,
-    title: "Secure & Private",
-    description:
-      "Your books and conversations are yours alone. JWT + httpOnly refresh tokens, bcrypt-hashed passwords, and per-user isolation at the database layer.",
-    accent: "var(--z-success)",
-    accentBg: "rgba(76,175,125,0.12)",
-    accentBorder: "rgba(76,175,125,0.25)",
-    tags: ["JWT auth", "bcrypt", "Isolated data"],
-  },
-];
+const sectionY = "py-20 md:py-24";
 
-function FeatureCard({
-  icon: Icon,
-  title,
-  description,
-  accent,
-  accentBg,
-  accentBorder,
-  tags,
-}: (typeof FEATURES)[0]) {
+function Num({ n }: { n: number }) {
   return (
-    <div
-      className="group rounded-2xl p-6 flex flex-col gap-4 transition-all duration-200 cursor-default"
-      style={{
-        backgroundColor: "rgba(26,26,26,0.5)",
-        border: "1px solid var(--z-border)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.transform = "translateY(-4px)";
-        el.style.borderColor = accentBorder;
-        el.style.boxShadow = `0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px ${accentBorder}`;
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.transform = "translateY(0)";
-        el.style.borderColor = "var(--z-border)";
-        el.style.boxShadow = "none";
-      }}
-    >
-      <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-        style={{
-          backgroundColor: accentBg,
-          border: `1px solid ${accentBorder}`,
-        }}
-      >
-        <Icon className="w-5 h-5" style={{ color: accent }} />
-      </div>
-
-      <div className="flex-1 space-y-2">
-        <h3
-          className="text-base font-semibold"
-          style={{ color: "var(--z-text-primary)" }}
-        >
-          {title}
-        </h3>
-        <p
-          className="text-sm leading-relaxed"
-          style={{ color: "var(--z-text-muted)" }}
-        >
-          {description}
-        </p>
-      </div>
-
-      <div className="flex flex-wrap gap-1.5 pt-1">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="text-xs px-2 py-0.5 rounded-md font-medium"
-            style={{
-              backgroundColor: "var(--z-bg-overlay)",
-              color: "var(--z-text-muted)",
-              border: "1px solid var(--z-border)",
-            }}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
+    <span className="font-serif text-40 leading-none text-gold-dark">
+      {String(n).padStart(2, "0")}
+    </span>
   );
 }
 
+function Bullets({ items }: { items: string[] }) {
+  return (
+    <ul className="flex flex-col gap-3">
+      {items.map((t) => (
+        <li key={t} className="flex gap-3 text-15 leading-normal">
+          <Check size={20} className="mt-0.5 shrink-0 text-gold" aria-hidden />
+          {t}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+const UNDER_THE_HOOD = [
+  ["Retrieval", "Semantic search over page-level chunks (pgvector)"],
+  ["Answers", "GPT-4o mini, given the passages it found in your book"],
+  ["Voice in", "Whisper speech-to-text"],
+  ["Voice out", "Text-to-speech in your reply language"],
+  ["Accounts", "JWT with httpOnly refresh tokens, bcrypt-hashed passwords"],
+  ["Isolation", "Every query scoped to the signed-in reader"],
+];
+
 export default function FeaturesPage() {
   return (
-    <div
-      style={{ backgroundColor: "var(--z-bg-base)", minHeight: "100vh" }}
-      className="flex flex-col"
-    >
-      <LandingNav />
+    <MarketingShell>
+      {/* Intro */}
+      <Container className="flex flex-col gap-6 pt-20 pb-16 md:pt-28 md:pb-24">
+        <Eyebrow>Features</Eyebrow>
+        <SectionTitle as="h1" size="page" className="max-w-[880px]">
+          Everything Zaydoun can do <em>with a book.</em>
+        </SectionTitle>
+        <p className="max-w-[560px] text-lg leading-relaxed text-text-secondary">
+          One reading partner, on the web and in your pocket. Here&apos;s what&apos;s in the box.
+        </p>
+      </Container>
 
-      <main className="grow pt-32 pb-24 max-w-6xl mx-auto px-5 sm:px-8 w-full">
-        {/* Header */}
-        <div className="text-center space-y-4 mb-16">
-          <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase"
-            style={{ color: "var(--z-gold)" }}
-          >
-            Why Zaydoun
-          </p>
-          <h1
-            className="text-4xl sm:text-5xl font-bold tracking-tight"
-            style={{ color: "var(--z-text-primary)" }}
-          >
-            The AI voice reading assistant
-            <br />
-            <span style={{ color: "var(--z-text-muted)", fontWeight: 400 }}>
-              built for serious readers.
+      {/* 01 */}
+      <section aria-labelledby="f1" className="border-t border-border-subtle">
+        <Container className={cn("flex flex-wrap items-center gap-16", sectionY)}>
+          <div className="flex min-w-0 flex-[1_1_440px] flex-col gap-5">
+            <Num n={1} />
+            <SectionTitle id="f1" size="md">Answers you can check</SectionTitle>
+            <p className="text-base leading-relaxed text-text-secondary">
+              Zaydoun finds the passages that matter in your PDF, answers from them, and tags the
+              page he leaned on, so you can go and read it yourself.
+            </p>
+            <Bullets
+              items={[
+                "Searches by meaning, not just matching words",
+                "A “Page N” tag on answers that come from a passage",
+                "Cited pages collected per conversation",
+              ]}
+            />
+          </div>
+          <div aria-hidden className="flex min-w-0 flex-[1_1_460px] flex-col gap-3 rounded-lg border border-border bg-bg-surface p-7">
+            <div className="flex items-center gap-2">
+              <Orb size={22} />
+              <span className="text-13 font-semibold text-gold-light">Zaydoun</span>
+            </div>
+            <p className="font-serif text-19 leading-[1.65]">
+              He lays it out as a pattern first, then comes back to what it does to trade.
+            </p>
+            <PageTag page={279} className="self-start" />
+          </div>
+        </Container>
+      </section>
+
+      {/* 02 */}
+      <section aria-labelledby="f2" className="border-y border-border bg-bg-surface">
+        <Container className={cn("flex flex-wrap-reverse items-center gap-16", sectionY)}>
+          <div aria-hidden className="flex h-80 min-w-0 flex-[1_1_460px] flex-col items-center justify-center gap-10 rounded-lg border border-border bg-bg-base">
+            <Orb size={110} rings={1} />
+            <span className="px-6 text-center font-serif text-lg text-text-secondary italic">
+              “Zaydoun, what&apos;s his strongest argument in chapter 3?”
             </span>
-          </h1>
-          <p
-            className="text-sm max-w-md mx-auto"
-            style={{ color: "var(--z-text-muted)" }}
-          >
-            Every feature was designed around the real friction of understanding
-            dense books — not just chatting with a PDF.
+          </div>
+          <div className="flex min-w-0 flex-[1_1_440px] flex-col gap-5">
+            <Num n={2} />
+            <SectionTitle id="f2" size="md">Voice-first, hands-free</SectionTitle>
+            <p className="text-base leading-relaxed text-text-secondary">
+              In the mobile app, say his name and talk. Your voice is transcribed, the answer is
+              read back to you, and the whole exchange is saved to your account.
+            </p>
+            <Bullets
+              items={[
+                "Wake word: “Zaydoun”",
+                "Spoken answers in your reply language",
+                "Voice on the web is on the way",
+              ]}
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* 03–06 */}
+      <Container className={cn("grid gap-5 md:grid-cols-2", sectionY)}>
+        <article aria-labelledby="f3" className="flex flex-col gap-4.5 rounded-lg border border-border bg-bg-surface p-8 md:p-10">
+          <Num n={3} />
+          <h2 id="f3" className="font-serif text-28 leading-[1.1] font-normal md:text-32">
+            Five languages, Arabic done right
+          </h2>
+          <p className="text-base leading-relaxed text-text-secondary">
+            Upload in English, Arabic, French, Spanish or Chinese, and choose the reply language
+            for each conversation. Arabic reads right to left in a proper Arabic typeface.
           </p>
-        </div>
+          <div className="mt-auto flex flex-wrap gap-2 pt-2">
+            {LANGUAGES.map((l) => (
+              <span
+                key={l.code}
+                lang={l.code}
+                className={cn(
+                  "inline-flex h-[34px] items-center rounded-full border border-border-strong px-3.5",
+                  l.code === "ar" ? "font-arabic text-base" : "text-sm",
+                )}
+              >
+                {l.nativeName}
+              </span>
+            ))}
+          </div>
+        </article>
+        <article aria-labelledby="f4" className="flex flex-col gap-4.5 rounded-lg border border-border bg-bg-surface p-8 md:p-10">
+          <Num n={4} />
+          <h2 id="f4" className="font-serif text-28 leading-[1.1] font-normal md:text-32">
+            PDF in, conversation out
+          </h2>
+          <p className="text-base leading-relaxed text-text-secondary">
+            Drop in a PDF up to 50 MB. Zaydoun splits it page by page and builds an index of
+            what&apos;s where. You&apos;ll see each step as it happens.
+          </p>
+          <div aria-hidden className="mt-auto flex flex-wrap items-center gap-2.5 pt-2 text-text-muted">
+            <StatusBadge status="PENDING" />
+            <ArrowRight size={16} />
+            <StatusBadge status="PROCESSING" />
+            <ArrowRight size={16} />
+            <StatusBadge status="READY" />
+          </div>
+        </article>
+        <article aria-labelledby="f5" className="flex flex-col gap-4.5 rounded-lg border border-border bg-bg-surface p-8 md:p-10">
+          <Num n={5} />
+          <h2 id="f5" className="font-serif text-28 leading-[1.1] font-normal md:text-32">
+            A library that remembers
+          </h2>
+          <p className="text-base leading-relaxed text-text-secondary">
+            Your books on one shelf, every conversation saved and filterable by book. Reopen a
+            thread from last month and pick up mid-argument.
+          </p>
+        </article>
+        <article aria-labelledby="f6" className="flex flex-col gap-4.5 rounded-lg border border-border bg-bg-surface p-8 md:p-10">
+          <Num n={6} />
+          <h2 id="f6" className="font-serif text-28 leading-[1.1] font-normal md:text-32">
+            An admin console for teams
+          </h2>
+          <p className="text-base leading-relaxed text-text-secondary">
+            Admins manage readers, roles and access, and see usage and cost by day and by
+            conversation. Readers just see their books.
+          </p>
+        </article>
+      </Container>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {FEATURES.map((f) => (
-            <FeatureCard key={f.title} {...f} />
-          ))}
-        </div>
-
-        {/* CTA strip */}
-        <div
-          className="mt-16 rounded-2xl p-8 sm:p-12 flex flex-col sm:flex-row items-center justify-between gap-6"
-          style={{
-            backgroundColor: "rgba(26,26,26,0.5)",
-            border: "1px solid var(--z-border-gold)",
-            backdropFilter: "blur(12px)",
-          }}
-        >
-          <div className="space-y-1 text-center sm:text-left">
-            <p
-              className="text-lg font-bold"
-              style={{ color: "var(--z-text-primary)" }}
-            >
-              Ready to talk to your books?
-            </p>
-            <p className="text-sm" style={{ color: "var(--z-text-muted)" }}>
-              Start free — no credit card required.
+      {/* 07 */}
+      <section aria-labelledby="f7" className="border-y border-border bg-bg-surface">
+        <Container className={cn("flex flex-wrap items-start gap-16", sectionY)}>
+          <div className="flex flex-[1_1_400px] flex-col gap-5">
+            <Num n={7} />
+            <SectionTitle id="f7" size="md">Private by design</SectionTitle>
+            <p className="text-base leading-relaxed text-text-secondary">
+              Your books and conversations belong to your account alone, and you can delete any of
+              it. To answer you, the relevant passages are sent to OpenAI&apos;s API.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
-            <Link
-              href="/pricing"
-              className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
-              style={{
-                border: "1px solid var(--z-border)",
-                color: "var(--z-text-secondary)",
-                backgroundColor: "transparent",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--z-border-gold)";
-                e.currentTarget.style.color = "var(--z-gold)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--z-border)";
-                e.currentTarget.style.color = "var(--z-text-secondary)";
-              }}
-            >
-              See pricing
-            </Link>
-            <Link
-              href="/register"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
-              style={{
-                backgroundColor: "var(--z-gold)",
-                color: "#0d0d0d",
-                boxShadow: "0 0 20px rgba(201,168,76,0.3)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--z-gold-light)";
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow =
-                  "0 4px 24px rgba(201,168,76,0.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--z-gold)";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow =
-                  "0 0 20px rgba(201,168,76,0.3)";
-              }}
-            >
-              Get started free
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+          <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-4">
+            <span className="text-xs font-medium tracking-[0.12em] text-text-secondary uppercase">
+              Under the hood, for the curious
+            </span>
+            <dl className="grid grid-cols-[minmax(0,140px)_1fr] border-t border-border text-15 md:grid-cols-[180px_1fr]">
+              {UNDER_THE_HOOD.map(([term, desc]) => (
+                <div key={term} className="contents">
+                  <dt className="border-b border-border py-4 pr-4 text-text-secondary">{term}</dt>
+                  <dd className="border-b border-border py-4">{desc}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-        </div>
-      </main>
+        </Container>
+      </section>
 
-      <LandingFooter />
-    </div>
+      {/* CTA */}
+      <Container className="flex flex-wrap items-center justify-between gap-8 py-24 md:py-28">
+        <SectionTitle>Ready when your book is.</SectionTitle>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/contact" className={buttonClasses({ size: "lg", variant: "secondary" })}>
+            Ask us something
+          </Link>
+          <Link href="/register" className={buttonClasses({ size: "lg" })}>
+            Start free <ArrowRight size={18} aria-hidden />
+          </Link>
+        </div>
+      </Container>
+    </MarketingShell>
   );
 }

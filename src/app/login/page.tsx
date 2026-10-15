@@ -6,7 +6,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { CircleAlert, ShieldOff } from "lucide-react";
 import { z } from "zod";
 import { Button, Input } from "@/components/ui";
-import { AuthHeading, AuthSplitLayout, PasswordInput } from "@/components/Auth/AuthLayout";
+import {
+  AuthHeading,
+  AuthSplitLayout,
+  PasswordInput,
+} from "@/components/Auth/AuthLayout";
 import { useAuth } from "@/contexts/AuthContext";
 import { getDashboardPath } from "@/lib/routes";
 
@@ -28,11 +32,18 @@ function Notice({
 }) {
   const Icon = tone === "warning" ? ShieldOff : CircleAlert;
   return (
-    <div role="alert" className="flex gap-3 rounded-[10px] border border-error/35 bg-error/8 px-4 py-3.5">
+    <div
+      role="alert"
+      className="flex gap-3 rounded-[10px] border border-error/35 bg-error/8 px-4 py-3.5"
+    >
       <Icon size={20} className="mt-0.5 shrink-0 text-error-text" aria-hidden />
       <span className="flex flex-col gap-1">
         <span className="text-sm font-semibold">{title}</span>
-        {children && <span className="text-sm leading-normal text-text-secondary">{children}</span>}
+        {children && (
+          <span className="text-sm leading-normal text-text-secondary">
+            {children}
+          </span>
+        )}
       </span>
     </div>
   );
@@ -47,7 +58,9 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [formError, setFormError] = useState<string | null>(null);
-  const [deactivated, setDeactivated] = useState(searchParams.get("deactivated") === "1");
+  const [deactivated, setDeactivated] = useState(
+    searchParams.get("deactivated") === "1",
+  );
   const [busy, setBusy] = useState(false);
 
   const submit = async (e: FormEvent) => {
@@ -56,7 +69,8 @@ function LoginForm() {
     const parsed = loginSchema.safeParse({ email: email.trim(), password });
     if (!parsed.success) {
       const next: Errors = {};
-      for (const issue of parsed.error.issues) next[issue.path[0] as keyof Errors] ??= issue.message;
+      for (const issue of parsed.error.issues)
+        next[issue.path[0] as keyof Errors] ??= issue.message;
       setErrors(next);
       return;
     }
@@ -66,7 +80,8 @@ function LoginForm() {
       const user = await login(parsed.data);
       router.push(getDashboardPath(user.role));
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Couldn't log you in.";
+      const message =
+        err instanceof Error ? err.message : "Couldn't log you in.";
       if (/deactivated/i.test(message)) setDeactivated(true);
       else setFormError(message);
       setBusy(false);
@@ -74,13 +89,21 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={submit} noValidate aria-labelledby="auth-title" className="flex flex-col gap-5">
+    <form
+      onSubmit={submit}
+      noValidate
+      aria-labelledby="auth-title"
+      className="flex flex-col gap-5"
+    >
       <AuthHeading title="Welcome back" subtitle="Log in to your library." />
 
       {deactivated && (
         <Notice tone="warning" title="This account has been deactivated">
           An admin turned it off. If you think that&apos;s a mistake,{" "}
-          <Link href="/contact" className="text-gold-light hover:text-text-primary">
+          <Link
+            href="/contact"
+            className="text-gold-light hover:text-text-primary"
+          >
             contact us
           </Link>
           .
@@ -127,7 +150,10 @@ function LoginForm() {
 
       <p className="mt-2 border-t border-border pt-5 text-center text-15 text-text-secondary">
         New here?{" "}
-        <Link href="/register" className="font-medium text-gold-light hover:text-text-primary">
+        <Link
+          href="/register"
+          className="font-medium text-gold-light hover:text-text-primary"
+        >
           Create an account
         </Link>
       </p>

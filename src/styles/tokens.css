@@ -64,15 +64,22 @@
   --text-15: calc(15px * var(--font-scale));
   --text-17: calc(17px * var(--font-scale));
   --text-19: calc(19px * var(--font-scale));
+  --text-20: calc(20px * var(--font-scale));
   --text-21: calc(21px * var(--font-scale));
   --text-22: calc(22px * var(--font-scale));
   --text-26: calc(26px * var(--font-scale));
+  --text-28: calc(28px * var(--font-scale));
   --text-30: calc(30px * var(--font-scale));
   --text-32: calc(32px * var(--font-scale));
   --text-40: calc(40px * var(--font-scale));
+  --text-44: calc(44px * var(--font-scale));
   --text-46: calc(46px * var(--font-scale));
   --text-48: calc(48px * var(--font-scale));
+  --text-52: calc(52px * var(--font-scale));
   --text-56: calc(56px * var(--font-scale));
+  --text-60: calc(60px * var(--font-scale));
+  --text-72: calc(72px * var(--font-scale));
+  --text-84: calc(84px * var(--font-scale));
 
   /* Shadows & glow */
   --shadow-overlay: 0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px #3d3a37;

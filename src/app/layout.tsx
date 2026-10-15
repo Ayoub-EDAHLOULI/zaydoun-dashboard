@@ -144,15 +144,8 @@ const jsonLdSoftwareApp = {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
-      name: "Free Pass",
-      description: "2 books, 15 voice messages per day",
-    },
-    {
-      "@type": "Offer",
-      price: "9.99",
-      priceCurrency: "USD",
-      name: "Premium Scholar",
-      description: "Unlimited books and voice conversations",
+      name: "Free",
+      description: "2 books and 15 messages per day",
     },
   ],
   creator: {
@@ -171,13 +164,6 @@ const jsonLdSoftwareApp = {
     "Conversation history",
   ],
   screenshot: `${APP_URL}/opengraph-image.png`,
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "120",
-    bestRating: "5",
-    worstRating: "1",
-  },
 };
 
 export default function RootLayout({

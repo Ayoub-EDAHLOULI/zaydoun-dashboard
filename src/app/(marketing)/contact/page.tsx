@@ -1,475 +1,192 @@
-// app/(marketing)/contact/page.tsx
 "use client";
 
-import { useState } from "react";
-import { Mail, MessageSquare, User, Send, CheckCircle2 } from "lucide-react";
-import LandingNav from "@/components/Landing/LandingNav";
-import LandingFooter from "@/components/Landing/LandingFooter";
-import { contactService } from "@/lib/api/services/contact.service";
-import type { ContactDto } from "@/types/contact.types";
+import { useRef, useState, type FormEvent } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { CircleCheck, Lightbulb, LifeBuoy, Send } from "lucide-react";
+import { z } from "zod";
+import MarketingShell, { Container, Eyebrow, SectionTitle } from "@/components/Marketing/MarketingShell";
+import { Button, Input, Select, Textarea } from "@/components/ui";
+import { contactService } from "@/lib/api/services/contact.service";
+import { useToast } from "@/contexts/ToastContext";
 
-const TOPICS = [
-  "General question",
-  "Bug report",
-  "Feature request",
-  "Billing",
-  "Other",
+const TOPICS = ["General question", "Problem with a book", "Account", "Feature idea", "Other"];
+
+// Mirrors the API's contact validation
+const contactSchema = z.object({
+  name: z.string().trim().min(2, "Use at least 2 characters.").max(100),
+  email: z.email("Enter a full email address."),
+  topic: z.string().min(1),
+  message: z.string().trim().min(10, "Tell us a bit more (10+ characters).").max(5000),
+});
+
+type Form = z.infer<typeof contactSchema>;
+type Errors = Partial<Record<keyof Form | "captcha", string>>;
+
+const ADDRESSES = [
+  { icon: LifeBuoy, email: "support@zaydoun.ai", note: "Account and general help" },
+  { icon: Lightbulb, email: "feedback@zaydoun.ai", note: "Ideas and feature requests" },
 ];
 
-type Field = "name" | "email" | "topic" | "message";
-
 export default function ContactPage() {
-  const [form, setForm] = useState<ContactDto>({
-    name: "",
-    email: "",
-    topic: TOPICS[0],
-    message: "",
-  });
+  const { notify } = useToast();
+  const captchaRef = useRef<ReCAPTCHA>(null);
+  const [form, setForm] = useState<Form>({ name: "", email: "", topic: TOPICS[0], message: "" });
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const [errors, setErrors] = useState<
-    Partial<Record<Field | "captcha", string>>
-  >({});
-  const [focused, setFocused] = useState<Field | null>(null);
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
+  const [busy, setBusy] = useState(false);
+  const [sent, setSent] = useState(false);
 
-  function validate() {
-    const e: Partial<Record<Field | "captcha", string>> = {};
-    if (!form.name.trim()) e.name = "Name is required.";
-    if (!form.email.trim()) e.email = "Email is required.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      e.email = "Enter a valid email.";
-    if (!form.message.trim()) e.message = "Message is required.";
-    else if (form.message.trim().length < 10)
-      e.message = "Message must be at least 10 characters.";
+  const set = (field: keyof Form) => (value: string) => {
+    setForm((f) => ({ ...f, [field]: value }));
+    setErrors((e) => ({ ...e, [field]: undefined }));
+  };
 
-    if (!captchaToken) e.captcha = "Please verify you are human.";
-
-    return e;
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
+  const submit = async (e: FormEvent) => {
     e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length) {
-      setErrors(errs);
-      return;
+    const parsed = contactSchema.safeParse({ ...form, email: form.email.trim() });
+    const next: Errors = {};
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) next[issue.path[0] as keyof Form] ??= issue.message;
     }
-    setErrors({});
-    setLoading(true);
-    try {
-      await contactService.submit({ ...form, captchaToken });
-      setSubmitted(true);
-    } catch {
-      setErrors({ message: "Something went wrong. Please try again." });
-    } finally {
-      setLoading(false);
-    }
-  }
+    if (!captchaToken) next.captcha = "Tick the box so we know you're not a robot.";
+    setErrors(next);
+    if (!parsed.success || !captchaToken) return;
 
-  function fieldStyle(field: Field) {
-    const isFocused = focused === field;
-    const hasError = !!errors[field];
-    return {
-      backgroundColor: "var(--z-bg-elevated)",
-      border: `1px solid ${hasError ? "var(--z-error, #e05c5c)" : isFocused ? "var(--z-border-gold)" : "var(--z-border)"}`,
-      color: "var(--z-text-primary)",
-      outline: "none",
-      boxShadow:
-        isFocused && !hasError ? "0 0 0 3px rgba(201,168,76,0.1)" : "none",
-      transition: "border-color 150ms, box-shadow 150ms",
-    };
-  }
+    setBusy(true);
+    try {
+      await contactService.submit({ ...parsed.data, captchaToken });
+      setSent(true);
+      setForm({ name: "", email: "", topic: TOPICS[0], message: "" });
+    } catch (err) {
+      notify(err instanceof Error ? err.message : "Couldn't send your message", "error");
+    } finally {
+      // A reCAPTCHA token works once — ask for a fresh one either way
+      captchaRef.current?.reset();
+      setCaptchaToken(null);
+      setBusy(false);
+    }
+  };
 
   return (
-    <div
-      style={{ backgroundColor: "var(--z-bg-base)", minHeight: "100vh" }}
-      className="flex flex-col"
-    >
-      <LandingNav />
-
-      <main className="grow pt-32 pb-24 max-w-6xl mx-auto px-5 sm:px-8 w-full">
-        {/* Header */}
-        <div
-          className="mb-16"
-          style={{ borderTop: "1px solid var(--z-border)" }}
-        >
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pt-12">
-            <div className="space-y-3">
-              <p
-                className="text-xs font-semibold tracking-[0.2em] uppercase"
-                style={{ color: "var(--z-gold)" }}
+    <MarketingShell>
+      <Container className="flex flex-wrap gap-16 py-20 md:py-28">
+        <div className="flex min-w-0 flex-[1_1_380px] flex-col gap-7">
+          <Eyebrow>Contact</Eyebrow>
+          <SectionTitle as="h1" size="lg">
+            Write to us. <em>A person reads it.</em>
+          </SectionTitle>
+          <p className="text-17 leading-relaxed text-text-secondary">
+            No ticket queue and no bot. We usually reply within one business day.
+          </p>
+          <div className="mt-3 flex flex-col border-t border-border">
+            {ADDRESSES.map(({ icon: Icon, email, note }) => (
+              <a
+                key={email}
+                href={`mailto:${email}`}
+                className="group flex items-center gap-4 border-b border-border py-5"
               >
-                Get in touch
-              </p>
-              <h1
-                className="text-3xl sm:text-4xl font-bold"
-                style={{ color: "var(--z-text-primary)" }}
-              >
-                We&apos;d love to hear
-                <br />
-                <span style={{ color: "var(--z-text-muted)", fontWeight: 400 }}>
-                  from you.
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-md border border-border bg-bg-surface text-gold-light">
+                  <Icon size={20} aria-hidden />
                 </span>
-              </h1>
-            </div>
-            <p
-              className="text-sm max-w-xs leading-relaxed sm:text-right"
-              style={{ color: "var(--z-text-muted)" }}
-            >
-              Typically reply within one business day.
-            </p>
+                <span className="flex flex-col gap-0.5">
+                  <span className="text-base font-medium text-text-primary group-hover:text-gold-light">
+                    {email}
+                  </span>
+                  <span className="text-sm text-text-secondary">{note}</span>
+                </span>
+              </a>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
-          {/* Left — info cards */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
-            {[
-              {
-                icon: Mail,
-                label: "Email us",
-                value: "support@zaydoun.ai",
-                sub: "For billing, account, and general help.",
-              },
-              {
-                icon: MessageSquare,
-                label: "Feature requests",
-                value: "feedback@zaydoun.ai",
-                sub: "Tell us what you want to see next.",
-              },
-            ].map(({ icon: Icon, label, value, sub }) => (
-              <div
-                key={label}
-                className="flex items-start gap-4 p-5 rounded-2xl"
-                style={{
-                  backgroundColor: "rgba(26,26,26,0.5)",
-                  border: "1px solid var(--z-border)",
-                  backdropFilter: "blur(12px)",
-                }}
-              >
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                  style={{
-                    backgroundColor: "var(--z-gold-muted)",
-                    border: "1px solid var(--z-border-gold)",
-                  }}
-                >
-                  <Icon
-                    className="w-4.5 h-4.5"
-                    style={{ color: "var(--z-gold)" }}
-                  />
-                </div>
-                <div>
-                  <p
-                    className="text-xs font-semibold tracking-wide uppercase mb-0.5"
-                    style={{ color: "var(--z-text-muted)" }}
-                  >
-                    {label}
-                  </p>
-                  <p
-                    className="text-sm font-medium"
-                    style={{ color: "var(--z-text-primary)" }}
-                  >
-                    {value}
-                  </p>
-                  <p
-                    className="text-xs mt-0.5"
-                    style={{ color: "var(--z-text-muted)" }}
-                  >
-                    {sub}
-                  </p>
-                </div>
-              </div>
-            ))}
+        <form
+          onSubmit={submit}
+          noValidate
+          aria-labelledby="contact-form-title"
+          className="flex min-w-0 flex-[1_1_520px] flex-col gap-5 rounded-lg border border-border bg-bg-surface p-6 md:p-9"
+        >
+          <h2 id="contact-form-title" className="mb-1 font-serif text-26 leading-tight font-medium">
+            Send a message
+          </h2>
 
-            {/* Response time note */}
-            <div
-              className="p-5 rounded-2xl"
-              style={{
-                backgroundColor: "rgba(26,26,26,0.5)",
-                border: "1px solid var(--z-border)",
-                backdropFilter: "blur(12px)",
-              }}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <User className="w-4 h-4" style={{ color: "var(--z-gold)" }} />
-                <p
-                  className="text-xs font-semibold tracking-wide uppercase"
-                  style={{ color: "var(--z-text-muted)" }}
-                >
-                  A real human reads every message
-                </p>
-              </div>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: "var(--z-text-secondary)" }}
-              >
-                No bots, no ticket queues. Every message goes directly to the
-                Zaydoun team and we respond personally.
-              </p>
+          {sent && (
+            <div role="status" className="flex items-center gap-3 rounded-[10px] border border-success/35 bg-success/8 px-4 py-3.5">
+              <CircleCheck size={20} className="shrink-0 text-success" aria-hidden />
+              <span className="text-sm">
+                <span className="font-semibold">Sent.</span>{" "}
+                <span className="text-text-secondary">Thanks, we&apos;ll reply to the email you gave us.</span>
+              </span>
             </div>
+          )}
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Input
+              label="Name"
+              placeholder="Your name"
+              autoComplete="name"
+              value={form.name}
+              onChange={(e) => set("name")(e.target.value)}
+              error={errors.name}
+              disabled={busy}
+            />
+            <Input
+              label="Email"
+              type="email"
+              placeholder="you@example.com"
+              autoComplete="email"
+              value={form.email}
+              onChange={(e) => set("email")(e.target.value)}
+              error={errors.email}
+              disabled={busy}
+            />
           </div>
+          <Select
+            label="Subject"
+            value={form.topic}
+            onChange={(e) => set("topic")(e.target.value)}
+            disabled={busy}
+          >
+            {TOPICS.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </Select>
+          <Textarea
+            label="Message"
+            rows={6}
+            placeholder="Tell us what's on your mind"
+            value={form.message}
+            onChange={(e) => set("message")(e.target.value)}
+            error={errors.message}
+            disabled={busy}
+          />
 
-          {/* Right — form */}
-          <div className="lg:col-span-3">
-            <div
-              className="rounded-2xl p-7 sm:p-9"
-              style={{
-                backgroundColor: "rgba(26,26,26,0.5)",
-                border: "1px solid var(--z-border)",
-                backdropFilter: "blur(12px)",
-              }}
-            >
-              {submitted ? (
-                <div className="flex flex-col items-center justify-center py-12 gap-4 text-center">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center"
-                    style={{
-                      backgroundColor: "rgba(76,175,125,0.12)",
-                      border: "1px solid rgba(76,175,125,0.3)",
-                    }}
-                  >
-                    <CheckCircle2
-                      className="w-7 h-7"
-                      style={{ color: "#4caf7d" }}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <p
-                      className="text-base font-semibold"
-                      style={{ color: "var(--z-text-primary)" }}
-                    >
-                      Message sent!
-                    </p>
-                    <p
-                      className="text-sm"
-                      style={{ color: "var(--z-text-muted)" }}
-                    >
-                      We&apos;ll get back to you at{" "}
-                      <span style={{ color: "var(--z-text-secondary)" }}>
-                        {form.email}
-                      </span>{" "}
-                      within one business day.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => {
-                      setForm({
-                        name: "",
-                        email: "",
-                        topic: TOPICS[0],
-                        message: "",
-                      });
-                      setSubmitted(false);
-                    }}
-                    className="mt-2 text-xs font-medium transition-colors"
-                    style={{ color: "var(--z-text-muted)" }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.color = "var(--z-gold)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.color = "var(--z-text-muted)")
-                    }
-                  >
-                    Send another message
-                  </button>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  noValidate
-                  className="flex flex-col gap-5"
-                >
-                  {/* Name + Email row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div className="flex flex-col gap-1.5">
-                      <label
-                        className="text-xs font-medium"
-                        style={{ color: "var(--z-text-secondary)" }}
-                      >
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Zayd Al-Nouri"
-                        value={form.name}
-                        onChange={(e) =>
-                          setForm((f) => ({ ...f, name: e.target.value }))
-                        }
-                        onFocus={() => setFocused("name")}
-                        onBlur={() => setFocused(null)}
-                        className="w-full px-3.5 py-2.5 rounded-xl text-sm placeholder:text-zinc-600"
-                        style={fieldStyle("name")}
-                      />
-                      {errors.name && (
-                        <p
-                          className="text-xs"
-                          style={{ color: "var(--z-error, #e05c5c)" }}
-                        >
-                          {errors.name}
-                        </p>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label
-                        className="text-xs font-medium"
-                        style={{ color: "var(--z-text-secondary)" }}
-                      >
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="zayd@example.com"
-                        value={form.email}
-                        onChange={(e) =>
-                          setForm((f) => ({ ...f, email: e.target.value }))
-                        }
-                        onFocus={() => setFocused("email")}
-                        onBlur={() => setFocused(null)}
-                        className="w-full px-3.5 py-2.5 rounded-xl text-sm placeholder:text-zinc-600"
-                        style={fieldStyle("email")}
-                      />
-                      {errors.email && (
-                        <p
-                          className="text-xs"
-                          style={{ color: "var(--z-error, #e05c5c)" }}
-                        >
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Topic */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      className="text-xs font-medium"
-                      style={{ color: "var(--z-text-secondary)" }}
-                    >
-                      Topic
-                    </label>
-                    <select
-                      value={form.topic}
-                      onChange={(e) =>
-                        setForm((f) => ({ ...f, topic: e.target.value }))
-                      }
-                      onFocus={() => setFocused("topic")}
-                      onBlur={() => setFocused(null)}
-                      className="w-full px-3.5 py-2.5 rounded-xl text-sm"
-                      style={fieldStyle("topic")}
-                    >
-                      {TOPICS.map((t) => (
-                        <option
-                          key={t}
-                          value={t}
-                          style={{ backgroundColor: "var(--z-bg-elevated)" }}
-                        >
-                          {t}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Message */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      className="text-xs font-medium"
-                      style={{ color: "var(--z-text-secondary)" }}
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      rows={5}
-                      placeholder="Tell us what's on your mind..."
-                      value={form.message}
-                      onChange={(e) =>
-                        setForm((f) => ({ ...f, message: e.target.value }))
-                      }
-                      onFocus={() => setFocused("message")}
-                      onBlur={() => setFocused(null)}
-                      className="w-full px-3.5 py-2.5 rounded-xl text-sm placeholder:text-zinc-600 resize-none"
-                      style={fieldStyle("message")}
-                    />
-                    {errors.message && (
-                      <p
-                        className="text-xs"
-                        style={{ color: "var(--z-error, #e05c5c)" }}
-                      >
-                        {errors.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* reCAPTCHA Widget */}
-                  <div className="flex flex-col gap-1.5 mt-2">
-                    <ReCAPTCHA
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                      onChange={(token) => setCaptchaToken(token)}
-                      theme="dark"
-                    />
-                    {errors.captcha && (
-                      <p
-                        className="text-xs"
-                        style={{ color: "var(--z-error, #e05c5c)" }}
-                      >
-                        {errors.captcha}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{
-                      backgroundColor: "var(--z-gold)",
-                      color: "#0d0d0d",
-                      boxShadow: "0 0 20px rgba(201,168,76,0.25)",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (loading) return;
-                      e.currentTarget.style.backgroundColor =
-                        "var(--z-gold-light)";
-                      e.currentTarget.style.transform = "translateY(-2px)";
-                      e.currentTarget.style.boxShadow =
-                        "0 4px 24px rgba(201,168,76,0.4)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "var(--z-gold)";
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.boxShadow =
-                        "0 0 20px rgba(201,168,76,0.25)";
-                    }}
-                  >
-                    {loading ? (
-                      <>
-                        <span
-                          className="w-4 h-4 rounded-full border-2 animate-spin"
-                          style={{
-                            borderColor: "#0d0d0d",
-                            borderTopColor: "transparent",
-                          }}
-                        />
-                        Sending…
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        Send message
-                      </>
-                    )}
-                  </button>
-                </form>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="flex flex-col gap-1.5">
+              <ReCAPTCHA
+                ref={captchaRef}
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ""}
+                theme="dark"
+                onChange={(token) => {
+                  setCaptchaToken(token);
+                  setErrors((e) => ({ ...e, captcha: undefined }));
+                }}
+                onExpired={() => setCaptchaToken(null)}
+              />
+              {errors.captcha && (
+                <span role="alert" className="text-xs text-error">
+                  {errors.captcha}
+                </span>
               )}
             </div>
+            <Button type="submit" size="lg" loading={busy}>
+              {!busy && <Send size={18} aria-hidden />}
+              Send message
+            </Button>
           </div>
-        </div>
-      </main>
-
-      <LandingFooter />
-    </div>
+        </form>
+      </Container>
+    </MarketingShell>
   );
 }
