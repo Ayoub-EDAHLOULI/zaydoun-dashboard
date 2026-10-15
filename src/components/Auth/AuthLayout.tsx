@@ -4,15 +4,25 @@ import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
-import { Input, Orb, type InputProps } from "@/components/ui";
+import { Input, type InputProps } from "@/components/ui";
+import SunScene from "./SunScene";
 import { cn } from "@/lib/cn";
 
 const YEAR = new Date().getFullYear();
 
 function Logo({ size = 36 }: { size?: number }) {
   return (
-    <Link href="/" className="flex w-fit items-center gap-2.5 rounded-sm text-text-primary">
-      <Image src="/logo.png" alt="" width={size} height={size} className="rounded-[9px]" />
+    <Link
+      href="/"
+      className="flex w-fit items-center gap-2.5 rounded-sm text-text-primary"
+    >
+      <Image
+        src="/logo.png"
+        alt=""
+        width={size}
+        height={size}
+        className="rounded-[9px]"
+      />
       <span className="text-19 font-semibold">Zaydoun</span>
     </Link>
   );
@@ -36,11 +46,10 @@ export function AuthSplitLayout({
   return (
     <div className="flex min-h-screen bg-bg-base">
       <aside className="relative hidden flex-1 flex-col overflow-hidden border-r border-border bg-bg-surface px-16 py-12 lg:flex">
-        <Logo />
-        <span aria-hidden className="pointer-events-none absolute top-40 -right-36 size-[520px] rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.14)_0%,transparent_65%)]" />
-        {/* Positioned by a wrapper: Orb is relative itself */}
-        <div aria-hidden className="pointer-events-none absolute top-[300px] right-5">
-          <Orb size={200} rings={1} />
+        {/* The sun, its light and the dust in it — behind the text */}
+        <SunScene />
+        <div className="relative">
+          <Logo />
         </div>
         <div className="relative mt-auto flex max-w-[420px] flex-col gap-5">
           <p className="font-serif text-46 leading-[1.08] tracking-[-0.02em] [&_em]:text-gold-light [&_em]:italic">
@@ -121,7 +130,13 @@ export function AuthCardLayout({
 // Heading for the split layout's form
 // ---------------------------------------------------------------------------
 
-export function AuthHeading({ title, subtitle }: { title: string; subtitle: string }) {
+export function AuthHeading({
+  title,
+  subtitle,
+}: {
+  title: string;
+  subtitle: string;
+}) {
   return (
     <div className="mb-1 flex flex-col gap-2">
       {/* Forms reference this id via aria-labelledby="auth-title" */}
@@ -154,7 +169,11 @@ export function PasswordInput(props: Omit<InputProps, "type" | "end">) {
           aria-pressed={visible}
           className="flex size-10 items-center justify-center rounded-sm text-text-secondary transition-colors hover:text-text-primary"
         >
-          {visible ? <EyeOff size={18} aria-hidden /> : <Eye size={18} aria-hidden />}
+          {visible ? (
+            <EyeOff size={18} aria-hidden />
+          ) : (
+            <Eye size={18} aria-hidden />
+          )}
         </button>
       }
     />

@@ -155,3 +155,68 @@
     transform: scaleY(1);
   }
 }
+
+/* Auth sun (components/Auth/SunScene.tsx). All loops animate transform/opacity
+   only, and stop under reduced motion via the global rule in tokens.css. */
+@keyframes sun-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@keyframes sun-spin-reverse {
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+@keyframes sun-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes sun-pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+@keyframes sun-ripple {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(2.1);
+    opacity: 0;
+  }
+}
+@keyframes sun-beam {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  45%,
+  60% {
+    opacity: 1;
+  }
+}
+@keyframes sun-mote {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(var(--mote-dx, -20px), -140px);
+    opacity: 0;
+  }
+}
