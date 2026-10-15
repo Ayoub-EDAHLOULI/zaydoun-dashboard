@@ -9,11 +9,14 @@ import { cn } from "@/lib/cn";
 // Accordion with animated height. One answer open at a time.
 export default function FaqList({
   items,
+  defaultOpen = 0,
 }: {
   items: { q: string; a: string }[];
+  /** Index open on first render; null = all closed */
+  defaultOpen?: number | null;
 }) {
   const baseId = useId();
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(defaultOpen);
 
   return (
     <div className="border-t border-border">

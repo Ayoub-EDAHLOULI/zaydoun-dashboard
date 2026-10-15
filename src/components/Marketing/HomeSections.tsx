@@ -692,6 +692,12 @@ function Faq() {
           >
             Something else? Write to us →
           </Link>
+          <Link
+            href="/faq"
+            className="inline-flex items-center gap-1.5 rounded-xs text-15 text-text-secondary hover:text-text-primary"
+          >
+            See all questions <ArrowRight size={16} aria-hidden />
+          </Link>
         </Reveal>
         <Reveal delay={0.1} className="min-w-0 flex-[2_1_560px]">
           <FaqList items={FAQS} />

@@ -8,6 +8,7 @@ import {
   useScroll,
 } from "framer-motion";
 import { EASE_OUT, MotionProvider } from "@/components/motion";
+import ScrollToTop from "./ScrollToTop";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,7 +21,7 @@ import { cn } from "@/lib/cn";
 const LINKS = [
   { href: "/features", label: "Features" },
   { href: "/how-it-works", label: "How it works" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -197,7 +198,7 @@ function MarketingFooter() {
           <Link href="/how-it-works" className="hover:text-text-primary">
             How it works
           </Link>
-          <Link href="/#faq" className="hover:text-text-primary">
+          <Link href="/faq" className="hover:text-text-primary">
             FAQ
           </Link>
           <Link href="/contact" className="hover:text-text-primary">
@@ -217,9 +218,12 @@ export default function MarketingShell({ children }: { children: ReactNode }) {
   return (
     <MotionProvider>
       <div className="flex min-h-screen flex-col bg-bg-base">
+        {/* Focus target for "Back to top" */}
+        <div id="top" tabIndex={-1} className="outline-none" />
         <MarketingNav />
         <main className="flex-1">{children}</main>
         <MarketingFooter />
+        <ScrollToTop />
       </div>
     </MotionProvider>
   );
