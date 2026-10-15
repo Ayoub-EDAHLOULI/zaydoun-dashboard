@@ -60,7 +60,20 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 - **New code** uses the token utilities and `@/components/ui`.
 - Old pages still use the legacy `--z-*` CSS variables through inline `style={{ … }}`. Replace that as each page gets redesigned.
 - Base element styles in `globals.css` must stay inside `@layer base`. Unlayered CSS overrides every Tailwind utility in v4.
-- Icons come from `lucide-react`. Animations use `framer-motion`.
+- Icons come from `lucide-react`.
+
+## Motion
+
+- The tokens and primitives live in `src/components/motion`:
+  - `EASE_OUT`, `DURATION` (fast / base / slow) and `RISE`.
+  - `Reveal`: fade and rise on scroll, once.
+  - `Stagger` / `StaggerItem`: children follow each other.
+  - `MotionProvider`: honours the OS "reduce motion" setting.
+- **Above-the-fold entrances use `RiseIn`** (`components/motion/RiseIn.tsx`), a pure-CSS `animate-rise`. It starts at first paint. Never hide hero content behind Framer `initial={{ opacity: 0 }}`: it stays blank until JS hydrates.
+- Animate only `transform` and `opacity`. Height animations (FAQ, menus) are the one exception.
+- Keep collapsible content in the DOM, `inert` when closed, so search engines can still read it.
+- Framer Motion is aliased to its CJS build in `next.config.ts`; import from `"framer-motion"`.
+- Done so far: the marketing pages (home, features, contact). The app and auth pages come next.
 
 ## Known issues
 

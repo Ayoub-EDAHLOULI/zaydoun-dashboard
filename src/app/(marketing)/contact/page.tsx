@@ -4,33 +4,63 @@ import { useRef, useState, type FormEvent } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { CircleCheck, Lightbulb, LifeBuoy, Send } from "lucide-react";
 import { z } from "zod";
-import MarketingShell, { Container, Eyebrow, SectionTitle } from "@/components/Marketing/MarketingShell";
+import { AnimatePresence, motion } from "framer-motion";
+import { EASE_OUT, Reveal } from "@/components/motion";
+import { RiseIn } from "@/components/motion/RiseIn";
+import MarketingShell, {
+  Container,
+  Eyebrow,
+  SectionTitle,
+} from "@/components/Marketing/MarketingShell";
 import { Button, Input, Select, Textarea } from "@/components/ui";
 import { contactService } from "@/lib/api/services/contact.service";
 import { useToast } from "@/contexts/ToastContext";
 
-const TOPICS = ["General question", "Problem with a book", "Account", "Feature idea", "Other"];
+const TOPICS = [
+  "General question",
+  "Problem with a book",
+  "Account",
+  "Feature idea",
+  "Other",
+];
 
 // Mirrors the API's contact validation
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Use at least 2 characters.").max(100),
   email: z.email("Enter a full email address."),
   topic: z.string().min(1),
-  message: z.string().trim().min(10, "Tell us a bit more (10+ characters).").max(5000),
+  message: z
+    .string()
+    .trim()
+    .min(10, "Tell us a bit more (10+ characters).")
+    .max(5000),
 });
 
 type Form = z.infer<typeof contactSchema>;
 type Errors = Partial<Record<keyof Form | "captcha", string>>;
 
 const ADDRESSES = [
-  { icon: LifeBuoy, email: "support@zaydoun.ai", note: "Account and general help" },
-  { icon: Lightbulb, email: "feedback@zaydoun.ai", note: "Ideas and feature requests" },
+  {
+    icon: LifeBuoy,
+    email: "support@zaydoun.ai",
+    note: "Account and general help",
+  },
+  {
+    icon: Lightbulb,
+    email: "feedback@zaydoun.ai",
+    note: "Ideas and feature requests",
+  },
 ];
 
 export default function ContactPage() {
   const { notify } = useToast();
   const captchaRef = useRef<ReCAPTCHA>(null);
-  const [form, setForm] = useState<Form>({ name: "", email: "", topic: TOPICS[0], message: "" });
+  const [form, setForm] = useState<Form>({
+    name: "",
+    email: "",
+    topic: TOPICS[0],
+    message: "",
+  });
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [errors, setErrors] = useState<Errors>({});
   const [busy, setBusy] = useState(false);
@@ -43,12 +73,17 @@ export default function ContactPage() {
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
-    const parsed = contactSchema.safeParse({ ...form, email: form.email.trim() });
+    const parsed = contactSchema.safeParse({
+      ...form,
+      email: form.email.trim(),
+    });
     const next: Errors = {};
     if (!parsed.success) {
-      for (const issue of parsed.error.issues) next[issue.path[0] as keyof Form] ??= issue.message;
+      for (const issue of parsed.error.issues)
+        next[issue.path[0] as keyof Form] ??= issue.message;
     }
-    if (!captchaToken) next.captcha = "Tick the box so we know you're not a robot.";
+    if (!captchaToken)
+      next.captcha = "Tick the box so we know you're not a robot.";
     setErrors(next);
     if (!parsed.success || !captchaToken) return;
 
@@ -58,7 +93,10 @@ export default function ContactPage() {
       setSent(true);
       setForm({ name: "", email: "", topic: TOPICS[0], message: "" });
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't send your message", "error");
+      notify(
+        err instanceof Error ? err.message : "Couldn't send your message",
+        "error",
+      );
     } finally {
       // A reCAPTCHA token works once — ask for a fresh one either way
       captchaRef.current?.reset();
@@ -71,14 +109,24 @@ export default function ContactPage() {
     <MarketingShell>
       <Container className="flex flex-wrap gap-16 py-20 md:py-28">
         <div className="flex min-w-0 flex-[1_1_380px] flex-col gap-7">
-          <Eyebrow>Contact</Eyebrow>
-          <SectionTitle as="h1" size="lg">
-            Write to us. <em>A person reads it.</em>
-          </SectionTitle>
-          <p className="text-17 leading-relaxed text-text-secondary">
-            No ticket queue and no bot. We usually reply within one business day.
-          </p>
-          <div className="mt-3 flex flex-col border-t border-border">
+          <RiseIn delay={0.1}>
+            <Eyebrow>Contact</Eyebrow>
+          </RiseIn>
+          <RiseIn delay={0.2}>
+            <SectionTitle as="h1" size="lg">
+              Write to us. <em>A person reads it.</em>
+            </SectionTitle>
+          </RiseIn>
+          <RiseIn delay={0.3}>
+            <p className="text-17 leading-relaxed text-text-secondary">
+              No ticket queue and no bot. We usually reply within one business
+              day.
+            </p>
+          </RiseIn>
+          <RiseIn
+            delay={0.4}
+            className="mt-3 flex flex-col border-t border-border"
+          >
             {ADDRESSES.map(({ icon: Icon, email, note }) => (
               <a
                 key={email}
@@ -96,96 +144,118 @@ export default function ContactPage() {
                 </span>
               </a>
             ))}
-          </div>
+          </RiseIn>
         </div>
 
-        <form
-          onSubmit={submit}
-          noValidate
-          aria-labelledby="contact-form-title"
-          className="flex min-w-0 flex-[1_1_520px] flex-col gap-5 rounded-lg border border-border bg-bg-surface p-6 md:p-9"
-        >
-          <h2 id="contact-form-title" className="mb-1 font-serif text-26 leading-tight font-medium">
-            Send a message
-          </h2>
-
-          {sent && (
-            <div role="status" className="flex items-center gap-3 rounded-[10px] border border-success/35 bg-success/8 px-4 py-3.5">
-              <CircleCheck size={20} className="shrink-0 text-success" aria-hidden />
-              <span className="text-sm">
-                <span className="font-semibold">Sent.</span>{" "}
-                <span className="text-text-secondary">Thanks, we&apos;ll reply to the email you gave us.</span>
-              </span>
-            </div>
-          )}
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Input
-              label="Name"
-              placeholder="Your name"
-              autoComplete="name"
-              value={form.name}
-              onChange={(e) => set("name")(e.target.value)}
-              error={errors.name}
-              disabled={busy}
-            />
-            <Input
-              label="Email"
-              type="email"
-              placeholder="you@example.com"
-              autoComplete="email"
-              value={form.email}
-              onChange={(e) => set("email")(e.target.value)}
-              error={errors.email}
-              disabled={busy}
-            />
-          </div>
-          <Select
-            label="Subject"
-            value={form.topic}
-            onChange={(e) => set("topic")(e.target.value)}
-            disabled={busy}
+        <Reveal delay={0.35} y={32} className="flex min-w-0 flex-[1_1_520px]">
+          <form
+            onSubmit={submit}
+            noValidate
+            aria-labelledby="contact-form-title"
+            className="flex w-full min-w-0 flex-col gap-5 rounded-lg border border-border bg-bg-surface p-6 md:p-9"
           >
-            {TOPICS.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </Select>
-          <Textarea
-            label="Message"
-            rows={6}
-            placeholder="Tell us what's on your mind"
-            value={form.message}
-            onChange={(e) => set("message")(e.target.value)}
-            error={errors.message}
-            disabled={busy}
-          />
+            <h2
+              id="contact-form-title"
+              className="mb-1 font-serif text-26 leading-tight font-medium"
+            >
+              Send a message
+            </h2>
 
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="flex flex-col gap-1.5">
-              <ReCAPTCHA
-                ref={captchaRef}
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ""}
-                theme="dark"
-                onChange={(token) => {
-                  setCaptchaToken(token);
-                  setErrors((e) => ({ ...e, captcha: undefined }));
-                }}
-                onExpired={() => setCaptchaToken(null)}
-              />
-              {errors.captcha && (
-                <span role="alert" className="text-xs text-error">
-                  {errors.captcha}
-                </span>
+            <AnimatePresence>
+              {sent && (
+                <motion.div
+                  role="status"
+                  initial={{ opacity: 0, height: 0, y: -8 }}
+                  animate={{ opacity: 1, height: "auto", y: 0 }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4, ease: EASE_OUT }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex items-center gap-3 rounded-[10px] border border-success/35 bg-success/8 px-4 py-3.5">
+                    <CircleCheck
+                      size={20}
+                      className="shrink-0 text-success"
+                      aria-hidden
+                    />
+                    <span className="text-sm">
+                      <span className="font-semibold">Sent.</span>{" "}
+                      <span className="text-text-secondary">
+                        Thanks, we&apos;ll reply to the email you gave us.
+                      </span>
+                    </span>
+                  </div>
+                </motion.div>
               )}
+            </AnimatePresence>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Input
+                label="Name"
+                placeholder="Your name"
+                autoComplete="name"
+                value={form.name}
+                onChange={(e) => set("name")(e.target.value)}
+                error={errors.name}
+                disabled={busy}
+              />
+              <Input
+                label="Email"
+                type="email"
+                placeholder="you@example.com"
+                autoComplete="email"
+                value={form.email}
+                onChange={(e) => set("email")(e.target.value)}
+                error={errors.email}
+                disabled={busy}
+              />
             </div>
-            <Button type="submit" size="lg" loading={busy}>
-              {!busy && <Send size={18} aria-hidden />}
-              Send message
-            </Button>
-          </div>
-        </form>
+            <Select
+              label="Subject"
+              value={form.topic}
+              onChange={(e) => set("topic")(e.target.value)}
+              disabled={busy}
+            >
+              {TOPICS.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </Select>
+            <Textarea
+              label="Message"
+              rows={6}
+              placeholder="Tell us what's on your mind"
+              value={form.message}
+              onChange={(e) => set("message")(e.target.value)}
+              error={errors.message}
+              disabled={busy}
+            />
+
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div className="flex flex-col gap-1.5">
+                <ReCAPTCHA
+                  ref={captchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ""}
+                  theme="dark"
+                  onChange={(token) => {
+                    setCaptchaToken(token);
+                    setErrors((e) => ({ ...e, captcha: undefined }));
+                  }}
+                  onExpired={() => setCaptchaToken(null)}
+                />
+                {errors.captcha && (
+                  <span role="alert" className="text-xs text-error">
+                    {errors.captcha}
+                  </span>
+                )}
+              </div>
+              <Button type="submit" size="lg" loading={busy}>
+                {!busy && <Send size={18} aria-hidden />}
+                Send message
+              </Button>
+            </div>
+          </form>
+        </Reveal>
       </Container>
     </MarketingShell>
   );

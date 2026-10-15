@@ -57,6 +57,17 @@
     height: 100%;
   }
 
+  /* Anchor links (#how, #faq…) land below the sticky marketing nav */
+  html {
+    scroll-padding-top: 88px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     font-family: var(--z-font-sans);
     background-color: var(--z-bg-base);
@@ -131,4 +142,16 @@
 .Toastify__toast {
   font-size: 14px;
   line-height: 1.45;
+}
+
+/* Voice waveform bars (marketing phone mockup). Disabled under reduced motion
+   by the global rule in tokens.css. */
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
 }
