@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -8,7 +8,6 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { BookOpen } from "lucide-react";
 import { Orb, PageTag, ThinkingIndicator } from "@/components/ui";
 import { DURATION, EASE_OUT } from "@/components/motion";
 
@@ -27,7 +26,6 @@ const reached = (phase: Phase, step: Phase) =>
 
 export default function HeroVisual() {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<Phase>("idle");
 
   // Play the exchange once (skipped entirely under reduced motion)
@@ -38,45 +36,9 @@ export default function HeroVisual() {
   }, [reduce]);
   const shown: Phase = reduce ? "answered" : phase;
 
-  // The orb drifts up slower than the page as you scroll past the hero
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const orbY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const orbOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.4]);
-
   return (
-    <div
-      ref={ref}
-      className="flex min-w-0 flex-[1_1_460px] flex-col items-center"
-    >
-      {/* Three layers so their transforms don't fight:
-          scroll parallax → entrance → idle float */}
-      <motion.div
-        className="mt-8 mb-14 hidden sm:block"
-        style={{ y: orbY, opacity: orbOpacity }}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: DURATION.slow, ease: EASE_OUT }}
-        >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
-          >
-            <Orb size={220} rings={2} halo>
-              <BookOpen
-                size={64}
-                strokeWidth={1.2}
-                className="text-text-primary/90"
-              />
-            </Orb>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-
+    // Above the hero orb's layer, so its rings pass behind the card
+    <div className="relative z-10 flex min-w-0 flex-[1_1_460px] flex-col items-center justify-center">
       <figure
         aria-label="Sample conversation"
         className="flex min-h-[300px] w-full max-w-[460px] flex-col gap-3.5"
@@ -147,5 +109,117 @@ export default function HeroVisual() {
         </AnimatePresence>
       </figure>
     </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// HeroOrb — glows behind the hero headline.
+//   • light bands turn slowly across the surface (a lit globe rotating)
+//   • a glint sweeps across it every few seconds
+//   • thin rings pulse outward and fade, one after another
+//   • a soft glow breathes behind it
+// Loops are CSS (transform/opacity only; still under reduced motion). The body
+// is dimmed so the headline on top keeps AA contrast.
+// ---------------------------------------------------------------------------
+
+const ORB = 380;
+const RIPPLES = [0, 3, 6]; // s delays — one ring every 3s, each lives 9s
+
+export function HeroOrb() {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 700], [0, -70]);
+  const fade = useTransform(scrollY, [0, 600], [1, 0.5]);
+
+  const centred = {
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+  } as const;
+
+  return (
+    <motion.div
+      aria-hidden
+      className="pointer-events-none"
+      style={{ y, opacity: fade }}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: DURATION.slow, ease: EASE_OUT }}
+      >
+        <motion.div
+          className="relative"
+          style={{ width: ORB, height: ORB }}
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 7, ease: "easeInOut", repeat: Infinity }}
+        >
+          {/* Breathing glow */}
+          <span
+            style={{
+              ...centred,
+              width: ORB * 1.9,
+              height: ORB * 1.9,
+              borderRadius: 9999,
+              background:
+                "radial-gradient(circle, rgba(201,168,76,0.16) 0%, rgba(201,168,76,0.05) 40%, transparent 68%)",
+              animation: "sun-pulse 8s ease-in-out infinite",
+            }}
+          />
+
+          {/* Rings flowing out of the orb */}
+          {RIPPLES.map((delay) => (
+            <span
+              key={delay}
+              style={{
+                ...centred,
+                width: ORB,
+                height: ORB,
+                borderRadius: 9999,
+                border: "1px solid rgba(224,194,114,0.32)",
+                animation: `orb-ripple 9s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s infinite`,
+                opacity: 0,
+              }}
+            />
+          ))}
+
+          {/* The orb — dimmed so text on top stays readable */}
+          <div className="absolute inset-0 opacity-45">
+            <Orb size={ORB} />
+            <div className="absolute inset-0 overflow-hidden rounded-full">
+              {/* Soft glows orbiting the surface (a lit globe turning).
+                  Round radial gradients — no wedge edges, so no seams */}
+              <span
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(circle at 26% 34%, rgba(255,246,214,0.32) 0%, rgba(255,246,214,0.1) 18%, transparent 36%), radial-gradient(circle at 72% 70%, rgba(255,246,214,0.18) 0%, rgba(255,246,214,0.05) 16%, transparent 32%)",
+                  animation: "sun-orbit 40s linear infinite",
+                }}
+              />
+              {/* Fixed highlight for volume */}
+              <span
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(circle at 32% 26%, rgba(255,250,232,0.45) 0%, rgba(255,250,232,0.1) 22%, transparent 42%)",
+                }}
+              />
+              {/* Glint sweeping across */}
+              <span
+                className="absolute inset-y-[-20%] left-0 w-1/3"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(255,252,240,0.4), transparent)",
+                  animation:
+                    "orb-glint 7s cubic-bezier(0.45, 0, 0.25, 1) 1.5s infinite",
+                  transform: "translateX(-140%) rotate(25deg)",
+                }}
+              />
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }

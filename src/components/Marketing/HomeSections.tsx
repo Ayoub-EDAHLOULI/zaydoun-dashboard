@@ -17,7 +17,7 @@ import {
 import { Orb, PageTag, buttonClasses } from "@/components/ui";
 import { Container, Eyebrow, SectionTitle } from "./MarketingShell";
 import AskDemo from "./AskDemo";
-import HeroVisual from "./HeroVisual";
+import HeroVisual, { HeroOrb } from "./HeroVisual";
 import FaqList from "./FaqList";
 import CitationArt from "./CitationArt";
 import ScaleLine from "./ScaleLine";
@@ -35,23 +35,27 @@ const sectionY = "py-20 md:py-30";
 function Hero() {
   return (
     <Container className="flex flex-wrap items-center gap-16 py-16 md:py-24">
-      <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-7">
-        <RiseIn delay={0.1}>
+      <div className="relative flex min-w-0 flex-[1_1_520px] flex-col gap-7">
+        {/* The orb glows behind the headline */}
+        <div className="absolute -top-28 left-10 z-0 sm:left-40 md:-top-20">
+          <HeroOrb />
+        </div>
+        <RiseIn delay={0.1} className="relative z-10">
           <Eyebrow>A reading companion with opinions</Eyebrow>
         </RiseIn>
-        <RiseIn delay={0.2}>
+        <RiseIn delay={0.2} className="relative z-10">
           <SectionTitle as="h1" size="xl">
             Talk to your <em>books.</em>
           </SectionTitle>
         </RiseIn>
-        <RiseIn delay={0.3}>
+        <RiseIn delay={0.3} className="relative z-10">
           <p className="max-w-125 text-19 leading-relaxed text-text-secondary">
             Upload a PDF and Zaydoun reads it page by page. Then ask, argue, or
             get lost in a chapter together. Answers point you to the page they
             came from.
           </p>
         </RiseIn>
-        <RiseIn delay={0.4} className="mt-1 flex flex-wrap gap-3">
+        <RiseIn delay={0.4} className="relative z-10 mt-1 flex flex-wrap gap-3">
           <Link href="/register" className={buttonClasses({ size: "lg" })}>
             Start free <ArrowRight size={18} aria-hidden />
           </Link>
