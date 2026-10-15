@@ -19,7 +19,7 @@ import { cn } from "@/lib/cn";
 
 const LINKS = [
   { href: "/features", label: "Features" },
-  { href: "/#how", label: "How it works" },
+  { href: "/how-it-works", label: "How it works" },
   { href: "/#faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
@@ -193,6 +193,9 @@ function MarketingFooter() {
         <nav aria-label="Footer" className="flex flex-wrap gap-6">
           <Link href="/features" className="hover:text-text-primary">
             Features
+          </Link>
+          <Link href="/how-it-works" className="hover:text-text-primary">
+            How it works
           </Link>
           <Link href="/#faq" className="hover:text-text-primary">
             FAQ

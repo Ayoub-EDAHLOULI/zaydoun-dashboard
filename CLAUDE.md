@@ -13,7 +13,7 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 ## Route map (src/app)
 
 - `/`: marketing home (`components/Marketing/HomeSections.tsx`, with the interactive `AskDemo`).
-- `(marketing)/features|contact`: marketing pages. All of them wrap in `components/Marketing/MarketingShell.tsx` (nav, footer, `Eyebrow`, `SectionTitle`, `Container`).
+- `(marketing)/features|how-it-works|contact`: marketing pages. The nav's "How it works" points to `/how-it-works`; its copy mirrors the real pipeline in `zaydoun-api`, so update it if the pipeline changes (chunk size, top-5 search, model, history length). All of them wrap in `components/Marketing/MarketingShell.tsx` (nav, footer, `Eyebrow`, `SectionTitle`, `Container`).
 - The contact form uses reCAPTCHA through `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`.
 - `/pricing` was removed; `next.config.ts` redirects it to `/`.
 - `/login`, `/register`, `/forgot-password`, `/reset-password`: public auth pages.

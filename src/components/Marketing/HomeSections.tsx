@@ -45,7 +45,7 @@ function Hero() {
           </SectionTitle>
         </RiseIn>
         <RiseIn delay={0.3}>
-          <p className="max-w-[500px] text-19 leading-relaxed text-text-secondary">
+          <p className="max-w-125 text-19 leading-relaxed text-text-secondary">
             Upload a PDF and Zaydoun reads it page by page. Then ask, argue, or
             get lost in a chapter together. Answers point you to the page they
             came from.
@@ -122,7 +122,7 @@ function SectionHeader({
 }) {
   return (
     <div className="flex flex-wrap items-end justify-between gap-6">
-      <Reveal className="flex max-w-[640px] flex-col gap-4">
+      <Reveal className="flex max-w-160 flex-col gap-4">
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         <SectionTitle id={id}>{title}</SectionTitle>
       </Reveal>
@@ -130,7 +130,7 @@ function SectionHeader({
         <Reveal
           as="p"
           delay={0.12}
-          className="max-w-[380px] text-base leading-relaxed text-text-secondary"
+          className="max-w-95 text-base leading-relaxed text-text-secondary"
         >
           {lead}
         </Reveal>
@@ -311,7 +311,7 @@ function VoiceOnMobile() {
           className="flex flex-[0_1_320px] justify-center max-sm:hidden"
         >
           <div aria-hidden>
-            <div className="h-[610px] w-[300px] rounded-[48px] border border-border-strong bg-[#070707] p-3.5 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9)]">
+            <div className="h-152.5 w-75 rounded-[48px] border border-border-strong bg-[#070707] p-3.5 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9)]">
               <div className="flex h-full flex-col items-center rounded-[36px] bg-bg-base px-5 pt-12 pb-10">
                 <span className="text-xs text-text-secondary">
                   Al-Muqaddimah
@@ -319,7 +319,7 @@ function VoiceOnMobile() {
                 <div className="my-10">
                   <Orb size={140} rings={2} breathing />
                 </div>
-                <span className="text-13 font-semibold tracking-[0.1em] text-gold-light uppercase">
+                <span className="text-13 font-semibold tracking-widest text-gold-light uppercase">
                   Listening
                 </span>
                 <div className="mt-3 flex h-9 items-center gap-1">
@@ -468,7 +468,7 @@ function WhoItsFor() {
     >
       <Container className={cn("flex flex-col gap-12", sectionY)}>
         <Reveal>
-          <SectionTitle id="who-title" size="md" className="max-w-[640px]">
+          <SectionTitle id="who-title" size="md" className="max-w-160">
             For anyone who wants more from a book than a summary.
           </SectionTitle>
         </Reveal>
@@ -534,10 +534,18 @@ function HowItWorks() {
               in three steps.
             </SectionTitle>
           </div>
-          <p className="max-w-[360px] text-base leading-relaxed text-text-secondary">
-            No setup, no settings to learn. Bring the book you&apos;re already
-            reading.
-          </p>
+          <div className="flex max-w-90 flex-col items-start gap-3">
+            <p className="text-base leading-relaxed text-text-secondary">
+              No setup, no settings to learn. Bring the book you&apos;re already
+              reading.
+            </p>
+            <Link
+              href="/how-it-works"
+              className="inline-flex items-center gap-1.5 rounded-xs text-15 text-gold-light hover:text-text-primary"
+            >
+              See the details <ArrowRight size={16} aria-hidden />
+            </Link>
+          </div>
         </Reveal>
         <div className="relative">
           <ScaleLine className="absolute inset-x-0 top-0 bg-border-strong" />
@@ -709,13 +717,13 @@ function FinalCta() {
         >
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-40 left-1/2 size-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.16)_0%,transparent_65%)]"
+            className="pointer-events-none absolute -top-40 left-1/2 size-130 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.16)_0%,transparent_65%)]"
           />
           <Orb size={56} rings={1} />
           <SectionTitle id="cta-title" className="relative">
             Which book first?
           </SectionTitle>
-          <p className="relative max-w-[440px] text-17 leading-relaxed text-text-secondary">
+          <p className="relative max-w-110 text-17 leading-relaxed text-text-secondary">
             Bring the one you&apos;ve been meaning to finish. Zaydoun will meet
             you on page one.
           </p>
