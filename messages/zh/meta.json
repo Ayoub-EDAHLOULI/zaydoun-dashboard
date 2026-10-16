@@ -1,0 +1,61 @@
+{
+  "site": {
+    "title": "Zaydoun — 为书籍打造的 AI 语音助手 | 与任意 PDF 对话",
+    "description": "Zaydoun 是一款 AI 语音阅读助手。上传任意 PDF，动口不动手地提问，获得精确到页码的回答，支持 5 种语言。基于 RAG、Whisper 和 GPT-4o mini。",
+    "ogDescription": "上传任意 PDF，用语音与它深入对话。精确到页码的回答，支持 5 种语言，全程无需动手。",
+    "ogImageAlt": "Zaydoun — AI 语音阅读助手",
+    "offerName": "免费版",
+    "offerDescription": "2 本书，每天 15 条消息",
+    "featureList": [
+      "语音优先，免手操作阅读",
+      "基于 RAG 的精确到页码的回答",
+      "Whisper 语音转文字",
+      "回答语音播放",
+      "5 种回答语言：英语、阿拉伯语、法语、西班牙语、中文",
+      "完整支持阿拉伯语从右到左显示",
+      "PDF 上传与语义索引",
+      "对话历史"
+    ]
+  },
+  "features": {
+    "title": "功能 — 基于 RAG 与 Whisper 的 AI 语音阅读助手",
+    "description": "了解 Zaydoun 的功能：精确到页码的回答、语音转写、语音回复、5 种回答语言以及 PDF 索引。为认真读书的人打造。"
+  },
+  "howItWorks": {
+    "title": "工作原理 — 从一份 PDF 到一场对话",
+    "description": "Zaydoun 如何逐页读取你的 PDF，找到能回答你问题的段落，标注所依据的页码，并在手机上用语音回答你。"
+  },
+  "faq": {
+    "title": "常见问题 — 关于 Zaydoun",
+    "description": "关于上传 PDF、页码引用、回答语言、免手语音、免费额度、账户与隐私的解答。"
+  },
+  "contact": {
+    "title": "联系我们 — 与 Zaydoun 团队交流",
+    "description": "有问题、发现 bug 或想提建议？每条消息都由真人阅读，我们会在一个工作日内回复。"
+  },
+  "login": {
+    "title": "登录",
+    "description": "登录你的 Zaydoun 账户。"
+  },
+  "register": {
+    "title": "创建账户",
+    "description": "创建你的 Zaydoun 账户。"
+  },
+  "forgotPassword": {
+    "title": "忘记密码",
+    "description": "重置你的 Zaydoun 密码。"
+  },
+  "resetPassword": {
+    "title": "重置密码",
+    "description": "为你的 Zaydoun 账户设置新密码。"
+  },
+  "titles": {
+    "home": "首页",
+    "dashboard": "后台",
+    "library": "书库",
+    "conversations": "对话",
+    "chat": "聊天",
+    "profile": "个人资料",
+    "users": "用户"
+  }
+}

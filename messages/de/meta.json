@@ -1,0 +1,61 @@
+{
+  "site": {
+    "title": "Zaydoun — KI-Sprachassistent für Bücher | Chatte mit jedem PDF",
+    "description": "Zaydoun ist ein KI-gestützter Leseassistent mit Sprachsteuerung. Lade ein PDF hoch, stelle freihändig Fragen und erhalte seitengenaue Antworten in 5 Sprachen. Mit RAG, Whisper und GPT-4o mini.",
+    "ogDescription": "Lade ein PDF hoch und führe per Stimme ein echtes Gespräch darüber. Seitengenaue Antworten in 5 Sprachen — freihändig.",
+    "ogImageAlt": "Zaydoun — KI-Leseassistent mit Sprachsteuerung",
+    "offerName": "Kostenlos",
+    "offerDescription": "2 Bücher und 15 Nachrichten pro Tag",
+    "featureList": [
+      "Freihändiges Lesen per Stimme",
+      "Seitengenaue Antworten dank RAG",
+      "Spracherkennung mit Whisper",
+      "Antworten zum Anhören",
+      "5 Antwortsprachen: Englisch, Arabisch, Französisch, Spanisch, Chinesisch",
+      "Arabisch vollständig von rechts nach links",
+      "PDF-Upload und semantische Indexierung",
+      "Gesprächsverlauf"
+    ]
+  },
+  "features": {
+    "title": "Funktionen — KI-Leseassistent mit RAG und Whisper",
+    "description": "Entdecke Zaydoun: seitengenaue Antworten, Spracherkennung, gesprochene Antworten, 5 Antwortsprachen und PDF-Indexierung. Gemacht für ernsthafte Leser."
+  },
+  "howItWorks": {
+    "title": "So funktioniert’s — Vom PDF zum Gespräch",
+    "description": "Wie Zaydoun dein PDF Seite für Seite liest, die passenden Stellen zu deiner Frage findet, die verwendete Seite nennt und dir auf dem Handy laut antwortet."
+  },
+  "faq": {
+    "title": "FAQ — Fragen zu Zaydoun",
+    "description": "Antworten zu PDF-Uploads, Seitenangaben, Antwortsprachen, freihändiger Sprachsteuerung, kostenlosen Limits, deinem Konto und Datenschutz."
+  },
+  "contact": {
+    "title": "Kontakt — Schreib dem Zaydoun-Team",
+    "description": "Eine Frage, ein Fehler oder ein Wunsch? Jede Nachricht liest ein echter Mensch — wir antworten innerhalb eines Werktags."
+  },
+  "login": {
+    "title": "Anmelden",
+    "description": "Melde dich bei deinem Zaydoun-Konto an."
+  },
+  "register": {
+    "title": "Konto erstellen",
+    "description": "Erstelle dein Zaydoun-Konto."
+  },
+  "forgotPassword": {
+    "title": "Passwort vergessen",
+    "description": "Setze dein Zaydoun-Passwort zurück."
+  },
+  "resetPassword": {
+    "title": "Passwort zurücksetzen",
+    "description": "Lege ein neues Passwort für dein Zaydoun-Konto fest."
+  },
+  "titles": {
+    "home": "Start",
+    "dashboard": "Dashboard",
+    "library": "Bibliothek",
+    "conversations": "Unterhaltungen",
+    "chat": "Chat",
+    "profile": "Profil",
+    "users": "Nutzer"
+  }
+}

@@ -33,7 +33,7 @@ export default function FaqList({
                 aria-expanded={expanded}
                 aria-controls={panelId}
                 onClick={() => setOpen(expanded ? null : i)}
-                className="flex min-h-16 w-full items-center justify-between gap-4 py-4 text-left text-17 font-medium transition-colors hover:text-gold-light"
+                className="flex min-h-16 w-full items-center justify-between gap-4 py-4 text-start text-17 font-medium transition-colors hover:text-gold-light"
               >
                 {f.q}
                 <ChevronDown

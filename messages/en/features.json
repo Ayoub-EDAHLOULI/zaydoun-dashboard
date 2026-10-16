@@ -1,0 +1,74 @@
+{
+  "eyebrow": "Features",
+  "title": "Everything Zaydoun can do <em>with a book.</em>",
+  "lead": "One reading partner, on the web and in your pocket. Here’s what’s in the box.",
+  "f1": {
+    "title": "Answers you can check",
+    "body": "Zaydoun finds the passages that matter in your PDF, answers from them, and tags the page he leaned on, so you can go and read it yourself.",
+    "b1": "Searches by meaning, not just matching words",
+    "b2": "A “Page N” tag on answers that come from a passage",
+    "b3": "Cited pages collected per conversation",
+    "sample": "He lays it out as a pattern first, then comes back to what it does to trade."
+  },
+  "f2": {
+    "title": "Voice-first, hands-free",
+    "body": "In the mobile app, say his name and talk. Your voice is transcribed, the answer is read back to you, and the whole exchange is saved to your account.",
+    "b1": "Wake word: “Zaydoun”",
+    "b2": "Spoken answers in your reply language",
+    "b3": "Voice on the web is on the way",
+    "sample": "“Zaydoun, what’s his strongest argument in chapter 3?”"
+  },
+  "f3": {
+    "title": "Five languages, Arabic done right",
+    "body": "Upload in English, Arabic, French, Spanish or Chinese, and choose the reply language for each conversation. Arabic reads right to left in a proper Arabic typeface."
+  },
+  "f4": {
+    "title": "PDF in, conversation out",
+    "body": "Drop in a PDF up to 50 MB. Zaydoun splits it page by page and builds an index of what’s where. You’ll see each step as it happens.",
+    "steps": "Pending, then processing, then ready"
+  },
+  "f5": {
+    "title": "A library that remembers",
+    "body": "Your books on one shelf, every conversation saved and filterable by book. Reopen a thread from last month and pick up mid-argument."
+  },
+  "f6": {
+    "title": "An admin console for teams",
+    "body": "Admins manage readers, roles and access, and see usage and cost by day and by conversation. Readers just see their books."
+  },
+  "f7": {
+    "title": "Private by design",
+    "body": "Your books and conversations belong to your account alone, and you can delete any of it. To answer you, the relevant passages are sent to OpenAI’s API."
+  },
+  "hood": {
+    "label": "Under the hood, for the curious",
+    "retrieval": {
+      "term": "Retrieval",
+      "desc": "Semantic search over page-level chunks (pgvector)"
+    },
+    "answers": {
+      "term": "Answers",
+      "desc": "GPT-4o mini, given the passages it found in your book"
+    },
+    "voiceIn": {
+      "term": "Voice in",
+      "desc": "Whisper speech-to-text"
+    },
+    "voiceOut": {
+      "term": "Voice out",
+      "desc": "Text-to-speech in your reply language"
+    },
+    "accounts": {
+      "term": "Accounts",
+      "desc": "JWT with httpOnly refresh tokens, bcrypt-hashed passwords"
+    },
+    "isolation": {
+      "term": "Isolation",
+      "desc": "Every query scoped to the signed-in reader"
+    }
+  },
+  "cta": {
+    "title": "Ready when your book is.",
+    "ask": "Ask us something",
+    "start": "Start free"
+  }
+}

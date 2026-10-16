@@ -1,0 +1,115 @@
+{
+  "eyebrow": "Comment ça marche",
+  "title": "D’un PDF à une conversation. <em>Étape par étape.</em>",
+  "lead": "Rien à installer, rien à apprendre. Voici exactement ce qui se passe entre le moment où vous déposez un livre et celui où Zaydoun vous le cite.",
+  "stepsTitle": "Les quatre étapes",
+  "stepLabel": "Étape {n} :",
+  "s1": {
+    "title": "Importez un PDF",
+    "body": "Sur le web, déposez un PDF jusqu’à 50 Mo, donnez-lui un titre et indiquez sa langue. Il rejoint votre étagère aussitôt."
+  },
+  "s2": {
+    "title": "Zaydoun le lit",
+    "body": "Cliquez sur « Laisser Zaydoun le lire ». Il prend le texte page par page, découpe les longues pages en passages d’environ 400 mots et indexe chacun selon son sens, en gardant son numéro de page. Le livre passe de En cours à Prêt."
+  },
+  "s3": {
+    "title": "Lancez une conversation",
+    "body": "Choisissez un livre Prêt et la langue dans laquelle Zaydoun doit répondre : anglais, arabe, français, espagnol ou chinois. Une réponse en français sur un livre anglais ? Aucun problème."
+  },
+  "s4": {
+    "title": "Demandez, puis vérifiez la page",
+    "body": "Demandez ce que vous voulez : expliquer un passage, contredire l’auteur, retrouver une idée. Zaydoun répond à partir du livre et indique la page, pour que vous la lisiez avec les mots de l’auteur."
+  },
+  "visuals": {
+    "readyToUpload": "{size} · prêt à importer",
+    "title": "Titre",
+    "language": "Langue",
+    "english": "Anglais",
+    "bookTitle": "Le Prince",
+    "splitting": "Découpage en passages",
+    "passage": "p. {page} · {part} sur {of}",
+    "indexed": "Indexé par le sens",
+    "bookMeta": "Machiavel · anglais · 140 pages",
+    "repliesIn": "Zaydoun répond en",
+    "question": "Vaut-il mieux être craint ou aimé ?",
+    "answer": "Les deux, si possible. Mais comme c’est rare, il juge la crainte plus sûre : l’amour est un lien que l’on rompt quand cela nous arrange, la crainte tient parce qu’on redoute le châtiment."
+  },
+  "ask": {
+    "eyebrow": "Sous la surface",
+    "title": "Ce qui se passe quand vous <em>demandez.</em>",
+    "lead": "Cela prend quelques secondes. Voici ce qui les remplit."
+  },
+  "pipeline": {
+    "question": {
+      "label": "Votre question",
+      "detail": "Écrite sur le web, ou dite dans l’application et transcrite par Whisper."
+    },
+    "passages": {
+      "label": "Les bons passages",
+      "detail": "Zaydoun cherche dans votre livre par le sens et retient les 5 passages les plus proches. Uniquement votre livre, jamais celui d’un autre."
+    },
+    "answer": {
+      "label": "Une réponse",
+      "detail": "GPT-4o mini répond à partir de ces passages, avec vos 10 derniers messages comme contexte."
+    },
+    "page": {
+      "label": "La page",
+      "detail": "La réponse porte la page du passage sur lequel elle s’est le plus appuyée."
+    }
+  },
+  "voiceSection": {
+    "eyebrow": "Sur mobile",
+    "title": "Ou dites simplement <em>« Zaydoun ».</em>",
+    "lead": "Dans l’application mobile, le mode vocal rend tout utilisable sans les mains. Mêmes livres, mêmes conversations, pas besoin d’écran."
+  },
+  "voice": {
+    "say": {
+      "title": "Dites « Zaydoun »",
+      "text": "Le mode vocal guette son nom tant que l’application est ouverte."
+    },
+    "ask": {
+      "title": "Posez votre question à voix haute",
+      "text": "Votre enregistrement est transcrit, puis aussitôt supprimé du serveur."
+    },
+    "same": {
+      "title": "La même lecture",
+      "text": "Vos paroles passent par la même recherche et la même réponse que les questions écrites."
+    },
+    "answers": {
+      "title": "Il répond à voix haute",
+      "text": "La réponse vous est lue, et son texte est enregistré dans la conversation."
+    }
+  },
+  "knowTitle": "Bon à savoir.",
+  "know": {
+    "pdfs": {
+      "title": "Des PDF avec du vrai texte",
+      "text": "Jusqu’à 50 Mo. Un livre scanné sans couche texte ne peut pas encore être lu."
+    },
+    "pages": {
+      "title": "Les pages suivent votre PDF",
+      "text": "Ce sont les pages du PDF lui-même : elles peuvent différer des numéros imprimés si le livre a des pages liminaires."
+    },
+    "silent": {
+      "title": "Quand le livre se tait",
+      "text": "Si aucun passage ne correspond à votre question, Zaydoun répond avec ses connaissances générales, sans étiquette de page."
+    },
+    "languages": {
+      "title": "Deux langues par conversation",
+      "text": "La langue du livre et la langue de réponse sont indépendantes. Changez la langue de réponse quand vous voulez."
+    },
+    "free": {
+      "title": "Gratuit",
+      "text": "Un compte gratuit contient 2 livres et 15 messages par jour. Le compteur repart à zéro à minuit UTC."
+    },
+    "lost": {
+      "title": "Rien ne se perd",
+      "text": "Chaque conversation est enregistrée avec les pages citées. Reprenez où vous en étiez, sur le web ou dans l’application."
+    }
+  },
+  "cta": {
+    "title": "Votre premier livre prend une minute.",
+    "features": "Voir toutes les fonctionnalités",
+    "start": "Commencer gratuitement"
+  }
+}

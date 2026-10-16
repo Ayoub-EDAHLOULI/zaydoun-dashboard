@@ -1,0 +1,44 @@
+{
+  "title": "Profil",
+  "account": "Compte",
+  "noName": "Pas encore de nom",
+  "editName": "Modifier le nom",
+  "fullName": "Nom complet",
+  "save": "Enregistrer",
+  "memberSince": "Membre depuis {date} · {books, plural, one {# livre} other {# livres}} · {conversations, plural, one {# conversation} other {# conversations}}",
+  "toast": {
+    "loadFailed": "Impossible de charger votre profil",
+    "nameUpdated": "Nom mis à jour",
+    "nameFailed": "Impossible de modifier votre nom",
+    "prefFailed": "Impossible d’enregistrer cette préférence dans votre navigateur",
+    "passwordUpdated": "Mot de passe mis à jour",
+    "passwordFailed": "Impossible de modifier votre mot de passe",
+    "deleted": "Votre compte a été supprimé",
+    "deleteFailed": "Impossible de supprimer votre compte"
+  },
+  "prefs": {
+    "title": "Préférences de lecture",
+    "description": "Utilisées par défaut pour les nouvelles conversations.",
+    "repliesIn": "Zaydoun répond en",
+    "saved": "Enregistré",
+    "appLanguage": "Langue de l’application",
+    "appLanguageHint": "La langue des menus et des boutons. La langue de réponse de Zaydoun se règle au-dessus."
+  },
+  "password": {
+    "title": "Changer de mot de passe",
+    "current": "Mot de passe actuel",
+    "new": "Nouveau mot de passe",
+    "confirm": "Confirmez le nouveau mot de passe",
+    "submit": "Mettre à jour"
+  },
+  "delete": {
+    "title": "Supprimer le compte",
+    "body": "Supprime vos livres, toutes vos conversations et votre compte. Action irréversible.",
+    "action": "Supprimer mon compte",
+    "confirmTitle": "Supprimer votre compte ?",
+    "confirmBody": "{books, plural, one {Votre livre} other {Vos # livres}} et {conversations, plural, one {votre conversation} other {vos # conversations}} disparaîtront définitivement.",
+    "confirm": "Supprimer définitivement",
+    "keep": "Garder mon compte",
+    "word": "SUPPRIMER"
+  }
+}

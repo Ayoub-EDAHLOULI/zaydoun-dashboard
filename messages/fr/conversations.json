@@ -1,0 +1,81 @@
+{
+  "fallbackTitle": {
+    "about": "À propos de {title}",
+    "new": "Nouvelle conversation"
+  },
+  "groups": {
+    "today": "Aujourd’hui",
+    "thisWeek": "Cette semaine",
+    "earlier": "Plus tôt"
+  },
+  "toast": {
+    "loadFailed": "Impossible de charger les conversations",
+    "deleted": "Conversation supprimée",
+    "deleteFailed": "Échec de la suppression"
+  },
+  "summary": "{count, plural, one {# conversation} other {# conversations}}",
+  "summaryBooks": "{count, plural, one {# conversation} other {# conversations}} sur {books, plural, one {# livre} other {# livres}}",
+  "new": "Nouvelle conversation",
+  "heading": "Conversations",
+  "empty": {
+    "title": "Aucune conversation pour l’instant",
+    "body": "Choisissez un livre que Zaydoun a lu et posez-lui toutes vos questions.",
+    "action": "En commencer une"
+  },
+  "search": "Rechercher une conversation",
+  "filterByBook": "Filtrer par livre",
+  "allBooks": "Tous les livres",
+  "noMatchQuery": "Aucune conversation ne correspond à « {query} ».",
+  "noMatchFilter": "Aucune conversation ne correspond à ce filtre.",
+  "preview": {
+    "zaydoun": "Zaydoun : {text}",
+    "you": "Vous : {text}",
+    "none": "Aucun message pour l’instant"
+  },
+  "actionsFor": "Actions pour {title}",
+  "delete": {
+    "action": "Supprimer la conversation",
+    "keep": "La garder",
+    "title": "Supprimer cette conversation ?",
+    "body": "« {title} » et ses messages seront supprimés définitivement. Le livre reste sur votre étagère."
+  },
+  "newDialog": {
+    "title": "Nouvelle conversation",
+    "description": "Choisissez un livre que Zaydoun a fini de lire, et la langue dans laquelle il doit répondre.",
+    "failed": "Impossible de lancer la conversation",
+    "book": "Livre",
+    "emptyShelf": "Votre étagère est vide. Importez d’abord un livre depuis la Bibliothèque.",
+    "failedBook": "Zaydoun n’a pas pu lire celui-ci.",
+    "stillReading": "En cours de lecture. Disponible quand il sera Prêt.",
+    "repliesIn": "Zaydoun répond en",
+    "languageHint": "Par défaut, votre préférence du Profil. Vous pourrez la changer dans la conversation.",
+    "cancel": "Annuler",
+    "start": "Commencer"
+  },
+  "chat": {
+    "today": "Aujourd’hui",
+    "yesterday": "Hier",
+    "repliesInLabel": "Répond en",
+    "aboutBook": "À propos de ce livre",
+    "citedHere": "Pages citées ici",
+    "noCited": "Aucune page citée pour l’instant.",
+    "citedHint": "Un index des passages du livre visités par cette conversation.",
+    "others": "Autres conversations",
+    "notFound": "Conversation introuvable",
+    "quota": "{left} messages sur {limit} restants aujourd’hui",
+    "sendFailed": "Impossible d’envoyer votre message",
+    "languageFailed": "Impossible de changer la langue",
+    "started": "commencée le {date}",
+    "back": "Retour aux conversations",
+    "repliesIn": "Répond en {language}",
+    "actions": "Actions de la conversation",
+    "settings": "Réglages de la conversation",
+    "log": "Conversation",
+    "emptyTitle": "Demandez à Zaydoun à propos de <em>{title}</em>",
+    "thisBook": "ce livre",
+    "emptyBody": "Demandez une explication, contestez une idée ou demandez où se trouve un passage. Il répondra en {language}.",
+    "placeholder": "Questionnez, contestez ou demandez un exemple…",
+    "hint": "Entrée pour envoyer · Maj+Entrée pour aller à la ligne",
+    "deleteBody": "Ses messages seront supprimés définitivement. Le livre reste sur votre étagère."
+  }
+}

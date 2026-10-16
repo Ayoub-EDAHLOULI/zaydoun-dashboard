@@ -1,0 +1,115 @@
+{
+  "eyebrow": "So funktioniert’s",
+  "title": "Vom PDF zum Gespräch. <em>Schritt für Schritt.</em>",
+  "lead": "Keine Einrichtung, nichts zu lernen. So läuft es genau ab – vom Hochladen eines Buchs bis Zaydoun dir daraus zitiert.",
+  "stepsTitle": "Die vier Schritte",
+  "stepLabel": "Schritt {n}:",
+  "s1": {
+    "title": "PDF hochladen",
+    "body": "Lade im Web ein PDF bis 50 MB hoch, gib ihm einen Titel und sag, in welcher Sprache es geschrieben ist. Es landet sofort in deinem Regal."
+  },
+  "s2": {
+    "title": "Zaydoun liest es",
+    "body": "Klick auf „Zaydoun lesen lassen“. Er nimmt den Text Seite für Seite, teilt lange Seiten in Abschnitte von etwa 400 Wörtern und indexiert jeden nach seiner Bedeutung, mitsamt Seitenzahl. Das Buch zeigt erst In Bearbeitung, dann Bereit."
+  },
+  "s3": {
+    "title": "Ein Gespräch beginnen",
+    "body": "Wähle ein Buch, das Bereit ist, und die Sprache, in der Zaydoun antworten soll: Englisch, Arabisch, Französisch, Spanisch oder Chinesisch. Eine französische Antwort zu einem englischen Buch? Kein Problem."
+  },
+  "s4": {
+    "title": "Fragen und die Seite prüfen",
+    "body": "Frag, was du willst: eine Stelle erklären, mit dem Autor streiten, finden, wo eine Idee steht. Zaydoun antwortet aus dem Buch und nennt die Seite, damit du sie in den Worten des Autors lesen kannst."
+  },
+  "visuals": {
+    "readyToUpload": "{size} · bereit zum Hochladen",
+    "title": "Titel",
+    "language": "Sprache",
+    "english": "Englisch",
+    "bookTitle": "Der Fürst",
+    "splitting": "Aufteilen in Abschnitte",
+    "passage": "S. {page} · {part} von {of}",
+    "indexed": "Nach Bedeutung indexiert",
+    "bookMeta": "Machiavelli · Englisch · 140 Seiten",
+    "repliesIn": "Zaydoun antwortet auf",
+    "question": "Ist es besser, gefürchtet oder geliebt zu werden?",
+    "answer": "Beides, wenn es geht. Weil das aber selten ist, hält er Furcht für sicherer: Liebe ist ein Band, das Menschen brechen, wenn es ihnen passt; Furcht hält, weil sie die Strafe fürchten."
+  },
+  "ask": {
+    "eyebrow": "Unter der Oberfläche",
+    "title": "Was passiert, wenn du <em>fragst.</em>",
+    "lead": "Es dauert ein paar Sekunden. Das passiert darin."
+  },
+  "pipeline": {
+    "question": {
+      "label": "Deine Frage",
+      "detail": "Im Web getippt oder in der App gesprochen und von Whisper transkribiert."
+    },
+    "passages": {
+      "label": "Die passenden Stellen",
+      "detail": "Zaydoun durchsucht dein Buch nach Bedeutung und holt die 5 nächstliegenden Stellen. Nur dein Buch, nie das eines anderen."
+    },
+    "answer": {
+      "label": "Eine Antwort",
+      "detail": "GPT-4o mini antwortet anhand dieser Stellen, mit deinen letzten 10 Nachrichten als Kontext."
+    },
+    "page": {
+      "label": "Die Seite",
+      "detail": "Die Antwort trägt die Seite der Stelle, auf die sie sich am meisten gestützt hat."
+    }
+  },
+  "voiceSection": {
+    "eyebrow": "Auf dem Handy",
+    "title": "Oder sag einfach <em>„Zaydoun“.</em>",
+    "lead": "In der Mobile-App macht der Sprachmodus alles freihändig. Dieselben Bücher, dieselben Gespräche, kein Bildschirm nötig."
+  },
+  "voice": {
+    "say": {
+      "title": "Sag „Zaydoun“",
+      "text": "Der Sprachmodus hört auf seinen Namen, solange die App offen ist."
+    },
+    "ask": {
+      "title": "Laut fragen",
+      "text": "Deine Aufnahme wird transkribiert und dann sofort vom Server gelöscht."
+    },
+    "same": {
+      "title": "Dasselbe Lesen",
+      "text": "Deine Worte durchlaufen dieselbe Suche und Antwort wie getippte Fragen."
+    },
+    "answers": {
+      "title": "Er antwortet laut",
+      "text": "Die Antwort wird dir vorgelesen, und ihr Text wird im Gespräch gespeichert."
+    }
+  },
+  "knowTitle": "Gut zu wissen.",
+  "know": {
+    "pdfs": {
+      "title": "PDFs mit echtem Text",
+      "text": "Bis 50 MB. Ein gescanntes Buch ohne Textebene kann noch nicht gelesen werden."
+    },
+    "pages": {
+      "title": "Seitenzahlen folgen deinem PDF",
+      "text": "Es sind die Seiten des PDFs selbst, sie können also von den gedruckten abweichen, wenn ein Buch Vorspann-Seiten hat."
+    },
+    "silent": {
+      "title": "Wenn das Buch schweigt",
+      "text": "Passt keine Stelle zu deiner Frage, antwortet Zaydoun aus Allgemeinwissen, ohne Seitenangabe."
+    },
+    "languages": {
+      "title": "Zwei Sprachen pro Gespräch",
+      "text": "Buchsprache und Antwortsprache sind unabhängig. Ändere die Antwortsprache jederzeit."
+    },
+    "free": {
+      "title": "Kostenlos nutzbar",
+      "text": "Ein kostenloses Konto fasst 2 Bücher und 15 Nachrichten pro Tag. Der Zähler wird um Mitternacht UTC zurückgesetzt."
+    },
+    "lost": {
+      "title": "Nichts geht verloren",
+      "text": "Jedes Gespräch wird mit den zitierten Seiten gespeichert. Mach weiter, wo du aufgehört hast, im Web oder in der App."
+    }
+  },
+  "cta": {
+    "title": "Dein erstes Buch dauert eine Minute.",
+    "features": "Alle Funktionen ansehen",
+    "start": "Kostenlos starten"
+  }
+}

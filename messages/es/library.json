@@ -1,0 +1,85 @@
+{
+  "title": "Biblioteca",
+  "uploadButton": "Subir libro",
+  "booksLabel": "Libros",
+  "lastSlot": "Esto usa tu último hueco gratuito.",
+  "summary": {
+    "books": "{count, plural, one {# libro} other {# libros}}",
+    "ready": "{count, plural, one {# listo} other {# listos}} para hablar",
+    "reading": "{count} en lectura"
+  },
+  "lastOpened": {
+    "today": "abierto hoy",
+    "yesterday": "abierto ayer",
+    "daysAgo": "abierto hace {count} días",
+    "on": "abierto el {date}"
+  },
+  "toast": {
+    "loadFailed": "No pudimos cargar tus libros",
+    "ready": "«{title}» está listo para hablar.",
+    "failed": "Zaydoun no pudo leer «{title}».",
+    "uploaded": "«{title}» está en tu estantería. Deja que Zaydoun lo lea cuando quieras.",
+    "uploadFailed": "Error al subir",
+    "reading": "Zaydoun está leyendo «{title}». Te avisaremos.",
+    "processFailed": "No se pudo empezar la lectura",
+    "deleted": "«{title}» se ha eliminado.",
+    "deleteFailed": "Error al eliminar"
+  },
+  "card": {
+    "talk": "Hablar de este libro",
+    "conversations": "{count, plural, one {# conversación} other {# conversaciones}}",
+    "noConversations": "Aún no hay conversaciones",
+    "processing": "Zaydoun lo está leyendo. Te avisaremos.",
+    "read": "Deja que Zaydoun lo lea",
+    "pending": "Subido. Zaydoun aún no lo ha leído.",
+    "retry": "Reintentar",
+    "failed": "Zaydoun no pudo leer este PDF."
+  },
+  "delete": {
+    "action": "Eliminar libro",
+    "keep": "Conservarlo",
+    "title": "¿Eliminar «{title}»?",
+    "withConversations": "Esto elimina el libro y {count, plural, one {su conversación} other {sus # conversaciones}}.",
+    "bookOnly": "Esto quita el libro de tu estantería.",
+    "freesSlot": "Libera uno de tus huecos gratuitos.",
+    "permanent": "No se puede deshacer."
+  },
+  "empty": {
+    "title": "Tu estantería está vacía",
+    "body": "Sube un PDF y Zaydoun lo leerá, página a página, antes de tu primera pregunta.",
+    "action": "Subir un libro"
+  },
+  "search": {
+    "label": "Buscar en tus libros",
+    "placeholder": "Buscar título o autor"
+  },
+  "filter": {
+    "label": "Filtrar por estado",
+    "all": "Todos",
+    "ready": "Listos",
+    "progress": "En curso"
+  },
+  "noMatchQuery": "Ningún libro coincide con «{query}».",
+  "noMatchFilter": "Ningún libro coincide con este filtro.",
+  "noSlot": {
+    "title": "Sin huecos libres",
+    "body": "Tus libros gratuitos ya están en la estantería. Borra uno desde su menú ··· para subir otro."
+  },
+  "upload": {
+    "title": "Añadir un libro",
+    "description": "Zaydoun lo lee página a página para poder citar de dónde sale cada respuesta.",
+    "titleLabel": "Título",
+    "author": "Autor <optional>(opcional)</optional>",
+    "authorPlaceholder": "p. ej. Marco Aurelio",
+    "language": "Idioma",
+    "languageHint": "El idioma en que está escrito el libro.",
+    "uploading": "Subiendo…",
+    "submit": "Subir libro",
+    "errors": {
+      "noFile": "Elige un PDF para subir.",
+      "titleRequired": "Ponle un título al libro.",
+      "tooLong": "Usa como máximo 255 caracteres.",
+      "languageCode": "Elige el idioma del libro."
+    }
+  }
+}

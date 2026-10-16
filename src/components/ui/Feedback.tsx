@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { BookOpen, Clock } from "lucide-react";
+import { useFormatter, useTranslations } from "next-intl";
 import { cn } from "@/lib/cn";
 import { Orb } from "./Orb";
 
@@ -9,10 +10,10 @@ import { Orb } from "./Orb";
 
 // The API resets the daily message count at midnight UTC — show that moment
 // in the viewer's local time so "back at …" is accurate.
-function nextResetTime(): string {
+function nextReset(): Date {
   const reset = new Date();
   reset.setUTCHours(24, 0, 0, 0);
-  return reset.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  return reset;
 }
 
 interface LimitBannerProps {
@@ -33,15 +34,24 @@ export function LimitBanner({
   action,
   className,
 }: LimitBannerProps) {
+  const t = useTranslations("common.limits");
+  const format = useFormatter();
   const Icon = variant === "books" ? BookOpen : Clock;
   const defaultTitle =
     variant === "books"
-      ? `Your shelf is full: ${limit} of ${limit} free books`
-      : `You've used today's ${limit} messages`;
+      ? t("shelfFull", { limit })
+      : t("messagesUsed", { limit });
   const defaultDescription =
     variant === "books"
-      ? "Delete a book from its ··· menu to make room for another one."
-      : `Zaydoun will be back at ${nextResetTime()}. Past conversations stay open to read.`;
+      ? t("shelfFullHint")
+      : t("messagesUsedHint", {
+          time: format.dateTime(nextReset(), {
+            hour: "2-digit",
+            minute: "2-digit",
+            // The viewer's own timezone, not the server's
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          }),
+        });
 
   return (
     <div

@@ -2,6 +2,8 @@
 
 import type { ReactNode } from "react";
 import { MotionConfig, motion, type Variants } from "framer-motion";
+import { useLocale } from "next-intl";
+import { isRtl } from "@/i18n/routing";
 
 // ---------------------------------------------------------------------------
 // Motion tokens — one curve, three speeds, used everywhere
@@ -62,7 +64,8 @@ interface RevealProps {
   delay?: number;
   /** Distance to rise from, px. 0 = fade only */
   y?: number;
-  /** Slide in from the side instead (px; negative = from the left) */
+  /** Slide in from the side instead (px; negative = from the start side —
+   *  the left, or the right in Arabic, where it is mirrored) */
   x?: number;
   /** Start slightly smaller (e.g. 0.96) */
   scale?: number;
@@ -85,10 +88,11 @@ export function Reveal({
   ...rest
 }: RevealProps) {
   const Component = TAGS[as];
+  const dirX = isRtl(useLocale()) ? -x : x;
   return (
     <Component
       className={className}
-      initial={{ opacity: 0, y, x, scale }}
+      initial={{ opacity: 0, y, x: dirX, scale }}
       whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
       viewport={VIEWPORT}
       transition={{ duration, delay, ease: EASE_OUT }}

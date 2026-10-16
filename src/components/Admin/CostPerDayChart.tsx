@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/lib/cn";
 import type { DailyUsage, UsagePeriod } from "@/types/users.types";
-import { formatUsd } from "./format";
+import { useAdminFormat } from "./format";
 
 interface Bucket {
   key: string;
@@ -20,7 +21,12 @@ const isoDay = (d: Date) => d.toISOString().slice(0, 10);
 
 // One bar per day for the period, filling the days with no usage with 0.
 // "All time" spanning more than ~2 months is grouped by month instead.
-function toBuckets(daily: DailyUsage[], period: UsagePeriod): Bucket[] {
+function toBuckets(
+  daily: DailyUsage[],
+  period: UsagePeriod,
+  locale: string,
+  todayLabel: string,
+): Bucket[] {
   const byDay = new Map(daily.map((d) => [d.date, d]));
   const today = new Date();
   const todayKey = isoDay(today);
@@ -43,8 +49,8 @@ function toBuckets(daily: DailyUsage[], period: UsagePeriod): Bucket[] {
       const date = new Date(`${d.date}T00:00:00`);
       const b = months.get(key) ?? {
         key,
-        label: date.toLocaleDateString(undefined, { month: "short" }),
-        longLabel: date.toLocaleDateString(undefined, { month: "long", year: "numeric" }),
+        label: date.toLocaleDateString(locale, { month: "short" }),
+        longLabel: date.toLocaleDateString(locale, { month: "long", year: "numeric" }),
         cost: 0,
         messages: 0,
         isCurrent: key === todayKey.slice(0, 7),
@@ -64,11 +70,11 @@ function toBuckets(daily: DailyUsage[], period: UsagePeriod): Bucket[] {
     return {
       key,
       label: isCurrent
-        ? "Today"
+        ? todayLabel
         : span <= 7
-          ? date.toLocaleDateString(undefined, { weekday: "short", day: "numeric" })
-          : date.toLocaleDateString(undefined, { day: "numeric" }),
-      longLabel: date.toLocaleDateString(undefined, {
+          ? date.toLocaleDateString(locale, { weekday: "short", day: "numeric" })
+          : date.toLocaleDateString(locale, { day: "numeric" }),
+      longLabel: date.toLocaleDateString(locale, {
         weekday: "long",
         month: "long",
         day: "numeric",
@@ -98,10 +104,18 @@ export function CostPerDayChart({
   daily: DailyUsage[];
   period: UsagePeriod;
 }) {
+  const t = useTranslations("admin.chart");
+  const locale = useLocale();
+  const fmt = useAdminFormat();
+  const formatUsd = fmt.usd;
   const [asTable, setAsTable] = useState(false);
   const [hover, setHover] = useState<string | null>(null);
 
-  const buckets = useMemo(() => toBuckets(daily, period), [daily, period]);
+  const todayLabel = t("today");
+  const buckets = useMemo(
+    () => toBuckets(daily, period, locale, todayLabel),
+    [daily, period, locale, todayLabel],
+  );
   const ticks = niceTicks(Math.max(...buckets.map((b) => b.cost), 0));
   const top = ticks[ticks.length - 1];
   const peak = buckets.reduce<Bucket | null>(
@@ -115,7 +129,7 @@ export function CostPerDayChart({
     <figure className="flex min-w-0 flex-[2_1_520px] flex-col gap-5 rounded-md border border-border bg-bg-surface p-6">
       <figcaption className="flex items-baseline justify-between gap-4">
         <span className="text-base font-semibold">
-          {buckets.length > 31 ? "Cost per month" : "Cost per day"}
+          {buckets.length > 31 ? t("perMonth") : t("perDay")}
         </span>
         <span className="flex items-baseline gap-3 text-13 text-text-secondary">
           USD
@@ -125,7 +139,7 @@ export function CostPerDayChart({
             aria-pressed={asTable}
             className="rounded-xs text-gold-light hover:text-text-primary"
           >
-            {asTable ? "View as chart" : "View as table"}
+            {asTable ? t("asChart") : t("asTable")}
           </button>
         </span>
       </figcaption>
@@ -134,25 +148,26 @@ export function CostPerDayChart({
         <div className="max-h-[260px] overflow-y-auto">
           <table className="w-full text-sm tabular-nums">
             <thead>
-              <tr className="text-left text-xs text-text-secondary">
-                <th scope="col" className="pb-2 font-medium">Day</th>
-                <th scope="col" className="pb-2 text-right font-medium">Messages</th>
-                <th scope="col" className="pb-2 text-right font-medium">Cost</th>
+              <tr className="text-start text-xs text-text-secondary">
+                <th scope="col" className="pb-2 text-start font-medium">{t("day")}</th>
+                <th scope="col" className="pb-2 text-end font-medium">{t("messages")}</th>
+                <th scope="col" className="pb-2 text-end font-medium">{t("cost")}</th>
               </tr>
             </thead>
             <tbody>
               {buckets.map((b) => (
                 <tr key={b.key} className="border-t border-border-subtle">
                   <td className="py-2">{b.longLabel}</td>
-                  <td className="py-2 text-right text-text-secondary">{b.messages}</td>
-                  <td className="py-2 text-right">{formatUsd(b.cost)}</td>
+                  <td className="py-2 text-end text-text-secondary">{b.messages}</td>
+                  <td className="py-2 text-end">{formatUsd(b.cost)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : (
-        <div className="flex gap-3" role="group" aria-label="Cost per day chart">
+        // Time runs left to right in every language
+        <div dir="ltr" className="flex gap-3" role="group" aria-label={t("chartLabel")}>
           {/* Y axis */}
           <div
             aria-hidden
@@ -191,7 +206,11 @@ export function CostPerDayChart({
                   <button
                     key={b.key}
                     type="button"
-                    aria-label={`${b.longLabel}: ${formatUsd(b.cost)}, ${b.messages} messages`}
+                    aria-label={t("barLabel", {
+                      day: b.longLabel,
+                      cost: formatUsd(b.cost),
+                      count: b.messages,
+                    })}
                     onMouseEnter={() => setHover(b.key)}
                     onMouseLeave={() => setHover(null)}
                     onFocus={() => setHover(b.key)}
@@ -224,7 +243,7 @@ export function CostPerDayChart({
                       >
                         <span className="text-text-secondary">{b.longLabel}</span>
                         <span className="font-semibold text-text-primary tabular-nums">
-                          {formatUsd(b.cost)} · {b.messages} messages
+                          {formatUsd(b.cost)} · {t("messagesCount", { count: b.messages })}
                         </span>
                       </span>
                     )}

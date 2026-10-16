@@ -1,0 +1,85 @@
+{
+  "title": "Bibliothek",
+  "uploadButton": "Buch hochladen",
+  "booksLabel": "Bücher",
+  "lastSlot": "Damit nutzt du deinen letzten freien Platz.",
+  "summary": {
+    "books": "{count, plural, one {# Buch} other {# Bücher}}",
+    "ready": "{count} bereit zum Gespräch",
+    "reading": "{count} wird gelesen"
+  },
+  "lastOpened": {
+    "today": "heute geöffnet",
+    "yesterday": "gestern geöffnet",
+    "daysAgo": "vor {count} Tagen geöffnet",
+    "on": "zuletzt am {date} geöffnet"
+  },
+  "toast": {
+    "loadFailed": "Deine Bücher konnten nicht geladen werden",
+    "ready": "„{title}“ ist bereit fürs Gespräch.",
+    "failed": "Zaydoun konnte „{title}“ nicht lesen.",
+    "uploaded": "„{title}“ steht in deinem Regal. Lass Zaydoun es lesen, wann du willst.",
+    "uploadFailed": "Hochladen fehlgeschlagen",
+    "reading": "Zaydoun liest „{title}“. Wir sagen dir Bescheid.",
+    "processFailed": "Lesen konnte nicht gestartet werden",
+    "deleted": "„{title}“ wurde entfernt.",
+    "deleteFailed": "Löschen fehlgeschlagen"
+  },
+  "card": {
+    "talk": "Mit diesem Buch sprechen",
+    "conversations": "{count, plural, one {# Gespräch} other {# Gespräche}}",
+    "noConversations": "Noch keine Gespräche",
+    "processing": "Zaydoun liest es gerade. Wir sagen dir Bescheid.",
+    "read": "Zaydoun lesen lassen",
+    "pending": "Hochgeladen. Zaydoun hat es noch nicht gelesen.",
+    "retry": "Erneut versuchen",
+    "failed": "Zaydoun konnte dieses PDF nicht lesen."
+  },
+  "delete": {
+    "action": "Buch löschen",
+    "keep": "Behalten",
+    "title": "„{title}“ löschen?",
+    "withConversations": "Damit werden das Buch und {count, plural, one {sein Gespräch} other {seine # Gespräche}} entfernt.",
+    "bookOnly": "Damit wird das Buch aus deinem Regal entfernt.",
+    "freesSlot": "Einer deiner freien Plätze wird frei.",
+    "permanent": "Das lässt sich nicht rückgängig machen."
+  },
+  "empty": {
+    "title": "Dein Regal ist leer",
+    "body": "Lade ein PDF hoch, und Zaydoun liest es Seite für Seite, bevor du die erste Frage stellst.",
+    "action": "Buch hochladen"
+  },
+  "search": {
+    "label": "Deine Bücher durchsuchen",
+    "placeholder": "Titel oder Autor suchen"
+  },
+  "filter": {
+    "label": "Nach Status filtern",
+    "all": "Alle",
+    "ready": "Bereit",
+    "progress": "In Arbeit"
+  },
+  "noMatchQuery": "Keine Bücher passen zu „{query}“.",
+  "noMatchFilter": "Keine Bücher passen zu diesem Filter.",
+  "noSlot": {
+    "title": "Kein freier Platz",
+    "body": "Deine kostenlosen Bücher stehen alle im Regal. Lösch eins über sein ···-Menü, um ein neues hochzuladen."
+  },
+  "upload": {
+    "title": "Buch hinzufügen",
+    "description": "Zaydoun liest es Seite für Seite, damit er bei jeder Antwort die Quelle nennen kann.",
+    "titleLabel": "Titel",
+    "author": "Autor <optional>(optional)</optional>",
+    "authorPlaceholder": "z. B. Mark Aurel",
+    "language": "Sprache",
+    "languageHint": "Die Sprache, in der das Buch geschrieben ist.",
+    "uploading": "Wird hochgeladen…",
+    "submit": "Buch hochladen",
+    "errors": {
+      "noFile": "Wähle ein PDF zum Hochladen.",
+      "titleRequired": "Gib dem Buch einen Titel.",
+      "tooLong": "Höchstens 255 Zeichen.",
+      "languageCode": "Wähle die Sprache des Buchs."
+    }
+  }
+}

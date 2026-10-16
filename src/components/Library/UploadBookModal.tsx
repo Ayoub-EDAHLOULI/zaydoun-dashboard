@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { Upload } from "lucide-react";
 import { Button, FileDropZone, Input, Modal, Select } from "@/components/ui";
 import { uploadBookSchema } from "@/validations/books.validations";
@@ -20,6 +21,7 @@ interface UploadBookModalProps {
 // "Add a book" — a dialog on desktop, a bottom sheet on mobile.
 // The form lives in its own component so it resets every time it opens.
 export function UploadBookModal({ open, onClose, onUpload, note }: UploadBookModalProps) {
+  const t = useTranslations("library.upload");
   const [busy, setBusy] = useState(false);
   // New key each time it opens, so the form starts fresh (and stays mounted
   // while the dialog animates out)
@@ -33,8 +35,8 @@ export function UploadBookModal({ open, onClose, onUpload, note }: UploadBookMod
     <Modal
       open={open}
       onClose={onClose}
-      title="Add a book"
-      description="Zaydoun reads it page by page, so he can cite where every answer comes from."
+      title={t("title")}
+      description={t("description")}
       dismissible={!busy}
     >
       <UploadForm
@@ -59,6 +61,7 @@ function UploadForm({
   note?: string;
   onBusyChange: (busy: boolean) => void;
 }) {
+  const t = useTranslations("library.upload");
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -78,11 +81,13 @@ function UploadForm({
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     const next: FieldErrors = {};
-    if (!file) next.file = "Choose a PDF to upload.";
+    if (!file) next.file = t("errors.noFile");
     const parsed = uploadBookSchema.safeParse({ title, author, language });
     if (!parsed.success) {
       for (const issue of parsed.error.issues) {
-        next[issue.path[0] as keyof FieldErrors] = issue.message;
+        next[issue.path[0] as keyof FieldErrors] = t(
+          `errors.${issue.message as "titleRequired"}`,
+        );
       }
     }
     setErrors(next);
@@ -110,7 +115,7 @@ function UploadForm({
       <FileDropZone file={file} onFileSelect={pickFile} error={errors.file} disabled={busy} />
 
       <Input
-        label="Title"
+        label={t("titleLabel")}
         value={title}
         onChange={(e) => {
           setTitle(e.target.value);
@@ -124,25 +129,25 @@ function UploadForm({
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Input
-          label={
-            <>
-              Author <span className="font-normal text-text-secondary">(optional)</span>
-            </>
-          }
+          label={t.rich("author", {
+            optional: (chunks) => (
+              <span className="font-normal text-text-secondary">{chunks}</span>
+            ),
+          })}
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           error={errors.author}
           disabled={busy}
           dir="auto"
-          placeholder="e.g. Marcus Aurelius"
+          placeholder={t("authorPlaceholder")}
         />
         <Select
-          label="Language"
+          label={t("language")}
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
           error={errors.language}
           disabled={busy}
-          hint="The language the book is written in."
+          hint={t("languageHint")}
         >
           {LANGUAGES.map((l) => (
             <option key={l.code} value={l.code}>
@@ -157,7 +162,7 @@ function UploadForm({
       <div className="flex flex-col-reverse gap-2.5 md:flex-row md:justify-end">
         <Button type="submit" loading={busy} fullWidth className="md:w-auto">
           {!busy && <Upload size={18} aria-hidden />}
-          {busy ? "Uploading…" : "Upload book"}
+          {busy ? t("uploading") : t("submit")}
         </Button>
       </div>
     </form>

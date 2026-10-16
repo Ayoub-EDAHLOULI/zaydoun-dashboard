@@ -1,0 +1,74 @@
+{
+  "eyebrow": "Funktionen",
+  "title": "Alles, was Zaydoun <em>mit einem Buch kann.</em>",
+  "lead": "Ein Lesepartner, im Web und in deiner Tasche. Das steckt drin.",
+  "f1": {
+    "title": "Antworten, die du prüfen kannst",
+    "body": "Zaydoun findet die wichtigen Stellen in deinem PDF, antwortet darauf gestützt und nennt die Seite, auf die er sich verlassen hat, damit du selbst nachlesen kannst.",
+    "b1": "Sucht nach Bedeutung, nicht nur nach gleichen Wörtern",
+    "b2": "Eine „Seite N“-Markierung bei Antworten, die auf einer Stelle beruhen",
+    "b3": "Zitierte Seiten pro Gespräch gesammelt",
+    "sample": "Er beschreibt es zuerst als Muster und kommt dann darauf zurück, was es mit dem Handel macht."
+  },
+  "f2": {
+    "title": "Stimme zuerst, freihändig",
+    "body": "Sag in der Mobile-App seinen Namen und sprich. Deine Stimme wird transkribiert, die Antwort wird dir vorgelesen, und der ganze Austausch wird in deinem Konto gespeichert.",
+    "b1": "Aktivierungswort: „Zaydoun“",
+    "b2": "Gesprochene Antworten in deiner Antwortsprache",
+    "b3": "Sprache im Web kommt bald",
+    "sample": "„Zaydoun, was ist sein stärkstes Argument in Kapitel 3?“"
+  },
+  "f3": {
+    "title": "Fünf Sprachen, Arabisch richtig gemacht",
+    "body": "Lade Bücher auf Englisch, Arabisch, Französisch, Spanisch oder Chinesisch hoch und wähle für jedes Gespräch die Antwortsprache. Arabisch läuft von rechts nach links, in einer echten arabischen Schrift."
+  },
+  "f4": {
+    "title": "PDF rein, Gespräch raus",
+    "body": "Lade ein PDF bis 50 MB hoch. Zaydoun zerlegt es Seite für Seite und baut einen Index, was wo steht. Du siehst jeden Schritt, während er passiert.",
+    "steps": "Ausstehend, dann in Bearbeitung, dann bereit"
+  },
+  "f5": {
+    "title": "Eine Bibliothek, die sich erinnert",
+    "body": "Deine Bücher in einem Regal, jedes Gespräch gespeichert und nach Buch filterbar. Öffne einen Faden vom letzten Monat und steig mitten in der Diskussion wieder ein."
+  },
+  "f6": {
+    "title": "Eine Admin-Konsole für Teams",
+    "body": "Admins verwalten Leser, Rollen und Zugriffe und sehen Nutzung und Kosten pro Tag und pro Gespräch. Leser sehen nur ihre Bücher."
+  },
+  "f7": {
+    "title": "Privat von Grund auf",
+    "body": "Deine Bücher und Gespräche gehören allein deinem Konto, und du kannst alles löschen. Um dir zu antworten, werden die relevanten Stellen an die API von OpenAI gesendet."
+  },
+  "hood": {
+    "label": "Unter der Haube, für Neugierige",
+    "retrieval": {
+      "term": "Suche",
+      "desc": "Semantische Suche über seitenweise Textabschnitte (pgvector)"
+    },
+    "answers": {
+      "term": "Antworten",
+      "desc": "GPT-4o mini, mit den Stellen, die es in deinem Buch gefunden hat"
+    },
+    "voiceIn": {
+      "term": "Spracheingabe",
+      "desc": "Spracherkennung mit Whisper"
+    },
+    "voiceOut": {
+      "term": "Sprachausgabe",
+      "desc": "Text-to-Speech in deiner Antwortsprache"
+    },
+    "accounts": {
+      "term": "Konten",
+      "desc": "JWT mit httpOnly-Refresh-Tokens, Passwörter mit bcrypt gehasht"
+    },
+    "isolation": {
+      "term": "Isolation",
+      "desc": "Jede Abfrage auf den angemeldeten Leser beschränkt"
+    }
+  },
+  "cta": {
+    "title": "Bereit, wenn dein Buch es ist.",
+    "ask": "Frag uns etwas",
+    "start": "Kostenlos starten"
+  }
+}

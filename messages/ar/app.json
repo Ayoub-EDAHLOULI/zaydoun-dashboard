@@ -1,0 +1,54 @@
+{
+  "home": {
+    "loadFailed": "تعذّر تحميل صفحتك الرئيسية",
+    "greeting": {
+      "late": "ما زلت ساهرًا",
+      "morning": "صباح الخير",
+      "afternoon": "طاب يومك",
+      "evening": "مساء الخير"
+    },
+    "greetingName": "{greeting} يا {name}.",
+    "greetingAlone": "{greeting}.",
+    "subtitleContinue": "كان {name} قد بلغ للتو الجزء الممتع.",
+    "subtitleReady": "كتبك جاهزة. اسأل زيدون عن أي شيء فيها.",
+    "subtitleEmpty": "أضف كتابًا وسيقرؤه زيدون معك صفحة بصفحة.",
+    "continueEyebrow": "أكمل من حيث توقفت",
+    "continue": "متابعة",
+    "first": {
+      "eyebrowReady": "ابدأ محادثتك الأولى",
+      "eyebrowEmpty": "لنبدأ",
+      "titleReady": "اختر كتابًا واطرح سؤالك الأول.",
+      "titleEmpty": "ضع كتابًا على رفّك.",
+      "bodyReady": "يجيب زيدون مع ذكر الصفحة التي وجد فيها الإجابة.",
+      "bodyEmpty": "ارفع ملف PDF. يقرؤه زيدون صفحة بصفحة ليتمكن من ذكر مصدر إجاباته."
+    },
+    "newConversation": "محادثة جديدة",
+    "uploadBook": "رفع كتاب",
+    "numbers": "أرقامك",
+    "stats": {
+      "books": "الكتب على رفّك",
+      "ready": "{count} جاهز",
+      "reading": "{count} قيد القراءة",
+      "noneYet": "لا شيء بعد",
+      "conversations": "المحادثات",
+      "thisWeek": "{count} هذا الأسبوع",
+      "messagesLeft": "الرسائل المتبقية اليوم",
+      "noLimit": "بلا حدود",
+      "adminAccount": "حساب مسؤول",
+      "messagesDetail": "من {limit} · يُعاد الضبط عند {time}"
+    },
+    "recent": "أحدث المحادثات",
+    "seeAll": "عرض الكل",
+    "noConversations": "لا محادثات بعد.",
+    "quick": {
+      "title": "إجراءات سريعة",
+      "newReady": "اختر كتابًا ولغة",
+      "newNone": "لا يوجد كتاب جاهز بعد",
+      "uploadFull": "الرف ممتلئ · احذف كتابًا أولًا",
+      "uploadDetail": "PDF، حتى 50 ميغابايت",
+      "library": "افتح مكتبتك",
+      "stillReading": "ما زال «{title}» قيد القراءة",
+      "booksOnShelf": "{count, plural, zero {لا كتب على رفّك} one {كتاب واحد على رفّك} two {كتابان على رفّك} few {# كتب على رفّك} many {# كتابًا على رفّك} other {# كتاب على رفّك}}"
+    }
+  }
+}

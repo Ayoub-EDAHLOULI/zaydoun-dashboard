@@ -1,0 +1,61 @@
+{
+  "language": {
+    "label": "Sprache: {language}. Sprache ändern",
+    "choose": "Sprache wählen"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich.",
+    "emailInvalid": "Gib eine vollständige E-Mail-Adresse ein.",
+    "passwordRequired": "Gib dein Passwort ein.",
+    "nameMin": "Verwende mindestens 2 Zeichen.",
+    "passwordMin": "Verwende mindestens 8 Zeichen.",
+    "passwordMax": "Verwende höchstens 100 Zeichen.",
+    "passwordWeak": "Verwende einen Groß- und einen Kleinbuchstaben sowie eine Ziffer.",
+    "passwordHint": "Mindestens 8 Zeichen, mit A–Z, a–z und 0–9.",
+    "retypePassword": "Gib dein Passwort noch einmal ein.",
+    "passwordsMismatch": "Die Passwörter stimmen nicht überein."
+  },
+  "trend": {
+    "up": "gestiegen",
+    "down": "gesunken",
+    "flat": "unverändert"
+  },
+  "cancel": "Abbrechen",
+  "close": "Schließen",
+  "typeToConfirm": "Gib <b>{text}</b> ein, um zu bestätigen",
+  "page": "Seite {page}",
+  "status": {
+    "pending": "Ausstehend",
+    "processing": "In Bearbeitung",
+    "ready": "Bereit",
+    "failed": "Fehlgeschlagen"
+  },
+  "chat": {
+    "copy": "Antwort kopieren",
+    "copied": "Kopiert",
+    "thinking": "Sucht die passenden Stellen…",
+    "placeholder": "Frag etwas zu diesem Buch…",
+    "messageLabel": "Nachricht an Zaydoun",
+    "voiceSoon": "Spracheingabe, bald verfügbar",
+    "soon": "BALD",
+    "send": "Senden"
+  },
+  "book": {
+    "pages": "{count, plural, one {# Seite} other {# Seiten}}",
+    "moreActions": "Weitere Aktionen für {title}"
+  },
+  "limits": {
+    "shelfFull": "Dein Regal ist voll: {limit} von {limit} kostenlosen Büchern",
+    "messagesUsed": "Du hast deine {limit} Nachrichten für heute verbraucht",
+    "shelfFullHint": "Lösche ein Buch über sein ···-Menü, um Platz für ein neues zu schaffen.",
+    "messagesUsedHint": "Zaydoun ist um {time} wieder da. Frühere Gespräche kannst du weiter lesen."
+  },
+  "upload": {
+    "onlyPdf": "Nur PDF-Dateien werden unterstützt.",
+    "tooBig": "Diese Datei ist größer als {size} MB.",
+    "release": "Loslassen, um dieses PDF hinzuzufügen",
+    "another": "Andere Datei wählen",
+    "drop": "PDF hier ablegen oder <browse>durchsuchen</browse>",
+    "limit": "Nur PDF · bis {size} MB"
+  }
+}

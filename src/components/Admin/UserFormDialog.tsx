@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { Send } from "lucide-react";
 import { Button, Input, Modal } from "@/components/ui";
 import {
@@ -16,9 +17,10 @@ type Mode =
   | { kind: "create"; onSubmit: (data: CreateAdminUserFormData) => Promise<void> }
   | { kind: "edit"; user: AdminUserRow; onSubmit: (data: EditAdminUserFormData) => Promise<void> };
 
+// Text: admin.json → users.form.roles.<key>
 const ROLES = [
-  { value: "USER", label: "Reader", detail: "Their own library and conversations" },
-  { value: "ADMIN", label: "Admin", detail: "Plus users, usage and costs" },
+  { value: "USER", key: "reader" },
+  { value: "ADMIN", key: "admin" },
 ] as const;
 
 // "Add a user" and "Edit details" — one form, two modes
@@ -31,6 +33,7 @@ export function UserFormDialog({
   onClose: () => void;
   mode: Mode | null;
 }) {
+  const t = useTranslations("admin.users.form");
   const [busy, setBusy] = useState(false);
   // New key each time it opens, so the form starts fresh
   const [wasOpen, setWasOpen] = useState(open);
@@ -45,12 +48,8 @@ export function UserFormDialog({
     <Modal
       open={open}
       onClose={onClose}
-      title={creating ? "Add a user" : "Edit details"}
-      description={
-        creating
-          ? "We'll email them a temporary password so they can log in."
-          : "Changes take effect right away."
-      }
+      title={creating ? t("addTitle") : t("editTitle")}
+      description={creating ? t("addDescription") : t("editDescription")}
       dismissible={!busy}
     >
       {mode && (
@@ -69,6 +68,9 @@ function UserForm({
   onDone: () => void;
   onBusyChange: (busy: boolean) => void;
 }) {
+  const t = useTranslations("admin.users.form");
+  const tv = useTranslations("common.validation");
+  const tc = useTranslations("common");
   const editing = mode.kind === "edit" ? mode.user : null;
   const [name, setName] = useState(editing?.name ?? "");
   const [email, setEmail] = useState(editing?.email ?? "");
@@ -86,7 +88,7 @@ function UserForm({
       const next: typeof errors = {};
       for (const issue of parsed.error.issues) {
         const key = issue.path[0] as "name" | "email";
-        next[key] ??= key === "email" ? "Enter a full email address." : issue.message;
+        next[key] ??= key === "email" ? tv("emailInvalid") : tv("nameMin");
       }
       setErrors(next);
       return;
@@ -109,7 +111,7 @@ function UserForm({
   return (
     <form onSubmit={submit} noValidate className="flex flex-col gap-5">
       <Input
-        label="Full name"
+        label={t("name")}
         value={name}
         onChange={(e) => {
           setName(e.target.value);
@@ -121,7 +123,7 @@ function UserForm({
         data-autofocus
       />
       <Input
-        label="Email"
+        label={t("email")}
         type="email"
         value={email}
         onChange={(e) => {
@@ -135,7 +137,9 @@ function UserForm({
 
       {mode.kind === "create" && (
         <fieldset className="flex flex-col gap-2.5">
-          <legend className="mb-2.5 text-13 font-medium text-text-secondary">Role</legend>
+          <legend className="mb-2.5 text-13 font-medium text-text-secondary">
+            {t("role")}
+          </legend>
           <div className="grid gap-2.5 sm:grid-cols-2">
             {ROLES.map((r) => {
               const selected = role === r.value;
@@ -160,8 +164,10 @@ function UserForm({
                     className="mt-0.5 size-[18px] shrink-0 accent-gold focus-visible:outline-none"
                   />
                   <span className="flex flex-col gap-0.5">
-                    <span className="text-15 font-medium">{r.label}</span>
-                    <span className="text-13 leading-snug text-text-secondary">{r.detail}</span>
+                    <span className="text-15 font-medium">{t(`roles.${r.key}.label`)}</span>
+                    <span className="text-13 leading-snug text-text-secondary">
+                      {t(`roles.${r.key}.detail`)}
+                    </span>
                   </span>
                 </label>
               );
@@ -172,16 +178,16 @@ function UserForm({
 
       <div className="flex flex-col-reverse gap-2.5 border-t border-border pt-4 md:flex-row md:justify-end">
         <Button variant="ghost" onClick={onDone} disabled={busy}>
-          Cancel
+          {tc("cancel")}
         </Button>
         <Button type="submit" loading={busy}>
           {mode.kind === "create" ? (
             <>
               {!busy && <Send size={16} aria-hidden />}
-              Add and send invite
+              {t("submitAdd")}
             </>
           ) : (
-            "Save changes"
+            t("submitEdit")
           )}
         </Button>
       </div>

@@ -1,0 +1,85 @@
+{
+  "title": "المكتبة",
+  "uploadButton": "رفع كتاب",
+  "booksLabel": "الكتب",
+  "lastSlot": "سيستخدم هذا آخر مكان مجاني لديك.",
+  "summary": {
+    "books": "{count, plural, zero {لا كتب} one {كتاب واحد} two {كتابان} few {# كتب} many {# كتابًا} other {# كتاب}}",
+    "ready": "{count} جاهز للحوار",
+    "reading": "{count} قيد القراءة"
+  },
+  "lastOpened": {
+    "today": "فُتح اليوم",
+    "yesterday": "فُتح أمس",
+    "daysAgo": "{count, plural, two {فُتح قبل يومين} few {فُتح قبل # أيام} other {فُتح قبل # يومًا}}",
+    "on": "فُتح في {date}"
+  },
+  "toast": {
+    "loadFailed": "تعذّر تحميل كتبك",
+    "ready": "«{title}» جاهز للحوار.",
+    "failed": "لم يتمكن زيدون من قراءة «{title}».",
+    "uploaded": "«{title}» على رفّك الآن. دع زيدون يقرؤه متى شئت.",
+    "uploadFailed": "فشل الرفع",
+    "reading": "زيدون يقرأ «{title}». سنخبرك حين ينتهي.",
+    "processFailed": "تعذّر بدء القراءة",
+    "deleted": "حُذف «{title}».",
+    "deleteFailed": "فشل الحذف"
+  },
+  "card": {
+    "talk": "حاور هذا الكتاب",
+    "conversations": "{count, plural, zero {لا محادثات} one {محادثة واحدة} two {محادثتان} few {# محادثات} many {# محادثة} other {# محادثة}}",
+    "noConversations": "لا محادثات بعد",
+    "processing": "زيدون يقرؤه الآن. سنخبرك حين ينتهي.",
+    "read": "دع زيدون يقرؤه",
+    "pending": "تم الرفع. لم يقرأه زيدون بعد.",
+    "retry": "أعد المحاولة",
+    "failed": "لم يتمكن زيدون من قراءة هذا الملف."
+  },
+  "delete": {
+    "action": "حذف الكتاب",
+    "keep": "الاحتفاظ به",
+    "title": "حذف «{title}»؟",
+    "withConversations": "سيُحذف الكتاب و{count, plural, one {محادثته} two {محادثتاه} few {محادثاته الـ #} many {محادثاته الـ #} other {محادثاته الـ #}}.",
+    "bookOnly": "سيُزال الكتاب من رفّك.",
+    "freesSlot": "وسيُحرَّر أحد أماكنك المجانية.",
+    "permanent": "لا يمكن التراجع عن ذلك."
+  },
+  "empty": {
+    "title": "رفّك فارغ",
+    "body": "ارفع ملف PDF وسيقرؤه زيدون صفحة بصفحة قبل سؤالك الأول.",
+    "action": "رفع كتاب"
+  },
+  "search": {
+    "label": "ابحث في كتبك",
+    "placeholder": "ابحث بالعنوان أو المؤلف"
+  },
+  "filter": {
+    "label": "تصفية حسب الحالة",
+    "all": "الكل",
+    "ready": "جاهزة",
+    "progress": "قيد التنفيذ"
+  },
+  "noMatchQuery": "لا كتب تطابق «{query}».",
+  "noMatchFilter": "لا كتب تطابق عامل التصفية هذا.",
+  "noSlot": {
+    "title": "لا مكان مجاني",
+    "body": "كتبك المجانية كلها على الرف. احذف أحدها من قائمة ··· الخاصة به لترفع كتابًا آخر."
+  },
+  "upload": {
+    "title": "إضافة كتاب",
+    "description": "يقرؤه زيدون صفحة بصفحة، ليتمكن من ذكر مصدر كل إجابة.",
+    "titleLabel": "العنوان",
+    "author": "المؤلف <optional>(اختياري)</optional>",
+    "authorPlaceholder": "مثال: ابن خلدون",
+    "language": "اللغة",
+    "languageHint": "اللغة التي كُتب بها الكتاب.",
+    "uploading": "جارٍ الرفع…",
+    "submit": "رفع الكتاب",
+    "errors": {
+      "noFile": "اختر ملف PDF لرفعه.",
+      "titleRequired": "أعطِ الكتاب عنوانًا.",
+      "tooLong": "استخدم 255 حرفًا على الأكثر.",
+      "languageCode": "اختر لغة الكتاب."
+    }
+  }
+}

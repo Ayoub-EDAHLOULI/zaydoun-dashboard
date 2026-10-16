@@ -1,0 +1,115 @@
+{
+  "eyebrow": "Cómo funciona",
+  "title": "De un PDF a una conversación. <em>Paso a paso.</em>",
+  "lead": "Sin instalaciones y sin nada que aprender. Esto es exactamente lo que pasa entre subir un libro y oír a Zaydoun citarlo.",
+  "stepsTitle": "Los cuatro pasos",
+  "stepLabel": "Paso {n}:",
+  "s1": {
+    "title": "Sube un PDF",
+    "body": "En la web, sube un PDF de hasta 50 MB, ponle un título e indica en qué idioma está escrito. Aparece en tu estantería al instante."
+  },
+  "s2": {
+    "title": "Zaydoun lo lee",
+    "body": "Haz clic en «Deja que Zaydoun lo lea». Toma el texto página a página, divide las páginas largas en pasajes de unas 400 palabras e indexa cada uno por su significado, conservando su número de página. El libro pasa de Procesando a Listo."
+  },
+  "s3": {
+    "title": "Empieza una conversación",
+    "body": "Elige un libro Listo y el idioma en que Zaydoun debe responder: inglés, árabe, francés, español o chino. Una respuesta en francés sobre un libro en inglés no es problema."
+  },
+  "s4": {
+    "title": "Pregunta y comprueba la página",
+    "body": "Pregunta lo que quieras: que te explique un pasaje, discutir con el autor, encontrar dónde está una idea. Zaydoun responde a partir del libro y marca la página, para que la leas con las palabras del autor."
+  },
+  "visuals": {
+    "readyToUpload": "{size} · listo para subir",
+    "title": "Título",
+    "language": "Idioma",
+    "english": "Inglés",
+    "bookTitle": "El príncipe",
+    "splitting": "Dividiendo en pasajes",
+    "passage": "p. {page} · {part} de {of}",
+    "indexed": "Indexado por significado",
+    "bookMeta": "Maquiavelo · inglés · 140 páginas",
+    "repliesIn": "Zaydoun responde en",
+    "question": "¿Es mejor ser temido o amado?",
+    "answer": "Ambas cosas, si se puede. Pero como es raro, dice que el temor es más seguro: el amor es un vínculo que la gente rompe cuando le conviene; el temor se mantiene porque se teme el castigo."
+  },
+  "ask": {
+    "eyebrow": "Bajo la superficie",
+    "title": "Qué pasa cuando <em>preguntas.</em>",
+    "lead": "Tarda unos segundos. Esto es lo que ocurre en ellos."
+  },
+  "pipeline": {
+    "question": {
+      "label": "Tu pregunta",
+      "detail": "Escrita en la web, o dicha en la app y transcrita por Whisper."
+    },
+    "passages": {
+      "label": "Los pasajes adecuados",
+      "detail": "Zaydoun busca en tu libro por significado y toma los 5 pasajes más cercanos. Solo tu libro, nunca el de otra persona."
+    },
+    "answer": {
+      "label": "Una respuesta",
+      "detail": "GPT-4o mini responde a partir de esos pasajes, con tus últimos 10 mensajes como contexto."
+    },
+    "page": {
+      "label": "La página",
+      "detail": "La respuesta lleva la página del pasaje en el que más se apoyó."
+    }
+  },
+  "voiceSection": {
+    "eyebrow": "En el móvil",
+    "title": "O simplemente di <em>«Zaydoun».</em>",
+    "lead": "En la app móvil, el modo de voz lo hace todo manos libres. Los mismos libros, las mismas conversaciones, sin mirar la pantalla."
+  },
+  "voice": {
+    "say": {
+      "title": "Di «Zaydoun»",
+      "text": "El modo de voz espera oír su nombre mientras la app está abierta."
+    },
+    "ask": {
+      "title": "Pregunta en voz alta",
+      "text": "Tu grabación se transcribe y se borra del servidor enseguida."
+    },
+    "same": {
+      "title": "La misma lectura",
+      "text": "Tus palabras pasan por la misma búsqueda y respuesta que las preguntas escritas."
+    },
+    "answers": {
+      "title": "Responde en voz alta",
+      "text": "La respuesta se te lee en voz alta y su texto se guarda en la conversación."
+    }
+  },
+  "knowTitle": "Bueno saberlo.",
+  "know": {
+    "pdfs": {
+      "title": "PDF con texto real",
+      "text": "Hasta 50 MB. Un libro escaneado sin capa de texto todavía no se puede leer."
+    },
+    "pages": {
+      "title": "Las páginas siguen tu PDF",
+      "text": "Son las páginas del propio PDF, así que pueden diferir de las impresas si el libro tiene páginas preliminares."
+    },
+    "silent": {
+      "title": "Cuando el libro calla",
+      "text": "Si ningún pasaje encaja con tu pregunta, Zaydoun responde con conocimiento general y no hay etiqueta de página."
+    },
+    "languages": {
+      "title": "Dos idiomas por conversación",
+      "text": "El idioma del libro y el de respuesta son independientes. Cambia el idioma de respuesta cuando quieras."
+    },
+    "free": {
+      "title": "De uso gratuito",
+      "text": "Una cuenta gratuita admite 2 libros y 15 mensajes al día. El contador se reinicia a medianoche UTC."
+    },
+    "lost": {
+      "title": "No se pierde nada",
+      "text": "Cada conversación se guarda con las páginas que citó. Sigue donde lo dejaste, en la web o en la app."
+    }
+  },
+  "cta": {
+    "title": "Tu primer libro tarda un minuto.",
+    "features": "Ver todas las funciones",
+    "start": "Empieza gratis"
+  }
+}

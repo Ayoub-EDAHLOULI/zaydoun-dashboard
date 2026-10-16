@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { motion, useScroll, useSpring, type Variants } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { DURATION, EASE_OUT } from "@/components/motion";
 import { cn } from "@/lib/cn";
 
@@ -28,7 +29,7 @@ export function ScrollTimeline({ children }: { children: ReactNode }) {
       {/* Rail + fill, aligned with the step numbers (desktop: left column) */}
       <div
         aria-hidden
-        className="absolute top-2 bottom-2 left-4.75 w-px bg-border md:left-6.75"
+        className="absolute top-2 bottom-2 start-4.75 w-px bg-border md:start-6.75"
       >
         <motion.div
           className="h-full w-full origin-top bg-gold"
@@ -51,9 +52,10 @@ export function TimelineStep({
   children: ReactNode;
   visual: ReactNode;
 }) {
+  const t = useTranslations("howItWorks");
   return (
     <motion.li
-      className="relative grid gap-8 pl-14 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:gap-14 md:pl-20"
+      className="relative grid gap-8 ps-14 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:gap-14 md:ps-20"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.35 }}
@@ -61,7 +63,7 @@ export function TimelineStep({
       {/* Step marker on the rail: grey, then a gold ring fades in over it */}
       <span
         aria-hidden
-        className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-full border border-border bg-bg-base font-serif text-base text-text-muted md:size-14 md:text-xl"
+        className="absolute top-0 start-0 flex size-10 items-center justify-center rounded-full border border-border bg-bg-base font-serif text-base text-text-muted md:size-14 md:text-xl"
       >
         <motion.span
           className="absolute -inset-px flex items-center justify-center rounded-full border border-gold bg-bg-base text-gold-light"
@@ -91,7 +93,7 @@ export function TimelineStep({
         }}
       >
         <h3 className="font-serif text-28 leading-[1.1] font-normal tracking-[-0.01em] md:text-32">
-          <span className="sr-only">Step {n}: </span>
+          <span className="sr-only">{t("stepLabel", { n })} </span>
           {title}
         </h3>
         {children}
@@ -210,7 +212,7 @@ function PipelineItem({
         <motion.span
           aria-hidden
           variants={connector}
-          className="mx-auto h-6 w-px origin-top self-center bg-border-gold lg:h-px lg:w-8 lg:origin-left"
+          className="mx-auto h-6 w-px origin-top self-center bg-border-gold lg:h-px lg:w-8 lg:origin-left rtl:lg:origin-right"
         />
       )}
     </>

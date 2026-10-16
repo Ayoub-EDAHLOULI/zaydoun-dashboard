@@ -1,0 +1,165 @@
+{
+  "units": {
+    "s": "{n} s",
+    "m": "{n} Min.",
+    "hm": "{h} Std. {m} Min."
+  },
+  "chart": {
+    "today": "Heute",
+    "perMonth": "Kosten pro Monat",
+    "perDay": "Kosten pro Tag",
+    "asChart": "Als Diagramm",
+    "asTable": "Als Tabelle",
+    "day": "Tag",
+    "messages": "Nachrichten",
+    "cost": "Kosten",
+    "chartLabel": "Diagramm der Kosten pro Tag",
+    "barLabel": "{day}: {cost}, {count, plural, one {# Nachricht} other {# Nachrichten}}",
+    "messagesCount": "{count, plural, one {# Nachricht} other {# Nachrichten}}"
+  },
+  "overview": {
+    "title": "Übersicht",
+    "subtitle": "Nutzung und Kosten aller Leser · {range}",
+    "periodLabel": "Zeitraum",
+    "keyNumbers": "Kennzahlen",
+    "loadFailed": "Nutzungsdaten konnten nicht geladen werden",
+    "periods": {
+      "day": "Heute",
+      "week": "7 Tage",
+      "month": "30 Tage",
+      "all": "Gesamt"
+    },
+    "range": {
+      "today": "heute",
+      "all": "gesamter Zeitraum"
+    },
+    "comparison": {
+      "day": "ggü. gestern",
+      "week": "ggü. den 7 Tagen davor",
+      "month": "ggü. den 30 Tagen davor"
+    },
+    "kpi": {
+      "cost": "Gesamtkosten",
+      "messages": "Nachrichten",
+      "inConversations": "in {count, plural, one {# Gespräch} other {# Gesprächen}}",
+      "tokens": "Verbrauchte Tokens",
+      "tokensSplit": "{input} Eingabe · {output} Ausgabe",
+      "audio": "Verarbeitetes Audio",
+      "audioNote": "Sprache, vom Handy"
+    },
+    "empty": {
+      "title": "Eine ruhige Phase",
+      "body": "In diesem Zeitraum hat niemand mit Zaydoun gesprochen. Versuch einen längeren Zeitraum."
+    },
+    "top": "Teuerste Gespräche",
+    "allConversations": "Alle Gespräche",
+    "sources": {
+      "title": "Wohin das Geld geht",
+      "answers": "Antworten (LLM)",
+      "whisper": "Spracheingabe (Whisper)",
+      "tts": "Sprachausgabe (TTS)",
+      "note": "Die Indexierung von Büchern ist nicht enthalten: Die API protokolliert Embedding-Kosten noch nicht."
+    },
+    "table": {
+      "conversation": "Gespräch",
+      "reader": "Leser",
+      "book": "Buch",
+      "messages": "Nachrichten",
+      "tokens": "Tokens",
+      "audio": "Audio",
+      "cost": "Kosten"
+    }
+  },
+  "users": {
+    "title": "Nutzer",
+    "summary": "{people, plural, one {# Person} other {# Personen}} · {admins, plural, one {# Admin} other {# Admins}} · {inactive} inaktiv",
+    "add": "Nutzer hinzufügen",
+    "toast": {
+      "loadFailed": "Nutzer konnten nicht geladen werden",
+      "invited": "Einladung an {email} gesendet",
+      "addFailed": "Der Nutzer konnte nicht hinzugefügt werden",
+      "updated": "Angaben aktualisiert",
+      "updateFailed": "Der Nutzer konnte nicht aktualisiert werden",
+      "activated": "{name} kann sich wieder anmelden",
+      "deactivated": "{name} wurde deaktiviert",
+      "statusFailed": "Der Status konnte nicht geändert werden",
+      "nowAdmin": "{name} ist jetzt Admin",
+      "nowReader": "{name} ist jetzt Leser",
+      "deleted": "{name} wurde gelöscht",
+      "failed": "Etwas ist schiefgelaufen"
+    },
+    "col": {
+      "user": "Nutzer",
+      "role": "Rolle",
+      "status": "Status",
+      "books": "Bücher",
+      "conversations": "Gespräche",
+      "joined": "Beigetreten",
+      "actions": "Aktionen"
+    },
+    "you": "(du)",
+    "adminBadge": "ADMIN",
+    "reader": "Leser",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "isActive": "{name} ist aktiv",
+    "isInactive": "{name} ist inaktiv",
+    "noSelfActions": "Keine Aktionen für dein eigenes Konto",
+    "actionsFor": "Aktionen für {name}",
+    "menu": {
+      "edit": "Angaben bearbeiten",
+      "makeReader": "Zum Leser machen",
+      "makeAdmin": "Zum Admin machen",
+      "deactivate": "Deaktivieren",
+      "activate": "Aktivieren",
+      "delete": "Nutzer löschen…"
+    },
+    "confirm": {
+      "deleteTitle": "{name} löschen?",
+      "deleteBody": "Das Konto, {books, plural, one {sein Buch} other {seine # Bücher}} und {conversations, plural, one {sein Gespräch} other {seine # Gespräche}} werden endgültig entfernt.",
+      "delete": "Nutzer löschen",
+      "readerTitle": "{name} zum Leser machen?",
+      "readerBody": "Die Person verliert den Zugriff auf Nutzer, Nutzung und Kosten und unterliegt den kostenlosen Limits.",
+      "adminTitle": "{name} zum Admin machen?",
+      "adminBody": "Die Person kann alle Nutzer, die Nutzung und die Kosten sehen und Konten verwalten."
+    },
+    "search": {
+      "label": "Nutzer durchsuchen",
+      "placeholder": "Nach Name oder E-Mail suchen"
+    },
+    "filter": {
+      "everyone": "Alle",
+      "admins": "Admins",
+      "readers": "Leser",
+      "anyStatus": "Jeder Status"
+    },
+    "empty": {
+      "title": "Niemand passt",
+      "body": "Versuch einen anderen Namen oder setz die Filter zurück."
+    },
+    "showing": "{from}–{to} von {total}",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "form": {
+      "addTitle": "Nutzer hinzufügen",
+      "editTitle": "Angaben bearbeiten",
+      "addDescription": "Wir schicken der Person per E-Mail ein vorläufiges Passwort zum Anmelden.",
+      "editDescription": "Änderungen gelten sofort.",
+      "name": "Vollständiger Name",
+      "email": "E-Mail",
+      "role": "Rolle",
+      "roles": {
+        "reader": {
+          "label": "Leser",
+          "detail": "Eigene Bibliothek und Gespräche"
+        },
+        "admin": {
+          "label": "Admin",
+          "detail": "Zusätzlich Nutzer, Nutzung und Kosten"
+        }
+      },
+      "submitAdd": "Hinzufügen und Einladung senden",
+      "submitEdit": "Änderungen speichern"
+    }
+  }
+}

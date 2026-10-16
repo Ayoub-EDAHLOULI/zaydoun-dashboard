@@ -8,6 +8,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Orb, PageTag, ThinkingIndicator } from "@/components/ui";
 import { DURATION, EASE_OUT } from "@/components/motion";
 
@@ -25,6 +26,8 @@ const reached = (phase: Phase, step: Phase) =>
   ORDER.indexOf(phase) >= ORDER.indexOf(step);
 
 export default function HeroVisual() {
+  const t = useTranslations("home.hero");
+  const tb = useTranslations("home.book");
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState<Phase>("idle");
 
@@ -40,7 +43,7 @@ export default function HeroVisual() {
     // Above the hero orb's layer, so its rings pass behind the card
     <div className="relative z-10 flex min-w-0 flex-[1_1_460px] flex-col items-center justify-center">
       <figure
-        aria-label="Sample conversation"
+        aria-label={t("demoLabel")}
         className="flex min-h-[300px] w-full max-w-[460px] flex-col gap-3.5"
       >
         <AnimatePresence>
@@ -50,9 +53,9 @@ export default function HeroVisual() {
               initial={{ opacity: 0, y: 12, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: DURATION.base, ease: EASE_OUT }}
-              className="max-w-[78%] origin-bottom-right self-end rounded-[16px_16px_4px_16px] border border-border bg-bg-elevated px-4 py-3 text-15 leading-[1.55]"
+              className="max-w-[78%] origin-bottom-right self-end rounded-[16px] rounded-ee-[4px] border border-border bg-bg-elevated px-4 py-3 text-15 leading-[1.55] rtl:origin-bottom-left"
             >
-              Is ʿasabiyya just a fancy word for tribalism?
+              {t("demoQ")}
             </motion.div>
           )}
         </AnimatePresence>
@@ -83,14 +86,12 @@ export default function HeroVisual() {
                 <span className="text-13 font-semibold text-gold-light">
                   Zaydoun
                 </span>
-                <span className="ml-auto text-xs text-text-secondary">
-                  Al-Muqaddimah
+                <span className="ms-auto text-xs text-text-secondary">
+                  {tb("title")}
                 </span>
               </div>
               <p className="font-serif text-lg leading-relaxed">
-                Not quite, and that&apos;s the trap most summaries fall into.
-                Kinship is where it starts, but shared hardship can build it
-                too. Think social glue, not “my tribe first”.
+                {t("demoA")}
               </p>
               <motion.span
                 className="self-start"

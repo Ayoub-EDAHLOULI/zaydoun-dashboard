@@ -1,0 +1,28 @@
+{
+  "home": "首页",
+  "library": "书库",
+  "conversations": "对话",
+  "conversation": "对话",
+  "profile": "个人资料",
+  "overview": "概览",
+  "users": "用户",
+  "manage": "管理",
+  "adminDashboard": "管理后台",
+  "readerApp": "阅读应用",
+  "backToSite": "返回网站",
+  "adminBadge": "管理员",
+  "adminLabel": "管理",
+  "appLabel": "应用",
+  "navigation": "导航",
+  "openNavigation": "打开导航",
+  "closeNavigation": "关闭导航",
+  "logOut": "退出登录",
+  "zaydounHome": "Zaydoun 首页",
+  "loading": "加载中",
+  "usage": {
+    "freePass": "免费版",
+    "books": "书籍",
+    "messagesToday": "今日消息",
+    "of": "{used} / {limit}"
+  }
+}

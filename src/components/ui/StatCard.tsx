@@ -1,4 +1,5 @@
 import { Minus, TrendingDown, TrendingUp, type LucideIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/cn";
 
 interface StatCardProps {
@@ -21,6 +22,7 @@ export function StatCard({
   comparison,
   className,
 }: StatCardProps) {
+  const t = useTranslations("common.trend");
   const hasDelta = delta !== undefined && delta !== null;
   const DeltaIcon = !hasDelta
     ? null
@@ -52,7 +54,7 @@ export function StatCard({
             <span className="inline-flex items-center gap-1 font-medium text-text-primary">
               <DeltaIcon size={14} aria-hidden />
               <span className="sr-only">
-                {delta > 0 ? "up" : delta < 0 ? "down" : "no change"}
+                {delta > 0 ? t("up") : delta < 0 ? t("down") : t("flat")}
               </span>
               {Math.abs(Math.round(delta))}%
             </span>

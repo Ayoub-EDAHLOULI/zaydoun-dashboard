@@ -1,0 +1,188 @@
+{
+  "book": {
+    "title": "Al-Muqaddimah",
+    "author": "Ibn Khaldun"
+  },
+  "hero": {
+    "eyebrow": "A reading companion with opinions",
+    "title": "Talk to your <em>books.</em>",
+    "lead": "Upload a PDF and Zaydoun reads it page by page. Then ask, argue, or get lost in a chapter together. Answers point you to the page they came from.",
+    "start": "Start free",
+    "see": "See what it can do",
+    "demoLabel": "Sample conversation",
+    "demoQ": "Is ʿasabiyya just a fancy word for tribalism?",
+    "demoA": "Not quite, and that’s the trap most summaries fall into. Kinship is where it starts, but shared hardship can build it too. Think social glue, not “my tribe first”."
+  },
+  "glance": {
+    "label": "At a glance",
+    "page": "Answers cite the page",
+    "languages": "5 languages, Arabic RTL",
+    "voice": "Hands-free voice on mobile",
+    "private": "Your books stay yours"
+  },
+  "ask": {
+    "eyebrow": "More than search",
+    "title": "Explain it. Argue with it. <em>Find it.</em>",
+    "lead": "Zaydoun has read the whole book, so you can ask the way you’d ask a friend who has too. Pick a way in:",
+    "tabsLabel": "Ways to ask",
+    "replies": "{author} · replies in English",
+    "explain": {
+      "name": "Explain",
+      "hint": "A hard passage, made clear.",
+      "q": "Explain the opening of chapter 2 like I’m new to this.",
+      "a": "Sure. He starts with one simple claim: how people live shapes who they become. Desert life makes people tough and close-knit, city life makes them comfortable. Everything after builds on that contrast."
+    },
+    "debate": {
+      "name": "Debate",
+      "hint": "Push back. He pushes back too.",
+      "q": "Honestly, I think he’s just romanticising the desert.",
+      "a": "Fair hit, and you’re not the first to make it. But notice he never says desert life is better. He says it breeds stronger solidarity, and that cities trade it for comfort. Want me to argue his side harder?"
+    },
+    "find": {
+      "name": "Find",
+      "hint": "Where exactly did he say that?",
+      "q": "Where does he talk about taxes rising at the end of a dynasty?",
+      "a": "He lays it out as a pattern first, then comes back to what it does to trade. Start with the first passage, it’s shorter than you think."
+    },
+    "connect": {
+      "name": "Connect",
+      "hint": "Link ideas across chapters.",
+      "q": "How does that tie back to ʿasabiyya?",
+      "a": "Directly. Rising taxes are a symptom. The rulers have lost the group feeling that once bought them loyalty for free, so now they pay for it in money."
+    }
+  },
+  "cite": {
+    "eyebrow": "Page-accurate",
+    "title": "Don’t take his word for it. <em>Check the page.</em>",
+    "body": "Zaydoun answers from the passages he finds in your PDF and tags the answer with the page he leaned on. Open the book, turn to the page, and read it in the author’s own words.",
+    "p1": "Answers start from the passages in your copy, not the internet’s summary of it",
+    "p2": "Page numbers follow your PDF, so you can jump straight there",
+    "p3": "A running list of every page a conversation has touched",
+    "artAnswer": "Kinship is where it starts, but shared hardship can build it too.",
+    "artPage": "Page {page}"
+  },
+  "langs": {
+    "eyebrow": "Five languages",
+    "title": "Read in one language. <em>Talk in another.</em>",
+    "lead": "A French novel, answers in Arabic. An Arabic classic, answers in English. Pick the reply language per conversation.",
+    "arabicNote": "right to left, set in Amiri"
+  },
+  "voice": {
+    "listening": "Listening",
+    "quote": "“So what kills a dynasty, really?”",
+    "eyebrow": "Voice-first on mobile",
+    "title": "Say “Zaydoun”. <em>Keep walking.</em>",
+    "body": "On the commute, at the gym, washing up. Open the app, call his name and talk. He answers out loud, and the conversation is waiting on the web when you sit back down.",
+    "soon": "The mobile app is on its way to the App Store and Google Play."
+  },
+  "meet": {
+    "eyebrow": "Meet Zaydoun",
+    "title": "Not a search box. <em>A reading partner.</em>",
+    "body": "Sharp, warm and a little Moroccan. He’ll tell you when an argument is weak, yours or the author’s, and drop the odd word of Darija when the moment calls for it.",
+    "t1": {
+      "title": "Pushes back",
+      "text": "Say something half-right and he’ll find the half that isn’t."
+    },
+    "t2": {
+      "title": "Stays on the text",
+      "text": "Opinions about the book, evidence from the book."
+    },
+    "t3": {
+      "title": "Remembers the thread",
+      "text": "Every conversation is saved. Pick it up next week."
+    },
+    "t4": {
+      "title": "Has a sense of humour",
+      "text": "Serious about books, not about himself."
+    }
+  },
+  "who": {
+    "title": "For anyone who wants more from a book than a summary.",
+    "a1": {
+      "title": "Students",
+      "text": "Get unstuck on a dense chapter the night before the seminar."
+    },
+    "a2": {
+      "title": "Researchers",
+      "text": "Find where an idea lives and go straight to the page."
+    },
+    "a3": {
+      "title": "Language learners",
+      "text": "Read in the language you’re learning, discuss in the one you know."
+    },
+    "a4": {
+      "title": "Commuters",
+      "text": "Keep reading with your eyes on the road and your hands free."
+    }
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "title1": "From PDF to conversation",
+    "title2": "in three steps.",
+    "lead": "No setup, no settings to learn. Bring the book you’re already reading.",
+    "details": "See the details",
+    "s1": {
+      "title": "Upload on the web",
+      "text": "Drop a PDF, add the title and its language. Arabic books welcome."
+    },
+    "s2": {
+      "title": "Zaydoun reads it",
+      "text": "He goes through it page by page and remembers where every idea lives."
+    },
+    "s3": {
+      "title": "Talk, hands-free",
+      "text": "Type here on the web, or open the app, say “Zaydoun” and just speak."
+    }
+  },
+  "privacy": {
+    "eyebrow": "Private by design",
+    "title": "Your shelf is nobody else’s business.",
+    "p1": {
+      "title": "Only you can see your books",
+      "text": "Each reader’s library and conversations are kept separate."
+    },
+    "p2": {
+      "title": "Delete anytime",
+      "text": "Remove a book, a conversation, or your whole account."
+    },
+    "p3": {
+      "title": "Sent only to answer you",
+      "text": "To answer a question, the relevant passages go to OpenAI’s API, and nowhere else."
+    }
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "title": "Before you ask Zaydoun, ask us.",
+    "write": "Something else? Write to us →",
+    "all": "See all questions",
+    "q1": {
+      "q": "What kind of files can I upload?",
+      "a": "PDFs up to 50 MB. They need real text inside, so a scanned book without a text layer won’t work yet. Tell Zaydoun the book’s language when you upload it."
+    },
+    "q2": {
+      "q": "How do the page citations work?",
+      "a": "When you ask something, Zaydoun searches your PDF for the most relevant passages and answers from them. The answer carries a tag with the page of the passage he leaned on most. Page numbers follow your PDF file, so they can differ from the printed numbers if the book has front matter."
+    },
+    "q3": {
+      "q": "Can I use it without looking at my phone?",
+      "a": "Yes, in the mobile app. Turn on voice mode, say “Zaydoun”, ask your question and he answers out loud. On the web you type for now."
+    },
+    "q4": {
+      "q": "Can I talk about an Arabic book in English?",
+      "a": "Yes. The book’s language and the reply language are separate. Pick the reply language when you start a conversation, and change it any time from the conversation’s header."
+    },
+    "q5": {
+      "q": "Who can see my books and conversations?",
+      "a": "Only you. Your books and conversations are tied to your account, and every request is checked against it. To answer a question, the relevant passages and your question are sent to OpenAI’s API."
+    },
+    "q6": {
+      "q": "Is it free?",
+      "a": "Yes. A free account holds 2 books and 15 messages a day. The daily count resets at midnight UTC."
+    }
+  },
+  "cta": {
+    "title": "Which book first?",
+    "body": "Bring the one you’ve been meaning to finish. Zaydoun will meet you on page one.",
+    "start": "Start free"
+  }
+}

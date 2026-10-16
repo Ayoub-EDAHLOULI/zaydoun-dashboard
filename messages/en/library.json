@@ -1,0 +1,85 @@
+{
+  "title": "Library",
+  "uploadButton": "Upload book",
+  "booksLabel": "Books",
+  "lastSlot": "This uses your last free slot.",
+  "summary": {
+    "books": "{count, plural, one {# book} other {# books}}",
+    "ready": "{count} ready to talk",
+    "reading": "{count} being read"
+  },
+  "lastOpened": {
+    "today": "last opened today",
+    "yesterday": "last opened yesterday",
+    "daysAgo": "last opened {count} days ago",
+    "on": "last opened {date}"
+  },
+  "toast": {
+    "loadFailed": "Couldn’t load your books",
+    "ready": "“{title}” is ready to talk.",
+    "failed": "Zaydoun couldn’t read “{title}”.",
+    "uploaded": "“{title}” is on your shelf. Let Zaydoun read it when you’re ready.",
+    "uploadFailed": "Upload failed",
+    "reading": "Zaydoun is reading “{title}”. We’ll let you know.",
+    "processFailed": "Couldn’t start reading",
+    "deleted": "“{title}” was removed.",
+    "deleteFailed": "Delete failed"
+  },
+  "card": {
+    "talk": "Talk to this book",
+    "conversations": "{count, plural, one {# conversation} other {# conversations}}",
+    "noConversations": "No conversations yet",
+    "processing": "Zaydoun is reading it. We’ll let you know.",
+    "read": "Let Zaydoun read it",
+    "pending": "Uploaded. Zaydoun hasn’t read it yet.",
+    "retry": "Try again",
+    "failed": "Zaydoun couldn’t read this PDF."
+  },
+  "delete": {
+    "action": "Delete book",
+    "keep": "Keep it",
+    "title": "Delete “{title}”?",
+    "withConversations": "This removes the book and its {count, plural, one {# conversation} other {# conversations}}.",
+    "bookOnly": "This removes the book from your shelf.",
+    "freesSlot": "It frees one of your free slots.",
+    "permanent": "This can’t be undone."
+  },
+  "empty": {
+    "title": "Your shelf is empty",
+    "body": "Upload a PDF and Zaydoun will read it, page by page, before your first question.",
+    "action": "Upload a book"
+  },
+  "search": {
+    "label": "Search your books",
+    "placeholder": "Search title or author"
+  },
+  "filter": {
+    "label": "Filter by status",
+    "all": "All",
+    "ready": "Ready",
+    "progress": "In progress"
+  },
+  "noMatchQuery": "No books match “{query}”.",
+  "noMatchFilter": "No books match this filter.",
+  "noSlot": {
+    "title": "No free slot",
+    "body": "Your free books are all on the shelf. Delete one from its ··· menu to upload another."
+  },
+  "upload": {
+    "title": "Add a book",
+    "description": "Zaydoun reads it page by page, so he can cite where every answer comes from.",
+    "titleLabel": "Title",
+    "author": "Author <optional>(optional)</optional>",
+    "authorPlaceholder": "e.g. Marcus Aurelius",
+    "language": "Language",
+    "languageHint": "The language the book is written in.",
+    "uploading": "Uploading…",
+    "submit": "Upload book",
+    "errors": {
+      "noFile": "Choose a PDF to upload.",
+      "titleRequired": "Give the book a title.",
+      "tooLong": "Use at most 255 characters.",
+      "languageCode": "Pick the book’s language."
+    }
+  }
+}

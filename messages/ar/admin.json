@@ -1,0 +1,165 @@
+{
+  "units": {
+    "s": "{n} ث",
+    "m": "{n} د",
+    "hm": "{h} س {m} د"
+  },
+  "chart": {
+    "today": "اليوم",
+    "perMonth": "التكلفة الشهرية",
+    "perDay": "التكلفة اليومية",
+    "asChart": "عرض كمخطط",
+    "asTable": "عرض كجدول",
+    "day": "اليوم",
+    "messages": "الرسائل",
+    "cost": "التكلفة",
+    "chartLabel": "مخطط التكلفة اليومية",
+    "barLabel": "{day}: {cost}، {count, plural, zero {لا رسائل} one {رسالة واحدة} two {رسالتان} few {# رسائل} many {# رسالة} other {# رسالة}}",
+    "messagesCount": "{count, plural, zero {لا رسائل} one {رسالة واحدة} two {رسالتان} few {# رسائل} many {# رسالة} other {# رسالة}}"
+  },
+  "overview": {
+    "title": "نظرة عامة",
+    "subtitle": "الاستخدام والتكلفة لكل القرّاء · {range}",
+    "periodLabel": "الفترة",
+    "keyNumbers": "الأرقام الرئيسية",
+    "loadFailed": "تعذّر تحميل بيانات الاستخدام",
+    "periods": {
+      "day": "اليوم",
+      "week": "7 أيام",
+      "month": "30 يومًا",
+      "all": "منذ البداية"
+    },
+    "range": {
+      "today": "اليوم",
+      "all": "منذ البداية"
+    },
+    "comparison": {
+      "day": "مقارنة بالأمس",
+      "week": "مقارنة بالأيام السبعة السابقة",
+      "month": "مقارنة بالأيام الثلاثين السابقة"
+    },
+    "kpi": {
+      "cost": "التكلفة الإجمالية",
+      "messages": "الرسائل",
+      "inConversations": "في {count, plural, zero {لا محادثات} one {محادثة واحدة} two {محادثتين} few {# محادثات} many {# محادثة} other {# محادثة}}",
+      "tokens": "الرموز المستخدمة",
+      "tokensSplit": "{input} إدخال · {output} إخراج",
+      "audio": "الصوت المعالَج",
+      "audioNote": "صوتي، من الهاتف"
+    },
+    "empty": {
+      "title": "فترة هادئة",
+      "body": "لم يتحدث أحد مع زيدون خلال هذه الفترة. جرّب نطاقًا أطول."
+    },
+    "top": "أعلى المحادثات تكلفة",
+    "allConversations": "كل المحادثات",
+    "sources": {
+      "title": "أين تذهب الأموال",
+      "answers": "الإجابات (LLM)",
+      "whisper": "إدخال الصوت (Whisper)",
+      "tts": "إخراج الصوت (TTS)",
+      "note": "لا تشمل فهرسة الكتب: لا تسجّل الواجهة البرمجية تكلفة التضمينات بعد."
+    },
+    "table": {
+      "conversation": "المحادثة",
+      "reader": "القارئ",
+      "book": "الكتاب",
+      "messages": "الرسائل",
+      "tokens": "الرموز",
+      "audio": "الصوت",
+      "cost": "التكلفة"
+    }
+  },
+  "users": {
+    "title": "المستخدمون",
+    "summary": "{people, plural, zero {لا أحد} one {شخص واحد} two {شخصان} few {# أشخاص} many {# شخصًا} other {# شخص}} · {admins, plural, zero {لا مسؤولين} one {مسؤول واحد} two {مسؤولان} few {# مسؤولين} many {# مسؤولًا} other {# مسؤول}} · {inactive} غير نشط",
+    "add": "إضافة مستخدم",
+    "toast": {
+      "loadFailed": "تعذّر تحميل المستخدمين",
+      "invited": "أُرسلت الدعوة إلى {email}",
+      "addFailed": "تعذّرت إضافة المستخدم",
+      "updated": "تم تحديث البيانات",
+      "updateFailed": "تعذّر تحديث المستخدم",
+      "activated": "يمكن لـ {name} تسجيل الدخول مجددًا",
+      "deactivated": "تم تعطيل {name}",
+      "statusFailed": "تعذّر تغيير الحالة",
+      "nowAdmin": "أصبح {name} مسؤولًا",
+      "nowReader": "أصبح {name} قارئًا",
+      "deleted": "حُذف {name}",
+      "failed": "حدث خطأ ما"
+    },
+    "col": {
+      "user": "المستخدم",
+      "role": "الدور",
+      "status": "الحالة",
+      "books": "الكتب",
+      "conversations": "المحادثات",
+      "joined": "تاريخ الانضمام",
+      "actions": "الإجراءات"
+    },
+    "you": "(أنت)",
+    "adminBadge": "مسؤول",
+    "reader": "قارئ",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "isActive": "{name} نشط",
+    "isInactive": "{name} غير نشط",
+    "noSelfActions": "لا إجراءات على حسابك الخاص",
+    "actionsFor": "إجراءات {name}",
+    "menu": {
+      "edit": "تعديل البيانات",
+      "makeReader": "تحويله إلى قارئ",
+      "makeAdmin": "تعيينه مسؤولًا",
+      "deactivate": "تعطيل",
+      "activate": "تفعيل",
+      "delete": "حذف المستخدم…"
+    },
+    "confirm": {
+      "deleteTitle": "حذف {name}؟",
+      "deleteBody": "سيُحذف حسابه و{books, plural, zero {كتبه} one {كتابه} two {كتاباه} few {كتبه الـ #} many {كتبه الـ #} other {كتبه الـ #}} و{conversations, plural, zero {محادثاته} one {محادثته} two {محادثتاه} few {محادثاته الـ #} many {محادثاته الـ #} other {محادثاته الـ #}} نهائيًا.",
+      "delete": "حذف المستخدم",
+      "readerTitle": "تحويل {name} إلى قارئ؟",
+      "readerBody": "سيفقد الوصول إلى المستخدمين والاستخدام والتكاليف، وسيخضع للحدود المجانية.",
+      "adminTitle": "تعيين {name} مسؤولًا؟",
+      "adminBody": "سيتمكن من رؤية كل المستخدمين والاستخدام والتكاليف، وإدارة الحسابات."
+    },
+    "search": {
+      "label": "ابحث عن مستخدمين",
+      "placeholder": "ابحث بالاسم أو البريد الإلكتروني"
+    },
+    "filter": {
+      "everyone": "الجميع",
+      "admins": "المسؤولون",
+      "readers": "القرّاء",
+      "anyStatus": "كل الحالات"
+    },
+    "empty": {
+      "title": "لا أحد يطابق",
+      "body": "جرّب اسمًا آخر، أو امسح عوامل التصفية."
+    },
+    "showing": "عرض {from}–{to} من {total}",
+    "previous": "السابق",
+    "next": "التالي",
+    "form": {
+      "addTitle": "إضافة مستخدم",
+      "editTitle": "تعديل البيانات",
+      "addDescription": "سنرسل له بالبريد كلمة مرور مؤقتة ليتمكن من تسجيل الدخول.",
+      "editDescription": "تسري التغييرات فورًا.",
+      "name": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "roles": {
+        "reader": {
+          "label": "قارئ",
+          "detail": "مكتبته ومحادثاته الخاصة"
+        },
+        "admin": {
+          "label": "مسؤول",
+          "detail": "إضافة إلى المستخدمين والاستخدام والتكاليف"
+        }
+      },
+      "submitAdd": "إضافة وإرسال الدعوة",
+      "submitEdit": "حفظ التغييرات"
+    }
+  }
+}

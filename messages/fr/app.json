@@ -1,0 +1,54 @@
+{
+  "home": {
+    "loadFailed": "Impossible de charger votre accueil",
+    "greeting": {
+      "late": "Encore debout",
+      "morning": "Bonjour",
+      "afternoon": "Bon après-midi",
+      "evening": "Bonsoir"
+    },
+    "greetingName": "{greeting}, {name}.",
+    "greetingAlone": "{greeting}.",
+    "subtitleContinue": "{name} arrivait justement au meilleur passage.",
+    "subtitleReady": "Vos livres sont prêts. Posez à Zaydoun toutes vos questions.",
+    "subtitleEmpty": "Ajoutez un livre et Zaydoun le lira avec vous, page par page.",
+    "continueEyebrow": "Reprenez là où vous en étiez",
+    "continue": "Reprendre",
+    "first": {
+      "eyebrowReady": "Lancez votre première conversation",
+      "eyebrowEmpty": "Pour commencer",
+      "titleReady": "Choisissez un livre et posez votre première question.",
+      "titleEmpty": "Posez un livre sur votre étagère.",
+      "bodyReady": "Zaydoun répond en indiquant la page où il a trouvé la réponse.",
+      "bodyEmpty": "Importez un PDF. Zaydoun le lit page par page pour pouvoir citer l’origine de ses réponses."
+    },
+    "newConversation": "Nouvelle conversation",
+    "uploadBook": "Importer un livre",
+    "numbers": "Vos chiffres",
+    "stats": {
+      "books": "Livres sur votre étagère",
+      "ready": "{count, plural, one {# prêt} other {# prêts}}",
+      "reading": "{count} en cours de lecture",
+      "noneYet": "Aucun pour l’instant",
+      "conversations": "Conversations",
+      "thisWeek": "{count} cette semaine",
+      "messagesLeft": "Messages restants aujourd’hui",
+      "noLimit": "Illimité",
+      "adminAccount": "Compte administrateur",
+      "messagesDetail": "sur {limit} · remise à zéro à {time}"
+    },
+    "recent": "Conversations récentes",
+    "seeAll": "Tout voir",
+    "noConversations": "Aucune conversation pour l’instant.",
+    "quick": {
+      "title": "Actions rapides",
+      "newReady": "Choisissez un livre et une langue",
+      "newNone": "Aucun livre n’est encore prêt",
+      "uploadFull": "Étagère pleine · supprimez d’abord un livre",
+      "uploadDetail": "PDF, jusqu’à 50 Mo",
+      "library": "Ouvrir ma bibliothèque",
+      "stillReading": "{title} est encore en cours de lecture",
+      "booksOnShelf": "{count, plural, one {# livre} other {# livres}} sur votre étagère"
+    }
+  }
+}

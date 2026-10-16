@@ -1,0 +1,115 @@
+{
+  "eyebrow": "How it works",
+  "title": "From a PDF to a conversation. <em>Step by step.</em>",
+  "lead": "No setup and nothing to learn. Here’s exactly what happens between dropping in a book and hearing Zaydoun quote it back to you.",
+  "stepsTitle": "The four steps",
+  "stepLabel": "Step {n}:",
+  "s1": {
+    "title": "Upload a PDF",
+    "body": "On the web, drop in a PDF up to 50 MB, give it a title and say which language it’s written in. It goes on your shelf straight away."
+  },
+  "s2": {
+    "title": "Zaydoun reads it",
+    "body": "Click “Let Zaydoun read it”. He takes the text page by page, cuts long pages into passages of about 400 words, and indexes each one by its meaning, keeping its page number. The book shows Processing, then Ready."
+  },
+  "s3": {
+    "title": "Start a conversation",
+    "body": "Pick a book that’s Ready and the language Zaydoun should answer in: English, Arabic, French, Spanish or Chinese. A French reply about an English book is fine."
+  },
+  "s4": {
+    "title": "Ask, and check the page",
+    "body": "Ask anything: explain a passage, argue with the author, find where an idea lives. Zaydoun answers from the book and tags the page, so you can read it in the author’s own words."
+  },
+  "visuals": {
+    "readyToUpload": "{size} · ready to upload",
+    "title": "Title",
+    "language": "Language",
+    "english": "English",
+    "bookTitle": "The Prince",
+    "splitting": "Splitting into passages",
+    "passage": "p. {page} · {part} of {of}",
+    "indexed": "Indexed by meaning",
+    "bookMeta": "Machiavelli · English · 140 pages",
+    "repliesIn": "Zaydoun replies in",
+    "question": "Is it better to be feared or loved?",
+    "answer": "Both, if you can manage it. But since that’s rare, he says fear is safer: love is a bond people break when it suits them, fear holds because they dread the punishment."
+  },
+  "ask": {
+    "eyebrow": "Under the surface",
+    "title": "What happens when you <em>ask.</em>",
+    "lead": "It takes a few seconds. This is what fills them."
+  },
+  "pipeline": {
+    "question": {
+      "label": "Your question",
+      "detail": "Typed on the web, or spoken in the app and transcribed by Whisper."
+    },
+    "passages": {
+      "label": "The right passages",
+      "detail": "Zaydoun searches your book by meaning and pulls the 5 closest passages. Only your book, never anyone else’s."
+    },
+    "answer": {
+      "label": "An answer",
+      "detail": "GPT-4o mini answers from those passages, with your last 10 messages for context."
+    },
+    "page": {
+      "label": "The page",
+      "detail": "The answer is tagged with the page of the passage it leaned on most."
+    }
+  },
+  "voiceSection": {
+    "eyebrow": "On mobile",
+    "title": "Or just say <em>“Zaydoun”.</em>",
+    "lead": "In the mobile app, voice mode turns the whole thing hands-free. Same books, same conversations, no screen needed."
+  },
+  "voice": {
+    "say": {
+      "title": "Say “Zaydoun”",
+      "text": "Voice mode listens for his name while the app is open."
+    },
+    "ask": {
+      "title": "Ask out loud",
+      "text": "Your recording is transcribed, then deleted from the server straight away."
+    },
+    "same": {
+      "title": "Same reading",
+      "text": "Your words go through the same search and answer as typed questions."
+    },
+    "answers": {
+      "title": "He answers out loud",
+      "text": "The reply is spoken back to you, and its text is saved in the conversation."
+    }
+  },
+  "knowTitle": "Good to know.",
+  "know": {
+    "pdfs": {
+      "title": "PDFs with real text",
+      "text": "Up to 50 MB. A scanned book without a text layer can’t be read yet."
+    },
+    "pages": {
+      "title": "Page numbers follow your PDF",
+      "text": "They’re the PDF’s own pages, so they can differ from the printed numbers when a book has front matter."
+    },
+    "silent": {
+      "title": "When the book is silent",
+      "text": "If no passage fits your question, Zaydoun answers from general knowledge and there’s no page tag."
+    },
+    "languages": {
+      "title": "Two languages per conversation",
+      "text": "The book’s language and the reply language are separate. Change the reply language any time."
+    },
+    "free": {
+      "title": "Free to use",
+      "text": "A free account holds 2 books and 15 messages a day. The count resets at midnight UTC."
+    },
+    "lost": {
+      "title": "Nothing is lost",
+      "text": "Every conversation is saved with the pages it cited. Pick up where you left off, on the web or the app."
+    }
+  },
+  "cta": {
+    "title": "Your first book takes a minute.",
+    "features": "See all features",
+    "start": "Start free"
+  }
+}

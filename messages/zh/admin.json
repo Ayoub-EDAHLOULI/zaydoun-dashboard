@@ -1,0 +1,165 @@
+{
+  "units": {
+    "s": "{n} 秒",
+    "m": "{n} 分钟",
+    "hm": "{h} 小时 {m} 分钟"
+  },
+  "chart": {
+    "today": "今天",
+    "perMonth": "每月成本",
+    "perDay": "每日成本",
+    "asChart": "以图表查看",
+    "asTable": "以表格查看",
+    "day": "日期",
+    "messages": "消息",
+    "cost": "成本",
+    "chartLabel": "每日成本图表",
+    "barLabel": "{day}：{cost}，{count} 条消息",
+    "messagesCount": "{count} 条消息"
+  },
+  "overview": {
+    "title": "概览",
+    "subtitle": "所有读者的使用量与成本 · {range}",
+    "periodLabel": "时间段",
+    "keyNumbers": "关键数据",
+    "loadFailed": "无法加载使用数据",
+    "periods": {
+      "day": "今天",
+      "week": "7 天",
+      "month": "30 天",
+      "all": "全部"
+    },
+    "range": {
+      "today": "今天",
+      "all": "全部时间"
+    },
+    "comparison": {
+      "day": "对比昨天",
+      "week": "对比前 7 天",
+      "month": "对比前 30 天"
+    },
+    "kpi": {
+      "cost": "总成本",
+      "messages": "消息",
+      "inConversations": "共 {count} 场对话",
+      "tokens": "Token 用量",
+      "tokensSplit": "输入 {input} · 输出 {output}",
+      "audio": "已处理音频",
+      "audioNote": "来自手机的语音"
+    },
+    "empty": {
+      "title": "这段时间很安静",
+      "body": "这段时间没有人和 Zaydoun 聊天。试试更长的时间范围。"
+    },
+    "top": "成本最高的对话",
+    "allConversations": "全部对话",
+    "sources": {
+      "title": "钱花在哪儿了",
+      "answers": "回答（LLM）",
+      "whisper": "语音输入（Whisper）",
+      "tts": "语音输出（TTS）",
+      "note": "不含书籍索引：API 目前还不记录嵌入成本。"
+    },
+    "table": {
+      "conversation": "对话",
+      "reader": "读者",
+      "book": "书籍",
+      "messages": "消息",
+      "tokens": "Token",
+      "audio": "音频",
+      "cost": "成本"
+    }
+  },
+  "users": {
+    "title": "用户",
+    "summary": "{people} 人 · {admins} 名管理员 · {inactive} 人未激活",
+    "add": "添加用户",
+    "toast": {
+      "loadFailed": "无法加载用户",
+      "invited": "已向 {email} 发送邀请",
+      "addFailed": "无法添加用户",
+      "updated": "信息已更新",
+      "updateFailed": "无法更新用户",
+      "activated": "{name} 可以重新登录了",
+      "deactivated": "{name} 已被停用",
+      "statusFailed": "无法更改状态",
+      "nowAdmin": "{name} 现在是管理员",
+      "nowReader": "{name} 现在是读者",
+      "deleted": "{name} 已删除",
+      "failed": "出了点问题"
+    },
+    "col": {
+      "user": "用户",
+      "role": "角色",
+      "status": "状态",
+      "books": "书籍",
+      "conversations": "对话",
+      "joined": "加入时间",
+      "actions": "操作"
+    },
+    "you": "（你）",
+    "adminBadge": "管理员",
+    "reader": "读者",
+    "active": "已激活",
+    "inactive": "未激活",
+    "isActive": "{name} 已激活",
+    "isInactive": "{name} 未激活",
+    "noSelfActions": "不能对自己的账户进行操作",
+    "actionsFor": "{name} 的操作",
+    "menu": {
+      "edit": "编辑信息",
+      "makeReader": "设为读者",
+      "makeAdmin": "设为管理员",
+      "deactivate": "停用",
+      "activate": "激活",
+      "delete": "删除用户…"
+    },
+    "confirm": {
+      "deleteTitle": "删除 {name}？",
+      "deleteBody": "其账户、{books} 本书和 {conversations} 场对话将被永久删除。",
+      "delete": "删除用户",
+      "readerTitle": "将 {name} 设为读者？",
+      "readerBody": "对方将无法再查看用户、使用量和成本，并受免费额度限制。",
+      "adminTitle": "将 {name} 设为管理员？",
+      "adminBody": "对方将能查看所有用户、使用量和成本，并管理账户。"
+    },
+    "search": {
+      "label": "搜索用户",
+      "placeholder": "按姓名或邮箱搜索"
+    },
+    "filter": {
+      "everyone": "所有人",
+      "admins": "管理员",
+      "readers": "读者",
+      "anyStatus": "全部状态"
+    },
+    "empty": {
+      "title": "没有匹配的人",
+      "body": "换个名字试试，或者清除筛选条件。"
+    },
+    "showing": "显示第 {from}–{to} 条，共 {total} 条",
+    "previous": "上一页",
+    "next": "下一页",
+    "form": {
+      "addTitle": "添加用户",
+      "editTitle": "编辑信息",
+      "addDescription": "我们会通过邮件给对方发送临时密码以便登录。",
+      "editDescription": "更改会立即生效。",
+      "name": "姓名",
+      "email": "邮箱",
+      "role": "角色",
+      "roles": {
+        "reader": {
+          "label": "读者",
+          "detail": "自己的书库和对话"
+        },
+        "admin": {
+          "label": "管理员",
+          "detail": "另外还能管理用户、使用量和成本"
+        }
+      },
+      "submitAdd": "添加并发送邀请",
+      "submitEdit": "保存更改"
+    }
+  }
+}

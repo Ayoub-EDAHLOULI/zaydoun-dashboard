@@ -7,6 +7,7 @@ import {
   useState,
   type KeyboardEvent,
 } from "react";
+import { useTranslations } from "next-intl";
 import { ArrowUp, Check, Copy, Mic } from "lucide-react";
 import { isArabic } from "@/lib/languages";
 import { cn } from "@/lib/cn";
@@ -45,7 +46,7 @@ export function ChatMessage({
           dir={arabic ? "rtl" : "auto"}
           lang={arabic ? "ar" : undefined}
           className={cn(
-            "max-w-[80%] rounded-[16px_16px_4px_16px] bg-bg-elevated px-4 whitespace-pre-wrap break-words",
+            "max-w-[80%] rounded-[16px] rounded-ee-[4px] bg-bg-elevated px-4 whitespace-pre-wrap break-words",
             arabic
               ? "py-2.5 font-arabic text-19 leading-[1.7]"
               : "py-3 text-15 leading-[1.55]",
@@ -100,6 +101,7 @@ export function ChatMessage({
 }
 
 function CopyButton({ text }: { text: string }) {
+  const t = useTranslations("common.chat");
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -117,8 +119,8 @@ function CopyButton({ text }: { text: string }) {
           .then(() => setCopied(true))
           .catch(() => {})
       }
-      aria-label={copied ? "Copied" : "Copy answer"}
-      title={copied ? "Copied" : "Copy answer"}
+      aria-label={copied ? t("copied") : t("copy")}
+      title={copied ? t("copied") : t("copy")}
       className="flex size-8 items-center justify-center rounded-sm text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
     >
       {copied ? (
@@ -135,15 +137,16 @@ function CopyButton({ text }: { text: string }) {
 // ---------------------------------------------------------------------------
 
 export function ThinkingIndicator({
-  label = "Finding the right passages…",
+  label,
 }: {
   label?: string;
 }) {
+  const t = useTranslations("common.chat");
   return (
     <div role="status" aria-live="polite" className="flex items-center gap-3">
       <Orb size={24} breathing />
       <span className="font-serif text-base italic text-text-secondary">
-        {label}
+        {label ?? t("thinking")}
       </span>
     </div>
   );
@@ -176,10 +179,11 @@ export function Composer({
   onSend,
   sending = false,
   disabled = false,
-  placeholder = "Ask about this book…",
+  placeholder,
   hint,
   quota,
 }: ComposerProps) {
+  const t = useTranslations("common.chat");
   const ref = useRef<HTMLTextAreaElement>(null);
   const canSend = value.trim().length > 0 && !sending && !disabled;
 
@@ -200,9 +204,9 @@ export function Composer({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-end gap-2 rounded-[14px] border border-border bg-bg-surface py-2 pr-2 pl-4 transition-colors focus-within:border-border-gold">
+      <div className="flex items-end gap-2 rounded-[14px] border border-border bg-bg-surface py-2 ps-4 pe-2 transition-colors focus-within:border-border-gold">
         <label htmlFor="composer-input" className="sr-only">
-          Message Zaydoun
+          {t("messageLabel")}
         </label>
         <textarea
           id="composer-input"
@@ -211,7 +215,7 @@ export function Composer({
           dir="auto"
           value={value}
           disabled={disabled}
-          placeholder={placeholder}
+          placeholder={placeholder ?? t("placeholder")}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={onKeyDown}
           className="min-h-7 flex-1 resize-none self-center bg-transparent py-1.5 text-15 leading-normal max-md:text-[16px] text-text-primary placeholder:text-text-muted focus-visible:outline-none disabled:cursor-not-allowed"
@@ -220,23 +224,23 @@ export function Composer({
           <button
             type="button"
             disabled
-            aria-label="Voice input, coming soon"
+            aria-label={t("voiceSoon")}
             className="flex size-10 cursor-not-allowed items-center justify-center rounded-[10px] text-text-muted"
           >
             <Mic size={18} aria-hidden />
           </button>
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-1.5 left-1/2 -translate-x-1/2 rounded-xs bg-bg-elevated px-1 text-9 font-semibold tracking-[0.08em] text-text-secondary"
+            className="pointer-events-none absolute -top-1.5 left-1/2 -translate-x-1/2 rounded-xs bg-bg-elevated px-1 text-9 font-semibold tracking-[0.08em] whitespace-nowrap text-text-secondary"
           >
-            SOON
+            {t("soon")}
           </span>
         </span>
         <button
           type="button"
           onClick={onSend}
           disabled={!canSend}
-          aria-label="Send"
+          aria-label={t("send")}
           className="flex size-10 items-center justify-center rounded-[10px] bg-gold text-bg-base transition-colors enabled:hover:bg-gold-light enabled:active:bg-gold-dark disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
         >
           <ArrowUp size={18} strokeWidth={2.2} aria-hidden />

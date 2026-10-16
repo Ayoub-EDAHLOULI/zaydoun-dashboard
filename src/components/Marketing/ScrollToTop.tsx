@@ -9,6 +9,7 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { ArrowUp } from "lucide-react";
 import { EASE_OUT } from "@/components/motion";
 
@@ -16,6 +17,7 @@ const SHOW_AFTER = 640; // px scrolled before the button appears
 
 // Floating "back to top" with a ring that fills as you read down the page
 export default function ScrollToTop() {
+  const t = useTranslations("marketing");
   const reduce = useReducedMotion();
   const { scrollY, scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(false);
@@ -36,15 +38,15 @@ export default function ScrollToTop() {
         <motion.button
           type="button"
           onClick={toTop}
-          aria-label="Back to top"
-          title="Back to top"
+          aria-label={t("backToTop")}
+          title={t("backToTop")}
           initial={{ opacity: 0, y: 16, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 16, scale: 0.9 }}
           transition={{ duration: 0.25, ease: EASE_OUT }}
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.94 }}
-          className="group fixed right-5 bottom-20 z-40 flex size-12 items-center justify-center rounded-full border border-border-strong bg-bg-overlay text-text-primary shadow-overlay transition-colors hover:text-gold-light md:right-8 md:bottom-8"
+          className="group fixed end-5 bottom-20 z-40 flex size-12 items-center justify-center rounded-full border border-border-strong bg-bg-overlay text-text-primary shadow-overlay transition-colors hover:text-gold-light md:end-8 md:bottom-8"
         >
           <svg
             aria-hidden

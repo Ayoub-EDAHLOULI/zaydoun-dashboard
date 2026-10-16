@@ -43,10 +43,10 @@ export function Switch({
       >
         <span
           className={cn(
-            "absolute top-0.5 size-4 rounded-full transition-[left,background-color]",
+            "absolute top-0.5 size-4 rounded-full transition-[inset-inline-start,background-color]",
             checked
-              ? "left-[18px] bg-text-primary"
-              : "left-0.5 bg-text-secondary",
+              ? "start-[18px] bg-text-primary"
+              : "start-0.5 bg-text-secondary",
           )}
         />
       </span>

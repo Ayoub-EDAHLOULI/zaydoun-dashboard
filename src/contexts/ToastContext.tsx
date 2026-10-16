@@ -2,6 +2,8 @@
 
 import { createContext, useCallback, useContext, ReactNode } from "react";
 import { toast, ToastContainer, ToastOptions } from "react-toastify";
+import { useLocale } from "next-intl";
+import { isRtl } from "@/i18n/routing";
 import { CircleAlert, CircleCheck, Info, TriangleAlert } from "lucide-react";
 import "react-toastify/dist/ReactToastify.css";
 import { useMediaQuery, MOBILE_QUERY } from "@/hooks/useMediaQuery";
@@ -33,10 +35,14 @@ export default function ToastProvider({ children }: { children: ReactNode }) {
     [],
   );
 
+  const rtl = isRtl(useLocale());
+
   return (
     <ToastContext.Provider value={{ notify }}>
       <ToastContainer
-        position={isMobile ? "top-center" : "bottom-right"}
+        // Bottom end corner: the left in Arabic
+        position={isMobile ? "top-center" : rtl ? "bottom-left" : "bottom-right"}
+        rtl={rtl}
         autoClose={5000}
         hideProgressBar
         closeButton={false}

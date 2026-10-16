@@ -1,8 +1,8 @@
 "use client";
 
+import { Link, useRouter } from "@/i18n/navigation";
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { ArrowLeft, Settings2, Trash2 } from "lucide-react";
 import {
   ActionMenu,
@@ -24,7 +24,8 @@ import { booksService } from "@/lib/api/services/books.service";
 import { conversationsService } from "@/lib/api/services/conversations.service";
 import { useToast } from "@/contexts/ToastContext";
 import { useLimits } from "@/contexts/LimitsContext";
-import { LANGUAGES, isArabic, languageName } from "@/lib/languages";
+import { LANGUAGES, isArabic, languageDisplayName } from "@/lib/languages";
+import { useFormatDate } from "@/lib/time";
 import { cn } from "@/lib/cn";
 import type { BookDetail } from "@/types/books.types";
 import type {
@@ -37,21 +38,21 @@ import type {
 // Helpers
 // ---------------------------------------------------------------------------
 
-const shortDate = (iso: string) =>
-  new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+const SHORT_DATE = { month: "short", day: "numeric" } as const;
 
-function dayLabel(iso: string): string {
-  const d = new Date(iso);
-  const today = new Date();
-  const yesterday = new Date();
-  yesterday.setDate(today.getDate() - 1);
-  if (d.toDateString() === today.toDateString()) return "Today";
-  if (d.toDateString() === yesterday.toDateString()) return "Yesterday";
-  return d.toLocaleDateString(undefined, { month: "long", day: "numeric" });
-}
-
-function conversationLabel(c: ConversationSummary): string {
-  return c.title?.trim() || c.lastMessage?.content.slice(0, 60) || "New conversation";
+// "Today" / "Yesterday" / "October 12" in the UI language
+function useDayLabel() {
+  const t = useTranslations("conversations.chat");
+  const formatDate = useFormatDate();
+  return (iso: string): string => {
+    const d = new Date(iso);
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+    if (d.toDateString() === today.toDateString()) return t("today");
+    if (d.toDateString() === yesterday.toDateString()) return t("yesterday");
+    return formatDate(d, { month: "long", day: "numeric" });
+  };
 }
 
 function ReplyLanguageSelect({
@@ -65,9 +66,10 @@ function ReplyLanguageSelect({
   disabled?: boolean;
   inline?: boolean;
 }) {
+  const t = useTranslations("conversations.chat");
   return (
     <Select
-      label="Replies in"
+      label={t("repliesInLabel")}
       value={value}
       onChange={(e) => onChange(e.target.value)}
       disabled={disabled}
@@ -98,11 +100,18 @@ function BookPanel({
   others: ConversationSummary[];
   arabic: boolean;
 }) {
+  const t = useTranslations("conversations.chat");
+  const tb = useTranslations("common.book");
+  const tt = useTranslations("conversations.fallbackTitle");
+  const locale = useLocale();
+  const formatDate = useFormatDate();
   const eyebrow = "text-xs font-medium tracking-[0.1em] text-text-secondary uppercase";
+  const conversationLabel = (c: ConversationSummary) =>
+    c.title?.trim() || c.lastMessage?.content.slice(0, 60) || tt("new");
   return (
     <aside
-      aria-label="About this book"
-      className="hidden w-80 shrink-0 flex-col gap-7 overflow-y-auto border-l border-border-subtle bg-bg-base px-6 py-7 xl:flex"
+      aria-label={t("aboutBook")}
+      className="hidden w-80 shrink-0 flex-col gap-7 overflow-y-auto border-s border-border-subtle bg-bg-base px-6 py-7 xl:flex"
     >
       {book ? (
         <div className="flex items-start gap-4">
@@ -123,7 +132,10 @@ function BookPanel({
               </span>
             )}
             <span className="text-13 text-text-secondary">
-              {[languageName(book.language), book.totalPages > 0 && `${book.totalPages} pages`]
+              {[
+                languageDisplayName(book.language, locale),
+                book.totalPages > 0 && tb("pages", { count: book.totalPages }),
+              ]
                 .filter(Boolean)
                 .join(" · ")}
             </span>
@@ -140,7 +152,7 @@ function BookPanel({
       )}
 
       <div className="flex flex-col gap-3">
-        <span className={eyebrow}>Pages cited here</span>
+        <span className={eyebrow}>{t("citedHere")}</span>
         {citedPages.length > 0 ? (
           <div className="flex flex-wrap gap-2">
             {citedPages.map((p) => (
@@ -148,16 +160,16 @@ function BookPanel({
             ))}
           </div>
         ) : (
-          <span className="text-13 text-text-secondary">No pages cited yet.</span>
+          <span className="text-13 text-text-secondary">{t("noCited")}</span>
         )}
         <span className="text-13 leading-relaxed text-text-secondary">
-          A running index of where this conversation has been in the book.
+          {t("citedHint")}
         </span>
       </div>
 
       {others.length > 0 && (
         <div className="flex flex-col gap-2.5">
-          <span className={eyebrow}>Other conversations</span>
+          <span className={eyebrow}>{t("others")}</span>
           {others.map((c) => (
             <Link
               key={c.id}
@@ -169,7 +181,7 @@ function BookPanel({
               </span>
               <span className="text-xs text-text-secondary">
                 {LANGUAGES.find((l) => l.code === c.languageCode)?.nativeName ?? c.languageCode} ·{" "}
-                {shortDate(c.updatedAt)}
+                {formatDate(c.updatedAt, SHORT_DATE)}
               </span>
             </Link>
           ))}
@@ -184,6 +196,11 @@ function BookPanel({
 // ---------------------------------------------------------------------------
 
 export default function ChatView({ id }: { id: string }) {
+  const t = useTranslations("conversations.chat");
+  const tc = useTranslations("conversations");
+  const locale = useLocale();
+  const formatDate = useFormatDate();
+  const dayLabel = useDayLabel();
   const router = useRouter();
   const { notify } = useToast();
   const { limits, refreshLimits } = useLimits();
@@ -215,10 +232,10 @@ export default function ChatView({ id }: { id: string }) {
           .catch(() => {});
       })
       .catch((err: unknown) => {
-        notify(err instanceof Error ? err.message : "Conversation not found", "error");
+        notify(err instanceof Error ? err.message : t("notFound"), "error");
         router.replace("/app/conversations");
       });
-  }, [id, notify, router]);
+  }, [id, notify, router, t]);
 
   // Keep the newest message in view (instant on first load)
   useLayoutEffect(() => {
@@ -243,7 +260,10 @@ export default function ChatView({ id }: { id: string }) {
     !!limits && !limits.unlimited && limits.messages.used >= limits.messages.limit;
   const quota =
     limits && !limits.unlimited
-      ? `${Math.max(0, limits.messages.limit - limits.messages.used)} of ${limits.messages.limit} messages left today`
+      ? t("quota", {
+          left: Math.max(0, limits.messages.limit - limits.messages.used),
+          limit: limits.messages.limit,
+        })
       : undefined;
 
   // ── Actions ─────────────────────────────────────────────────────────────
@@ -271,7 +291,7 @@ export default function ChatView({ id }: { id: string }) {
     } catch (err) {
       setMessages((prev) => prev.filter((m) => m.id !== optimistic.id));
       setDraft(text);
-      notify(err instanceof Error ? err.message : "Couldn't send your message", "error");
+      notify(err instanceof Error ? err.message : t("sendFailed"), "error");
     } finally {
       setIsSending(false);
       void refreshLimits();
@@ -287,7 +307,7 @@ export default function ChatView({ id }: { id: string }) {
       await conversationsService.update(id, { languageCode: code });
     } catch (err) {
       setConversation((c) => (c ? { ...c, languageCode: previous } : c));
-      notify(err instanceof Error ? err.message : "Couldn't change the language", "error");
+      notify(err instanceof Error ? err.message : t("languageFailed"), "error");
     } finally {
       setSavingLang(false);
     }
@@ -296,16 +316,20 @@ export default function ChatView({ id }: { id: string }) {
   const deleteConversation = async () => {
     try {
       await conversationsService.delete(id);
-      notify("Conversation deleted", "success");
+      notify(tc("toast.deleted"), "success");
       router.replace("/app/conversations");
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Delete failed", "error");
+      notify(err instanceof Error ? err.message : tc("toast.deleteFailed"), "error");
     }
   };
 
   // ── Render ──────────────────────────────────────────────────────────────
   const title = book?.title ?? "";
-  const subtitle = [book?.author, conversation && `started ${shortDate(conversation.createdAt)}`]
+  const subtitle = [
+    book?.author,
+    conversation &&
+      t("started", { date: formatDate(conversation.createdAt, SHORT_DATE) }),
+  ]
     .filter(Boolean)
     .join(" · ");
 
@@ -316,7 +340,7 @@ export default function ChatView({ id }: { id: string }) {
         <header className="flex h-16 shrink-0 items-center gap-1 border-b border-border-subtle px-1 md:h-[72px] md:gap-3.5 md:px-6">
           <Link
             href="/app/conversations"
-            aria-label="Back to conversations"
+            aria-label={t("back")}
             className="flex size-11 shrink-0 items-center justify-center rounded-sm text-text-primary transition-colors hover:bg-bg-elevated md:size-10 md:text-text-secondary"
           >
             <ArrowLeft size={20} aria-hidden />
@@ -341,7 +365,9 @@ export default function ChatView({ id }: { id: string }) {
               <Skeleton className="h-5 w-48" />
             )}
             <span className="truncate text-xs text-text-secondary md:text-13">
-              <span className="md:hidden">Replies in {languageName(lang)}</span>
+              <span className="md:hidden">
+                {t("repliesIn", { language: languageDisplayName(lang, locale) })}
+              </span>
               <span className="hidden md:inline">{subtitle}</span>
             </span>
           </div>
@@ -356,10 +382,10 @@ export default function ChatView({ id }: { id: string }) {
             />
             <ActionMenu
               appearance="plain"
-              ariaLabel="Conversation actions"
+              ariaLabel={t("actions")}
               items={[
                 {
-                  label: "Delete conversation",
+                  label: tc("delete.action"),
                   icon: Trash2,
                   destructive: true,
                   onSelect: () => setDeleteOpen(true),
@@ -372,7 +398,7 @@ export default function ChatView({ id }: { id: string }) {
           <button
             type="button"
             onClick={() => setSettingsOpen(true)}
-            aria-label="Conversation settings"
+            aria-label={t("settings")}
             className="flex size-11 shrink-0 items-center justify-center rounded-sm text-text-primary transition-colors hover:bg-bg-elevated md:hidden"
           >
             <Settings2 size={20} aria-hidden />
@@ -383,7 +409,7 @@ export default function ChatView({ id }: { id: string }) {
         <div
           ref={logRef}
           role="log"
-          aria-label="Conversation"
+          aria-label={t("log")}
           aria-live="polite"
           className="min-h-0 flex-1 overflow-y-auto px-4 pt-6 md:px-6 md:pt-8"
         >
@@ -398,14 +424,17 @@ export default function ChatView({ id }: { id: string }) {
               <div className="flex flex-col items-center gap-4 py-16 text-center">
                 <Orb size={56} rings={1} muted className="mb-2" />
                 <h2 className="font-serif text-26 leading-tight font-normal">
-                  Ask Zaydoun about{" "}
-                  <em dir="auto" className="text-gold-light italic">
-                    {title || "this book"}
-                  </em>
+                  {t.rich("emptyTitle", {
+                    title: title || t("thisBook"),
+                    em: (chunks) => (
+                      <em dir="auto" className="text-gold-light italic">
+                        {chunks}
+                      </em>
+                    ),
+                  })}
                 </h2>
                 <p className="max-w-[420px] text-sm leading-relaxed text-text-secondary">
-                  Ask for an explanation, push back on an idea, or ask where something is in the
-                  book. He&apos;ll answer in {languageName(lang)}.
+                  {t("emptyBody", { language: languageDisplayName(lang, locale) })}
                 </p>
               </div>
             ) : (
@@ -449,8 +478,8 @@ export default function ChatView({ id }: { id: string }) {
                 onSend={send}
                 sending={isSending}
                 disabled={!conversation}
-                placeholder="Ask, push back, or ask for an example…"
-                hint="Enter to send · Shift+Enter for a new line"
+                placeholder={t("placeholder")}
+                hint={t("hint")}
                 quota={quota}
               />
             )}
@@ -464,7 +493,7 @@ export default function ChatView({ id }: { id: string }) {
       <Modal
         open={settingsOpen}
         onClose={() => setSettingsOpen(false)}
-        title="Conversation settings"
+        title={t("settings")}
         size="sm"
       >
         <ReplyLanguageSelect
@@ -480,7 +509,7 @@ export default function ChatView({ id }: { id: string }) {
           }}
         >
           <Trash2 size={18} aria-hidden />
-          Delete conversation
+          {tc("delete.action")}
         </Button>
       </Modal>
 
@@ -488,10 +517,10 @@ export default function ChatView({ id }: { id: string }) {
         open={deleteOpen}
         onClose={() => setDeleteOpen(false)}
         onConfirm={deleteConversation}
-        title="Delete this conversation?"
-        description="Its messages will be removed for good. The book stays on your shelf."
-        confirmLabel="Delete conversation"
-        cancelLabel="Keep it"
+        title={tc("delete.title")}
+        description={t("deleteBody")}
+        confirmLabel={tc("delete.action")}
+        cancelLabel={tc("delete.keep")}
       />
     </div>
   );

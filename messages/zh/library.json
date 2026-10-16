@@ -1,0 +1,85 @@
+{
+  "title": "书库",
+  "uploadButton": "上传书籍",
+  "booksLabel": "书籍",
+  "lastSlot": "这将占用你最后一个免费位置。",
+  "summary": {
+    "books": "{count} 本书",
+    "ready": "{count} 本可对话",
+    "reading": "{count} 本阅读中"
+  },
+  "lastOpened": {
+    "today": "今天打开过",
+    "yesterday": "昨天打开过",
+    "daysAgo": "{count} 天前打开过",
+    "on": "{date}打开过"
+  },
+  "toast": {
+    "loadFailed": "无法加载你的书",
+    "ready": "《{title}》已可以开始对话。",
+    "failed": "Zaydoun 无法读取《{title}》。",
+    "uploaded": "《{title}》已放上书架。准备好后让 Zaydoun 读一读吧。",
+    "uploadFailed": "上传失败",
+    "reading": "Zaydoun 正在读《{title}》，读完会通知你。",
+    "processFailed": "无法开始阅读",
+    "deleted": "《{title}》已删除。",
+    "deleteFailed": "删除失败"
+  },
+  "card": {
+    "talk": "和这本书对话",
+    "conversations": "{count} 场对话",
+    "noConversations": "还没有对话",
+    "processing": "Zaydoun 正在阅读，读完会通知你。",
+    "read": "让 Zaydoun 读一读",
+    "pending": "已上传，Zaydoun 还没读。",
+    "retry": "重试",
+    "failed": "Zaydoun 无法读取这份 PDF。"
+  },
+  "delete": {
+    "action": "删除书籍",
+    "keep": "保留",
+    "title": "删除《{title}》？",
+    "withConversations": "这会删除这本书及其 {count} 场对话。",
+    "bookOnly": "这会把书从书架上移除。",
+    "freesSlot": "并腾出一个免费位置。",
+    "permanent": "此操作无法撤销。"
+  },
+  "empty": {
+    "title": "你的书架是空的",
+    "body": "上传一份 PDF，Zaydoun 会在你提出第一个问题之前逐页读完。",
+    "action": "上传书籍"
+  },
+  "search": {
+    "label": "搜索你的书",
+    "placeholder": "搜索书名或作者"
+  },
+  "filter": {
+    "label": "按状态筛选",
+    "all": "全部",
+    "ready": "就绪",
+    "progress": "进行中"
+  },
+  "noMatchQuery": "没有与“{query}”匹配的书。",
+  "noMatchFilter": "没有符合此筛选条件的书。",
+  "noSlot": {
+    "title": "没有免费位置了",
+    "body": "你的免费书位已满。从某本书的 ··· 菜单中删除一本，才能上传新书。"
+  },
+  "upload": {
+    "title": "添加书籍",
+    "description": "Zaydoun 会逐页阅读，以便注明每个回答的出处。",
+    "titleLabel": "书名",
+    "author": "作者<optional>（可选）</optional>",
+    "authorPlaceholder": "例如：马可·奥勒留",
+    "language": "语言",
+    "languageHint": "这本书的写作语言。",
+    "uploading": "上传中…",
+    "submit": "上传书籍",
+    "errors": {
+      "noFile": "请选择要上传的 PDF。",
+      "titleRequired": "请填写书名。",
+      "tooLong": "最多 255 个字符。",
+      "languageCode": "请选择书的语言。"
+    }
+  }
+}

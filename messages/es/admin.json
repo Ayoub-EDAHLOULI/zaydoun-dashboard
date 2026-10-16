@@ -1,0 +1,165 @@
+{
+  "units": {
+    "s": "{n} s",
+    "m": "{n} min",
+    "hm": "{h} h {m} min"
+  },
+  "chart": {
+    "today": "Hoy",
+    "perMonth": "Coste por mes",
+    "perDay": "Coste por día",
+    "asChart": "Ver como gráfico",
+    "asTable": "Ver como tabla",
+    "day": "Día",
+    "messages": "Mensajes",
+    "cost": "Coste",
+    "chartLabel": "Gráfico de coste por día",
+    "barLabel": "{day}: {cost}, {count, plural, one {# mensaje} other {# mensajes}}",
+    "messagesCount": "{count, plural, one {# mensaje} other {# mensajes}}"
+  },
+  "overview": {
+    "title": "Resumen",
+    "subtitle": "Uso y coste de todos los lectores · {range}",
+    "periodLabel": "Periodo",
+    "keyNumbers": "Cifras clave",
+    "loadFailed": "No pudimos cargar el uso",
+    "periods": {
+      "day": "Hoy",
+      "week": "7 días",
+      "month": "30 días",
+      "all": "Todo"
+    },
+    "range": {
+      "today": "hoy",
+      "all": "desde el principio"
+    },
+    "comparison": {
+      "day": "vs ayer",
+      "week": "vs los 7 días anteriores",
+      "month": "vs los 30 días anteriores"
+    },
+    "kpi": {
+      "cost": "Coste total",
+      "messages": "Mensajes",
+      "inConversations": "en {count, plural, one {# conversación} other {# conversaciones}}",
+      "tokens": "Tokens usados",
+      "tokensSplit": "{input} de entrada · {output} de salida",
+      "audio": "Audio procesado",
+      "audioNote": "voz, desde el móvil"
+    },
+    "empty": {
+      "title": "Un periodo tranquilo",
+      "body": "Nadie ha hablado con Zaydoun en este periodo. Prueba con un rango más largo."
+    },
+    "top": "Conversaciones más caras",
+    "allConversations": "Todas las conversaciones",
+    "sources": {
+      "title": "En qué se va el dinero",
+      "answers": "Respuestas (LLM)",
+      "whisper": "Voz de entrada (Whisper)",
+      "tts": "Voz de salida (TTS)",
+      "note": "No incluye la indexación de libros: la API aún no registra el coste de los embeddings."
+    },
+    "table": {
+      "conversation": "Conversación",
+      "reader": "Lector",
+      "book": "Libro",
+      "messages": "Mensajes",
+      "tokens": "Tokens",
+      "audio": "Audio",
+      "cost": "Coste"
+    }
+  },
+  "users": {
+    "title": "Usuarios",
+    "summary": "{people, plural, one {# persona} other {# personas}} · {admins, plural, one {# admin} other {# admins}} · {inactive, plural, one {# inactivo} other {# inactivos}}",
+    "add": "Añadir usuario",
+    "toast": {
+      "loadFailed": "No pudimos cargar los usuarios",
+      "invited": "Invitación enviada a {email}",
+      "addFailed": "No se pudo añadir el usuario",
+      "updated": "Datos actualizados",
+      "updateFailed": "No se pudo actualizar el usuario",
+      "activated": "{name} puede volver a iniciar sesión",
+      "deactivated": "{name} ha sido desactivado",
+      "statusFailed": "No se pudo cambiar el estado",
+      "nowAdmin": "{name} ahora es administrador",
+      "nowReader": "{name} ahora es lector",
+      "deleted": "{name} ha sido eliminado",
+      "failed": "Algo salió mal"
+    },
+    "col": {
+      "user": "Usuario",
+      "role": "Rol",
+      "status": "Estado",
+      "books": "Libros",
+      "conversations": "Conversaciones",
+      "joined": "Alta",
+      "actions": "Acciones"
+    },
+    "you": "(tú)",
+    "adminBadge": "ADMIN",
+    "reader": "Lector",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "isActive": "{name} está activo",
+    "isInactive": "{name} está inactivo",
+    "noSelfActions": "No hay acciones sobre tu propia cuenta",
+    "actionsFor": "Acciones para {name}",
+    "menu": {
+      "edit": "Editar datos",
+      "makeReader": "Hacer lector",
+      "makeAdmin": "Hacer administrador",
+      "deactivate": "Desactivar",
+      "activate": "Activar",
+      "delete": "Eliminar usuario…"
+    },
+    "confirm": {
+      "deleteTitle": "¿Eliminar a {name}?",
+      "deleteBody": "Su cuenta, {books, plural, one {su libro} other {sus # libros}} y {conversations, plural, one {su conversación} other {sus # conversaciones}} se eliminarán para siempre.",
+      "delete": "Eliminar usuario",
+      "readerTitle": "¿Hacer lector a {name}?",
+      "readerBody": "Perderá el acceso a usuarios, uso y costes, y quedará sujeto a los límites gratuitos.",
+      "adminTitle": "¿Hacer administrador a {name}?",
+      "adminBody": "Podrá ver a todos los usuarios, el uso y los costes, y gestionar cuentas."
+    },
+    "search": {
+      "label": "Buscar usuarios",
+      "placeholder": "Buscar por nombre o correo"
+    },
+    "filter": {
+      "everyone": "Todos",
+      "admins": "Administradores",
+      "readers": "Lectores",
+      "anyStatus": "Cualquier estado"
+    },
+    "empty": {
+      "title": "Nadie coincide",
+      "body": "Prueba con otro nombre o quita los filtros."
+    },
+    "showing": "Mostrando {from}–{to} de {total}",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "form": {
+      "addTitle": "Añadir un usuario",
+      "editTitle": "Editar datos",
+      "addDescription": "Le enviaremos por correo una contraseña temporal para que pueda iniciar sesión.",
+      "editDescription": "Los cambios se aplican al momento.",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "role": "Rol",
+      "roles": {
+        "reader": {
+          "label": "Lector",
+          "detail": "Su propia biblioteca y conversaciones"
+        },
+        "admin": {
+          "label": "Administrador",
+          "detail": "Además: usuarios, uso y costes"
+        }
+      },
+      "submitAdd": "Añadir y enviar invitación",
+      "submitEdit": "Guardar cambios"
+    }
+  }
+}

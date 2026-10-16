@@ -56,7 +56,7 @@ export default function SunScene() {
     <MotionConfig reducedMotion="user">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 overflow-hidden"
+        className="pointer-events-none absolute inset-0 overflow-hidden rtl:-scale-x-100"
       >
         {/* Sunbeams — under everything else, fading in and out on their own clocks */}
         {BEAMS.map((b, i) => (

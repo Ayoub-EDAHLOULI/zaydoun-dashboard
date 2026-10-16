@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 import path from "path";
+import createNextIntlPlugin from "next-intl/plugin";
+
+// Reads src/i18n/request.ts
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -31,4 +35,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

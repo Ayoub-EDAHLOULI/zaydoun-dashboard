@@ -1,0 +1,44 @@
+{
+  "title": "Profil",
+  "account": "Konto",
+  "noName": "Noch kein Name",
+  "editName": "Namen bearbeiten",
+  "fullName": "Vollständiger Name",
+  "save": "Speichern",
+  "memberSince": "Mitglied seit {date} · {books, plural, one {# Buch} other {# Bücher}} · {conversations, plural, one {# Gespräch} other {# Gespräche}}",
+  "toast": {
+    "loadFailed": "Dein Profil konnte nicht geladen werden",
+    "nameUpdated": "Name aktualisiert",
+    "nameFailed": "Dein Name konnte nicht aktualisiert werden",
+    "prefFailed": "Diese Einstellung konnte nicht in deinem Browser gespeichert werden",
+    "passwordUpdated": "Passwort aktualisiert",
+    "passwordFailed": "Dein Passwort konnte nicht aktualisiert werden",
+    "deleted": "Dein Konto wurde gelöscht",
+    "deleteFailed": "Dein Konto konnte nicht gelöscht werden"
+  },
+  "prefs": {
+    "title": "Leseeinstellungen",
+    "description": "Standard für neue Gespräche.",
+    "repliesIn": "Zaydoun antwortet auf",
+    "saved": "Gespeichert",
+    "appLanguage": "App-Sprache",
+    "appLanguageHint": "Die Sprache von Menüs und Schaltflächen. Zaydouns Antwortsprache stellst du oben ein."
+  },
+  "password": {
+    "title": "Passwort ändern",
+    "current": "Aktuelles Passwort",
+    "new": "Neues Passwort",
+    "confirm": "Neues Passwort bestätigen",
+    "submit": "Passwort aktualisieren"
+  },
+  "delete": {
+    "title": "Konto löschen",
+    "body": "Entfernt deine Bücher, alle Gespräche und dein Konto. Das lässt sich nicht rückgängig machen.",
+    "action": "Mein Konto löschen",
+    "confirmTitle": "Dein Konto löschen?",
+    "confirmBody": "{books, plural, one {Dein Buch} other {Deine # Bücher}} und {conversations, plural, one {dein Gespräch} other {deine # Gespräche}} sind dann für immer weg.",
+    "confirm": "Endgültig löschen",
+    "keep": "Konto behalten",
+    "word": "LÖSCHEN"
+  }
+}

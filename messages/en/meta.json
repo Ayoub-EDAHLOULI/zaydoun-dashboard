@@ -1,0 +1,61 @@
+{
+  "site": {
+    "title": "Zaydoun — AI Voice Assistant for Books | Chat with Any PDF",
+    "description": "Zaydoun is an AI-powered voice reading assistant. Upload any PDF, ask questions hands-free, and get page-accurate answers in 5 languages. Powered by RAG, Whisper STT, and GPT-4o mini.",
+    "ogDescription": "Upload any PDF and have a deep, voice-first conversation with it. Page-accurate answers in 5 languages — hands-free.",
+    "ogImageAlt": "Zaydoun — AI Voice Reading Assistant",
+    "offerName": "Free",
+    "offerDescription": "2 books and 15 messages per day",
+    "featureList": [
+      "Voice-first hands-free reading",
+      "RAG-powered page-accurate answers",
+      "Whisper speech-to-text transcription",
+      "Text-to-speech playback",
+      "5 reply languages: English, Arabic, French, Spanish, Chinese",
+      "Full Arabic RTL rendering",
+      "PDF upload and semantic indexing",
+      "Conversation history"
+    ]
+  },
+  "features": {
+    "title": "Features — AI Voice Reading Assistant with RAG & Whisper STT",
+    "description": "Explore Zaydoun's features: page-accurate answers, voice transcription, spoken replies, 5 reply languages and PDF indexing. Built for serious readers."
+  },
+  "howItWorks": {
+    "title": "How it works — From a PDF to a conversation",
+    "description": "How Zaydoun reads your PDF page by page, finds the passages that answer your question, replies with the page it used, and talks back on mobile."
+  },
+  "faq": {
+    "title": "FAQ — Questions about Zaydoun",
+    "description": "Answers about uploading PDFs, page citations, reply languages, hands-free voice, free limits, your account and privacy."
+  },
+  "contact": {
+    "title": "Contact — Talk to the Zaydoun Team",
+    "description": "Have a question, bug report, or feature request? Every message is read by a real person — we reply within one business day."
+  },
+  "login": {
+    "title": "Sign in",
+    "description": "Sign in to your Zaydoun account."
+  },
+  "register": {
+    "title": "Create account",
+    "description": "Create your Zaydoun account."
+  },
+  "forgotPassword": {
+    "title": "Forgot password",
+    "description": "Reset your Zaydoun password."
+  },
+  "resetPassword": {
+    "title": "Reset password",
+    "description": "Set a new password for your Zaydoun account."
+  },
+  "titles": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "library": "Library",
+    "conversations": "Conversations",
+    "chat": "Chat",
+    "profile": "Profile",
+    "users": "Users"
+  }
+}

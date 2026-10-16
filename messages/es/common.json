@@ -1,0 +1,61 @@
+{
+  "language": {
+    "label": "Idioma: {language}. Cambiar idioma",
+    "choose": "Elige un idioma"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio.",
+    "emailInvalid": "Escribe una dirección de correo completa.",
+    "passwordRequired": "Escribe tu contraseña.",
+    "nameMin": "Usa al menos 2 caracteres.",
+    "passwordMin": "Usa al menos 8 caracteres.",
+    "passwordMax": "Usa como máximo 100 caracteres.",
+    "passwordWeak": "Incluye una mayúscula, una minúscula y un número.",
+    "passwordHint": "8 caracteres o más, con A–Z, a–z y 0–9.",
+    "retypePassword": "Vuelve a escribir tu contraseña.",
+    "passwordsMismatch": "Las contraseñas no coinciden."
+  },
+  "trend": {
+    "up": "sube",
+    "down": "baja",
+    "flat": "sin cambios"
+  },
+  "cancel": "Cancelar",
+  "close": "Cerrar",
+  "typeToConfirm": "Escribe <b>{text}</b> para confirmar",
+  "page": "Página {page}",
+  "status": {
+    "pending": "Pendiente",
+    "processing": "Procesando",
+    "ready": "Listo",
+    "failed": "Error"
+  },
+  "chat": {
+    "copy": "Copiar respuesta",
+    "copied": "Copiado",
+    "thinking": "Buscando los pasajes adecuados…",
+    "placeholder": "Pregunta sobre este libro…",
+    "messageLabel": "Escribe a Zaydoun",
+    "voiceSoon": "Entrada de voz, muy pronto",
+    "soon": "PRONTO",
+    "send": "Enviar"
+  },
+  "book": {
+    "pages": "{count, plural, one {# página} other {# páginas}}",
+    "moreActions": "Más acciones para {title}"
+  },
+  "limits": {
+    "shelfFull": "Tu estantería está llena: {limit} de {limit} libros gratis",
+    "messagesUsed": "Has usado tus {limit} mensajes de hoy",
+    "shelfFullHint": "Borra un libro desde su menú ··· para hacer sitio a otro.",
+    "messagesUsedHint": "Zaydoun volverá a las {time}. Las conversaciones anteriores siguen abiertas para leer."
+  },
+  "upload": {
+    "onlyPdf": "Solo se admiten archivos PDF.",
+    "tooBig": "Ese archivo supera los {size} MB.",
+    "release": "Suelta para añadir este PDF",
+    "another": "Elegir otro archivo",
+    "drop": "Arrastra un PDF aquí o <browse>búscalo</browse>",
+    "limit": "Solo PDF · hasta {size} MB"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "home": "Inicio",
+  "library": "Biblioteca",
+  "conversations": "Conversaciones",
+  "conversation": "Conversación",
+  "profile": "Perfil",
+  "overview": "Resumen",
+  "users": "Usuarios",
+  "manage": "Gestión",
+  "adminDashboard": "Panel de administración",
+  "readerApp": "App de lectura",
+  "backToSite": "Volver al sitio web",
+  "adminBadge": "ADMIN",
+  "adminLabel": "Admin",
+  "appLabel": "App",
+  "navigation": "Navegación",
+  "openNavigation": "Abrir navegación",
+  "closeNavigation": "Cerrar navegación",
+  "logOut": "Cerrar sesión",
+  "zaydounHome": "Inicio de Zaydoun",
+  "loading": "Cargando",
+  "usage": {
+    "freePass": "Pase gratuito",
+    "books": "Libros",
+    "messagesToday": "Mensajes de hoy",
+    "of": "{used} de {limit}"
+  }
+}

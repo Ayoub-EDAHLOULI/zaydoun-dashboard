@@ -1,0 +1,44 @@
+{
+  "title": "Perfil",
+  "account": "Cuenta",
+  "noName": "Aún sin nombre",
+  "editName": "Editar nombre",
+  "fullName": "Nombre completo",
+  "save": "Guardar",
+  "memberSince": "Miembro desde {date} · {books, plural, one {# libro} other {# libros}} · {conversations, plural, one {# conversación} other {# conversaciones}}",
+  "toast": {
+    "loadFailed": "No pudimos cargar tu perfil",
+    "nameUpdated": "Nombre actualizado",
+    "nameFailed": "No pudimos actualizar tu nombre",
+    "prefFailed": "No pudimos guardar esta preferencia en tu navegador",
+    "passwordUpdated": "Contraseña actualizada",
+    "passwordFailed": "No pudimos actualizar tu contraseña",
+    "deleted": "Tu cuenta se ha eliminado",
+    "deleteFailed": "No pudimos eliminar tu cuenta"
+  },
+  "prefs": {
+    "title": "Preferencias de lectura",
+    "description": "Se usan por defecto en las conversaciones nuevas.",
+    "repliesIn": "Zaydoun responde en",
+    "saved": "Guardado",
+    "appLanguage": "Idioma de la app",
+    "appLanguageHint": "El idioma de menús y botones. El idioma de respuesta de Zaydoun se elige arriba."
+  },
+  "password": {
+    "title": "Cambiar contraseña",
+    "current": "Contraseña actual",
+    "new": "Nueva contraseña",
+    "confirm": "Confirma la nueva contraseña",
+    "submit": "Actualizar contraseña"
+  },
+  "delete": {
+    "title": "Eliminar cuenta",
+    "body": "Elimina tus libros, todas tus conversaciones y tu cuenta. No se puede deshacer.",
+    "action": "Eliminar mi cuenta",
+    "confirmTitle": "¿Eliminar tu cuenta?",
+    "confirmBody": "{books, plural, one {Tu libro} other {Tus # libros}} y {conversations, plural, one {tu conversación} other {tus # conversaciones}} desaparecerán para siempre.",
+    "confirm": "Eliminar para siempre",
+    "keep": "Conservar mi cuenta",
+    "word": "ELIMINAR"
+  }
+}

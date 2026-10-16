@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "@/i18n/navigation";
 import {
   createContext,
   useCallback,
@@ -8,7 +9,6 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { usePathname } from "next/navigation";
 import { usersService } from "@/lib/api/services/users.service";
 import type { TierLimits } from "@/types/users.types";
 

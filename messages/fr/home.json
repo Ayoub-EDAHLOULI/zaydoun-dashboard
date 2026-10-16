@@ -1,0 +1,188 @@
+{
+  "book": {
+    "title": "Al-Muqaddima",
+    "author": "Ibn Khaldoun"
+  },
+  "hero": {
+    "eyebrow": "Un compagnon de lecture qui a des avis",
+    "title": "Parlez à vos <em>livres.</em>",
+    "lead": "Importez un PDF : Zaydoun le lit page par page. Ensuite, questionnez, débattez ou plongez ensemble dans un chapitre. Chaque réponse vous renvoie à sa page.",
+    "start": "Commencer gratuitement",
+    "see": "Voir ce qu’il sait faire",
+    "demoLabel": "Exemple de conversation",
+    "demoQ": "La ʿasabiyya, c’est juste un mot savant pour dire tribalisme ?",
+    "demoA": "Pas vraiment, et c’est le piège dans lequel tombent la plupart des résumés. Tout part de la parenté, mais l’épreuve partagée peut aussi la forger. Pensez ciment social, pas « ma tribu d’abord »."
+  },
+  "glance": {
+    "label": "En bref",
+    "page": "Les réponses citent la page",
+    "languages": "5 langues, arabe de droite à gauche",
+    "voice": "Voix mains libres sur mobile",
+    "private": "Vos livres restent à vous"
+  },
+  "ask": {
+    "eyebrow": "Plus qu’une recherche",
+    "title": "Expliquer. Débattre. <em>Retrouver.</em>",
+    "lead": "Zaydoun a lu tout le livre : posez vos questions comme à un ami qui l’a lu aussi. Choisissez une approche :",
+    "tabsLabel": "Façons de demander",
+    "replies": "{author} · répond en français",
+    "explain": {
+      "name": "Expliquer",
+      "hint": "Un passage ardu, rendu clair.",
+      "q": "Explique-moi le début du chapitre 2 comme si je n’y connaissais rien.",
+      "a": "Bien sûr. Il part d’une idée simple : notre façon de vivre façonne ce que nous devenons. Le désert rend les gens endurants et soudés, la ville les rend confortables. Tout le reste s’appuie sur ce contraste."
+    },
+    "debate": {
+      "name": "Débattre",
+      "hint": "Contredisez-le. Il vous contredira aussi.",
+      "q": "Franchement, je trouve qu’il idéalise le désert.",
+      "a": "Bien vu, et vous n’êtes pas le premier à le dire. Mais remarquez qu’il n’affirme jamais que la vie au désert est meilleure. Il dit qu’elle produit une solidarité plus forte, que les villes échangent contre le confort. Vous voulez que je défende sa position plus fermement ?"
+    },
+    "find": {
+      "name": "Retrouver",
+      "hint": "Où a-t-il dit ça, exactement ?",
+      "q": "Où parle-t-il de la hausse des impôts à la fin d’une dynastie ?",
+      "a": "Il la présente d’abord comme un schéma récurrent, puis revient sur ses effets sur le commerce. Commencez par le premier passage, il est plus court que vous ne le pensez."
+    },
+    "connect": {
+      "name": "Relier",
+      "hint": "Faire le lien entre les chapitres.",
+      "q": "Quel rapport avec la ʿasabiyya ?",
+      "a": "Un rapport direct. La hausse des impôts est un symptôme : les dirigeants ont perdu l’esprit de corps qui leur assurait autrefois une loyauté gratuite, alors ils la paient désormais en argent."
+    }
+  },
+  "cite": {
+    "eyebrow": "Précis à la page près",
+    "title": "Ne le croyez pas sur parole. <em>Vérifiez la page.</em>",
+    "body": "Zaydoun répond à partir des passages qu’il trouve dans votre PDF et indique la page sur laquelle il s’est appuyé. Ouvrez le livre, allez à la page et lisez-la avec les mots de l’auteur.",
+    "p1": "Les réponses partent des passages de votre exemplaire, pas du résumé qu’en fait Internet",
+    "p2": "Les numéros de page suivent votre PDF : vous pouvez y aller directement",
+    "p3": "La liste de toutes les pages abordées dans une conversation",
+    "artAnswer": "Tout part de la parenté, mais l’épreuve partagée peut aussi la forger.",
+    "artPage": "Page {page}"
+  },
+  "langs": {
+    "eyebrow": "Cinq langues",
+    "title": "Lisez dans une langue. <em>Discutez dans une autre.</em>",
+    "lead": "Un roman français, des réponses en arabe. Un classique arabe, des réponses en anglais. Choisissez la langue de réponse pour chaque conversation.",
+    "arabicNote": "de droite à gauche, en Amiri"
+  },
+  "voice": {
+    "listening": "À l’écoute",
+    "quote": "« Alors, qu’est-ce qui fait tomber une dynastie ? »",
+    "eyebrow": "La voix d’abord, sur mobile",
+    "title": "Dites « Zaydoun ». <em>Continuez à marcher.</em>",
+    "body": "Dans les transports, à la salle, en faisant la vaisselle. Ouvrez l’application, appelez-le et parlez. Il vous répond à voix haute, et la conversation vous attend sur le web quand vous vous rasseyez.",
+    "soon": "L’application mobile arrive bientôt sur l’App Store et Google Play."
+  },
+  "meet": {
+    "eyebrow": "Voici Zaydoun",
+    "title": "Pas un moteur de recherche. <em>Un partenaire de lecture.</em>",
+    "body": "Vif, chaleureux et un brin marocain. Il vous dira quand un argument est faible, le vôtre comme celui de l’auteur, et glissera un mot de darija quand le moment s’y prête.",
+    "t1": {
+      "title": "Il contredit",
+      "text": "Dites quelque chose d’à moitié juste, il trouvera la moitié qui ne l’est pas."
+    },
+    "t2": {
+      "title": "Il s’en tient au texte",
+      "text": "Des avis sur le livre, des preuves tirées du livre."
+    },
+    "t3": {
+      "title": "Il garde le fil",
+      "text": "Chaque conversation est enregistrée. Reprenez-la la semaine prochaine."
+    },
+    "t4": {
+      "title": "Il a de l’humour",
+      "text": "Sérieux avec les livres, pas avec lui-même."
+    }
+  },
+  "who": {
+    "title": "Pour tous ceux qui attendent plus d’un livre qu’un résumé.",
+    "a1": {
+      "title": "Étudiants",
+      "text": "Débloquez un chapitre dense la veille du séminaire."
+    },
+    "a2": {
+      "title": "Chercheurs",
+      "text": "Trouvez où se cache une idée et allez droit à la page."
+    },
+    "a3": {
+      "title": "Apprenants en langues",
+      "text": "Lisez dans la langue que vous apprenez, discutez dans celle que vous maîtrisez."
+    },
+    "a4": {
+      "title": "Navetteurs",
+      "text": "Continuez à lire, les yeux sur la route et les mains libres."
+    }
+  },
+  "how": {
+    "eyebrow": "Comment ça marche",
+    "title1": "Du PDF à la conversation",
+    "title2": "en trois étapes.",
+    "lead": "Rien à installer, aucun réglage à apprendre. Apportez le livre que vous lisez déjà.",
+    "details": "Voir les détails",
+    "s1": {
+      "title": "Importez sur le web",
+      "text": "Déposez un PDF, ajoutez le titre et la langue. Les livres en arabe sont les bienvenus."
+    },
+    "s2": {
+      "title": "Zaydoun le lit",
+      "text": "Il le parcourt page par page et retient où se trouve chaque idée."
+    },
+    "s3": {
+      "title": "Parlez, mains libres",
+      "text": "Écrivez ici sur le web, ou ouvrez l’application, dites « Zaydoun » et parlez."
+    }
+  },
+  "privacy": {
+    "eyebrow": "Confidentiel par nature",
+    "title": "Votre étagère ne regarde que vous.",
+    "p1": {
+      "title": "Vous seul voyez vos livres",
+      "text": "La bibliothèque et les conversations de chaque lecteur sont séparées."
+    },
+    "p2": {
+      "title": "Supprimez quand vous voulez",
+      "text": "Un livre, une conversation ou votre compte entier."
+    },
+    "p3": {
+      "title": "Envoyé uniquement pour vous répondre",
+      "text": "Pour répondre à une question, les passages utiles sont envoyés à l’API d’OpenAI, et nulle part ailleurs."
+    }
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "title": "Avant de demander à Zaydoun, demandez-nous.",
+    "write": "Autre chose ? Écrivez-nous →",
+    "all": "Voir toutes les questions",
+    "q1": {
+      "q": "Quels fichiers puis-je importer ?",
+      "a": "Des PDF jusqu’à 50 Mo. Ils doivent contenir du vrai texte : un livre scanné sans couche texte ne fonctionne pas encore. Indiquez à Zaydoun la langue du livre lors de l’import."
+    },
+    "q2": {
+      "q": "Comment fonctionnent les citations de pages ?",
+      "a": "Quand vous posez une question, Zaydoun cherche dans votre PDF les passages les plus pertinents et répond à partir d’eux. La réponse indique la page du passage sur lequel il s’est le plus appuyé. Les numéros suivent votre fichier PDF : ils peuvent différer des numéros imprimés si le livre a des pages liminaires."
+    },
+    "q3": {
+      "q": "Puis-je l’utiliser sans regarder mon téléphone ?",
+      "a": "Oui, dans l’application mobile. Activez le mode vocal, dites « Zaydoun », posez votre question et il répond à voix haute. Sur le web, on écrit pour l’instant."
+    },
+    "q4": {
+      "q": "Puis-je parler d’un livre arabe en anglais ?",
+      "a": "Oui. La langue du livre et la langue de réponse sont indépendantes. Choisissez la langue de réponse en lançant une conversation, et changez-la quand vous voulez depuis son en-tête."
+    },
+    "q5": {
+      "q": "Qui peut voir mes livres et mes conversations ?",
+      "a": "Vous seul. Vos livres et conversations sont liés à votre compte, et chaque requête est vérifiée. Pour répondre à une question, les passages utiles et votre question sont envoyés à l’API d’OpenAI."
+    },
+    "q6": {
+      "q": "Est-ce gratuit ?",
+      "a": "Oui. Un compte gratuit contient 2 livres et 15 messages par jour. Le compteur quotidien repart à zéro à minuit UTC."
+    }
+  },
+  "cta": {
+    "title": "Par quel livre commencer ?",
+    "body": "Apportez celui que vous comptez finir depuis longtemps. Zaydoun vous retrouve à la première page.",
+    "start": "Commencer gratuitement"
+  }
+}

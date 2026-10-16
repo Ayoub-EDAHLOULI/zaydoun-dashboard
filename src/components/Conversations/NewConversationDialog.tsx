@@ -1,12 +1,18 @@
 "use client";
 
+import { useRouter } from "@/i18n/navigation";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { Check } from "lucide-react";
 import { Button, Modal, StatusBadge } from "@/components/ui";
 import { conversationsService } from "@/lib/api/services/conversations.service";
 import { useToast } from "@/contexts/ToastContext";
-import { LANGUAGES, isArabic, languageName, type LanguageCode } from "@/lib/languages";
+import {
+  LANGUAGES,
+  isArabic,
+  languageDisplayName,
+  type LanguageCode,
+} from "@/lib/languages";
 import { getReplyLanguagePref } from "@/lib/preferences";
 import { cn } from "@/lib/cn";
 import type { BookSummary } from "@/types/books.types";
@@ -27,6 +33,7 @@ export function NewConversationDialog({
   books,
   initialBookId,
 }: NewConversationDialogProps) {
+  const t = useTranslations("conversations.newDialog");
   const [busy, setBusy] = useState(false);
   // New key each time it opens, so the form starts fresh (and stays mounted
   // while the dialog animates out)
@@ -40,8 +47,8 @@ export function NewConversationDialog({
     <Modal
       open={open}
       onClose={onClose}
-      title="New conversation"
-      description="Pick a book Zaydoun has finished reading, and the language he should answer in."
+      title={t("title")}
+      description={t("description")}
       dismissible={!busy}
     >
       {session > 0 && (
@@ -65,7 +72,7 @@ function MiniCover({ book }: { book: BookSummary }) {
       aria-hidden
       dir={arabic ? "rtl" : undefined}
       className={cn(
-        "h-12 w-9 shrink-0 overflow-hidden rounded-[2px_5px_5px_2px] border-l-[3px] px-1 py-[5px] text-10 leading-[1.2]",
+        "h-12 w-9 shrink-0 overflow-hidden rounded-[5px] rounded-s-[2px] border-s-[3px] px-1 py-[5px] text-10 leading-[1.2]",
         ready ? "border-gold-dark bg-bg-elevated" : "border-border-strong bg-bg-surface",
         arabic ? "font-arabic font-bold text-gold-light" : "font-serif text-text-secondary",
       )}
@@ -86,6 +93,9 @@ function DialogBody({
   onCancel: () => void;
   onBusyChange: (busy: boolean) => void;
 }) {
+  const t = useTranslations("conversations.newDialog");
+  const tb = useTranslations("common.book");
+  const locale = useLocale();
   const router = useRouter();
   const { notify } = useToast();
   const ready = books.filter((b) => b.status === "READY");
@@ -93,7 +103,7 @@ function DialogBody({
   const [bookId, setBookId] = useState<string | undefined>(
     ready.find((b) => b.id === initialBookId)?.id ?? ready[0]?.id,
   );
-  const [lang, setLang] = useState<LanguageCode>(getReplyLanguagePref);
+  const [lang, setLang] = useState<LanguageCode>(() => getReplyLanguagePref(locale));
   const [busy, setBusy] = useState(false);
 
   const start = async () => {
@@ -104,7 +114,7 @@ function DialogBody({
       const conv = await conversationsService.create({ bookId, languageCode: lang });
       router.push(`/app/conversations/${conv.id}`);
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't start the conversation", "error");
+      notify(err instanceof Error ? err.message : t("failed"), "error");
       setBusy(false);
       onBusyChange(false);
     }
@@ -116,22 +126,26 @@ function DialogBody({
   return (
     <div className="flex flex-col gap-6">
       <fieldset className="flex flex-col gap-2.5">
-        <legend className="mb-2.5 text-13 font-medium text-text-secondary">Book</legend>
+        <legend className="mb-2.5 text-13 font-medium text-text-secondary">
+          {t("book")}
+        </legend>
         {ordered.length === 0 && (
-          <p className="text-sm text-text-secondary">
-            Your shelf is empty. Upload a book from the Library first.
-          </p>
+          <p className="text-sm text-text-secondary">{t("emptyShelf")}</p>
         )}
         {ordered.map((book) => {
           const selectable = book.status === "READY";
           const selected = book.id === bookId;
           const meta = selectable
-            ? [book.author, languageName(book.language), book.totalPages > 0 && `${book.totalPages} pages`]
+            ? [
+                book.author,
+                languageDisplayName(book.language, locale),
+                book.totalPages > 0 && tb("pages", { count: book.totalPages }),
+              ]
                 .filter(Boolean)
                 .join(" · ")
             : book.status === "FAILED"
-              ? "Zaydoun couldn't read this one."
-              : "Still being read. Available when it's Ready.";
+              ? t("failedBook")
+              : t("stillReading");
           return (
             <label
               key={book.id}
@@ -175,7 +189,7 @@ function DialogBody({
 
       <fieldset className="flex flex-col gap-2.5">
         <legend className="mb-2.5 text-13 font-medium text-text-secondary">
-          Zaydoun replies in
+          {t("repliesIn")}
         </legend>
         <div className="flex flex-wrap gap-2">
           {LANGUAGES.map((l) => {
@@ -209,16 +223,16 @@ function DialogBody({
           })}
         </div>
         <span className="text-13 text-text-secondary">
-          Defaults to your preference from Profile. You can change it later in the conversation.
+          {t("languageHint")}
         </span>
       </fieldset>
 
       <div className="flex flex-col-reverse gap-2.5 md:flex-row md:justify-end">
         <Button variant="ghost" onClick={onCancel} disabled={busy}>
-          Cancel
+          {t("cancel")}
         </Button>
         <Button onClick={start} loading={busy} disabled={!bookId}>
-          Start talking
+          {t("start")}
         </Button>
       </div>
     </div>

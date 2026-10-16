@@ -1,0 +1,61 @@
+{
+  "site": {
+    "title": "Zaydoun — Assistant vocal IA pour vos livres | Discutez avec n’importe quel PDF",
+    "description": "Zaydoun est un assistant de lecture vocal propulsé par l’IA. Importez un PDF, posez vos questions sans les mains et obtenez des réponses précises à la page près, en 5 langues. Basé sur le RAG, Whisper et GPT-4o mini.",
+    "ogDescription": "Importez un PDF et menez avec lui une vraie conversation, à la voix. Des réponses précises à la page près, en 5 langues — sans les mains.",
+    "ogImageAlt": "Zaydoun — Assistant de lecture vocal IA",
+    "offerName": "Gratuit",
+    "offerDescription": "2 livres et 15 messages par jour",
+    "featureList": [
+      "Lecture vocale, mains libres",
+      "Réponses précises à la page près grâce au RAG",
+      "Transcription vocale avec Whisper",
+      "Lecture des réponses à voix haute",
+      "5 langues de réponse : anglais, arabe, français, espagnol, chinois",
+      "Affichage arabe de droite à gauche",
+      "Import et indexation sémantique de PDF",
+      "Historique des conversations"
+    ]
+  },
+  "features": {
+    "title": "Fonctionnalités — Assistant de lecture vocal IA avec RAG et Whisper",
+    "description": "Découvrez Zaydoun : réponses précises à la page près, transcription vocale, réponses parlées, 5 langues de réponse et indexation des PDF. Pensé pour les lecteurs exigeants."
+  },
+  "howItWorks": {
+    "title": "Comment ça marche — D’un PDF à une conversation",
+    "description": "Comment Zaydoun lit votre PDF page par page, trouve les passages qui répondent à votre question, cite la page utilisée et vous répond à voix haute sur mobile."
+  },
+  "faq": {
+    "title": "FAQ — Vos questions sur Zaydoun",
+    "description": "Tout sur l’import de PDF, les citations de pages, les langues de réponse, la voix mains libres, les limites gratuites, votre compte et la confidentialité."
+  },
+  "contact": {
+    "title": "Contact — Écrivez à l’équipe Zaydoun",
+    "description": "Une question, un bug, une idée de fonctionnalité ? Chaque message est lu par une vraie personne — nous répondons sous un jour ouvré."
+  },
+  "login": {
+    "title": "Connexion",
+    "description": "Connectez-vous à votre compte Zaydoun."
+  },
+  "register": {
+    "title": "Créer un compte",
+    "description": "Créez votre compte Zaydoun."
+  },
+  "forgotPassword": {
+    "title": "Mot de passe oublié",
+    "description": "Réinitialisez votre mot de passe Zaydoun."
+  },
+  "resetPassword": {
+    "title": "Nouveau mot de passe",
+    "description": "Choisissez un nouveau mot de passe pour votre compte Zaydoun."
+  },
+  "titles": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "library": "Bibliothèque",
+    "conversations": "Conversations",
+    "chat": "Discussion",
+    "profile": "Profil",
+    "users": "Utilisateurs"
+  }
+}

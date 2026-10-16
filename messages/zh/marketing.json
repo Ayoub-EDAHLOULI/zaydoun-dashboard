@@ -1,0 +1,16 @@
+{
+  "backToTop": "返回顶部",
+  "nav": {
+    "features": "功能",
+    "howItWorks": "工作原理",
+    "faq": "常见问题",
+    "contact": "联系我们",
+    "logIn": "登录",
+    "getStarted": "开始使用",
+    "openLibrary": "打开我的书库",
+    "main": "主导航",
+    "footer": "页脚",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "home": "Home",
+  "library": "Library",
+  "conversations": "Conversations",
+  "conversation": "Conversation",
+  "profile": "Profile",
+  "overview": "Overview",
+  "users": "Users",
+  "manage": "Manage",
+  "adminDashboard": "Admin dashboard",
+  "readerApp": "Reader app",
+  "backToSite": "Back to website",
+  "adminBadge": "ADMIN",
+  "adminLabel": "Admin",
+  "appLabel": "App",
+  "navigation": "Navigation",
+  "openNavigation": "Open navigation",
+  "closeNavigation": "Close navigation",
+  "logOut": "Log out",
+  "zaydounHome": "Zaydoun home",
+  "loading": "Loading",
+  "usage": {
+    "freePass": "Free Pass",
+    "books": "Books",
+    "messagesToday": "Messages today",
+    "of": "{used} of {limit}"
+  }
+}

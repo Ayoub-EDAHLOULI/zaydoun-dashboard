@@ -1,0 +1,54 @@
+{
+  "home": {
+    "loadFailed": "Deine Startseite konnte nicht geladen werden",
+    "greeting": {
+      "late": "Noch wach",
+      "morning": "Guten Morgen",
+      "afternoon": "Guten Tag",
+      "evening": "Guten Abend"
+    },
+    "greetingName": "{greeting}, {name}.",
+    "greetingAlone": "{greeting}.",
+    "subtitleContinue": "{name} kam gerade zum spannenden Teil.",
+    "subtitleReady": "Deine Bücher sind bereit. Frag Zaydoun alles dazu.",
+    "subtitleEmpty": "Füge ein Buch hinzu, und Zaydoun liest es mit dir, Seite für Seite.",
+    "continueEyebrow": "Mach weiter, wo du aufgehört hast",
+    "continue": "Weiter",
+    "first": {
+      "eyebrowReady": "Starte dein erstes Gespräch",
+      "eyebrowEmpty": "Los geht’s",
+      "titleReady": "Wähle ein Buch und stell deine erste Frage.",
+      "titleEmpty": "Stell ein Buch in dein Regal.",
+      "bodyReady": "Zaydoun antwortet mit der Seite, auf der er es gefunden hat.",
+      "bodyEmpty": "Lade ein PDF hoch. Zaydoun liest es Seite für Seite, damit er die Quellen seiner Antworten nennen kann."
+    },
+    "newConversation": "Neues Gespräch",
+    "uploadBook": "Buch hochladen",
+    "numbers": "Deine Zahlen",
+    "stats": {
+      "books": "Bücher in deinem Regal",
+      "ready": "{count} bereit",
+      "reading": "{count} wird gelesen",
+      "noneYet": "Noch keine",
+      "conversations": "Gespräche",
+      "thisWeek": "{count} diese Woche",
+      "messagesLeft": "Verbleibende Nachrichten heute",
+      "noLimit": "Unbegrenzt",
+      "adminAccount": "Admin-Konto",
+      "messagesDetail": "von {limit} · Neustart um {time}"
+    },
+    "recent": "Letzte Gespräche",
+    "seeAll": "Alle ansehen",
+    "noConversations": "Noch keine Gespräche.",
+    "quick": {
+      "title": "Schnellaktionen",
+      "newReady": "Wähle ein Buch und eine Sprache",
+      "newNone": "Noch kein Buch ist bereit",
+      "uploadFull": "Regal voll · lösch zuerst ein Buch",
+      "uploadDetail": "PDF, bis 50 MB",
+      "library": "Zur Bibliothek",
+      "stillReading": "{title} wird noch gelesen",
+      "booksOnShelf": "{count, plural, one {# Buch} other {# Bücher}} in deinem Regal"
+    }
+  }
+}

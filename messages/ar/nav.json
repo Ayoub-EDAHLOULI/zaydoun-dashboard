@@ -1,0 +1,28 @@
+{
+  "home": "الرئيسية",
+  "library": "المكتبة",
+  "conversations": "المحادثات",
+  "conversation": "المحادثة",
+  "profile": "الملف الشخصي",
+  "overview": "نظرة عامة",
+  "users": "المستخدمون",
+  "manage": "الإدارة",
+  "adminDashboard": "لوحة الإدارة",
+  "readerApp": "تطبيق القارئ",
+  "backToSite": "العودة إلى الموقع",
+  "adminBadge": "مسؤول",
+  "adminLabel": "الإدارة",
+  "appLabel": "التطبيق",
+  "navigation": "التنقل",
+  "openNavigation": "فتح قائمة التنقل",
+  "closeNavigation": "إغلاق قائمة التنقل",
+  "logOut": "تسجيل الخروج",
+  "zaydounHome": "الصفحة الرئيسية لزيدون",
+  "loading": "جارٍ التحميل",
+  "usage": {
+    "freePass": "الباقة المجانية",
+    "books": "الكتب",
+    "messagesToday": "رسائل اليوم",
+    "of": "{used} من {limit}"
+  }
+}

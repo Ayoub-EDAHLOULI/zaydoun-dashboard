@@ -1,0 +1,61 @@
+{
+  "language": {
+    "label": "اللغة: {language}. تغيير اللغة",
+    "choose": "اختر لغة"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب.",
+    "emailInvalid": "أدخل عنوان بريد إلكتروني كاملًا.",
+    "passwordRequired": "أدخل كلمة المرور.",
+    "nameMin": "استخدم حرفين على الأقل.",
+    "passwordMin": "استخدم 8 أحرف على الأقل.",
+    "passwordMax": "استخدم 100 حرف على الأكثر.",
+    "passwordWeak": "يجب أن تتضمن حرفًا كبيرًا وحرفًا صغيرًا ورقمًا.",
+    "passwordHint": "8 أحرف أو أكثر، تتضمن A–Z وa–z و0–9.",
+    "retypePassword": "اكتب كلمة المرور مرة أخرى.",
+    "passwordsMismatch": "كلمتا المرور غير متطابقتين."
+  },
+  "trend": {
+    "up": "ارتفاع",
+    "down": "انخفاض",
+    "flat": "دون تغيير"
+  },
+  "cancel": "إلغاء",
+  "close": "إغلاق",
+  "typeToConfirm": "اكتب <b>{text}</b> للتأكيد",
+  "page": "صفحة {page}",
+  "status": {
+    "pending": "قيد الانتظار",
+    "processing": "قيد المعالجة",
+    "ready": "جاهز",
+    "failed": "فشل"
+  },
+  "chat": {
+    "copy": "نسخ الإجابة",
+    "copied": "تم النسخ",
+    "thinking": "يبحث عن المقاطع المناسبة…",
+    "placeholder": "اسأل عن هذا الكتاب…",
+    "messageLabel": "راسل زيدون",
+    "voiceSoon": "الإدخال الصوتي، قريبًا",
+    "soon": "قريبًا",
+    "send": "إرسال"
+  },
+  "book": {
+    "pages": "{count, plural, zero {لا صفحات} one {صفحة واحدة} two {صفحتان} few {# صفحات} many {# صفحة} other {# صفحة}}",
+    "moreActions": "إجراءات أخرى لـ {title}"
+  },
+  "limits": {
+    "shelfFull": "رفّك ممتلئ: {limit} من {limit} كتب مجانية",
+    "messagesUsed": "استخدمت رسائلك الـ {limit} لهذا اليوم",
+    "shelfFullHint": "احذف كتابًا من قائمة ··· الخاصة به لتفسح مكانًا لكتاب آخر.",
+    "messagesUsedHint": "سيعود زيدون عند الساعة {time}. تبقى المحادثات السابقة متاحة للقراءة."
+  },
+  "upload": {
+    "onlyPdf": "لا تُقبل إلا ملفات PDF.",
+    "tooBig": "حجم هذا الملف يتجاوز {size} ميغابايت.",
+    "release": "أفلت الملف لإضافته",
+    "another": "اختر ملفًا آخر",
+    "drop": "أفلت ملف PDF هنا، أو <browse>تصفّح</browse>",
+    "limit": "PDF فقط · حتى {size} ميغابايت"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "eyebrow": "Contact",
+  "title": "Écrivez-nous. <em>Une vraie personne vous lit.</em>",
+  "lead": "Pas de file de tickets ni de robot. Nous répondons généralement sous un jour ouvré.",
+  "addresses": {
+    "support": "Compte et aide générale",
+    "feedback": "Idées et demandes de fonctionnalités"
+  },
+  "formTitle": "Envoyer un message",
+  "sent": "Envoyé.",
+  "sentBody": "Merci, nous vous répondrons à l’adresse indiquée.",
+  "name": "Nom",
+  "namePlaceholder": "Votre nom",
+  "email": "E-mail",
+  "emailPlaceholder": "vous@exemple.com",
+  "subject": "Sujet",
+  "message": "Message",
+  "messagePlaceholder": "Dites-nous ce qui vous amène",
+  "submit": "Envoyer le message",
+  "topics": {
+    "general": "Question générale",
+    "book": "Problème avec un livre",
+    "account": "Compte",
+    "idea": "Idée de fonctionnalité",
+    "other": "Autre"
+  },
+  "errors": {
+    "messageMin": "Dites-nous-en un peu plus (10 caractères minimum).",
+    "captcha": "Cochez la case pour nous prouver que vous n’êtes pas un robot.",
+    "failed": "Impossible d’envoyer votre message"
+  }
+}

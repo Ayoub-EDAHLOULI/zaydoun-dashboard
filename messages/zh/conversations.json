@@ -1,0 +1,81 @@
+{
+  "fallbackTitle": {
+    "about": "关于《{title}》",
+    "new": "新对话"
+  },
+  "groups": {
+    "today": "今天",
+    "thisWeek": "本周",
+    "earlier": "更早"
+  },
+  "toast": {
+    "loadFailed": "无法加载对话",
+    "deleted": "对话已删除",
+    "deleteFailed": "删除失败"
+  },
+  "summary": "{count} 场对话",
+  "summaryBooks": "{count} 场对话，涉及 {books} 本书",
+  "new": "新对话",
+  "heading": "对话",
+  "empty": {
+    "title": "还没有对话",
+    "body": "选一本 Zaydoun 读过的书，随便问他什么。",
+    "action": "开始一场"
+  },
+  "search": "搜索对话",
+  "filterByBook": "按书筛选",
+  "allBooks": "全部书籍",
+  "noMatchQuery": "没有与“{query}”匹配的对话。",
+  "noMatchFilter": "没有符合此筛选条件的对话。",
+  "preview": {
+    "zaydoun": "Zaydoun：{text}",
+    "you": "你：{text}",
+    "none": "还没有消息"
+  },
+  "actionsFor": "{title} 的操作",
+  "delete": {
+    "action": "删除对话",
+    "keep": "保留",
+    "title": "删除这场对话？",
+    "body": "“{title}”及其消息将被永久删除。书仍留在你的书架上。"
+  },
+  "newDialog": {
+    "title": "新对话",
+    "description": "选择一本 Zaydoun 已读完的书，以及他回答所用的语言。",
+    "failed": "无法开始对话",
+    "book": "书籍",
+    "emptyShelf": "你的书架是空的。请先在书库中上传一本书。",
+    "failedBook": "Zaydoun 无法读取这本书。",
+    "stillReading": "仍在阅读中，就绪后即可使用。",
+    "repliesIn": "Zaydoun 的回答语言",
+    "languageHint": "默认使用你在个人资料中的偏好，之后可在对话中更改。",
+    "cancel": "取消",
+    "start": "开始对话"
+  },
+  "chat": {
+    "today": "今天",
+    "yesterday": "昨天",
+    "repliesInLabel": "回答语言",
+    "aboutBook": "关于这本书",
+    "citedHere": "本对话引用的页码",
+    "noCited": "还没有引用页码。",
+    "citedHint": "实时索引，记录这场对话在书中到过的地方。",
+    "others": "其他对话",
+    "notFound": "找不到该对话",
+    "quota": "今天还剩 {left}/{limit} 条消息",
+    "sendFailed": "消息发送失败",
+    "languageFailed": "无法更改语言",
+    "started": "开始于 {date}",
+    "back": "返回对话列表",
+    "repliesIn": "用{language}回答",
+    "actions": "对话操作",
+    "settings": "对话设置",
+    "log": "对话",
+    "emptyTitle": "向 Zaydoun 询问<em>{title}</em>",
+    "thisBook": "这本书",
+    "emptyBody": "请他解释、反驳某个观点，或者问问某个内容在书中的哪里。他会用{language}回答。",
+    "placeholder": "提问、反驳，或者请他举个例子…",
+    "hint": "Enter 发送 · Shift+Enter 换行",
+    "deleteBody": "其消息将被永久删除。书仍留在你的书架上。"
+  }
+}

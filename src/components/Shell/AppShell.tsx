@@ -1,14 +1,16 @@
 "use client";
 
+import { usePathname, useRouter } from "@/i18n/navigation";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 import { Menu } from "lucide-react";
 import { Avatar, Badge, Orb } from "@/components/ui";
 import { useAuth } from "@/contexts/AuthContext";
 import { LimitsProvider } from "@/contexts/LimitsContext";
 import { cn } from "@/lib/cn";
-import { pageTitle, usesRail, type ShellArea } from "./navigation";
+import { isRtl } from "@/i18n/routing";
+import { pageTitleKey, usesRail, type ShellArea } from "./navigation";
 import { RailContent, SidebarContent } from "./SidebarContent";
 
 // ---------------------------------------------------------------------------
@@ -26,8 +28,11 @@ function Drawer({
   area: ShellArea;
   returnFocusTo: React.RefObject<HTMLButtonElement | null>;
 }) {
+  const t = useTranslations("nav");
   const panelRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
+  // The drawer slides in from the start edge (the right in Arabic)
+  const offscreen = isRtl(useLocale()) ? "100%" : "-100%";
 
   // Lock scroll, focus the first link, close on Escape, restore focus
   useEffect(() => {
@@ -65,11 +70,11 @@ function Drawer({
             ref={panelRef}
             role="dialog"
             aria-modal="true"
-            aria-label="Navigation"
-            className="absolute inset-y-0 left-0 w-[288px] max-w-[85vw] border-r border-border bg-bg-surface shadow-overlay"
-            initial={reduceMotion ? false : { x: "-100%" }}
+            aria-label={t("navigation")}
+            className="absolute inset-y-0 start-0 w-[288px] max-w-[85vw] border-e border-border bg-bg-surface shadow-overlay"
+            initial={reduceMotion ? false : { x: offscreen }}
             animate={{ x: 0 }}
-            exit={reduceMotion ? undefined : { x: "-100%" }}
+            exit={reduceMotion ? undefined : { x: offscreen }}
             transition={{ duration: 0.24, ease: [0.2, 0.8, 0.2, 1] }}
           >
             <SidebarContent area={area} onNavigate={onClose} onClose={onClose} />
@@ -91,8 +96,10 @@ export default function AppShell({
   area: ShellArea;
   children: ReactNode;
 }) {
+  const t = useTranslations("nav");
   const router = useRouter();
   const pathname = usePathname();
+  const titleKey = pageTitleKey(pathname);
   const { isLoading, isAuthenticated, isAdmin, user } = useAuth();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -118,7 +125,7 @@ export default function AppShell({
       <div className="flex min-h-screen items-center justify-center bg-bg-base">
         <Orb size={56} breathing />
         <span className="sr-only" role="status">
-          Loading
+          {t("loading")}
         </span>
       </div>
     );
@@ -131,9 +138,9 @@ export default function AppShell({
       <div className="flex h-screen overflow-hidden bg-bg-base">
         {/* Desktop sidebar / rail */}
         <aside
-          aria-label={area === "admin" ? "Admin" : "App"}
+          aria-label={area === "admin" ? t("adminLabel") : t("appLabel")}
           className={cn(
-            "hidden shrink-0 border-r border-border bg-bg-surface md:block",
+            "hidden shrink-0 border-e border-border bg-bg-surface md:block",
             rail ? "w-[72px]" : "w-64",
           )}
         >
@@ -152,25 +159,25 @@ export default function AppShell({
               ref={menuButtonRef}
               type="button"
               onClick={() => setDrawerOpen(true)}
-              aria-label="Open navigation"
+              aria-label={t("openNavigation")}
               aria-expanded={drawerOpen}
               className="flex size-11 items-center justify-center rounded-sm text-text-primary transition-colors hover:bg-bg-elevated"
             >
               <Menu size={22} aria-hidden />
             </button>
             <span className="truncate text-17 font-semibold">
-              {pageTitle(pathname)}
+              {titleKey ? t(titleKey) : "Zaydoun"}
             </span>
             {area === "admin" && (
-              <Badge tone="gold" className="ml-2 h-[22px] px-[7px] text-11">
-                ADMIN
+              <Badge tone="gold" className="ms-2 h-[22px] px-[7px] text-11">
+                {t("adminBadge")}
               </Badge>
             )}
             <Avatar
               name={user?.name}
               email={user?.email}
               highlight
-              className="mr-1 ml-auto"
+              className="ms-auto me-1"
             />
           </header>
 

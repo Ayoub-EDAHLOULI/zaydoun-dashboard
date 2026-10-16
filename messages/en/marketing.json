@@ -1,0 +1,16 @@
+{
+  "backToTop": "Back to top",
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How it works",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "logIn": "Log in",
+    "getStarted": "Get started",
+    "openLibrary": "Open your library",
+    "main": "Main",
+    "footer": "Footer",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  }
+}

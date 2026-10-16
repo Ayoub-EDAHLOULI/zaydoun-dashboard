@@ -1,0 +1,61 @@
+{
+  "language": {
+    "label": "语言：{language}。切换语言",
+    "choose": "选择语言"
+  },
+  "validation": {
+    "required": "此项为必填。",
+    "emailInvalid": "请输入完整的邮箱地址。",
+    "passwordRequired": "请输入密码。",
+    "nameMin": "至少需要 2 个字符。",
+    "passwordMin": "至少需要 8 个字符。",
+    "passwordMax": "最多 100 个字符。",
+    "passwordWeak": "需包含大写字母、小写字母和数字。",
+    "passwordHint": "至少 8 个字符，包含 A–Z、a–z 和 0–9。",
+    "retypePassword": "请再次输入密码。",
+    "passwordsMismatch": "两次输入的密码不一致。"
+  },
+  "trend": {
+    "up": "上升",
+    "down": "下降",
+    "flat": "无变化"
+  },
+  "cancel": "取消",
+  "close": "关闭",
+  "typeToConfirm": "输入 <b>{text}</b> 以确认",
+  "page": "第 {page} 页",
+  "status": {
+    "pending": "等待中",
+    "processing": "处理中",
+    "ready": "就绪",
+    "failed": "失败"
+  },
+  "chat": {
+    "copy": "复制回答",
+    "copied": "已复制",
+    "thinking": "正在查找相关段落…",
+    "placeholder": "就这本书提问…",
+    "messageLabel": "给 Zaydoun 发消息",
+    "voiceSoon": "语音输入，即将推出",
+    "soon": "即将",
+    "send": "发送"
+  },
+  "book": {
+    "pages": "{count} 页",
+    "moreActions": "《{title}》的更多操作"
+  },
+  "limits": {
+    "shelfFull": "书架已满：免费书籍 {limit}/{limit}",
+    "messagesUsed": "你今天的 {limit} 条消息已用完",
+    "shelfFullHint": "从书的 ··· 菜单中删除一本书，为新书腾出位置。",
+    "messagesUsedHint": "Zaydoun 将于 {time} 回来。以前的对话仍可阅读。"
+  },
+  "upload": {
+    "onlyPdf": "仅支持 PDF 文件。",
+    "tooBig": "文件超过 {size} MB。",
+    "release": "松开以添加此 PDF",
+    "another": "选择其他文件",
+    "drop": "将 PDF 拖到这里，或<browse>浏览文件</browse>",
+    "limit": "仅限 PDF · 最大 {size} MB"
+  }
+}

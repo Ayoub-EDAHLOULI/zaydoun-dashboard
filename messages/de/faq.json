@@ -1,0 +1,123 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Bevor du Zaydoun fragst, <em>frag uns.</em>",
+  "lead": "Alles zu Büchern, Antworten, Sprache, deinem Konto und deiner Privatsphäre. Nicht gefunden? Schreib uns, und ein Mensch antwortet dir.",
+  "questions": "Fragen",
+  "search": "Fragen durchsuchen",
+  "topics": "FAQ-Themen",
+  "noMatch": "Keine Frage passt zu „{query}“.",
+  "matches": "{count, plural, one {# Frage passt} other {# Fragen passen}} zu „{query}“.",
+  "tryAnother": "Versuch ein anderes Wort oder <link>frag uns direkt</link>.",
+  "cta": {
+    "title": "Noch Fragen?",
+    "body": "Wir antworten in der Regel innerhalb eines Werktags.",
+    "contact": "Kontakt aufnehmen",
+    "start": "Kostenlos starten"
+  },
+  "categories": {
+    "gettingStarted": "Erste Schritte",
+    "books": "Bücher und PDFs",
+    "answers": "Gespräche und Antworten",
+    "voice": "Sprache und Mobil",
+    "account": "Konto und Limits",
+    "privacy": "Datenschutz"
+  },
+  "items": {
+    "what": {
+      "q": "Was ist Zaydoun?",
+      "a": "Ein Lesebegleiter für deine eigenen Bücher. Du lädst ein PDF hoch, Zaydoun liest es Seite für Seite, und dann kannst du ihn alles dazu fragen. Die Antworten stammen aus den Stellen, die er in deinem Buch findet, mit der Seite, von der sie kommen."
+    },
+    "install": {
+      "q": "Muss ich etwas installieren?",
+      "a": "Nein. Zaydoun läuft in deinem Browser auf zaydoun.ai. Eine Mobile-App mit freihändiger Sprachsteuerung kommt bald in den App Store und zu Google Play."
+    },
+    "firstBook": {
+      "q": "Wie füge ich mein erstes Buch hinzu?",
+      "a": "Erstelle ein Konto, öffne die Bibliothek und klick auf Buch hochladen. Wähle ein PDF, prüfe den Titel und gib die Sprache an. Klick dann auf „Zaydoun lesen lassen“."
+    },
+    "howLong": {
+      "q": "Wie lange braucht Zaydoun, um ein Buch zu lesen?",
+      "a": "Das hängt von der Länge ab. Während er liest, zeigt das Buch In Bearbeitung, und die Bibliothek sagt dir Bescheid, sobald es Bereit ist. Du kannst die Seite in der Zwischenzeit verlassen."
+    },
+    "files": {
+      "q": "Welche Dateien kann ich hochladen?",
+      "a": "PDFs bis 50 MB. Sie brauchen echten Text, ein gescanntes Buch ohne Textebene kann also noch nicht gelesen werden."
+    },
+    "bookLanguages": {
+      "q": "In welchen Sprachen dürfen meine Bücher sein?",
+      "a": "Englisch, Arabisch, Französisch, Spanisch und Chinesisch. Gib beim Hochladen die Sprache des Buchs an. Arabische Titel und Texte werden von rechts nach links angezeigt."
+    },
+    "failed": {
+      "q": "Was, wenn Zaydoun ein Buch nicht lesen kann?",
+      "a": "Das Buch zeigt in deiner Bibliothek Fehlgeschlagen, mit einer Schaltfläche Erneut versuchen. Wenn es weiter fehlschlägt, hat das PDF vielleicht keine Textebene (ein Scan) oder ist beschädigt."
+    },
+    "deleteBook": {
+      "q": "Was passiert, wenn ich ein Buch lösche?",
+      "a": "Das Buch und alle Gespräche dazu werden endgültig entfernt, und sein Platz in deinem Regal wird frei."
+    },
+    "citations": {
+      "q": "Wie funktionieren die Seitenangaben?",
+      "a": "Für jede Frage durchsucht Zaydoun dein Buch nach Bedeutung und wählt die 5 passendsten Stellen. Er antwortet darauf gestützt, und die Antwort trägt die Seite der Stelle, auf die er sich am meisten verlassen hat."
+    },
+    "pageNumbers": {
+      "q": "Warum stimmen die Seitenzahlen nicht mit meinem gedruckten Buch überein?",
+      "a": "Sie folgen deiner PDF-Datei. Hat das Buch ein Cover oder Vorspann-Seiten, ist Seite 1 im PDF nicht die gedruckte Seite 1, die Zahlen können also ein paar Seiten auseinanderliegen."
+    },
+    "onlyBook": {
+      "q": "Antwortet Zaydoun nur aus meinem Buch?",
+      "a": "Er geht von deinem Buch aus. Passt keine Stelle zu deiner Frage, antwortet er stattdessen aus allgemeinem Wissen über das Buch, und diese Antwort hat keine Seitenangabe."
+    },
+    "memory": {
+      "q": "Erinnert er sich an das, was wir vorher gesagt haben?",
+      "a": "Ja. Jede Antwort berücksichtigt deine letzten 10 Nachrichten in diesem Gespräch, und jedes Gespräch wird gespeichert, damit du später weitermachen kannst."
+    },
+    "otherLanguage": {
+      "q": "Kann ich in einer anderen Sprache über ein Buch sprechen?",
+      "a": "Ja. Buchsprache und Antwortsprache sind unabhängig. Wähle die Antwortsprache beim Start eines Gesprächs und ändere sie jederzeit oben im Gespräch."
+    },
+    "several": {
+      "q": "Kann ich mehrere Gespräche über dasselbe Buch führen?",
+      "a": "So viele du willst. Jedes hat seinen eigenen Verlauf und seine eigene Liste zitierter Seiten."
+    },
+    "handsFree": {
+      "q": "Wie funktioniert die freihändige Sprachsteuerung?",
+      "a": "Schalte in der Mobile-App den Sprachmodus ein und sag „Zaydoun“. Stell deine Frage laut, und er antwortet laut. Das Gespräch wird wie jedes andere in deinem Konto gespeichert."
+    },
+    "webVoice": {
+      "q": "Kann ich die Sprachsteuerung im Web nutzen?",
+      "a": "Noch nicht. Im Web wird vorerst getippt. Sprache im Web kommt bald."
+    },
+    "recordings": {
+      "q": "Werden meine Sprachaufnahmen gespeichert?",
+      "a": "Nein. Eine Aufnahme wird transkribiert und dann sofort vom Server gelöscht. Gespeichert wird nur der Text des Gesprächs."
+    },
+    "free": {
+      "q": "Ist Zaydoun kostenlos?",
+      "a": "Ja. Ein kostenloses Konto fasst 2 Bücher und 15 Nachrichten pro Tag."
+    },
+    "reset": {
+      "q": "Wann wird mein tägliches Nachrichtenkontingent zurückgesetzt?",
+      "a": "Jeden Tag um Mitternacht UTC. Die App zeigt den Zeitpunkt in deiner eigenen Zeitzone an."
+    },
+    "forgot": {
+      "q": "Ich habe mein Passwort vergessen. Was nun?",
+      "a": "Nutze „Passwort vergessen?“ auf der Anmeldeseite. Wir schicken dir einen Link, der eine Stunde lang und nur einmal funktioniert. Beim Zurücksetzen wirst du auf deinen anderen Geräten abgemeldet."
+    },
+    "deactivated": {
+      "q": "Mein Konto ist laut Anzeige deaktiviert.",
+      "a": "Ein Admin hat dein Konto deaktiviert. Wenn du das für einen Fehler hältst, schreib uns über die Kontaktseite."
+    },
+    "deleteAccount": {
+      "q": "Wie lösche ich mein Konto?",
+      "a": "Geh zu Profil und nutze Mein Konto löschen. Deine Bücher, Gespräche und dein Konto werden endgültig entfernt."
+    },
+    "whoSees": {
+      "q": "Wer kann meine Bücher und Gespräche sehen?",
+      "a": "Nur du. Deine Bibliothek und deine Gespräche sind an dein Konto gebunden, und jede Anfrage wird damit abgeglichen, sodass kein anderer Leser darauf zugreifen kann."
+    },
+    "sentWhere": {
+      "q": "Wird mein Buch irgendwohin gesendet?",
+      "a": "Um dein Buch zu lesen und deine Fragen zu beantworten, werden sein Text, deine Fragen und die von Zaydoun gefundenen Stellen an die API von OpenAI gesendet. Niemand sonst erhält sie."
+    }
+  }
+}

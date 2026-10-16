@@ -1,0 +1,61 @@
+{
+  "site": {
+    "title": "Zaydoun — Asistente de voz con IA para libros | Chatea con cualquier PDF",
+    "description": "Zaydoun es un asistente de lectura por voz con IA. Sube cualquier PDF, pregunta sin usar las manos y recibe respuestas precisas con la página exacta, en 5 idiomas. Con RAG, Whisper y GPT-4o mini.",
+    "ogDescription": "Sube cualquier PDF y mantén con él una conversación profunda, por voz. Respuestas con la página exacta en 5 idiomas, sin usar las manos.",
+    "ogImageAlt": "Zaydoun — Asistente de lectura por voz con IA",
+    "offerName": "Gratis",
+    "offerDescription": "2 libros y 15 mensajes al día",
+    "featureList": [
+      "Lectura por voz y manos libres",
+      "Respuestas con la página exacta gracias a RAG",
+      "Transcripción de voz con Whisper",
+      "Respuestas leídas en voz alta",
+      "5 idiomas de respuesta: inglés, árabe, francés, español y chino",
+      "Árabe de derecha a izquierda",
+      "Subida e indexación semántica de PDF",
+      "Historial de conversaciones"
+    ]
+  },
+  "features": {
+    "title": "Funciones — Asistente de lectura por voz con RAG y Whisper",
+    "description": "Descubre Zaydoun: respuestas con la página exacta, transcripción de voz, respuestas habladas, 5 idiomas de respuesta e indexación de PDF. Hecho para lectores exigentes."
+  },
+  "howItWorks": {
+    "title": "Cómo funciona — De un PDF a una conversación",
+    "description": "Cómo Zaydoun lee tu PDF página a página, encuentra los pasajes que responden a tu pregunta, cita la página que usó y te contesta en voz alta en el móvil."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes sobre Zaydoun",
+    "description": "Respuestas sobre la subida de PDF, las citas de página, los idiomas de respuesta, la voz manos libres, los límites gratuitos, tu cuenta y la privacidad."
+  },
+  "contact": {
+    "title": "Contacto — Habla con el equipo de Zaydoun",
+    "description": "¿Una pregunta, un error o una idea? Cada mensaje lo lee una persona real; respondemos en un día laborable."
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "description": "Inicia sesión en tu cuenta de Zaydoun."
+  },
+  "register": {
+    "title": "Crear cuenta",
+    "description": "Crea tu cuenta de Zaydoun."
+  },
+  "forgotPassword": {
+    "title": "Contraseña olvidada",
+    "description": "Restablece tu contraseña de Zaydoun."
+  },
+  "resetPassword": {
+    "title": "Restablecer contraseña",
+    "description": "Elige una nueva contraseña para tu cuenta de Zaydoun."
+  },
+  "titles": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "library": "Biblioteca",
+    "conversations": "Conversaciones",
+    "chat": "Chat",
+    "profile": "Perfil",
+    "users": "Usuarios"
+  }
+}

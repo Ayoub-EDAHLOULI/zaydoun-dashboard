@@ -69,7 +69,7 @@
   }
 
   body {
-    font-family: var(--z-font-sans);
+    font-family: var(--font-sans); /* per-language stack, see below */
     background-color: var(--z-bg-base);
     color: var(--z-text-primary);
     font-size: var(--text-base); /* follows --font-scale */
@@ -102,6 +102,53 @@
   .font-arabic {
     font-family: var(--z-font-arabic);
     direction: rtl;
+  }
+
+  /* ── Per-language type ─────────────────────────────────────────────────
+     Inter / Newsreader have no Arabic or Chinese glyphs, so those UI
+     languages get their own stacks (font-sans / font-serif follow). */
+  html:lang(ar) {
+    --font-sans: var(--font-plex-arabic), var(--font-inter), system-ui, sans-serif;
+    --font-serif: var(--font-amiri), var(--font-newsreader), serif;
+  }
+  html:lang(zh) {
+    --font-sans: var(--font-inter), "PingFang SC", "Hiragino Sans GB",
+      "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    --font-serif: var(--font-newsreader), "Songti SC", "STSong", "SimSun",
+      "Noto Serif SC", serif;
+  }
+
+  /* Letter-spacing breaks Arabic joining; tracked uppercase eyebrows and
+     tight display tracking must not apply. Arabic and Chinese have no
+     italics either, and their tall glyphs need looser display leading (headings, or .display-leading). */
+  :lang(ar),
+  :lang(zh) {
+    letter-spacing: 0 !important;
+  }
+  :lang(ar) em,
+  :lang(zh) em {
+    font-style: normal !important;
+  }
+  /* Chinese headlines: avoid a lone character on the last line */
+  :lang(zh) :is(h1, h2) {
+    text-wrap: balance;
+  }
+
+  /* Directional icons point the other way in Arabic */
+  [dir="rtl"]
+    :is(
+      .lucide-arrow-right,
+      .lucide-arrow-left,
+      .lucide-chevron-right,
+      .lucide-chevron-left,
+      .lucide-send,
+      .lucide-log-out
+    ) {
+    scale: -1 1;
+  }
+  :lang(ar) :is(h1, h2, h3, .display-leading),
+  :lang(zh) :is(h1, h2, h3, .display-leading) {
+    line-height: 1.35 !important;
   }
 }
 

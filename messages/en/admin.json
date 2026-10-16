@@ -1,0 +1,165 @@
+{
+  "units": {
+    "s": "{n}s",
+    "m": "{n}m",
+    "hm": "{h}h {m}m"
+  },
+  "chart": {
+    "today": "Today",
+    "perMonth": "Cost per month",
+    "perDay": "Cost per day",
+    "asChart": "View as chart",
+    "asTable": "View as table",
+    "day": "Day",
+    "messages": "Messages",
+    "cost": "Cost",
+    "chartLabel": "Cost per day chart",
+    "barLabel": "{day}: {cost}, {count, plural, one {# message} other {# messages}}",
+    "messagesCount": "{count, plural, one {# message} other {# messages}}"
+  },
+  "overview": {
+    "title": "Overview",
+    "subtitle": "Usage and cost across all readers · {range}",
+    "periodLabel": "Period",
+    "keyNumbers": "Key numbers",
+    "loadFailed": "Couldn’t load usage",
+    "periods": {
+      "day": "Today",
+      "week": "7 days",
+      "month": "30 days",
+      "all": "All time"
+    },
+    "range": {
+      "today": "today",
+      "all": "all time"
+    },
+    "comparison": {
+      "day": "vs yesterday",
+      "week": "vs previous 7 days",
+      "month": "vs previous 30 days"
+    },
+    "kpi": {
+      "cost": "Total cost",
+      "messages": "Messages",
+      "inConversations": "in {count, plural, one {# conversation} other {# conversations}}",
+      "tokens": "Tokens used",
+      "tokensSplit": "{input} in · {output} out",
+      "audio": "Audio processed",
+      "audioNote": "voice, from mobile"
+    },
+    "empty": {
+      "title": "A quiet stretch",
+      "body": "Nobody has talked to Zaydoun in this period. Try a longer range."
+    },
+    "top": "Most expensive conversations",
+    "allConversations": "All conversations",
+    "sources": {
+      "title": "Where the money goes",
+      "answers": "Answers (LLM)",
+      "whisper": "Voice in (Whisper)",
+      "tts": "Voice out (TTS)",
+      "note": "Indexing books isn’t included: the API doesn’t log embedding costs yet."
+    },
+    "table": {
+      "conversation": "Conversation",
+      "reader": "Reader",
+      "book": "Book",
+      "messages": "Messages",
+      "tokens": "Tokens",
+      "audio": "Audio",
+      "cost": "Cost"
+    }
+  },
+  "users": {
+    "title": "Users",
+    "summary": "{people, plural, one {# person} other {# people}} · {admins, plural, one {# admin} other {# admins}} · {inactive} inactive",
+    "add": "Add user",
+    "toast": {
+      "loadFailed": "Couldn’t load users",
+      "invited": "Invite sent to {email}",
+      "addFailed": "Couldn’t add the user",
+      "updated": "Details updated",
+      "updateFailed": "Couldn’t update the user",
+      "activated": "{name} can log in again",
+      "deactivated": "{name} was deactivated",
+      "statusFailed": "Couldn’t change the status",
+      "nowAdmin": "{name} is now an admin",
+      "nowReader": "{name} is now a reader",
+      "deleted": "{name} was deleted",
+      "failed": "Something went wrong"
+    },
+    "col": {
+      "user": "User",
+      "role": "Role",
+      "status": "Status",
+      "books": "Books",
+      "conversations": "Conversations",
+      "joined": "Joined",
+      "actions": "Actions"
+    },
+    "you": "(you)",
+    "adminBadge": "ADMIN",
+    "reader": "Reader",
+    "active": "Active",
+    "inactive": "Inactive",
+    "isActive": "{name} is active",
+    "isInactive": "{name} is inactive",
+    "noSelfActions": "No actions on your own account",
+    "actionsFor": "Actions for {name}",
+    "menu": {
+      "edit": "Edit details",
+      "makeReader": "Make reader",
+      "makeAdmin": "Make admin",
+      "deactivate": "Deactivate",
+      "activate": "Activate",
+      "delete": "Delete user…"
+    },
+    "confirm": {
+      "deleteTitle": "Delete {name}?",
+      "deleteBody": "Their account, {books, plural, one {# book} other {# books}} and {conversations, plural, one {# conversation} other {# conversations}} will be removed for good.",
+      "delete": "Delete user",
+      "readerTitle": "Make {name} a reader?",
+      "readerBody": "They’ll lose access to users, usage and costs, and become subject to the free limits.",
+      "adminTitle": "Make {name} an admin?",
+      "adminBody": "They’ll be able to see every user, the usage and costs, and manage accounts."
+    },
+    "search": {
+      "label": "Search users",
+      "placeholder": "Search by name or email"
+    },
+    "filter": {
+      "everyone": "Everyone",
+      "admins": "Admins",
+      "readers": "Readers",
+      "anyStatus": "Any status"
+    },
+    "empty": {
+      "title": "No one matches",
+      "body": "Try another name, or clear the filters."
+    },
+    "showing": "Showing {from}–{to} of {total}",
+    "previous": "Previous",
+    "next": "Next",
+    "form": {
+      "addTitle": "Add a user",
+      "editTitle": "Edit details",
+      "addDescription": "We’ll email them a temporary password so they can log in.",
+      "editDescription": "Changes take effect right away.",
+      "name": "Full name",
+      "email": "Email",
+      "role": "Role",
+      "roles": {
+        "reader": {
+          "label": "Reader",
+          "detail": "Their own library and conversations"
+        },
+        "admin": {
+          "label": "Admin",
+          "detail": "Plus users, usage and costs"
+        }
+      },
+      "submitAdd": "Add and send invite",
+      "submitEdit": "Save changes"
+    }
+  }
+}

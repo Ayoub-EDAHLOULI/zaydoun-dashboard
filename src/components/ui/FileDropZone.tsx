@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useRef, useState, type DragEvent } from "react";
+import { useTranslations } from "next-intl";
 import { FileText, Upload } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -32,6 +33,7 @@ export function FileDropZone({
   disabled = false,
   className,
 }: FileDropZoneProps) {
+  const t = useTranslations("common.upload");
   const inputId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -39,11 +41,11 @@ export function FileDropZone({
 
   const accepts = (f: File) => {
     if (accept && f.type !== accept) {
-      setLocalError("Only PDF files are supported.");
+      setLocalError(t("onlyPdf"));
       return false;
     }
     if (f.size > maxSizeMB * 1024 * 1024) {
-      setLocalError(`That file is over ${maxSizeMB} MB.`);
+      setLocalError(t("tooBig", { size: maxSizeMB }));
       return false;
     }
     setLocalError(null);
@@ -122,7 +124,7 @@ export function FileDropZone({
         {isDragOver ? (
           // Browsers don't expose the file name until the drop
           <span className="text-15 font-medium text-gold-light">
-            Release to add this PDF
+            {t("release")}
           </span>
         ) : file ? (
           <>
@@ -131,17 +133,20 @@ export function FileDropZone({
             </span>
             <span className="text-13 text-text-secondary">
               {formatSize(file.size)} ·{" "}
-              <span className="text-gold-light">Choose another file</span>
+              <span className="text-gold-light">{t("another")}</span>
             </span>
           </>
         ) : (
           <>
             <span className="text-15 font-medium text-text-primary">
-              Drop a PDF here, or{" "}
-              <span className="text-gold-light">browse</span>
+              {t.rich("drop", {
+                browse: (chunks) => (
+                  <span className="text-gold-light">{chunks}</span>
+                ),
+              })}
             </span>
             <span className="text-13 text-text-secondary">
-              PDF only · up to {maxSizeMB} MB
+              {t("limit", { size: maxSizeMB })}
             </span>
           </>
         )}

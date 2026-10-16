@@ -1,4 +1,5 @@
 import { Bookmark, LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import type { BookStatus } from "@/types/books.types";
 import { cn } from "@/lib/cn";
@@ -7,30 +8,36 @@ import { cn } from "@/lib/cn";
 // StatusBadge — always a word + a color; Processing also spins
 // ---------------------------------------------------------------------------
 
+// label: key in common.json → status
 const STATUS: Record<
   BookStatus,
-  { label: string; text: string; tint: string; dot: string }
+  {
+    label: "pending" | "processing" | "ready" | "failed";
+    text: string;
+    tint: string;
+    dot: string;
+  }
 > = {
   PENDING: {
-    label: "Pending",
+    label: "pending",
     text: "text-info-text",
     tint: "bg-info/12",
     dot: "bg-info",
   },
   PROCESSING: {
-    label: "Processing",
+    label: "processing",
     text: "text-warning",
     tint: "bg-warning/12",
     dot: "bg-warning",
   },
   READY: {
-    label: "Ready",
+    label: "ready",
     text: "text-success",
     tint: "bg-success/12",
     dot: "bg-success",
   },
   FAILED: {
-    label: "Failed",
+    label: "failed",
     text: "text-error-text",
     tint: "bg-error/12",
     dot: "bg-error",
@@ -47,6 +54,7 @@ export function StatusBadge({
   overlay?: boolean;
   className?: string;
 }) {
+  const t = useTranslations("common.status");
   const s = STATUS[status];
   return (
     <span
@@ -67,7 +75,7 @@ export function StatusBadge({
       ) : (
         <span className={cn("size-1.5 rounded-full", s.dot)} aria-hidden />
       )}
-      {s.label}
+      {t(s.label)}
     </span>
   );
 }
@@ -116,6 +124,7 @@ export function PageTag({
   onClick?: () => void;
   className?: string;
 }) {
+  const t = useTranslations("common");
   const classes = cn(
     "inline-flex h-[26px] items-center gap-1.5 rounded-full border border-border-gold bg-gold-muted px-2.5 text-gold-light",
     arabic ? "font-arabic text-sm font-medium" : "text-xs font-medium",
@@ -125,7 +134,7 @@ export function PageTag({
   const content = (
     <>
       <Bookmark size={12} aria-hidden />
-      {arabic ? `صفحة ${page}` : `Page ${page}`}
+      {arabic ? `صفحة ${page}` : t("page", { page })}
     </>
   );
   return onClick ? (

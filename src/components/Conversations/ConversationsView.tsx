@@ -1,7 +1,8 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { MessageSquarePlus, Search, Trash2 } from "lucide-react";
 import {
   ActionMenu,
@@ -14,19 +15,23 @@ import {
   Skeleton,
 } from "@/components/ui";
 import { NewConversationDialog } from "./NewConversationDialog";
-import { conversationTitle } from "@/lib/conversations";
+import { useConversationTitle } from "@/lib/conversations";
 import { booksService } from "@/lib/api/services/books.service";
 import { conversationsService } from "@/lib/api/services/conversations.service";
 import { useToast } from "@/contexts/ToastContext";
 import { LANGUAGES, isArabic } from "@/lib/languages";
-import { recencyGroup, relativeTime } from "@/lib/time";
+import { recencyGroup, useRelativeTime } from "@/lib/time";
 import { cn } from "@/lib/cn";
 import type { BookSummary } from "@/types/books.types";
 import type { ConversationSummary } from "@/types/conversations.types";
 
-const GROUPS = ["Today", "This week", "Earlier"] as const;
+// Keys in conversations.json → groups
+const GROUPS = ["today", "thisWeek", "earlier"] as const;
 
 export default function ConversationsView() {
+  const t = useTranslations("conversations");
+  const conversationTitle = useConversationTitle();
+  const relativeTime = useRelativeTime();
   const { notify } = useToast();
   const [conversations, setConversations] = useState<ConversationSummary[] | null>(null);
   const [books, setBooks] = useState<BookSummary[]>([]);
@@ -43,31 +48,32 @@ export default function ConversationsView() {
         setBooks(b);
       })
       .catch((err: unknown) =>
-        notify(err instanceof Error ? err.message : "Couldn't load conversations", "error"),
+        notify(err instanceof Error ? err.message : t("toast.loadFailed"), "error"),
       );
-  }, [notify]);
+  }, [notify, t]);
 
   const bookById = useMemo(() => new Map(books.map((b) => [b.id, b])), [books]);
 
   const visible = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.trim().toLocaleLowerCase();
     return (conversations ?? []).filter((c) => {
       if (bookFilter !== "all" && c.bookId !== bookFilter) return false;
       if (!q) return true;
       const book = bookById.get(c.bookId);
       return [c.title, book?.title, c.lastMessage?.content]
         .filter(Boolean)
-        .some((t) => t!.toLowerCase().includes(q));
+        .some((s) => s!.toLocaleLowerCase().includes(q));
     });
   }, [conversations, query, bookFilter, bookById]);
 
   const grouped = useMemo(
     () =>
       GROUPS.map((g) => ({
-        label: g,
+        key: g,
+        label: t(`groups.${g}`),
         items: visible.filter((c) => recencyGroup(c.updatedAt) === g),
       })).filter((g) => g.items.length > 0),
-    [visible],
+    [visible, t],
   );
 
   const bookCount = new Set((conversations ?? []).map((c) => c.bookId)).size;
@@ -78,10 +84,10 @@ export default function ConversationsView() {
     try {
       await conversationsService.delete(toDelete.id);
       setConversations((prev) => prev?.filter((c) => c.id !== toDelete.id) ?? prev);
-      notify("Conversation deleted", "success");
+      notify(t("toast.deleted"), "success");
       setDeleteOpen(false);
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Delete failed", "error");
+      notify(err instanceof Error ? err.message : t("toast.deleteFailed"), "error");
     }
   };
 
@@ -90,18 +96,19 @@ export default function ConversationsView() {
       <header className="flex flex-wrap items-end justify-between gap-5">
         <div className="flex flex-col gap-2">
           <h1 className="font-serif text-32 leading-[1.1] font-normal tracking-[-0.02em] md:text-40">
-            Conversations
+            {t("heading")}
           </h1>
           {conversations && (
             <p className="text-sm text-text-secondary">
-              {total} {total === 1 ? "conversation" : "conversations"}
-              {bookCount > 0 && ` across ${bookCount} ${bookCount === 1 ? "book" : "books"}`}
+              {bookCount > 0
+                ? t("summaryBooks", { count: total, books: bookCount })
+                : t("summary", { count: total })}
             </p>
           )}
         </div>
         <Button onClick={() => setNewOpen(true)}>
           <MessageSquarePlus size={18} aria-hidden />
-          New conversation
+          {t("new")}
         </Button>
       </header>
 
@@ -113,12 +120,12 @@ export default function ConversationsView() {
         </div>
       ) : total === 0 ? (
         <EmptyState
-          title="No conversations yet"
-          description="Pick a book Zaydoun has read and ask him anything about it."
+          title={t("empty.title")}
+          description={t("empty.body")}
           action={
             <Button onClick={() => setNewOpen(true)}>
               <MessageSquarePlus size={18} aria-hidden />
-              Start one
+              {t("empty.action")}
             </Button>
           }
           className="py-16"
@@ -127,24 +134,24 @@ export default function ConversationsView() {
         <>
           <div className="flex flex-wrap gap-3">
             <Input
-              label="Search conversations"
+              label={t("search")}
               hideLabel
               icon={Search}
               type="search"
-              placeholder="Search conversations"
+              placeholder={t("search")}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               wrapperClassName="flex-[1_1_280px] max-w-[420px]"
               surface
             />
             <Select
-              label="Filter by book"
+              label={t("filterByBook")}
               hideLabel
               value={bookFilter}
               onChange={(e) => setBookFilter(e.target.value)}
               surface
             >
-              <option value="all">All books</option>
+              <option value="all">{t("allBooks")}</option>
               {books.map((b) => (
                 <option key={b.id} value={b.id}>
                   {b.title}
@@ -155,19 +162,24 @@ export default function ConversationsView() {
 
           {grouped.length === 0 ? (
             <p className="py-10 text-center text-sm text-text-secondary">
-              No conversations match {query.trim() ? `“${query.trim()}”` : "this filter"}.
+              {query.trim()
+                ? t("noMatchQuery", { query: query.trim() })
+                : t("noMatchFilter")}
             </p>
           ) : (
             grouped.map((group) => (
-              <section key={group.label} aria-label={group.label} className="flex flex-col gap-2.5">
+              <section key={group.key} aria-label={group.label} className="flex flex-col gap-2.5">
                 <h2 className="text-xs font-medium tracking-[0.1em] text-text-secondary uppercase">
                   {group.label}
                 </h2>
                 {group.items.map((c) => {
                   const book = bookById.get(c.bookId);
                   const last = c.lastMessage;
-                  const speaker = last ? (last.role === "assistant" ? "Zaydoun" : "You") : null;
-                  const preview = last ? `${speaker}: ${last.content.replace(/\s+/g, " ")}` : "No messages yet";
+                  const preview = last
+                    ? t(last.role === "assistant" ? "preview.zaydoun" : "preview.you", {
+                        text: last.content.replace(/\s+/g, " "),
+                      })
+                    : t("preview.none");
                   const arabicPreview = isArabic(c.languageCode, last?.content);
                   const langName =
                     LANGUAGES.find((l) => l.code === c.languageCode)?.nativeName ?? c.languageCode;
@@ -211,10 +223,10 @@ export default function ConversationsView() {
                       <span className="relative z-10">
                         <ActionMenu
                           appearance="plain"
-                          ariaLabel={`Actions for ${conversationTitle(c, book?.title)}`}
+                          ariaLabel={t("actionsFor", { title: conversationTitle(c, book?.title) })}
                           items={[
                             {
-                              label: "Delete conversation",
+                              label: t("delete.action"),
                               icon: Trash2,
                               destructive: true,
                               onSelect: () => {
@@ -240,14 +252,16 @@ export default function ConversationsView() {
         open={deleteOpen}
         onClose={() => setDeleteOpen(false)}
         onConfirm={confirmDelete}
-        title="Delete this conversation?"
+        title={t("delete.title")}
         description={
           toDelete
-            ? `“${conversationTitle(toDelete, bookById.get(toDelete.bookId)?.title)}” and its messages will be removed for good. The book stays on your shelf.`
+            ? t("delete.body", {
+                title: conversationTitle(toDelete, bookById.get(toDelete.bookId)?.title),
+              })
             : undefined
         }
-        confirmLabel="Delete conversation"
-        cancelLabel="Keep it"
+        confirmLabel={t("delete.action")}
+        cancelLabel={t("delete.keep")}
       />
     </div>
   );

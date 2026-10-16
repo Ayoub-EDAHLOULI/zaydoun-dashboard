@@ -1,27 +1,32 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui";
 import { DURATION, EASE_OUT, Reveal } from "@/components/motion";
-import { FAQ_CATEGORIES } from "@/lib/faq";
+import { faqCategories } from "@/lib/faq";
 import FaqList from "./FaqList";
 
 export default function FaqView() {
+  const t = useTranslations("faq");
+  const categories = useMemo(() => faqCategories((k) => t(k as never)), [t]);
   const [query, setQuery] = useState("");
-  const q = query.trim().toLowerCase();
+  const q = query.trim().toLocaleLowerCase();
 
   // While searching, show every matching question in one list
   const matches = useMemo(
     () =>
       q
-        ? FAQ_CATEGORIES.flatMap((c) =>
-            c.items.filter((i) => `${i.q} ${i.a}`.toLowerCase().includes(q)),
+        ? categories.flatMap((c) =>
+            c.items.filter((i) =>
+              `${i.q} ${i.a}`.toLocaleLowerCase().includes(q),
+            ),
           )
         : [],
-    [q],
+    [q, categories],
   );
 
   return (
@@ -29,20 +34,20 @@ export default function FaqView() {
       {/* Topics — sticky on desktop */}
       <aside className="flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
         <Input
-          label="Search questions"
+          label={t("search")}
           hideLabel
           icon={Search}
           type="search"
-          placeholder="Search questions"
+          placeholder={t("search")}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           surface
         />
         <nav
-          aria-label="FAQ topics"
+          aria-label={t("topics")}
           className="flex flex-wrap gap-2 lg:flex-col lg:gap-0.5"
         >
-          {FAQ_CATEGORIES.map((c) => (
+          {categories.map((c) => (
             <a
               key={c.id}
               href={`#${c.id}`}
@@ -68,22 +73,24 @@ export default function FaqView() {
             >
               <p role="status" className="text-sm text-text-secondary">
                 {matches.length === 0
-                  ? `No questions match “${query.trim()}”.`
-                  : `${matches.length} ${matches.length === 1 ? "question matches" : "questions match"} “${query.trim()}”.`}
+                  ? t("noMatch", { query: query.trim() })
+                  : t("matches", { count: matches.length, query: query.trim() })}
               </p>
               {matches.length > 0 ? (
                 // Re-mount per query so the first result opens
                 <FaqList key={q} items={matches} defaultOpen={0} />
               ) : (
                 <p className="text-15 text-text-secondary">
-                  Try another word, or{" "}
-                  <Link
-                    href="/contact"
-                    className="text-gold-light hover:text-text-primary"
-                  >
-                    ask us directly
-                  </Link>
-                  .
+                  {t.rich("tryAnother", {
+                    link: (chunks) => (
+                      <Link
+                        href="/contact"
+                        className="text-gold-light hover:text-text-primary"
+                      >
+                        {chunks}
+                      </Link>
+                    ),
+                  })}
                 </p>
               )}
             </motion.div>
@@ -96,7 +103,7 @@ export default function FaqView() {
               transition={{ duration: DURATION.fast }}
               className="flex flex-col gap-16"
             >
-              {FAQ_CATEGORIES.map((c) => (
+              {categories.map((c) => (
                 <Reveal
                   key={c.id}
                   as="section"

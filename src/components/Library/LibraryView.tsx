@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { MessageSquare, Play, Plus, RotateCw, Search, Trash2, Upload } from "lucide-react";
 import {
   BookCard,
@@ -19,6 +20,7 @@ import { booksService } from "@/lib/api/services/books.service";
 import { conversationsService } from "@/lib/api/services/conversations.service";
 import { useToast } from "@/contexts/ToastContext";
 import { useLimits } from "@/contexts/LimitsContext";
+import { useFormatDate } from "@/lib/time";
 import type { BookSummary, CreateBookDto } from "@/types/books.types";
 import type { ConversationSummary } from "@/types/conversations.types";
 
@@ -27,16 +29,23 @@ type Filter = "all" | "ready" | "progress";
 // How often to re-check books that are being processed
 const POLL_MS = 5000;
 
-function lastOpenedLabel(iso: string): string {
-  const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000);
-  if (days <= 0) return "last opened today";
-  if (days === 1) return "last opened yesterday";
-  if (days < 7) return `last opened ${days} days ago`;
-  return `last opened ${new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric" })}`;
-}
+const daysSince = (iso: string) =>
+  Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000);
 
 export default function LibraryView() {
+  const t = useTranslations("library");
+  const formatDate = useFormatDate();
   const { notify } = useToast();
+
+  const lastOpenedLabel = (iso: string): string => {
+    const days = daysSince(iso);
+    if (days <= 0) return t("lastOpened.today");
+    if (days === 1) return t("lastOpened.yesterday");
+    if (days < 7) return t("lastOpened.daysAgo", { count: days });
+    return t("lastOpened.on", {
+      date: formatDate(iso, { month: "short", day: "numeric" }),
+    });
+  };
   const { limits, refreshLimits } = useLimits();
 
   const [books, setBooks] = useState<BookSummary[]>([]);
@@ -71,10 +80,10 @@ export default function LibraryView() {
         setConversations(c);
       })
       .catch((err: unknown) =>
-        notify(err instanceof Error ? err.message : "Couldn't load your books", "error"),
+        notify(err instanceof Error ? err.message : t("toast.loadFailed"), "error"),
       )
       .finally(() => setIsLoading(false));
-  }, [notify]);
+  }, [notify, t]);
 
   // ── Poll while Zaydoun is reading, and announce when he's done ──────────
   const booksRef = useRef(books);
@@ -91,8 +100,10 @@ export default function LibraryView() {
         for (const before of booksRef.current) {
           if (before.status !== "PROCESSING") continue;
           const after = fresh.find((b) => b.id === before.id);
-          if (after?.status === "READY") notify(`“${after.title}” is ready to talk.`, "success");
-          if (after?.status === "FAILED") notify(`Zaydoun couldn't read “${after.title}”.`, "error");
+          if (after?.status === "READY")
+            notify(t("toast.ready", { title: after.title }), "success");
+          if (after?.status === "FAILED")
+            notify(t("toast.failed", { title: after.title }), "error");
         }
         setBooks(fresh);
       } catch {
@@ -100,7 +111,7 @@ export default function LibraryView() {
       }
     }, POLL_MS);
     return () => clearInterval(timer);
-  }, [hasProcessing, notify]);
+  }, [hasProcessing, notify, t]);
 
   // ── Derived ─────────────────────────────────────────────────────────────
   const shelfFull =
@@ -121,21 +132,24 @@ export default function LibraryView() {
   }, [conversations]);
 
   const visible = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.trim().toLocaleLowerCase();
     return books.filter((b) => {
       if (filter === "ready" && b.status !== "READY") return false;
       if (filter === "progress" && b.status === "READY") return false;
       if (!q) return true;
-      return b.title.toLowerCase().includes(q) || b.author?.toLowerCase().includes(q);
+      return (
+        b.title.toLocaleLowerCase().includes(q) ||
+        b.author?.toLocaleLowerCase().includes(q)
+      );
     });
   }, [books, query, filter]);
 
   const readyCount = books.filter((b) => b.status === "READY").length;
   const readingCount = books.filter((b) => b.status === "PROCESSING").length;
   const summary = [
-    `${books.length} ${books.length === 1 ? "book" : "books"}`,
-    readyCount > 0 && `${readyCount} ready to talk`,
-    readingCount > 0 && `${readingCount} being read`,
+    t("summary.books", { count: books.length }),
+    readyCount > 0 && t("summary.ready", { count: readyCount }),
+    readingCount > 0 && t("summary.reading", { count: readingCount }),
   ]
     .filter(Boolean)
     .join(" · ");
@@ -145,10 +159,10 @@ export default function LibraryView() {
     try {
       const book = await booksService.upload(file, data);
       setBooks((prev) => [book, ...prev]);
-      notify(`“${book.title}” is on your shelf. Let Zaydoun read it when you're ready.`, "success");
+      notify(t("toast.uploaded", { title: book.title }), "success");
       void refreshLimits();
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Upload failed", "error");
+      notify(err instanceof Error ? err.message : t("toast.uploadFailed"), "error");
       throw err;
     }
   };
@@ -161,9 +175,9 @@ export default function LibraryView() {
         setBooks((prev) =>
           prev.map((b) => (b.id === book.id ? { ...b, status: "PROCESSING" } : b)),
         );
-        notify(`Zaydoun is reading “${book.title}”. We'll let you know.`, "info");
+        notify(t("toast.reading", { title: book.title }), "info");
       } catch (err) {
-        notify(err instanceof Error ? err.message : "Couldn't start reading", "error");
+        notify(err instanceof Error ? err.message : t("toast.processFailed"), "error");
       } finally {
         setProcessingIds((s) => {
           const next = new Set(s);
@@ -172,7 +186,7 @@ export default function LibraryView() {
         });
       }
     },
-    [notify],
+    [notify, t],
   );
 
   const confirmDelete = async () => {
@@ -181,11 +195,11 @@ export default function LibraryView() {
       await booksService.delete(toDelete.id);
       setBooks((prev) => prev.filter((b) => b.id !== toDelete.id));
       setConversations((prev) => prev.filter((c) => c.bookId !== toDelete.id));
-      notify(`“${toDelete.title}” was removed.`, "success");
+      notify(t("toast.deleted", { title: toDelete.title }), "success");
       setDeleteOpen(false);
       void refreshLimits();
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Delete failed", "error");
+      notify(err instanceof Error ? err.message : t("toast.deleteFailed"), "error");
     }
   };
 
@@ -195,7 +209,7 @@ export default function LibraryView() {
       case "READY":
         return {
           primaryAction: {
-            label: "Talk to this book",
+            label: t("card.talk"),
             icon: MessageSquare,
             onClick: () => {
               setTalkBookId(book.id);
@@ -203,46 +217,45 @@ export default function LibraryView() {
             },
           },
           detail: stats
-            ? `${stats.count} ${stats.count === 1 ? "conversation" : "conversations"} · ${lastOpenedLabel(stats.last)}`
-            : "No conversations yet",
+            ? `${t("card.conversations", { count: stats.count })} · ${lastOpenedLabel(stats.last)}`
+            : t("card.noConversations"),
         };
       case "PROCESSING":
         return {
-          primaryAction: { label: "Talk to this book", icon: MessageSquare, disabled: true },
-          detail: "Zaydoun is reading it. We'll let you know.",
+          primaryAction: { label: t("card.talk"), icon: MessageSquare, disabled: true },
+          detail: t("card.processing"),
         };
       case "PENDING":
         return {
           primaryAction: {
-            label: "Let Zaydoun read it",
+            label: t("card.read"),
             icon: Play,
             onClick: () => process(book),
             loading: processingIds.has(book.id),
           },
-          detail: "Uploaded. Zaydoun hasn't read it yet.",
+          detail: t("card.pending"),
         };
       case "FAILED":
         return {
           primaryAction: {
-            label: "Try again",
+            label: t("card.retry"),
             icon: RotateCw,
             onClick: () => process(book),
             loading: processingIds.has(book.id),
           },
-          detail: "Zaydoun couldn't read this PDF.",
+          detail: t("card.failed"),
         };
     }
   };
 
   const deleteDescription = (book: BookSummary) => {
     const count = convStats.get(book.id)?.count ?? 0;
-    const convs =
-      count > 0
-        ? `This removes the book and its ${count} ${count === 1 ? "conversation" : "conversations"}.`
-        : "This removes the book from your shelf.";
-    const slot =
-      limits && !limits.unlimited ? " It frees one of your free slots." : "";
-    return `${convs}${slot} This can't be undone.`;
+    const parts = [
+      count > 0 ? t("delete.withConversations", { count }) : t("delete.bookOnly"),
+      limits && !limits.unlimited ? t("delete.freesSlot") : null,
+      t("delete.permanent"),
+    ];
+    return parts.filter(Boolean).join(" ");
   };
 
   // ── Render ──────────────────────────────────────────────────────────────
@@ -251,7 +264,7 @@ export default function LibraryView() {
       <header className="flex flex-wrap items-end justify-between gap-5">
         <div className="flex flex-col gap-2">
           <h1 className="font-serif text-32 leading-[1.1] font-normal tracking-[-0.02em] md:text-40">
-            Library
+            {t("title")}
           </h1>
           {!isLoading && <p className="text-sm text-text-secondary">{summary}</p>}
         </div>
@@ -261,7 +274,7 @@ export default function LibraryView() {
           aria-describedby={shelfFull ? "shelf-full" : undefined}
         >
           <Upload size={18} aria-hidden />
-          Upload book
+          {t("uploadButton")}
         </Button>
       </header>
 
@@ -279,12 +292,12 @@ export default function LibraryView() {
         </div>
       ) : books.length === 0 ? (
         <EmptyState
-          title="Your shelf is empty"
-          description="Upload a PDF and Zaydoun will read it, page by page, before your first question."
+          title={t("empty.title")}
+          description={t("empty.body")}
           action={
             <Button onClick={() => setUploadOpen(true)} disabled={shelfFull}>
               <Upload size={18} aria-hidden />
-              Upload a book
+              {t("empty.action")}
             </Button>
           }
           className="py-16"
@@ -293,35 +306,37 @@ export default function LibraryView() {
         <>
           <div className="flex flex-wrap items-center gap-3">
             <Input
-              label="Search your books"
+              label={t("search.label")}
               hideLabel
               icon={Search}
               type="search"
-              placeholder="Search title or author"
+              placeholder={t("search.placeholder")}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               wrapperClassName="flex-[1_1_280px] max-w-[420px]"
               surface
             />
             <SegmentedControl
-              ariaLabel="Filter by status"
+              ariaLabel={t("filter.label")}
               value={filter}
               onChange={setFilter}
               options={[
-                { value: "all", label: "All" },
-                { value: "ready", label: "Ready" },
-                { value: "progress", label: "In progress" },
+                { value: "all", label: t("filter.all") },
+                { value: "ready", label: t("filter.ready") },
+                { value: "progress", label: t("filter.progress") },
               ]}
             />
           </div>
 
           {visible.length === 0 ? (
             <p className="py-10 text-center text-sm text-text-secondary">
-              No books match {query.trim() ? `“${query.trim()}”` : "this filter"}.
+              {query.trim()
+                ? t("noMatchQuery", { query: query.trim() })
+                : t("noMatchFilter")}
             </p>
           ) : (
             <section
-              aria-label="Books"
+              aria-label={t("booksLabel")}
               className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6"
             >
               {visible.map((book) => (
@@ -331,7 +346,7 @@ export default function LibraryView() {
                   {...cardProps(book)}
                   menuItems={[
                     {
-                      label: "Delete book",
+                      label: t("delete.action"),
                       icon: Trash2,
                       destructive: true,
                       onSelect: () => {
@@ -348,10 +363,11 @@ export default function LibraryView() {
                   <span className="flex size-11 items-center justify-center rounded-md bg-bg-surface text-text-muted">
                     <Plus size={20} aria-hidden />
                   </span>
-                  <span className="text-15 font-medium text-text-secondary">No free slot</span>
+                  <span className="text-15 font-medium text-text-secondary">
+                    {t("noSlot.title")}
+                  </span>
                   <span className="max-w-[220px] text-13 leading-relaxed text-text-secondary">
-                    Your free books are all on the shelf. Delete one from its ··· menu to upload
-                    another.
+                    {t("noSlot.body")}
                   </span>
                 </div>
               )}
@@ -364,7 +380,7 @@ export default function LibraryView() {
         open={uploadOpen}
         onClose={() => setUploadOpen(false)}
         onUpload={upload}
-        note={lastSlot ? "This uses your last free slot." : undefined}
+        note={lastSlot ? t("lastSlot") : undefined}
       />
 
       <NewConversationDialog
@@ -378,10 +394,10 @@ export default function LibraryView() {
         open={deleteOpen}
         onClose={() => setDeleteOpen(false)}
         onConfirm={confirmDelete}
-        title={toDelete ? `Delete “${toDelete.title}”?` : ""}
+        title={toDelete ? t("delete.title", { title: toDelete.title }) : ""}
         description={toDelete ? deleteDescription(toDelete) : undefined}
-        confirmLabel="Delete book"
-        cancelLabel="Keep it"
+        confirmLabel={t("delete.action")}
+        cancelLabel={t("delete.keep")}
       />
     </div>
   );

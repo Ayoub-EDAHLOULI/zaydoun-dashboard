@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { LoaderCircle, type LucideIcon } from "lucide-react";
 import type { BookSummary } from "@/types/books.types";
-import { isArabic, languageName } from "@/lib/languages";
+import { useLocale, useTranslations } from "next-intl";
+import { isArabic, languageDisplayName } from "@/lib/languages";
 import { cn } from "@/lib/cn";
 import { StatusBadge } from "./Badges";
 import { ActionMenu, type ActionMenuItem } from "./ActionMenu";
@@ -32,12 +33,12 @@ export function BookCover({
       dir={arabic ? "rtl" : "ltr"}
       lang={arabic ? "ar" : language}
       className={cn(
-        "flex flex-col justify-between overflow-hidden rounded-[3px_8px_8px_3px] border-l-[6px] shadow-[0_16px_28px_-10px_rgba(0,0,0,0.8)]",
+        "flex flex-col justify-between overflow-hidden rounded-[8px] rounded-s-[3px] border-s-[6px] shadow-[0_16px_28px_-10px_rgba(0,0,0,0.8)]",
         size === "md"
           ? "h-40 w-32 px-3.5 py-4"
           : size === "sm"
             ? "h-[140px] w-28 px-3 py-3.5"
-            : "h-[100px] w-[76px] border-l-4 px-2 py-2.5",
+            : "h-[100px] w-[76px] border-s-4 px-2 py-2.5",
         dimmed
           ? "border-border-strong bg-bg-elevated opacity-60"
           : "border-gold-dark bg-bg-overlay",
@@ -97,7 +98,7 @@ export function BookSpine({
     <span
       aria-hidden
       className={cn(
-        "block shrink-0 rounded-[2px_5px_5px_2px] border-l-[3px]",
+        "block shrink-0 rounded-[5px] rounded-s-[2px] border-s-[3px]",
         size === "md" ? "h-10 w-[30px]" : "h-8 w-6",
         dimmed ? "border-border-strong bg-bg-elevated" : "border-gold-dark bg-bg-overlay",
       )}
@@ -135,12 +136,14 @@ export function BookCard({
   detail,
   owner,
 }: BookCardProps) {
+  const t = useTranslations("common.book");
+  const locale = useLocale();
   const processing = book.status === "PROCESSING";
   const meta = [
     owner,
     book.author,
-    languageName(book.language),
-    book.totalPages > 0 ? `${book.totalPages} pages` : null,
+    languageDisplayName(book.language, locale),
+    book.totalPages > 0 ? t("pages", { count: book.totalPages }) : null,
   ].filter((part): part is string => !!part);
 
   const { label, icon: Icon, href, onClick, disabled, loading } = primaryAction;
@@ -173,7 +176,7 @@ export function BookCard({
         <StatusBadge
           status={book.status}
           overlay
-          className="absolute top-3 left-3"
+          className="absolute top-3 start-3"
         />
       </div>
 
@@ -221,7 +224,7 @@ export function BookCard({
           {menuItems && menuItems.length > 0 && (
             <ActionMenu
               items={menuItems}
-              ariaLabel={`More actions for ${book.title}`}
+              ariaLabel={t("moreActions", { title: book.title })}
             />
           )}
         </div>

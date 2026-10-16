@@ -1,0 +1,32 @@
+{
+  "eyebrow": "Kontakt",
+  "title": "Schreib uns. <em>Ein Mensch liest es.</em>",
+  "lead": "Keine Ticket-Warteschlange und kein Bot. Wir antworten in der Regel innerhalb eines Werktags.",
+  "addresses": {
+    "support": "Konto und allgemeine Hilfe",
+    "feedback": "Ideen und Funktionswünsche"
+  },
+  "formTitle": "Nachricht senden",
+  "sent": "Gesendet.",
+  "sentBody": "Danke, wir antworten an die angegebene E-Mail-Adresse.",
+  "name": "Name",
+  "namePlaceholder": "Dein Name",
+  "email": "E-Mail",
+  "emailPlaceholder": "du@beispiel.de",
+  "subject": "Betreff",
+  "message": "Nachricht",
+  "messagePlaceholder": "Erzähl uns, was dich beschäftigt",
+  "submit": "Nachricht senden",
+  "topics": {
+    "general": "Allgemeine Frage",
+    "book": "Problem mit einem Buch",
+    "account": "Konto",
+    "idea": "Funktionsidee",
+    "other": "Sonstiges"
+  },
+  "errors": {
+    "messageMin": "Erzähl uns etwas mehr (mindestens 10 Zeichen).",
+    "captcha": "Setz das Häkchen, damit wir wissen, dass du kein Roboter bist.",
+    "failed": "Deine Nachricht konnte nicht gesendet werden"
+  }
+}

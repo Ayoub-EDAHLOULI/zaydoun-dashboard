@@ -54,9 +54,13 @@ export function ActionMenu({
     const r = triggerRef.current.getBoundingClientRect();
     const menuHeight = menuRef.current?.offsetHeight ?? 0;
     const below = r.bottom + 6 + menuHeight <= window.innerHeight;
+    // Align with the trigger's end edge (its left edge in RTL)
+    const rtl = document.documentElement.dir === "rtl";
     setPos({
       top: below ? r.bottom + 6 : r.top - 6 - menuHeight,
-      left: Math.max(8, r.right - MENU_WIDTH),
+      left: rtl
+        ? Math.min(r.left, window.innerWidth - MENU_WIDTH - 8)
+        : Math.max(8, r.right - MENU_WIDTH),
     });
     menuRef.current
       ?.querySelector<HTMLButtonElement>("[role=menuitem]:not(:disabled)")
@@ -148,7 +152,7 @@ export function ActionMenu({
                     item.onSelect();
                   }}
                   className={cn(
-                    "flex h-10 items-center gap-2.5 rounded-sm px-3 text-left text-sm transition-colors focus-visible:outline-offset-0 disabled:cursor-not-allowed disabled:text-text-disabled",
+                    "flex h-10 items-center gap-2.5 rounded-sm px-3 text-start text-sm transition-colors focus-visible:outline-offset-0 disabled:cursor-not-allowed disabled:text-text-disabled",
                     item.destructive
                       ? "text-error-text enabled:hover:bg-error/12"
                       : "text-text-primary enabled:hover:bg-bg-elevated",

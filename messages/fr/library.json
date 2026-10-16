@@ -1,0 +1,85 @@
+{
+  "title": "Bibliothèque",
+  "uploadButton": "Importer un livre",
+  "booksLabel": "Livres",
+  "lastSlot": "Ceci utilise votre dernière place gratuite.",
+  "summary": {
+    "books": "{count, plural, one {# livre} other {# livres}}",
+    "ready": "{count, plural, one {# prêt} other {# prêts}} à discuter",
+    "reading": "{count} en cours de lecture"
+  },
+  "lastOpened": {
+    "today": "ouvert aujourd’hui",
+    "yesterday": "ouvert hier",
+    "daysAgo": "ouvert il y a {count} jours",
+    "on": "ouvert le {date}"
+  },
+  "toast": {
+    "loadFailed": "Impossible de charger vos livres",
+    "ready": "« {title} » est prêt pour la discussion.",
+    "failed": "Zaydoun n’a pas pu lire « {title} ».",
+    "uploaded": "« {title} » est sur votre étagère. Laissez Zaydoun le lire quand vous voulez.",
+    "uploadFailed": "Échec de l’import",
+    "reading": "Zaydoun lit « {title} ». Nous vous préviendrons.",
+    "processFailed": "Impossible de lancer la lecture",
+    "deleted": "« {title} » a été supprimé.",
+    "deleteFailed": "Échec de la suppression"
+  },
+  "card": {
+    "talk": "Discuter de ce livre",
+    "conversations": "{count, plural, one {# conversation} other {# conversations}}",
+    "noConversations": "Aucune conversation pour l’instant",
+    "processing": "Zaydoun le lit. Nous vous préviendrons.",
+    "read": "Laisser Zaydoun le lire",
+    "pending": "Importé. Zaydoun ne l’a pas encore lu.",
+    "retry": "Réessayer",
+    "failed": "Zaydoun n’a pas pu lire ce PDF."
+  },
+  "delete": {
+    "action": "Supprimer le livre",
+    "keep": "Le garder",
+    "title": "Supprimer « {title} » ?",
+    "withConversations": "Cela supprime le livre et {count, plural, one {sa conversation} other {ses # conversations}}.",
+    "bookOnly": "Cela retire le livre de votre étagère.",
+    "freesSlot": "Une de vos places gratuites sera libérée.",
+    "permanent": "Cette action est irréversible."
+  },
+  "empty": {
+    "title": "Votre étagère est vide",
+    "body": "Importez un PDF : Zaydoun le lira page par page avant votre première question.",
+    "action": "Importer un livre"
+  },
+  "search": {
+    "label": "Rechercher dans vos livres",
+    "placeholder": "Titre ou auteur"
+  },
+  "filter": {
+    "label": "Filtrer par statut",
+    "all": "Tous",
+    "ready": "Prêts",
+    "progress": "En cours"
+  },
+  "noMatchQuery": "Aucun livre ne correspond à « {query} ».",
+  "noMatchFilter": "Aucun livre ne correspond à ce filtre.",
+  "noSlot": {
+    "title": "Plus de place gratuite",
+    "body": "Vos livres gratuits sont tous sur l’étagère. Supprimez-en un depuis son menu ··· pour en importer un autre."
+  },
+  "upload": {
+    "title": "Ajouter un livre",
+    "description": "Zaydoun le lit page par page, pour pouvoir citer l’origine de chaque réponse.",
+    "titleLabel": "Titre",
+    "author": "Auteur <optional>(facultatif)</optional>",
+    "authorPlaceholder": "ex. Marc Aurèle",
+    "language": "Langue",
+    "languageHint": "La langue dans laquelle le livre est écrit.",
+    "uploading": "Import en cours…",
+    "submit": "Importer le livre",
+    "errors": {
+      "noFile": "Choisissez un PDF à importer.",
+      "titleRequired": "Donnez un titre au livre.",
+      "tooLong": "255 caractères maximum.",
+      "languageCode": "Choisissez la langue du livre."
+    }
+  }
+}

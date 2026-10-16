@@ -1,0 +1,61 @@
+{
+  "language": {
+    "label": "Langue : {language}. Changer de langue",
+    "choose": "Choisir une langue"
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire.",
+    "emailInvalid": "Saisissez une adresse e-mail complète.",
+    "passwordRequired": "Saisissez votre mot de passe.",
+    "nameMin": "Utilisez au moins 2 caractères.",
+    "passwordMin": "Utilisez au moins 8 caractères.",
+    "passwordMax": "Utilisez au maximum 100 caractères.",
+    "passwordWeak": "Incluez une majuscule, une minuscule et un chiffre.",
+    "passwordHint": "8 caractères minimum, avec A–Z, a–z et 0–9.",
+    "retypePassword": "Saisissez à nouveau votre mot de passe.",
+    "passwordsMismatch": "Les mots de passe ne correspondent pas."
+  },
+  "trend": {
+    "up": "en hausse",
+    "down": "en baisse",
+    "flat": "stable"
+  },
+  "cancel": "Annuler",
+  "close": "Fermer",
+  "typeToConfirm": "Saisissez <b>{text}</b> pour confirmer",
+  "page": "Page {page}",
+  "status": {
+    "pending": "En attente",
+    "processing": "En cours",
+    "ready": "Prêt",
+    "failed": "Échec"
+  },
+  "chat": {
+    "copy": "Copier la réponse",
+    "copied": "Copié",
+    "thinking": "Recherche des bons passages…",
+    "placeholder": "Posez une question sur ce livre…",
+    "messageLabel": "Écrire à Zaydoun",
+    "voiceSoon": "Saisie vocale, bientôt disponible",
+    "soon": "BIENTÔT",
+    "send": "Envoyer"
+  },
+  "book": {
+    "pages": "{count, plural, one {# page} other {# pages}}",
+    "moreActions": "Plus d’actions pour {title}"
+  },
+  "limits": {
+    "shelfFull": "Votre étagère est pleine : {limit} livres gratuits sur {limit}",
+    "messagesUsed": "Vous avez utilisé vos {limit} messages du jour",
+    "shelfFullHint": "Supprimez un livre depuis son menu ··· pour faire de la place.",
+    "messagesUsedHint": "Zaydoun revient à {time}. Vos anciennes conversations restent consultables."
+  },
+  "upload": {
+    "onlyPdf": "Seuls les fichiers PDF sont acceptés.",
+    "tooBig": "Ce fichier dépasse {size} Mo.",
+    "release": "Relâchez pour ajouter ce PDF",
+    "another": "Choisir un autre fichier",
+    "drop": "Déposez un PDF ici, ou <browse>parcourez</browse>",
+    "limit": "PDF uniquement · jusqu’à {size} Mo"
+  }
+}

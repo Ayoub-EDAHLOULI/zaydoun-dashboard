@@ -1,0 +1,32 @@
+{
+  "eyebrow": "联系我们",
+  "title": "给我们写信。<em>会有真人来读。</em>",
+  "lead": "没有工单排队，也没有机器人。我们通常会在一个工作日内回复。",
+  "addresses": {
+    "support": "账户与一般帮助",
+    "feedback": "想法与功能建议"
+  },
+  "formTitle": "发送消息",
+  "sent": "已发送。",
+  "sentBody": "谢谢，我们会回复到你填写的邮箱。",
+  "name": "姓名",
+  "namePlaceholder": "你的名字",
+  "email": "邮箱",
+  "emailPlaceholder": "you@example.com",
+  "subject": "主题",
+  "message": "内容",
+  "messagePlaceholder": "说说你的想法",
+  "submit": "发送消息",
+  "topics": {
+    "general": "一般问题",
+    "book": "书籍相关问题",
+    "account": "账户",
+    "idea": "功能建议",
+    "other": "其他"
+  },
+  "errors": {
+    "messageMin": "再多写一点吧（至少 10 个字符）。",
+    "captcha": "请勾选复选框，证明你不是机器人。",
+    "failed": "消息发送失败"
+  }
+}

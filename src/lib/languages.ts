@@ -20,3 +20,16 @@ export function isArabic(languageCode?: string | null, text?: string): boolean {
   if (languageCode === "ar") return true;
   return !!text && ARABIC_CHARS.test(text);
 }
+
+// A language's name in the UI language ("ar" → "Arabe" on the French site).
+// Falls back to the English name if the runtime lacks Intl.DisplayNames data.
+export function languageDisplayName(code: string, uiLocale: string): string {
+  try {
+    const name = new Intl.DisplayNames([uiLocale], { type: "language" }).of(code);
+    if (name && name !== code)
+      return name.charAt(0).toLocaleUpperCase(uiLocale) + name.slice(1);
+  } catch {
+    // fall through
+  }
+  return languageName(code);
+}

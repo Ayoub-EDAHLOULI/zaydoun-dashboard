@@ -1,0 +1,54 @@
+{
+  "home": {
+    "loadFailed": "No pudimos cargar tu inicio",
+    "greeting": {
+      "late": "Despierto a deshoras",
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches"
+    },
+    "greetingName": "{greeting}, {name}.",
+    "greetingAlone": "{greeting}.",
+    "subtitleContinue": "{name} justo llegaba a la mejor parte.",
+    "subtitleReady": "Tus libros están listos. Pregúntale a Zaydoun lo que quieras sobre ellos.",
+    "subtitleEmpty": "Añade un libro y Zaydoun lo leerá contigo, página a página.",
+    "continueEyebrow": "Sigue donde lo dejaste",
+    "continue": "Continuar",
+    "first": {
+      "eyebrowReady": "Empieza tu primera conversación",
+      "eyebrowEmpty": "Primeros pasos",
+      "titleReady": "Elige un libro y haz tu primera pregunta.",
+      "titleEmpty": "Pon un libro en tu estantería.",
+      "bodyReady": "Zaydoun responde con la página donde lo encontró.",
+      "bodyEmpty": "Sube un PDF. Zaydoun lo lee página a página para poder citar de dónde salen las respuestas."
+    },
+    "newConversation": "Nueva conversación",
+    "uploadBook": "Subir un libro",
+    "numbers": "Tus números",
+    "stats": {
+      "books": "Libros en tu estantería",
+      "ready": "{count, plural, one {# listo} other {# listos}}",
+      "reading": "{count} en lectura",
+      "noneYet": "Ninguno todavía",
+      "conversations": "Conversaciones",
+      "thisWeek": "{count} esta semana",
+      "messagesLeft": "Mensajes que te quedan hoy",
+      "noLimit": "Sin límite",
+      "adminAccount": "Cuenta de administrador",
+      "messagesDetail": "de {limit} · se reinicia a las {time}"
+    },
+    "recent": "Conversaciones recientes",
+    "seeAll": "Ver todas",
+    "noConversations": "Aún no hay conversaciones.",
+    "quick": {
+      "title": "Acciones rápidas",
+      "newReady": "Elige un libro y un idioma",
+      "newNone": "Aún no hay ningún libro listo",
+      "uploadFull": "Estantería llena · borra un libro primero",
+      "uploadDetail": "PDF, hasta 50 MB",
+      "library": "Abrir mi biblioteca",
+      "stillReading": "{title} todavía se está leyendo",
+      "booksOnShelf": "{count, plural, one {# libro} other {# libros}} en tu estantería"
+    }
+  }
+}

@@ -146,7 +146,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           <Icon
             size={18}
             aria-hidden
-            className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-text-secondary"
+            className="pointer-events-none absolute top-1/2 start-3.5 -translate-y-1/2 text-text-secondary"
           />
         )}
         <input
@@ -158,14 +158,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           className={cn(
             controlClasses(!!error, surface),
             "h-11 px-3.5",
-            Icon && "pl-10.5",
-            !!end && "pr-12",
+            Icon && "ps-10.5",
+            !!end && "pe-12",
             className,
           )}
           {...rest}
         />
         {end && (
-          <div className="absolute top-0 right-0.5 flex h-11 items-center">
+          <div className="absolute top-0 end-0.5 flex h-11 items-center">
             {end}
           </div>
         )}
@@ -221,7 +221,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             aria-describedby={describedBy(fieldId, error, hint)}
             className={cn(
               controlClasses(!!error, surface),
-              "h-11 cursor-pointer appearance-none pr-10 pl-3.5",
+              "h-11 cursor-pointer appearance-none ps-3.5 pe-10",
               className,
             )}
             {...rest}
@@ -231,7 +231,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           <ChevronDown
             size={18}
             aria-hidden
-            className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-text-secondary"
+            className="pointer-events-none absolute top-1/2 end-3.5 -translate-y-1/2 text-text-secondary"
           />
         </div>
       </Field>

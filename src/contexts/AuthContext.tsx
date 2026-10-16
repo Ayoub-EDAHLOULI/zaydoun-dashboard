@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "@/i18n/navigation";
 import React, {
   createContext,
   useContext,
@@ -7,7 +8,6 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import { useRouter } from "next/navigation";
 import { authService } from "@/lib/api/services/auth.service";
 import { User, LoginDto } from "@/types/auth.types";
 import {

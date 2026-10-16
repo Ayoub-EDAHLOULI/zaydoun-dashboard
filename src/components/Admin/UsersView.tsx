@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Pencil, Power, Search, ShieldCheck, ShieldOff, Trash2, UserPlus } from "lucide-react";
 import {
   ActionMenu,
@@ -25,6 +26,7 @@ import type {
   EditAdminUserFormData,
 } from "@/validations/users.validations";
 import type { AdminUserRow } from "@/types/users.types";
+import { useFormatDate } from "@/lib/time";
 
 const PAGE_SIZE = 10;
 
@@ -37,9 +39,11 @@ type Pending =
   | { kind: "delete"; user: AdminUserRow };
 
 const displayName = (u: AdminUserRow) => u.name?.trim() || u.email;
-const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
 export default function UsersView() {
+  const t = useTranslations("admin.users");
+  const tc = useTranslations("common");
+  const formatDate = useFormatDate();
   const { user: me } = useAuth();
   const { notify } = useToast();
 
@@ -59,17 +63,21 @@ export default function UsersView() {
       .listUsers()
       .then(setUsers)
       .catch((err: unknown) =>
-        notify(err instanceof Error ? err.message : "Couldn't load users", "error"),
+        notify(err instanceof Error ? err.message : t("toast.loadFailed"), "error"),
       );
-  }, [notify]);
+  }, [notify, t]);
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.trim().toLocaleLowerCase();
     return (users ?? []).filter((u) => {
       if (roleFilter !== "all" && u.role !== roleFilter) return false;
       if (statusFilter === "active" && !u.isActive) return false;
       if (statusFilter === "inactive" && u.isActive) return false;
-      return !q || u.email.toLowerCase().includes(q) || !!u.name?.toLowerCase().includes(q);
+      return (
+        !q ||
+        u.email.toLocaleLowerCase().includes(q) ||
+        !!u.name?.toLocaleLowerCase().includes(q)
+      );
     });
   }, [users, query, roleFilter, statusFilter]);
 
@@ -89,9 +97,9 @@ export default function UsersView() {
     try {
       const created = await usersService.createUser(data);
       setUsers((prev) => (prev ? [created, ...prev] : [created]));
-      notify(`Invite sent to ${created.email}`, "success");
+      notify(t("toast.invited", { email: created.email }), "success");
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't add the user", "error");
+      notify(err instanceof Error ? err.message : t("toast.addFailed"), "error");
       throw err;
     }
   };
@@ -101,9 +109,9 @@ export default function UsersView() {
     try {
       await usersService.updateUser(editing.id, data);
       patchUser(editing.id, { name: data.name || null, email: data.email });
-      notify("Details updated", "success");
+      notify(t("toast.updated"), "success");
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't update the user", "error");
+      notify(err instanceof Error ? err.message : t("toast.updateFailed"), "error");
       throw err;
     }
   };
@@ -114,11 +122,13 @@ export default function UsersView() {
       const { isActive } = await usersService.toggleActive(u.id);
       patchUser(u.id, { isActive });
       notify(
-        isActive ? `${displayName(u)} can log in again` : `${displayName(u)} was deactivated`,
+        isActive
+          ? t("toast.activated", { name: displayName(u) })
+          : t("toast.deactivated", { name: displayName(u) }),
         "success",
       );
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't change the status", "error");
+      notify(err instanceof Error ? err.message : t("toast.statusFailed"), "error");
     } finally {
       setBusyId(null);
     }
@@ -133,17 +143,19 @@ export default function UsersView() {
         await usersService.updateRole(u.id, role);
         patchUser(u.id, { role });
         notify(
-          role === "ADMIN" ? `${displayName(u)} is now an admin` : `${displayName(u)} is now a reader`,
+          role === "ADMIN"
+            ? t("toast.nowAdmin", { name: displayName(u) })
+            : t("toast.nowReader", { name: displayName(u) }),
           "success",
         );
       } else {
         await usersService.adminDeleteUser(u.id);
         setUsers((prev) => prev?.filter((x) => x.id !== u.id) ?? prev);
-        notify(`${displayName(u)} was deleted`, "success");
+        notify(t("toast.deleted", { name: displayName(u) }), "success");
       }
       setConfirmOpen(false);
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Something went wrong", "error");
+      notify(err instanceof Error ? err.message : t("toast.failed"), "error");
     }
   };
 
@@ -156,7 +168,7 @@ export default function UsersView() {
   const columns: DataTableColumn<AdminUserRow>[] = [
     {
       key: "user",
-      header: "User",
+      header: t("col.user"),
       cell: (u) => {
         const self = u.id === me?.id;
         return (
@@ -165,9 +177,15 @@ export default function UsersView() {
             <span className="flex min-w-0 flex-col gap-0.5">
               <span className="truncate font-medium">
                 {displayName(u)}
-                {self && <span className="font-normal text-text-secondary"> (you)</span>}
+                {self && (
+                  <span className="font-normal text-text-secondary"> {t("you")}</span>
+                )}
               </span>
-              {u.name && <span className="truncate text-13 text-text-secondary">{u.email}</span>}
+              {u.name && (
+                <span dir="ltr" className="truncate text-start text-13 text-text-secondary">
+                  {u.email}
+                </span>
+              )}
             </span>
           </div>
         );
@@ -175,29 +193,33 @@ export default function UsersView() {
     },
     {
       key: "role",
-      header: "Role",
+      header: t("col.role"),
       cell: (u) =>
         u.role === "ADMIN" ? (
-          <Badge tone="gold">ADMIN</Badge>
+          <Badge tone="gold">{t("adminBadge")}</Badge>
         ) : (
-          <span className="text-text-secondary">Reader</span>
+          <span className="text-text-secondary">{t("reader")}</span>
         ),
     },
     {
       key: "status",
-      header: "Status",
+      header: t("col.status"),
       cell: (u) =>
         u.id === me?.id ? (
           // You can't deactivate yourself
           <span className="inline-flex items-center gap-2 text-13 text-text-secondary">
             <span className="size-2 rounded-full bg-success" aria-hidden />
-            Active
+            {t("active")}
           </span>
         ) : (
           <Switch
             checked={u.isActive}
-            label={u.isActive ? "Active" : "Inactive"}
-            ariaLabel={`${displayName(u)} is ${u.isActive ? "active" : "inactive"}`}
+            label={u.isActive ? t("active") : t("inactive")}
+            ariaLabel={
+              u.isActive
+                ? t("isActive", { name: displayName(u) })
+                : t("isInactive", { name: displayName(u) })
+            }
             disabled={busyId === u.id}
             onChange={() => toggleActive(u)}
           />
@@ -205,45 +227,41 @@ export default function UsersView() {
     },
     {
       key: "books",
-      header: "Books",
-      className: "text-right tabular-nums",
+      header: t("col.books"),
+      className: "text-end tabular-nums",
       cell: (u) => u.stats.totalBooks,
     },
     {
       key: "conversations",
-      header: "Conversations",
-      className: "text-right tabular-nums",
+      header: t("col.conversations"),
+      className: "text-end tabular-nums",
       cell: (u) => u.stats.totalConversations,
     },
     {
       key: "joined",
-      header: "Joined",
+      header: t("col.joined"),
       cell: (u) => (
         <span className="text-text-secondary">
-          {new Date(u.createdAt).toLocaleDateString(undefined, {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          })}
+          {formatDate(u.createdAt, { month: "short", day: "numeric", year: "numeric" })}
         </span>
       ),
     },
     {
       key: "actions",
-      header: "Actions",
+      header: t("col.actions"),
       srOnlyHeader: true,
       cell: (u) =>
         u.id === me?.id ? (
-          <span className="flex size-10 items-center justify-center text-text-muted" aria-label="No actions on your own account">
+          <span className="flex size-10 items-center justify-center text-text-muted" aria-label={t("noSelfActions")}>
             —
           </span>
         ) : (
           <ActionMenu
             appearance="plain"
-            ariaLabel={`Actions for ${displayName(u)}`}
+            ariaLabel={t("actionsFor", { name: displayName(u) })}
             items={[
               {
-                label: "Edit details",
+                label: t("menu.edit"),
                 icon: Pencil,
                 onSelect: () => {
                   setEditing(u);
@@ -251,18 +269,18 @@ export default function UsersView() {
                 },
               },
               {
-                label: u.role === "ADMIN" ? "Make reader" : "Make admin",
+                label: u.role === "ADMIN" ? t("menu.makeReader") : t("menu.makeAdmin"),
                 icon: u.role === "ADMIN" ? ShieldOff : ShieldCheck,
                 onSelect: () => ask({ kind: "role", user: u }),
               },
               {
-                label: u.isActive ? "Deactivate" : "Activate",
+                label: u.isActive ? t("menu.deactivate") : t("menu.activate"),
                 icon: Power,
                 disabled: busyId === u.id,
                 onSelect: () => toggleActive(u),
               },
               {
-                label: "Delete user…",
+                label: t("menu.delete"),
                 icon: Trash2,
                 destructive: true,
                 onSelect: () => ask({ kind: "delete", user: u }),
@@ -279,27 +297,27 @@ export default function UsersView() {
     const u = pending.user;
     if (pending.kind === "delete") {
       return {
-        title: `Delete ${displayName(u)}?`,
-        description: `Their account, ${plural(u.stats.totalBooks, "book")} and ${plural(
-          u.stats.totalConversations,
-          "conversation",
-        )} will be removed for good.`,
-        confirmLabel: "Delete user",
+        title: t("confirm.deleteTitle", { name: displayName(u) }),
+        description: t("confirm.deleteBody", {
+          books: u.stats.totalBooks,
+          conversations: u.stats.totalConversations,
+        }),
+        confirmLabel: t("confirm.delete"),
         tone: "destructive" as const,
       };
     }
     return u.role === "ADMIN"
       ? {
-          title: `Make ${displayName(u)} a reader?`,
-          description: "They'll lose access to users, usage and costs, and become subject to the free limits.",
-          confirmLabel: "Make reader",
+          title: t("confirm.readerTitle", { name: displayName(u) }),
+          description: t("confirm.readerBody"),
+          confirmLabel: t("menu.makeReader"),
           tone: "default" as const,
           icon: ShieldOff,
         }
       : {
-          title: `Make ${displayName(u)} an admin?`,
-          description: "They'll be able to see every user, the usage and costs, and manage accounts.",
-          confirmLabel: "Make admin",
+          title: t("confirm.adminTitle", { name: displayName(u) }),
+          description: t("confirm.adminBody"),
+          confirmLabel: t("menu.makeAdmin"),
           tone: "default" as const,
           icon: ShieldCheck,
         };
@@ -310,12 +328,11 @@ export default function UsersView() {
       <header className="flex flex-wrap items-end justify-between gap-5">
         <div className="flex flex-col gap-2">
           <h1 className="font-serif text-32 leading-[1.1] font-normal tracking-[-0.02em] md:text-40">
-            Users
+            {t("title")}
           </h1>
           {users && (
             <p className="text-sm text-text-secondary">
-              {users.length} {users.length === 1 ? "person" : "people"} ·{" "}
-              {plural(admins, "admin")} · {inactive} inactive
+              {t("summary", { people: users.length, admins, inactive })}
             </p>
           )}
         </div>
@@ -326,40 +343,40 @@ export default function UsersView() {
           }}
         >
           <UserPlus size={18} aria-hidden />
-          Add user
+          {t("add")}
         </Button>
       </header>
 
       <div className="flex flex-wrap items-center gap-3">
         <Input
-          label="Search users"
+          label={t("search.label")}
           hideLabel
           icon={Search}
           type="search"
-          placeholder="Search by name or email"
+          placeholder={t("search.placeholder")}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           wrapperClassName="flex-[1_1_280px] max-w-[420px]"
           surface
         />
         <SegmentedControl
-          ariaLabel="Role"
+          ariaLabel={t("col.role")}
           value={roleFilter}
           onChange={setRoleFilter}
           options={[
-            { value: "all", label: "Everyone" },
-            { value: "ADMIN", label: "Admins" },
-            { value: "USER", label: "Readers" },
+            { value: "all", label: t("filter.everyone") },
+            { value: "ADMIN", label: t("filter.admins") },
+            { value: "USER", label: t("filter.readers") },
           ]}
         />
         <SegmentedControl
-          ariaLabel="Status"
+          ariaLabel={t("col.status")}
           value={statusFilter}
           onChange={setStatusFilter}
           options={[
-            { value: "any", label: "Any status" },
-            { value: "active", label: "Active" },
-            { value: "inactive", label: "Inactive" },
+            { value: "any", label: t("filter.anyStatus") },
+            { value: "active", label: t("active") },
+            { value: "inactive", label: t("inactive") },
           ]}
         />
       </div>
@@ -369,7 +386,7 @@ export default function UsersView() {
       ) : (
         <div className="flex flex-col gap-3">
           <DataTable
-            ariaLabel="Users"
+            ariaLabel={t("title")}
             columns={columns}
             rows={pageRows}
             rowKey={(u) => u.id}
@@ -378,16 +395,19 @@ export default function UsersView() {
             empty={
               <EmptyState
                 bordered={false}
-                title="No one matches"
-                description="Try another name, or clear the filters."
+                title={t("empty.title")}
+                description={t("empty.body")}
               />
             }
           />
           {filtered.length > PAGE_SIZE && (
             <div className="flex flex-wrap items-center justify-between gap-3 text-13 text-text-secondary">
               <span className="tabular-nums">
-                Showing {currentPage * PAGE_SIZE + 1}–
-                {Math.min((currentPage + 1) * PAGE_SIZE, filtered.length)} of {filtered.length}
+                {t("showing", {
+                  from: currentPage * PAGE_SIZE + 1,
+                  to: Math.min((currentPage + 1) * PAGE_SIZE, filtered.length),
+                  total: filtered.length,
+                })}
               </span>
               <div className="flex gap-2">
                 <Button
@@ -396,7 +416,7 @@ export default function UsersView() {
                   disabled={currentPage === 0}
                   onClick={() => setPage(currentPage - 1)}
                 >
-                  Previous
+                  {t("previous")}
                 </Button>
                 <Button
                   variant="secondary"
@@ -404,7 +424,7 @@ export default function UsersView() {
                   disabled={currentPage >= pageCount - 1}
                   onClick={() => setPage(currentPage + 1)}
                 >
-                  Next
+                  {t("next")}
                 </Button>
               </div>
             </div>
@@ -426,7 +446,7 @@ export default function UsersView() {
         open={confirmOpen}
         onClose={() => setConfirmOpen(false)}
         onConfirm={confirmPending}
-        cancelLabel="Cancel"
+        cancelLabel={tc("cancel")}
         {...confirmProps}
       />
     </div>

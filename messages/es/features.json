@@ -1,0 +1,74 @@
+{
+  "eyebrow": "Funciones",
+  "title": "Todo lo que Zaydoun puede hacer <em>con un libro.</em>",
+  "lead": "Un solo compañero de lectura, en la web y en tu bolsillo. Esto es lo que trae.",
+  "f1": {
+    "title": "Respuestas que puedes comprobar",
+    "body": "Zaydoun encuentra los pasajes importantes de tu PDF, responde a partir de ellos y marca la página en la que se apoyó, para que vayas a leerla tú mismo.",
+    "b1": "Busca por significado, no solo por palabras",
+    "b2": "Una etiqueta «Página N» en las respuestas que salen de un pasaje",
+    "b3": "Las páginas citadas, reunidas por conversación",
+    "sample": "Primero lo plantea como un patrón y luego vuelve sobre lo que provoca en el comercio."
+  },
+  "f2": {
+    "title": "Primero la voz, manos libres",
+    "body": "En la app móvil, di su nombre y habla. Tu voz se transcribe, la respuesta se te lee en voz alta y todo el intercambio se guarda en tu cuenta.",
+    "b1": "Palabra de activación: «Zaydoun»",
+    "b2": "Respuestas habladas en tu idioma de respuesta",
+    "b3": "La voz en la web está en camino",
+    "sample": "«Zaydoun, ¿cuál es su argumento más fuerte en el capítulo 3?»"
+  },
+  "f3": {
+    "title": "Cinco idiomas, el árabe bien hecho",
+    "body": "Sube libros en inglés, árabe, francés, español o chino, y elige el idioma de respuesta de cada conversación. El árabe se lee de derecha a izquierda con una tipografía árabe de verdad."
+  },
+  "f4": {
+    "title": "Entra un PDF, sale una conversación",
+    "body": "Sube un PDF de hasta 50 MB. Zaydoun lo divide página a página y crea un índice de qué está dónde. Verás cada paso en el momento.",
+    "steps": "Pendiente, luego procesando, luego listo"
+  },
+  "f5": {
+    "title": "Una biblioteca que recuerda",
+    "body": "Tus libros en una sola estantería, cada conversación guardada y filtrable por libro. Reabre un hilo del mes pasado y retoma la discusión donde la dejaste."
+  },
+  "f6": {
+    "title": "Una consola de administración para equipos",
+    "body": "Los administradores gestionan lectores, roles y accesos, y ven el uso y el coste por día y por conversación. Los lectores solo ven sus libros."
+  },
+  "f7": {
+    "title": "Privado por diseño",
+    "body": "Tus libros y conversaciones pertenecen solo a tu cuenta, y puedes borrar cualquier cosa. Para responderte, los pasajes relevantes se envían a la API de OpenAI."
+  },
+  "hood": {
+    "label": "Bajo el capó, para curiosos",
+    "retrieval": {
+      "term": "Búsqueda",
+      "desc": "Búsqueda semántica sobre fragmentos por página (pgvector)"
+    },
+    "answers": {
+      "term": "Respuestas",
+      "desc": "GPT-4o mini, con los pasajes que encontró en tu libro"
+    },
+    "voiceIn": {
+      "term": "Voz de entrada",
+      "desc": "Transcripción de voz con Whisper"
+    },
+    "voiceOut": {
+      "term": "Voz de salida",
+      "desc": "Texto a voz en tu idioma de respuesta"
+    },
+    "accounts": {
+      "term": "Cuentas",
+      "desc": "JWT con tokens de actualización httpOnly, contraseñas cifradas con bcrypt"
+    },
+    "isolation": {
+      "term": "Aislamiento",
+      "desc": "Cada consulta limitada al lector que ha iniciado sesión"
+    }
+  },
+  "cta": {
+    "title": "Listo cuando tu libro lo esté.",
+    "ask": "Pregúntanos algo",
+    "start": "Empieza gratis"
+  }
+}

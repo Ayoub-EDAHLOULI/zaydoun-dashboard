@@ -1,0 +1,32 @@
+{
+  "eyebrow": "Contacto",
+  "title": "Escríbenos. <em>Lo lee una persona.</em>",
+  "lead": "Sin colas de tickets ni bots. Solemos responder en un día laborable.",
+  "addresses": {
+    "support": "Cuenta y ayuda general",
+    "feedback": "Ideas y peticiones de funciones"
+  },
+  "formTitle": "Enviar un mensaje",
+  "sent": "Enviado.",
+  "sentBody": "Gracias, te responderemos al correo que nos diste.",
+  "name": "Nombre",
+  "namePlaceholder": "Tu nombre",
+  "email": "Correo electrónico",
+  "emailPlaceholder": "tu@ejemplo.com",
+  "subject": "Asunto",
+  "message": "Mensaje",
+  "messagePlaceholder": "Cuéntanos qué tienes en mente",
+  "submit": "Enviar mensaje",
+  "topics": {
+    "general": "Pregunta general",
+    "book": "Problema con un libro",
+    "account": "Cuenta",
+    "idea": "Idea de función",
+    "other": "Otro"
+  },
+  "errors": {
+    "messageMin": "Cuéntanos un poco más (10 caracteres o más).",
+    "captcha": "Marca la casilla para que sepamos que no eres un robot.",
+    "failed": "No pudimos enviar tu mensaje"
+  }
+}

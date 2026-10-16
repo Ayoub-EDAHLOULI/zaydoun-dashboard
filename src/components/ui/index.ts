@@ -22,3 +22,4 @@ export { DataTable } from "./DataTable";
 export type { DataTableColumn } from "./DataTable";
 export { ChatMessage, ThinkingIndicator, Composer } from "./Chat";
 export { LimitBanner, EmptyState, Skeleton, BookCardSkeleton } from "./Feedback";
+export { LocaleSwitcher } from "./LocaleSwitcher";

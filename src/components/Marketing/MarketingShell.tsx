@@ -1,5 +1,6 @@
 "use client";
 
+import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import {
   AnimatePresence,
@@ -10,20 +11,20 @@ import {
 import { EASE_OUT, MotionProvider } from "@/components/motion";
 import ScrollToTop from "./ScrollToTop";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
-import { buttonClasses } from "@/components/ui";
+import { buttonClasses, LocaleSwitcher } from "@/components/ui";
 import { useAuth } from "@/contexts/AuthContext";
 import { getDashboardPath } from "@/lib/routes";
 import { cn } from "@/lib/cn";
 
+// Labels are keys in messages/<locale>/marketing.json → nav
 const LINKS = [
-  { href: "/features", label: "Features" },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
-];
+  { href: "/features", label: "features" },
+  { href: "/how-it-works", label: "howItWorks" },
+  { href: "/faq", label: "faq" },
+  { href: "/contact", label: "contact" },
+] as const;
 
 const YEAR = new Date().getFullYear();
 
@@ -47,6 +48,7 @@ function Logo({ size = 34 }: { size?: number }) {
 
 // Log in / Get started — or a way back into the app when signed in
 function AccountLinks({ onNavigate }: { onNavigate?: () => void }) {
+  const t = useTranslations("marketing.nav");
   const { isAuthenticated, user } = useAuth();
   if (isAuthenticated && user) {
     return (
@@ -55,7 +57,7 @@ function AccountLinks({ onNavigate }: { onNavigate?: () => void }) {
         onClick={onNavigate}
         className={buttonClasses()}
       >
-        Open your library
+        {t("openLibrary")}
       </Link>
     );
   }
@@ -66,16 +68,17 @@ function AccountLinks({ onNavigate }: { onNavigate?: () => void }) {
         onClick={onNavigate}
         className="flex h-11 items-center rounded-sm px-4 text-15 text-text-primary hover:text-gold-light"
       >
-        Log in
+        {t("logIn")}
       </Link>
       <Link href="/register" onClick={onNavigate} className={buttonClasses()}>
-        Get started
+        {t("getStarted")}
       </Link>
     </>
   );
 }
 
 function MarketingNav() {
+  const t = useTranslations("marketing.nav");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -109,11 +112,11 @@ function MarketingNav() {
       transition={{ duration: 0.3, ease: EASE_OUT }}
     >
       <nav
-        aria-label="Main"
+        aria-label={t("main")}
         className="mx-auto flex h-[76px] max-w-[1200px] items-center gap-8 px-4 md:px-10"
       >
         <Logo />
-        <div className="ml-6 hidden gap-1 lg:flex">
+        <div className="ms-6 hidden gap-1 lg:flex">
           {LINKS.map((l) => (
             <Link
               key={l.href}
@@ -124,11 +127,12 @@ function MarketingNav() {
                 pathname === l.href ? "text-gold-light" : "text-text-secondary",
               )}
             >
-              {l.label}
+              {t(l.label)}
             </Link>
           ))}
         </div>
-        <div className="ml-auto hidden items-center gap-2 lg:flex">
+        <div className="ms-auto hidden items-center gap-2 lg:flex">
+          <LocaleSwitcher compact />
           <AccountLinks />
         </div>
         <button
@@ -136,8 +140,8 @@ function MarketingNav() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="marketing-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="ml-auto flex size-11 items-center justify-center rounded-sm text-text-primary hover:bg-bg-elevated lg:hidden"
+          aria-label={open ? t("closeMenu") : t("openMenu")}
+          className="ms-auto flex size-11 items-center justify-center rounded-sm text-text-primary hover:bg-bg-elevated lg:hidden"
         >
           {open ? <X size={22} aria-hidden /> : <Menu size={22} aria-hidden />}
         </button>
@@ -162,12 +166,13 @@ function MarketingNav() {
                     onClick={() => setOpen(false)}
                     className="flex h-12 items-center border-b border-border-subtle text-base text-text-primary"
                   >
-                    {l.label}
+                    {t(l.label)}
                   </Link>
                 ))}
               </div>
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 <AccountLinks onNavigate={() => setOpen(false)} />
+                <LocaleSwitcher compact placement="up" align="start" />
               </div>
             </div>
           </motion.div>
@@ -178,6 +183,7 @@ function MarketingNav() {
 }
 
 function MarketingFooter() {
+  const t = useTranslations("marketing.nav");
   return (
     <footer className="border-t border-border-subtle">
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-6 px-4 py-8 text-sm text-text-secondary md:px-10">
@@ -191,24 +197,20 @@ function MarketingFooter() {
           />
           <span className="font-semibold text-text-primary">Zaydoun</span>
         </div>
-        <nav aria-label="Footer" className="flex flex-wrap gap-6">
-          <Link href="/features" className="hover:text-text-primary">
-            Features
-          </Link>
-          <Link href="/how-it-works" className="hover:text-text-primary">
-            How it works
-          </Link>
-          <Link href="/faq" className="hover:text-text-primary">
-            FAQ
-          </Link>
-          <Link href="/contact" className="hover:text-text-primary">
-            Contact
-          </Link>
+        <nav aria-label={t("footer")} className="flex flex-wrap gap-6">
+          {LINKS.map((l) => (
+            <Link key={l.href} href={l.href} className="hover:text-text-primary">
+              {t(l.label)}
+            </Link>
+          ))}
           <Link href="/login" className="hover:text-text-primary">
-            Log in
+            {t("logIn")}
           </Link>
         </nav>
-        <span>© {YEAR} Zaydoun</span>
+        <div className="flex items-center gap-4">
+          <LocaleSwitcher compact placement="up" />
+          <span>© {YEAR} Zaydoun</span>
+        </div>
       </div>
     </footer>
   );

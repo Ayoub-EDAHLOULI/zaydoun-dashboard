@@ -1,0 +1,81 @@
+{
+  "fallbackTitle": {
+    "about": "About {title}",
+    "new": "New conversation"
+  },
+  "groups": {
+    "today": "Today",
+    "thisWeek": "This week",
+    "earlier": "Earlier"
+  },
+  "toast": {
+    "loadFailed": "Couldn’t load conversations",
+    "deleted": "Conversation deleted",
+    "deleteFailed": "Delete failed"
+  },
+  "summary": "{count, plural, one {# conversation} other {# conversations}}",
+  "summaryBooks": "{count, plural, one {# conversation} other {# conversations}} across {books, plural, one {# book} other {# books}}",
+  "new": "New conversation",
+  "heading": "Conversations",
+  "empty": {
+    "title": "No conversations yet",
+    "body": "Pick a book Zaydoun has read and ask him anything about it.",
+    "action": "Start one"
+  },
+  "search": "Search conversations",
+  "filterByBook": "Filter by book",
+  "allBooks": "All books",
+  "noMatchQuery": "No conversations match “{query}”.",
+  "noMatchFilter": "No conversations match this filter.",
+  "preview": {
+    "zaydoun": "Zaydoun: {text}",
+    "you": "You: {text}",
+    "none": "No messages yet"
+  },
+  "actionsFor": "Actions for {title}",
+  "delete": {
+    "action": "Delete conversation",
+    "keep": "Keep it",
+    "title": "Delete this conversation?",
+    "body": "“{title}” and its messages will be removed for good. The book stays on your shelf."
+  },
+  "newDialog": {
+    "title": "New conversation",
+    "description": "Pick a book Zaydoun has finished reading, and the language he should answer in.",
+    "failed": "Couldn’t start the conversation",
+    "book": "Book",
+    "emptyShelf": "Your shelf is empty. Upload a book from the Library first.",
+    "failedBook": "Zaydoun couldn’t read this one.",
+    "stillReading": "Still being read. Available when it’s Ready.",
+    "repliesIn": "Zaydoun replies in",
+    "languageHint": "Defaults to your preference from Profile. You can change it later in the conversation.",
+    "cancel": "Cancel",
+    "start": "Start talking"
+  },
+  "chat": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "repliesInLabel": "Replies in",
+    "aboutBook": "About this book",
+    "citedHere": "Pages cited here",
+    "noCited": "No pages cited yet.",
+    "citedHint": "A running index of where this conversation has been in the book.",
+    "others": "Other conversations",
+    "notFound": "Conversation not found",
+    "quota": "{left} of {limit} messages left today",
+    "sendFailed": "Couldn’t send your message",
+    "languageFailed": "Couldn’t change the language",
+    "started": "started {date}",
+    "back": "Back to conversations",
+    "repliesIn": "Replies in {language}",
+    "actions": "Conversation actions",
+    "settings": "Conversation settings",
+    "log": "Conversation",
+    "emptyTitle": "Ask Zaydoun about <em>{title}</em>",
+    "thisBook": "this book",
+    "emptyBody": "Ask for an explanation, push back on an idea, or ask where something is in the book. He’ll answer in {language}.",
+    "placeholder": "Ask, push back, or ask for an example…",
+    "hint": "Enter to send · Shift+Enter for a new line",
+    "deleteBody": "Its messages will be removed for good. The book stays on your shelf."
+  }
+}

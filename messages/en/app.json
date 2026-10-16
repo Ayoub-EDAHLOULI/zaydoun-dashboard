@@ -1,0 +1,54 @@
+{
+  "home": {
+    "loadFailed": "Couldn’t load your home",
+    "greeting": {
+      "late": "Up late",
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "greetingName": "{greeting}, {name}.",
+    "greetingAlone": "{greeting}.",
+    "subtitleContinue": "{name} was just getting to the good part.",
+    "subtitleReady": "Your books are ready. Ask Zaydoun anything about them.",
+    "subtitleEmpty": "Add a book and Zaydoun will read it with you, page by page.",
+    "continueEyebrow": "Continue where you left off",
+    "continue": "Continue",
+    "first": {
+      "eyebrowReady": "Start your first conversation",
+      "eyebrowEmpty": "Get started",
+      "titleReady": "Pick a book and ask your first question.",
+      "titleEmpty": "Put a book on your shelf.",
+      "bodyReady": "Zaydoun answers with the page he found it on.",
+      "bodyEmpty": "Upload a PDF. Zaydoun reads it page by page so he can cite where answers come from."
+    },
+    "newConversation": "New conversation",
+    "uploadBook": "Upload a book",
+    "numbers": "Your numbers",
+    "stats": {
+      "books": "Books on your shelf",
+      "ready": "{count} ready",
+      "reading": "{count} being read",
+      "noneYet": "None yet",
+      "conversations": "Conversations",
+      "thisWeek": "{count} this week",
+      "messagesLeft": "Messages left today",
+      "noLimit": "No limit",
+      "adminAccount": "Admin account",
+      "messagesDetail": "of {limit} · resets at {time}"
+    },
+    "recent": "Recent conversations",
+    "seeAll": "See all",
+    "noConversations": "No conversations yet.",
+    "quick": {
+      "title": "Quick actions",
+      "newReady": "Pick a book and a language",
+      "newNone": "No book is ready yet",
+      "uploadFull": "Shelf full · delete a book first",
+      "uploadDetail": "PDF, up to 50 MB",
+      "library": "Open your library",
+      "stillReading": "{title} is still being read",
+      "booksOnShelf": "{count, plural, one {# book} other {# books}} on your shelf"
+    }
+  }
+}

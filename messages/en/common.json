@@ -1,0 +1,61 @@
+{
+  "language": {
+    "label": "Language: {language}. Change language",
+    "choose": "Choose a language"
+  },
+  "validation": {
+    "required": "This field is required.",
+    "emailInvalid": "Enter a full email address.",
+    "passwordRequired": "Enter your password.",
+    "nameMin": "Use at least 2 characters.",
+    "passwordMin": "Use at least 8 characters.",
+    "passwordMax": "Use at most 100 characters.",
+    "passwordWeak": "Include an uppercase letter, a lowercase letter and a number.",
+    "passwordHint": "8+ characters, with A–Z, a–z and 0–9.",
+    "retypePassword": "Type your password again.",
+    "passwordsMismatch": "The passwords don’t match."
+  },
+  "trend": {
+    "up": "up",
+    "down": "down",
+    "flat": "no change"
+  },
+  "cancel": "Cancel",
+  "close": "Close",
+  "typeToConfirm": "Type <b>{text}</b> to confirm",
+  "page": "Page {page}",
+  "status": {
+    "pending": "Pending",
+    "processing": "Processing",
+    "ready": "Ready",
+    "failed": "Failed"
+  },
+  "chat": {
+    "copy": "Copy answer",
+    "copied": "Copied",
+    "thinking": "Finding the right passages…",
+    "placeholder": "Ask about this book…",
+    "messageLabel": "Message Zaydoun",
+    "voiceSoon": "Voice input, coming soon",
+    "soon": "SOON",
+    "send": "Send"
+  },
+  "book": {
+    "pages": "{count, plural, one {# page} other {# pages}}",
+    "moreActions": "More actions for {title}"
+  },
+  "limits": {
+    "shelfFull": "Your shelf is full: {limit} of {limit} free books",
+    "messagesUsed": "You’ve used today’s {limit} messages",
+    "shelfFullHint": "Delete a book from its ··· menu to make room for another one.",
+    "messagesUsedHint": "Zaydoun will be back at {time}. Past conversations stay open to read."
+  },
+  "upload": {
+    "onlyPdf": "Only PDF files are supported.",
+    "tooBig": "That file is over {size} MB.",
+    "release": "Release to add this PDF",
+    "another": "Choose another file",
+    "drop": "Drop a PDF here, or <browse>browse</browse>",
+    "limit": "PDF only · up to {size} MB"
+  }
+}

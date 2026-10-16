@@ -12,6 +12,7 @@ import {
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Trash2, X, type LucideIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useMediaQuery, MOBILE_QUERY } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/cn";
 import { Button } from "./Button";
@@ -60,6 +61,7 @@ export function Modal({
   size = "md",
   dismissible = true,
 }: ModalProps) {
+  const tc = useTranslations("common");
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery(MOBILE_QUERY);
@@ -168,8 +170,8 @@ export function Modal({
                   <button
                     type="button"
                     onClick={onClose}
-                    aria-label="Close"
-                    className="-mt-2 -mr-2 flex size-10 shrink-0 items-center justify-center rounded-sm text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
+                    aria-label={tc("close")}
+                    className="-mt-2 -me-2 flex size-10 shrink-0 items-center justify-center rounded-sm text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
                   >
                     <X size={18} aria-hidden />
                   </button>
@@ -215,11 +217,12 @@ export function ConfirmDialog({
   title,
   description,
   confirmLabel,
-  cancelLabel = "Cancel",
+  cancelLabel,
   tone = "destructive",
   icon,
   requireText,
 }: ConfirmDialogProps) {
+  const tc = useTranslations("common");
   const titleId = useId();
   const [typed, setTyped] = useState("");
   const [busy, setBusy] = useState(false);
@@ -256,7 +259,7 @@ export function ConfirmDialog({
       footer={
         <>
           <Button variant="ghost" onClick={onClose} disabled={busy}>
-            {cancelLabel}
+            {cancelLabel ?? tc("cancel")}
           </Button>
           <Button
             variant={tone === "destructive" ? "destructive" : "primary"}
@@ -295,12 +298,12 @@ export function ConfirmDialog({
       </div>
       {requireText && (
         <Input
-          label={
-            <>
-              Type <span className="font-semibold text-text-primary">{requireText}</span> to
-              confirm
-            </>
-          }
+          label={tc.rich("typeToConfirm", {
+            text: requireText,
+            b: (chunks) => (
+              <span className="font-semibold text-text-primary">{chunks}</span>
+            ),
+          })}
           value={typed}
           onChange={(e) => setTyped(e.target.value)}
           autoComplete="off"

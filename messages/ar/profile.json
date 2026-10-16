@@ -1,0 +1,44 @@
+{
+  "title": "الملف الشخصي",
+  "account": "الحساب",
+  "noName": "لا اسم بعد",
+  "editName": "تعديل الاسم",
+  "fullName": "الاسم الكامل",
+  "save": "حفظ",
+  "memberSince": "عضو منذ {date} · {books, plural, zero {لا كتب} one {كتاب واحد} two {كتابان} few {# كتب} many {# كتابًا} other {# كتاب}} · {conversations, plural, zero {لا محادثات} one {محادثة واحدة} two {محادثتان} few {# محادثات} many {# محادثة} other {# محادثة}}",
+  "toast": {
+    "loadFailed": "تعذّر تحميل ملفك الشخصي",
+    "nameUpdated": "تم تحديث الاسم",
+    "nameFailed": "تعذّر تحديث اسمك",
+    "prefFailed": "تعذّر حفظ هذا التفضيل في متصفحك",
+    "passwordUpdated": "تم تحديث كلمة المرور",
+    "passwordFailed": "تعذّر تحديث كلمة المرور",
+    "deleted": "حُذف حسابك",
+    "deleteFailed": "تعذّر حذف حسابك"
+  },
+  "prefs": {
+    "title": "تفضيلات القراءة",
+    "description": "تُستخدم افتراضيًا للمحادثات الجديدة.",
+    "repliesIn": "يرد زيدون بـ",
+    "saved": "تم الحفظ",
+    "appLanguage": "لغة التطبيق",
+    "appLanguageHint": "لغة القوائم والأزرار. أما لغة رد زيدون فتُضبط في الأعلى."
+  },
+  "password": {
+    "title": "تغيير كلمة المرور",
+    "current": "كلمة المرور الحالية",
+    "new": "كلمة المرور الجديدة",
+    "confirm": "تأكيد كلمة المرور الجديدة",
+    "submit": "تحديث كلمة المرور"
+  },
+  "delete": {
+    "title": "حذف الحساب",
+    "body": "يحذف كتبك وكل محادثاتك وحسابك. لا يمكن التراجع عن ذلك.",
+    "action": "حذف حسابي",
+    "confirmTitle": "حذف حسابك؟",
+    "confirmBody": "ستختفي {books, plural, zero {كتبك} one {كتابك} two {كتاباك} few {كتبك الـ #} many {كتبك الـ #} other {كتبك الـ #}} و{conversations, plural, zero {محادثاتك} one {محادثتك} two {محادثتاك} few {محادثاتك الـ #} many {محادثاتك الـ #} other {محادثاتك الـ #}} نهائيًا.",
+    "confirm": "حذف نهائي",
+    "keep": "الاحتفاظ بحسابي",
+    "word": "حذف"
+  }
+}

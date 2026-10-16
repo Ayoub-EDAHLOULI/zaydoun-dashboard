@@ -1,0 +1,123 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Avant de demander à Zaydoun, <em>demandez-nous.</em>",
+  "lead": "Tout sur les livres, les réponses, la voix, votre compte et votre vie privée. Vous ne trouvez pas ? Écrivez-nous, une vraie personne vous répondra.",
+  "questions": "Questions",
+  "search": "Rechercher une question",
+  "topics": "Thèmes de la FAQ",
+  "noMatch": "Aucune question ne correspond à « {query} ».",
+  "matches": "{count, plural, one {# question correspond} other {# questions correspondent}} à « {query} ».",
+  "tryAnother": "Essayez un autre mot, ou <link>posez-nous directement la question</link>.",
+  "cta": {
+    "title": "Une autre question ?",
+    "body": "Nous répondons généralement sous un jour ouvré.",
+    "contact": "Nous contacter",
+    "start": "Commencer gratuitement"
+  },
+  "categories": {
+    "gettingStarted": "Premiers pas",
+    "books": "Livres et PDF",
+    "answers": "Conversations et réponses",
+    "voice": "Voix et mobile",
+    "account": "Compte et limites",
+    "privacy": "Confidentialité"
+  },
+  "items": {
+    "what": {
+      "q": "Qu’est-ce que Zaydoun ?",
+      "a": "Un compagnon de lecture pour vos propres livres. Vous importez un PDF, Zaydoun le lit page par page, puis vous pouvez lui poser toutes vos questions. Les réponses viennent des passages qu’il trouve dans votre livre, avec la page d’où ils proviennent."
+    },
+    "install": {
+      "q": "Dois-je installer quelque chose ?",
+      "a": "Non. Zaydoun fonctionne dans votre navigateur sur zaydoun.ai. Une application mobile avec la voix mains libres arrive bientôt sur l’App Store et Google Play."
+    },
+    "firstBook": {
+      "q": "Comment ajouter mon premier livre ?",
+      "a": "Créez un compte, ouvrez la Bibliothèque et cliquez sur Importer un livre. Choisissez un PDF, vérifiez le titre et indiquez sa langue. Cliquez ensuite sur « Laisser Zaydoun le lire »."
+    },
+    "howLong": {
+      "q": "Combien de temps faut-il à Zaydoun pour lire un livre ?",
+      "a": "Cela dépend de sa longueur. Le livre affiche En cours pendant la lecture, et la Bibliothèque vous prévient dès qu’il est Prêt. Vous pouvez quitter la page en attendant."
+    },
+    "files": {
+      "q": "Quels fichiers puis-je importer ?",
+      "a": "Des PDF jusqu’à 50 Mo. Ils doivent contenir du vrai texte : un livre scanné sans couche texte ne peut pas encore être lu."
+    },
+    "bookLanguages": {
+      "q": "Dans quelles langues peuvent être mes livres ?",
+      "a": "Anglais, arabe, français, espagnol et chinois. Indiquez la langue du livre lors de l’import. Les titres et textes arabes s’affichent de droite à gauche."
+    },
+    "failed": {
+      "q": "Et si Zaydoun n’arrive pas à lire un livre ?",
+      "a": "Le livre affiche Échec dans votre Bibliothèque, avec un bouton Réessayer. Si l’échec persiste, le PDF n’a peut-être pas de couche texte (un scan) ou est endommagé."
+    },
+    "deleteBook": {
+      "q": "Que se passe-t-il quand je supprime un livre ?",
+      "a": "Le livre et toutes ses conversations sont supprimés définitivement, et sa place sur votre étagère est libérée."
+    },
+    "citations": {
+      "q": "Comment fonctionnent les citations de pages ?",
+      "a": "Pour chaque question, Zaydoun cherche dans votre livre par le sens et retient les 5 passages les plus pertinents. Il répond à partir d’eux, et la réponse porte la page du passage sur lequel il s’est le plus appuyé."
+    },
+    "pageNumbers": {
+      "q": "Pourquoi les numéros de page ne correspondent-ils pas à mon livre imprimé ?",
+      "a": "Ils suivent votre fichier PDF. Si le livre a une couverture ou des pages liminaires, la page 1 du PDF n’est pas la page 1 imprimée : les numéros peuvent différer de quelques pages."
+    },
+    "onlyBook": {
+      "q": "Zaydoun répond-il uniquement à partir de mon livre ?",
+      "a": "Il part de votre livre. Si aucun passage ne correspond à votre question, il répond avec ses connaissances générales sur le livre, et cette réponse n’a pas d’étiquette de page."
+    },
+    "memory": {
+      "q": "Se souvient-il de ce que nous avons dit plus tôt ?",
+      "a": "Oui. Chaque réponse tient compte de vos 10 derniers messages dans la conversation, et chaque conversation est enregistrée pour que vous puissiez la reprendre plus tard."
+    },
+    "otherLanguage": {
+      "q": "Puis-je parler d’un livre dans une autre langue ?",
+      "a": "Oui. La langue du livre et la langue de réponse sont indépendantes. Choisissez la langue de réponse en lançant une conversation, et changez-la quand vous voulez depuis son en-tête."
+    },
+    "several": {
+      "q": "Puis-je avoir plusieurs conversations sur le même livre ?",
+      "a": "Autant que vous voulez. Chacune garde son propre historique et sa propre liste de pages citées."
+    },
+    "handsFree": {
+      "q": "Comment fonctionne la voix mains libres ?",
+      "a": "Dans l’application mobile, activez le mode vocal et dites « Zaydoun ». Posez votre question à voix haute et il vous répond à voix haute. La conversation est enregistrée dans votre compte comme les autres."
+    },
+    "webVoice": {
+      "q": "Puis-je utiliser la voix sur le web ?",
+      "a": "Pas encore. Sur le web, on écrit pour l’instant. La voix sur le web arrive bientôt."
+    },
+    "recordings": {
+      "q": "Mes enregistrements vocaux sont-ils conservés ?",
+      "a": "Non. Un enregistrement est transcrit puis aussitôt supprimé du serveur. Seul le texte de la conversation est enregistré."
+    },
+    "free": {
+      "q": "Zaydoun est-il gratuit ?",
+      "a": "Oui. Un compte gratuit contient 2 livres et 15 messages par jour."
+    },
+    "reset": {
+      "q": "Quand mon compteur de messages quotidien est-il remis à zéro ?",
+      "a": "Chaque jour à minuit UTC. L’application affiche l’heure de remise à zéro dans votre fuseau horaire."
+    },
+    "forgot": {
+      "q": "J’ai oublié mon mot de passe. Que faire ?",
+      "a": "Utilisez « Mot de passe oublié ? » sur la page de connexion. Nous vous enverrons par e-mail un lien valable une heure et une seule fois. La réinitialisation vous déconnecte de vos autres appareils."
+    },
+    "deactivated": {
+      "q": "Mon compte indique qu’il est désactivé.",
+      "a": "Un administrateur a désactivé votre compte. Si vous pensez que c’est une erreur, écrivez-nous depuis la page de contact."
+    },
+    "deleteAccount": {
+      "q": "Comment supprimer mon compte ?",
+      "a": "Allez dans Profil et utilisez Supprimer mon compte. Vos livres, vos conversations et votre compte sont supprimés définitivement."
+    },
+    "whoSees": {
+      "q": "Qui peut voir mes livres et mes conversations ?",
+      "a": "Vous seul. Votre bibliothèque et vos conversations sont liées à votre compte, et chaque requête est vérifiée : aucun autre lecteur ne peut y accéder."
+    },
+    "sentWhere": {
+      "q": "Mon livre est-il envoyé quelque part ?",
+      "a": "Pour lire votre livre et répondre à vos questions, son texte, vos questions et les passages trouvés par Zaydoun sont envoyés à l’API d’OpenAI. Personne d’autre ne les reçoit."
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Profile",
+  "account": "Account",
+  "noName": "No name yet",
+  "editName": "Edit name",
+  "fullName": "Full name",
+  "save": "Save",
+  "memberSince": "Member since {date} · {books, plural, one {# book} other {# books}} · {conversations, plural, one {# conversation} other {# conversations}}",
+  "toast": {
+    "loadFailed": "Couldn’t load your profile",
+    "nameUpdated": "Name updated",
+    "nameFailed": "Couldn’t update your name",
+    "prefFailed": "Couldn’t save this preference in your browser",
+    "passwordUpdated": "Password updated",
+    "passwordFailed": "Couldn’t update your password",
+    "deleted": "Your account was deleted",
+    "deleteFailed": "Couldn’t delete your account"
+  },
+  "prefs": {
+    "title": "Reading preferences",
+    "description": "Used as the default for new conversations.",
+    "repliesIn": "Zaydoun replies in",
+    "saved": "Saved",
+    "appLanguage": "App language",
+    "appLanguageHint": "The language of menus and buttons. Zaydoun’s reply language is set above."
+  },
+  "password": {
+    "title": "Change password",
+    "current": "Current password",
+    "new": "New password",
+    "confirm": "Confirm new password",
+    "submit": "Update password"
+  },
+  "delete": {
+    "title": "Delete account",
+    "body": "Removes your books, every conversation and your account. This can’t be undone.",
+    "action": "Delete my account",
+    "confirmTitle": "Delete your account?",
+    "confirmBody": "Your {books, plural, one {# book} other {# books}} and {conversations, plural, one {# conversation} other {# conversations}} will be gone for good.",
+    "confirm": "Delete forever",
+    "keep": "Keep my account",
+    "word": "DELETE"
+  }
+}

@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -63,8 +62,8 @@ export function NavItem({
         <span
           aria-hidden
           className={cn(
-            "absolute top-3 h-5 w-[3px] rounded-r-[3px] bg-gold",
-            collapsed ? "-left-3.5" : "-left-4",
+            "absolute top-3 h-5 w-[3px] rounded-e-[3px] bg-gold",
+            collapsed ? "-start-3.5" : "-start-4",
           )}
         />
       )}

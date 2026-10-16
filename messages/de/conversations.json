@@ -1,0 +1,81 @@
+{
+  "fallbackTitle": {
+    "about": "Über {title}",
+    "new": "Neues Gespräch"
+  },
+  "groups": {
+    "today": "Heute",
+    "thisWeek": "Diese Woche",
+    "earlier": "Früher"
+  },
+  "toast": {
+    "loadFailed": "Gespräche konnten nicht geladen werden",
+    "deleted": "Gespräch gelöscht",
+    "deleteFailed": "Löschen fehlgeschlagen"
+  },
+  "summary": "{count, plural, one {# Gespräch} other {# Gespräche}}",
+  "summaryBooks": "{count, plural, one {# Gespräch} other {# Gespräche}} zu {books, plural, one {# Buch} other {# Büchern}}",
+  "new": "Neues Gespräch",
+  "heading": "Gespräche",
+  "empty": {
+    "title": "Noch keine Gespräche",
+    "body": "Wähle ein Buch, das Zaydoun gelesen hat, und frag ihn alles dazu.",
+    "action": "Eins beginnen"
+  },
+  "search": "Gespräche durchsuchen",
+  "filterByBook": "Nach Buch filtern",
+  "allBooks": "Alle Bücher",
+  "noMatchQuery": "Keine Gespräche passen zu „{query}“.",
+  "noMatchFilter": "Keine Gespräche passen zu diesem Filter.",
+  "preview": {
+    "zaydoun": "Zaydoun: {text}",
+    "you": "Du: {text}",
+    "none": "Noch keine Nachrichten"
+  },
+  "actionsFor": "Aktionen für {title}",
+  "delete": {
+    "action": "Gespräch löschen",
+    "keep": "Behalten",
+    "title": "Dieses Gespräch löschen?",
+    "body": "„{title}“ und seine Nachrichten werden endgültig entfernt. Das Buch bleibt in deinem Regal."
+  },
+  "newDialog": {
+    "title": "Neues Gespräch",
+    "description": "Wähle ein Buch, das Zaydoun fertig gelesen hat, und die Sprache, in der er antworten soll.",
+    "failed": "Das Gespräch konnte nicht gestartet werden",
+    "book": "Buch",
+    "emptyShelf": "Dein Regal ist leer. Lade zuerst in der Bibliothek ein Buch hoch.",
+    "failedBook": "Zaydoun konnte dieses Buch nicht lesen.",
+    "stillReading": "Wird noch gelesen. Verfügbar, sobald es Bereit ist.",
+    "repliesIn": "Zaydoun antwortet auf",
+    "languageHint": "Standardmäßig deine Einstellung aus dem Profil. Du kannst sie später im Gespräch ändern.",
+    "cancel": "Abbrechen",
+    "start": "Gespräch starten"
+  },
+  "chat": {
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "repliesInLabel": "Antwortet auf",
+    "aboutBook": "Über dieses Buch",
+    "citedHere": "Hier zitierte Seiten",
+    "noCited": "Noch keine Seiten zitiert.",
+    "citedHint": "Ein laufendes Verzeichnis der Stellen im Buch, die dieses Gespräch berührt hat.",
+    "others": "Andere Gespräche",
+    "notFound": "Gespräch nicht gefunden",
+    "quota": "Heute noch {left} von {limit} Nachrichten",
+    "sendFailed": "Deine Nachricht konnte nicht gesendet werden",
+    "languageFailed": "Die Sprache konnte nicht geändert werden",
+    "started": "begonnen am {date}",
+    "back": "Zurück zu den Gesprächen",
+    "repliesIn": "Antwortet auf {language}",
+    "actions": "Gesprächsaktionen",
+    "settings": "Gesprächseinstellungen",
+    "log": "Gespräch",
+    "emptyTitle": "Frag Zaydoun zu <em>{title}</em>",
+    "thisBook": "diesem Buch",
+    "emptyBody": "Bitte um eine Erklärung, widersprich einer Idee oder frag, wo etwas im Buch steht. Er antwortet auf {language}.",
+    "placeholder": "Frag, widersprich oder bitte um ein Beispiel…",
+    "hint": "Enter zum Senden · Umschalt+Enter für neue Zeile",
+    "deleteBody": "Seine Nachrichten werden endgültig entfernt. Das Buch bleibt in deinem Regal."
+  }
+}

@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowRight,
   Bookmark,
@@ -26,6 +27,7 @@ import { RiseIn } from "@/components/motion/RiseIn";
 import { cn } from "@/lib/cn";
 
 const surfaceBand = "border-y border-border bg-bg-surface";
+const em = (chunks: React.ReactNode) => <em>{chunks}</em>;
 const sectionY = "py-20 md:py-30";
 
 // ---------------------------------------------------------------------------
@@ -33,37 +35,36 @@ const sectionY = "py-20 md:py-30";
 // ---------------------------------------------------------------------------
 
 function Hero() {
+  const t = useTranslations("home.hero");
   return (
     <Container className="flex flex-wrap items-center gap-16 py-16 md:py-24">
       <div className="relative flex min-w-0 flex-[1_1_520px] flex-col gap-7">
         {/* The orb glows behind the headline */}
-        <div className="absolute -top-28 left-10 z-0 sm:left-40 md:-top-20">
+        <div className="absolute -top-28 start-10 z-0 sm:start-40 md:-top-20">
           <HeroOrb />
         </div>
         <RiseIn delay={0.1} className="relative z-10">
-          <Eyebrow>A reading companion with opinions</Eyebrow>
+          <Eyebrow>{t("eyebrow")}</Eyebrow>
         </RiseIn>
         <RiseIn delay={0.2} className="relative z-10">
           <SectionTitle as="h1" size="xl">
-            Talk to your <em>books.</em>
+            {t.rich("title", { em })}
           </SectionTitle>
         </RiseIn>
         <RiseIn delay={0.3} className="relative z-10">
           <p className="max-w-125 text-19 leading-relaxed text-text-secondary">
-            Upload a PDF and Zaydoun reads it page by page. Then ask, argue, or
-            get lost in a chapter together. Answers point you to the page they
-            came from.
+            {t("lead")}
           </p>
         </RiseIn>
         <RiseIn delay={0.4} className="relative z-10 mt-1 flex flex-wrap gap-3">
           <Link href="/register" className={buttonClasses({ size: "lg" })}>
-            Start free <ArrowRight size={18} aria-hidden />
+            {t("start")} <ArrowRight size={18} aria-hidden />
           </Link>
           <a
             href="#ask"
             className={buttonClasses({ size: "lg", variant: "secondary" })}
           >
-            See what it can do
+            {t("see")}
           </a>
         </RiseIn>
       </div>
@@ -78,29 +79,30 @@ function Hero() {
 // ---------------------------------------------------------------------------
 
 const GLANCE = [
-  { icon: Bookmark, text: "Answers cite the page" },
-  { icon: Languages, text: "5 languages, Arabic RTL" },
-  { icon: Mic, text: "Hands-free voice on mobile" },
-  { icon: Lock, text: "Your books stay yours" },
-];
+  { icon: Bookmark, key: "page" },
+  { icon: Languages, key: "languages" },
+  { icon: Mic, key: "voice" },
+  { icon: Lock, key: "private" },
+] as const;
 
 function AtAGlance() {
+  const t = useTranslations("home.glance");
   return (
-    <section aria-label="At a glance" className="border-y border-border-subtle">
+    <section aria-label={t("label")} className="border-y border-border-subtle">
       <Container>
         <Stagger
           as="ul"
           className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5 py-7"
         >
-          {GLANCE.map(({ icon: Icon, text }) => (
+          {GLANCE.map(({ icon: Icon, key }) => (
             <StaggerItem
               as="li"
-              key={text}
+              key={key}
               y={12}
               className="flex items-center gap-3 text-15"
             >
               <Icon size={20} className="shrink-0 text-gold" aria-hidden />
-              {text}
+              {t(key)}
             </StaggerItem>
           ))}
         </Stagger>
@@ -148,18 +150,15 @@ function SectionHeader({
 // ---------------------------------------------------------------------------
 
 function AskAnything() {
+  const t = useTranslations("home.ask");
   return (
     <section id="ask" aria-labelledby="ask-title" className="scroll-mt-24">
       <Container className={cn("flex flex-col gap-14", sectionY)}>
         <SectionHeader
           id="ask-title"
-          eyebrow="More than search"
-          title={
-            <>
-              Explain it. Argue with it. <em>Find it.</em>
-            </>
-          }
-          lead="Zaydoun has read the whole book, so you can ask the way you'd ask a friend who has too. Pick a way in:"
+          eyebrow={t("eyebrow")}
+          title={t.rich("title", { em })}
+          lead={t("lead")}
         />
         <AskDemo />
       </Container>
@@ -171,31 +170,26 @@ function AskAnything() {
 // 4 · Citations
 // ---------------------------------------------------------------------------
 
+const CITE_POINTS = ["p1", "p2", "p3"] as const;
+
 function Citations() {
+  const t = useTranslations("home.cite");
   return (
     <section aria-labelledby="cite-title" className={surfaceBand}>
       <Container className={cn("flex flex-wrap items-center gap-18", sectionY)}>
         <div className="flex min-w-0 flex-[1_1_440px] flex-col gap-6">
           <Reveal className="flex flex-col gap-6">
-            <Eyebrow>Page-accurate</Eyebrow>
-            <SectionTitle id="cite-title">
-              Don&apos;t take his word for it. <em>Check the page.</em>
-            </SectionTitle>
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
+            <SectionTitle id="cite-title">{t.rich("title", { em })}</SectionTitle>
             <p className="text-17 leading-relaxed text-text-secondary">
-              Zaydoun answers from the passages he finds in your PDF and tags
-              the answer with the page he leaned on. Open the book, turn to the
-              page, and read it in the author&apos;s own words.
+              {t("body")}
             </p>
           </Reveal>
           <Stagger as="ul" delay={0.15} className="mt-2 flex flex-col gap-3.5">
-            {[
-              "Answers start from the passages in your copy, not the internet's summary of it",
-              "Page numbers follow your PDF, so you can jump straight there",
-              "A running list of every page a conversation has touched",
-            ].map((t) => (
+            {CITE_POINTS.map((key) => (
               <StaggerItem
                 as="li"
-                key={t}
+                key={key}
                 y={10}
                 className="flex gap-3.5 text-15 leading-normal"
               >
@@ -204,7 +198,7 @@ function Citations() {
                   className="mt-0.5 shrink-0 text-gold"
                   aria-hidden
                 />
-                <span>{t}</span>
+                <span>{t(key)}</span>
               </StaggerItem>
             ))}
           </Stagger>
@@ -245,18 +239,16 @@ const SAMPLES = [
 ];
 
 function FiveLanguages() {
+  const t = useTranslations("home.langs");
+  const locale = useLocale();
   return (
     <section aria-labelledby="lang-title">
       <Container className={cn("flex flex-col gap-14", sectionY)}>
         <SectionHeader
           id="lang-title"
-          eyebrow="Five languages"
-          title={
-            <>
-              Read in one language. <em>Talk in another.</em>
-            </>
-          }
-          lead="A French novel, answers in Arabic. An Arabic classic, answers in English. Pick the reply language per conversation."
+          eyebrow={t("eyebrow")}
+          title={t.rich("title", { em })}
+          lead={t("lead")}
         />
         <Stagger
           gap={0.1}
@@ -268,12 +260,13 @@ function FiveLanguages() {
               lang="ar"
               className="flex h-full flex-col gap-5 rounded-lg border border-border-gold bg-bg-surface p-7 md:p-9"
             >
+              {/* The note is in the page language; the card stays Arabic */}
               <span
-                dir="ltr"
-                lang="en"
+                dir="auto"
+                lang={locale}
                 className="self-end text-sm text-text-secondary"
               >
-                العربية · right to left, set in Amiri
+                العربية · {t("arabicNote")}
               </span>
               <p className="font-arabic text-28 leading-[1.9]">
                 العصبية ليست مجرد قبلية. القرابة هي البداية، لكن الشدائد
@@ -306,6 +299,8 @@ function FiveLanguages() {
 const BARS = [10, 22, 32, 18, 28, 14, 24, 8];
 
 function VoiceOnMobile() {
+  const t = useTranslations("home.voice");
+  const tb = useTranslations("home.book");
   return (
     <section aria-labelledby="voice-title" className={surfaceBand}>
       <Container className={cn("flex flex-wrap items-center gap-20", sectionY)}>
@@ -318,13 +313,13 @@ function VoiceOnMobile() {
             <div className="h-152.5 w-75 rounded-[48px] border border-border-strong bg-[#070707] p-3.5 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9)]">
               <div className="flex h-full flex-col items-center rounded-[36px] bg-bg-base px-5 pt-12 pb-10">
                 <span className="text-xs text-text-secondary">
-                  Al-Muqaddimah
+                  {tb("title")}
                 </span>
                 <div className="my-10">
                   <Orb size={140} rings={2} breathing />
                 </div>
                 <span className="text-13 font-semibold tracking-widest text-gold-light uppercase">
-                  Listening
+                  {t("listening")}
                 </span>
                 <div className="mt-3 flex h-9 items-center gap-1">
                   {BARS.map((h, i) => (
@@ -346,7 +341,7 @@ function VoiceOnMobile() {
                   ))}
                 </div>
                 <span className="mt-auto text-center font-serif text-base text-text-secondary italic">
-                  “So what kills a dynasty, really?”
+                  {t("quote")}
                 </span>
               </div>
             </div>
@@ -356,18 +351,14 @@ function VoiceOnMobile() {
           delay={0.1}
           className="flex min-w-0 flex-[1_1_440px] flex-col gap-6"
         >
-          <Eyebrow>Voice-first on mobile</Eyebrow>
-          <SectionTitle id="voice-title">
-            Say “Zaydoun”. <em>Keep walking.</em>
-          </SectionTitle>
+          <Eyebrow>{t("eyebrow")}</Eyebrow>
+          <SectionTitle id="voice-title">{t.rich("title", { em })}</SectionTitle>
           <p className="text-17 leading-relaxed text-text-secondary">
-            On the commute, at the gym, washing up. Open the app, call his name
-            and talk. He answers out loud, and the conversation is waiting on
-            the web when you sit back down.
+            {t("body")}
           </p>
           <p className="mt-2 inline-flex items-center gap-2.5 self-start rounded-[10px] border border-border-strong bg-bg-base px-4 py-3 text-15 text-text-secondary">
             <Smartphone size={18} className="text-gold" aria-hidden />
-            The mobile app is on its way to the App Store and Google Play.
+            {t("soon")}
           </p>
         </Reveal>
       </Container>
@@ -379,38 +370,18 @@ function VoiceOnMobile() {
 // 7 · Meet Zaydoun
 // ---------------------------------------------------------------------------
 
-const TRAITS = [
-  {
-    title: "Pushes back",
-    text: "Say something half-right and he'll find the half that isn't.",
-  },
-  {
-    title: "Stays on the text",
-    text: "Opinions about the book, evidence from the book.",
-  },
-  {
-    title: "Remembers the thread",
-    text: "Every conversation is saved. Pick it up next week.",
-  },
-  {
-    title: "Has a sense of humour",
-    text: "Serious about books, not about himself.",
-  },
-];
+const TRAITS = ["t1", "t2", "t3", "t4"] as const;
 
 function MeetZaydoun() {
+  const t = useTranslations("home.meet");
   return (
     <section aria-labelledby="meet-title">
       <Container className={cn("flex flex-wrap items-start gap-16", sectionY)}>
         <Reveal className="flex min-w-0 flex-[1_1_460px] flex-col gap-6">
-          <Eyebrow>Meet Zaydoun</Eyebrow>
-          <SectionTitle id="meet-title">
-            Not a search box. <em>A reading partner.</em>
-          </SectionTitle>
+          <Eyebrow>{t("eyebrow")}</Eyebrow>
+          <SectionTitle id="meet-title">{t.rich("title", { em })}</SectionTitle>
           <p className="text-17 leading-relaxed text-text-secondary">
-            Sharp, warm and a little Moroccan. He&apos;ll tell you when an
-            argument is weak, yours or the author&apos;s, and drop the odd word
-            of Darija when the moment calls for it.
+            {t("body")}
           </p>
         </Reveal>
         <Stagger
@@ -418,16 +389,18 @@ function MeetZaydoun() {
           delay={0.1}
           className="grid min-w-0 flex-[1_1_520px] gap-4 sm:grid-cols-2"
         >
-          {TRAITS.map((t) => (
+          {TRAITS.map((key) => (
             <StaggerItem
-              key={t.title}
+              key={key}
               y={20}
               scale={0.97}
               className="flex flex-col gap-2.5 rounded-md border border-border bg-bg-surface p-6 transition-colors duration-300 hover:border-border-gold"
             >
-              <span className="text-base font-semibold">{t.title}</span>
+              <span className="text-base font-semibold">
+                {t(`${key}.title`)}
+              </span>
               <span className="text-sm leading-relaxed text-text-secondary">
-                {t.text}
+                {t(`${key}.text`)}
               </span>
             </StaggerItem>
           ))}
@@ -442,29 +415,14 @@ function MeetZaydoun() {
 // ---------------------------------------------------------------------------
 
 const AUDIENCES = [
-  {
-    icon: GraduationCap,
-    title: "Students",
-    text: "Get unstuck on a dense chapter the night before the seminar.",
-  },
-  {
-    icon: Microscope,
-    title: "Researchers",
-    text: "Find where an idea lives and go straight to the page.",
-  },
-  {
-    icon: Languages,
-    title: "Language learners",
-    text: "Read in the language you're learning, discuss in the one you know.",
-  },
-  {
-    icon: Headphones,
-    title: "Commuters",
-    text: "Keep reading with your eyes on the road and your hands free.",
-  },
-];
+  { icon: GraduationCap, key: "a1" },
+  { icon: Microscope, key: "a2" },
+  { icon: Languages, key: "a3" },
+  { icon: Headphones, key: "a4" },
+] as const;
 
 function WhoItsFor() {
+  const t = useTranslations("home.who");
   return (
     <section
       aria-labelledby="who-title"
@@ -473,26 +431,26 @@ function WhoItsFor() {
       <Container className={cn("flex flex-col gap-12", sectionY)}>
         <Reveal>
           <SectionTitle id="who-title" size="md" className="max-w-160">
-            For anyone who wants more from a book than a summary.
+            {t("title")}
           </SectionTitle>
         </Reveal>
         <Stagger
           gap={0.1}
           className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-4"
         >
-          {AUDIENCES.map(({ icon: Icon, title, text }, i) => (
+          {AUDIENCES.map(({ icon: Icon, key }, i) => (
             <StaggerItem
-              key={title}
+              key={key}
               className={cn(
                 "flex flex-col gap-3 py-8 lg:px-7",
-                i > 0 && "lg:border-l lg:border-border",
-                i === 0 && "lg:pl-0",
+                i > 0 && "lg:border-s lg:border-border",
+                i === 0 && "lg:ps-0",
               )}
             >
               <Icon size={24} className="text-gold" aria-hidden />
-              <span className="text-lg font-semibold">{title}</span>
+              <span className="text-lg font-semibold">{t(`${key}.title`)}</span>
               <span className="text-15 leading-relaxed text-text-secondary">
-                {text}
+                {t(`${key}.text`)}
               </span>
             </StaggerItem>
           ))}
@@ -506,22 +464,10 @@ function WhoItsFor() {
 // 9 · How it works
 // ---------------------------------------------------------------------------
 
-const STEPS = [
-  {
-    title: "Upload on the web",
-    text: "Drop a PDF, add the title and its language. Arabic books welcome.",
-  },
-  {
-    title: "Zaydoun reads it",
-    text: "He goes through it page by page and remembers where every idea lives.",
-  },
-  {
-    title: "Talk, hands-free",
-    text: "Type here on the web, or open the app, say “Zaydoun” and just speak.",
-  },
-];
+const STEPS = ["s1", "s2", "s3"] as const;
 
 function HowItWorks() {
+  const t = useTranslations("home.how");
   return (
     <section
       id="how"
@@ -531,23 +477,22 @@ function HowItWorks() {
       <Container className={cn("flex flex-col gap-14", sectionY)}>
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="flex flex-col gap-4">
-            <Eyebrow>How it works</Eyebrow>
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
             <SectionTitle id="how-title" size="md">
-              From PDF to conversation
+              {t("title1")}
               <br />
-              in three steps.
+              {t("title2")}
             </SectionTitle>
           </div>
           <div className="flex max-w-90 flex-col items-start gap-3">
             <p className="text-base leading-relaxed text-text-secondary">
-              No setup, no settings to learn. Bring the book you&apos;re already
-              reading.
+              {t("lead")}
             </p>
             <Link
               href="/how-it-works"
               className="inline-flex items-center gap-1.5 rounded-xs text-15 text-gold-light hover:text-text-primary"
             >
-              See the details <ArrowRight size={16} aria-hidden />
+              {t("details")} <ArrowRight size={16} aria-hidden />
             </Link>
           </div>
         </Reveal>
@@ -559,22 +504,22 @@ function HowItWorks() {
             delay={0.3}
             className="grid md:grid-cols-3"
           >
-            {STEPS.map((s, i) => (
+            {STEPS.map((key, i) => (
               <StaggerItem
                 as="li"
-                key={s.title}
+                key={key}
                 className={cn(
                   "flex flex-col gap-3.5 py-8 md:px-8",
-                  i === 0 && "md:pl-0",
-                  i > 0 && "md:border-l md:border-border-strong",
+                  i === 0 && "md:ps-0",
+                  i > 0 && "md:border-s md:border-border-strong",
                 )}
               >
                 <span className="font-serif text-56 leading-none text-gold-dark">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-19 font-semibold">{s.title}</span>
+                <span className="text-19 font-semibold">{t(`${key}.title`)}</span>
                 <span className="text-15 leading-relaxed text-text-secondary">
-                  {s.text}
+                  {t(`${key}.text`)}
                 </span>
               </StaggerItem>
             ))}
@@ -590,31 +535,20 @@ function HowItWorks() {
 // ---------------------------------------------------------------------------
 
 const PRIVACY = [
-  {
-    icon: ShieldCheck,
-    title: "Only you can see your books",
-    text: "Each reader's library and conversations are kept separate.",
-  },
-  {
-    icon: Trash2,
-    title: "Delete anytime",
-    text: "Remove a book, a conversation, or your whole account.",
-  },
-  {
-    icon: Send,
-    title: "Sent only to answer you",
-    text: "To answer a question, the relevant passages go to OpenAI's API, and nowhere else.",
-  },
-];
+  { icon: ShieldCheck, key: "p1" },
+  { icon: Trash2, key: "p2" },
+  { icon: Send, key: "p3" },
+] as const;
 
 function Privacy() {
+  const t = useTranslations("home.privacy");
   return (
     <section aria-labelledby="privacy-title">
       <Container className={cn("flex flex-wrap items-start gap-16", sectionY)}>
         <Reveal className="flex flex-[1_1_360px] flex-col gap-4">
-          <Eyebrow>Private by design</Eyebrow>
+          <Eyebrow>{t("eyebrow")}</Eyebrow>
           <SectionTitle id="privacy-title" size="md">
-            Your shelf is nobody else&apos;s business.
+            {t("title")}
           </SectionTitle>
         </Reveal>
         <Stagger
@@ -622,10 +556,10 @@ function Privacy() {
           gap={0.12}
           className="flex min-w-0 flex-[1_1_520px] flex-col"
         >
-          {PRIVACY.map(({ icon: Icon, title, text }) => (
+          {PRIVACY.map(({ icon: Icon, key }) => (
             <StaggerItem
               as="li"
-              key={title}
+              key={key}
               y={14}
               className="flex gap-4 border-b border-border py-5 first:border-t"
             >
@@ -633,9 +567,9 @@ function Privacy() {
                 <Icon size={20} aria-hidden />
               </span>
               <span className="flex flex-col gap-1">
-                <span className="text-base font-medium">{title}</span>
+                <span className="text-base font-medium">{t(`${key}.title`)}</span>
                 <span className="text-sm leading-relaxed text-text-secondary">
-                  {text}
+                  {t(`${key}.text`)}
                 </span>
               </span>
             </StaggerItem>
@@ -650,34 +584,12 @@ function Privacy() {
 // 11 · FAQ
 // ---------------------------------------------------------------------------
 
-const FAQS = [
-  {
-    q: "What kind of files can I upload?",
-    a: "PDFs up to 50 MB. They need real text inside, so a scanned book without a text layer won't work yet. Tell Zaydoun the book's language when you upload it.",
-  },
-  {
-    q: "How do the page citations work?",
-    a: "When you ask something, Zaydoun searches your PDF for the most relevant passages and answers from them. The answer carries a tag with the page of the passage he leaned on most. Page numbers follow your PDF file, so they can differ from the printed numbers if the book has front matter.",
-  },
-  {
-    q: "Can I use it without looking at my phone?",
-    a: "Yes, in the mobile app. Turn on voice mode, say “Zaydoun”, ask your question and he answers out loud. On the web you type for now.",
-  },
-  {
-    q: "Can I talk about an Arabic book in English?",
-    a: "Yes. The book's language and the reply language are separate. Pick the reply language when you start a conversation, and change it any time from the conversation's header.",
-  },
-  {
-    q: "Who can see my books and conversations?",
-    a: "Only you. Your books and conversations are tied to your account, and every request is checked against it. To answer a question, the relevant passages and your question are sent to OpenAI's API.",
-  },
-  {
-    q: "Is it free?",
-    a: "Yes. A free account holds 2 books and 15 messages a day. The daily count resets at midnight UTC.",
-  },
-];
+const FAQ_KEYS = ["q1", "q2", "q3", "q4", "q5", "q6"] as const;
+
 
 function Faq() {
+  const t = useTranslations("home.faq");
+  const items = FAQ_KEYS.map((k) => ({ q: t(`${k}.q`), a: t(`${k}.a`) }));
   return (
     <section
       id="faq"
@@ -686,25 +598,25 @@ function Faq() {
     >
       <Container className={cn("flex flex-wrap items-start gap-16", sectionY)}>
         <Reveal className="flex flex-[1_1_320px] flex-col gap-4">
-          <Eyebrow>Questions</Eyebrow>
+          <Eyebrow>{t("eyebrow")}</Eyebrow>
           <SectionTitle id="faq-title" size="md">
-            Before you ask Zaydoun, ask us.
+            {t("title")}
           </SectionTitle>
           <Link
             href="/contact"
             className="mt-2 rounded-xs text-15 text-gold-light hover:text-text-primary"
           >
-            Something else? Write to us →
+            {t("write")}
           </Link>
           <Link
             href="/faq"
             className="inline-flex items-center gap-1.5 rounded-xs text-15 text-text-secondary hover:text-text-primary"
           >
-            See all questions <ArrowRight size={16} aria-hidden />
+            {t("all")} <ArrowRight size={16} aria-hidden />
           </Link>
         </Reveal>
         <Reveal delay={0.1} className="min-w-0 flex-[2_1_560px]">
-          <FaqList items={FAQS} />
+          <FaqList items={items} />
         </Reveal>
       </Container>
     </section>
@@ -716,6 +628,7 @@ function Faq() {
 // ---------------------------------------------------------------------------
 
 function FinalCta() {
+  const t = useTranslations("home.cta");
   return (
     <section aria-labelledby="cta-title">
       <Container className="py-20 md:py-28">
@@ -731,17 +644,16 @@ function FinalCta() {
           />
           <Orb size={56} rings={1} />
           <SectionTitle id="cta-title" className="relative">
-            Which book first?
+            {t("title")}
           </SectionTitle>
           <p className="relative max-w-110 text-17 leading-relaxed text-text-secondary">
-            Bring the one you&apos;ve been meaning to finish. Zaydoun will meet
-            you on page one.
+            {t("body")}
           </p>
           <Link
             href="/register"
             className={buttonClasses({ size: "lg", className: "relative" })}
           >
-            Start free <ArrowRight size={18} aria-hidden />
+            {t("start")} <ArrowRight size={18} aria-hidden />
           </Link>
         </Reveal>
       </Container>

@@ -1,0 +1,32 @@
+{
+  "eyebrow": "Contact",
+  "title": "Write to us. <em>A person reads it.</em>",
+  "lead": "No ticket queue and no bot. We usually reply within one business day.",
+  "addresses": {
+    "support": "Account and general help",
+    "feedback": "Ideas and feature requests"
+  },
+  "formTitle": "Send a message",
+  "sent": "Sent.",
+  "sentBody": "Thanks, we’ll reply to the email you gave us.",
+  "name": "Name",
+  "namePlaceholder": "Your name",
+  "email": "Email",
+  "emailPlaceholder": "you@example.com",
+  "subject": "Subject",
+  "message": "Message",
+  "messagePlaceholder": "Tell us what’s on your mind",
+  "submit": "Send message",
+  "topics": {
+    "general": "General question",
+    "book": "Problem with a book",
+    "account": "Account",
+    "idea": "Feature idea",
+    "other": "Other"
+  },
+  "errors": {
+    "messageMin": "Tell us a bit more (10+ characters).",
+    "captcha": "Tick the box so we know you’re not a robot.",
+    "failed": "Couldn’t send your message"
+  }
+}

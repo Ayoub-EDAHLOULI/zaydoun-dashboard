@@ -1,10 +1,11 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { useState, type ReactNode } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Eye, EyeOff } from "lucide-react";
-import { Input, type InputProps } from "@/components/ui";
+import { Input, LocaleSwitcher, type InputProps } from "@/components/ui";
 import SunScene from "./SunScene";
 import { cn } from "@/lib/cn";
 
@@ -45,14 +46,14 @@ export function AuthSplitLayout({
 }) {
   return (
     <div className="flex min-h-dvh bg-bg-base">
-      <aside className="relative hidden flex-1 flex-col overflow-hidden border-r border-border bg-bg-surface px-16 py-12 lg:flex">
+      <aside className="relative hidden flex-1 flex-col overflow-hidden border-e border-border bg-bg-surface px-16 py-12 lg:flex">
         {/* The sun, its light and the dust in it — behind the text */}
         <SunScene />
         <div className="relative">
           <Logo />
         </div>
         <div className="relative mt-auto flex max-w-[420px] flex-col gap-5">
-          <p className="font-serif text-46 leading-[1.08] tracking-[-0.02em] [&_em]:text-gold-light [&_em]:italic">
+          <p className="display-leading font-serif text-46 leading-[1.08] tracking-[-0.02em] [&_em]:text-gold-light [&_em]:italic">
             {headline}
           </p>
           {aside}
@@ -66,8 +67,11 @@ export function AuthSplitLayout({
           top-aligned on short screens (justify-center would push the top
           off-screen, out of reach) */}
       <main className="flex min-w-0 flex-1 flex-col items-center gap-7 px-4 py-6 sm:gap-10 sm:py-10 md:px-12">
-        <div className="w-full max-w-[400px] lg:hidden">
-          <Logo size={32} />
+        <div className="flex w-full max-w-[400px] items-center justify-between gap-4 lg:max-w-none lg:justify-end">
+          <span className="lg:hidden">
+            <Logo size={32} />
+          </span>
+          <LocaleSwitcher compact />
         </div>
         <div className="my-auto w-full max-w-[400px]">{children}</div>
       </main>
@@ -95,8 +99,9 @@ export function AuthCardLayout({
 }) {
   return (
     <div className="flex min-h-dvh flex-col items-center gap-7 bg-bg-base px-4 py-6 sm:gap-10 sm:py-10">
-      <div className="w-full max-w-[440px]">
+      <div className="flex w-full max-w-[440px] items-center justify-between gap-4">
         <Logo size={32} />
+        <LocaleSwitcher compact />
       </div>
       <section
         aria-labelledby="auth-card-title"
@@ -159,6 +164,7 @@ export function AuthHeading({
 // ---------------------------------------------------------------------------
 
 export function PasswordInput(props: Omit<InputProps, "type" | "end">) {
+  const t = useTranslations("auth");
   const [visible, setVisible] = useState(false);
   return (
     <Input
@@ -168,7 +174,7 @@ export function PasswordInput(props: Omit<InputProps, "type" | "end">) {
         <button
           type="button"
           onClick={() => setVisible((v) => !v)}
-          aria-label={visible ? "Hide password" : "Show password"}
+          aria-label={visible ? t("hidePassword") : t("showPassword")}
           aria-pressed={visible}
           className="flex size-10 items-center justify-center rounded-sm text-text-secondary transition-colors hover:text-text-primary"
         >

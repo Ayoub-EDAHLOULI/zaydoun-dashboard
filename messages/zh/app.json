@@ -1,0 +1,54 @@
+{
+  "home": {
+    "loadFailed": "无法加载首页",
+    "greeting": {
+      "late": "夜深了",
+      "morning": "早上好",
+      "afternoon": "下午好",
+      "evening": "晚上好"
+    },
+    "greetingName": "{greeting}，{name}。",
+    "greetingAlone": "{greeting}。",
+    "subtitleContinue": "{name} 正讲到精彩的地方。",
+    "subtitleReady": "你的书都准备好了，随便问 Zaydoun 吧。",
+    "subtitleEmpty": "添加一本书，Zaydoun 会和你一起逐页阅读。",
+    "continueEyebrow": "从上次中断的地方继续",
+    "continue": "继续",
+    "first": {
+      "eyebrowReady": "开始你的第一场对话",
+      "eyebrowEmpty": "开始使用",
+      "titleReady": "选一本书，提出你的第一个问题。",
+      "titleEmpty": "在书架上放一本书。",
+      "bodyReady": "Zaydoun 回答时会注明出处页码。",
+      "bodyEmpty": "上传一份 PDF。Zaydoun 会逐页阅读，以便注明回答的出处。"
+    },
+    "newConversation": "新对话",
+    "uploadBook": "上传书籍",
+    "numbers": "你的数据",
+    "stats": {
+      "books": "书架上的书",
+      "ready": "{count} 本就绪",
+      "reading": "{count} 本阅读中",
+      "noneYet": "暂无",
+      "conversations": "对话",
+      "thisWeek": "本周 {count} 场",
+      "messagesLeft": "今日剩余消息",
+      "noLimit": "不限",
+      "adminAccount": "管理员账户",
+      "messagesDetail": "共 {limit} 条 · {time} 重置"
+    },
+    "recent": "最近的对话",
+    "seeAll": "查看全部",
+    "noConversations": "还没有对话。",
+    "quick": {
+      "title": "快捷操作",
+      "newReady": "选择一本书和一种语言",
+      "newNone": "还没有就绪的书",
+      "uploadFull": "书架已满 · 请先删除一本书",
+      "uploadDetail": "PDF，最大 50 MB",
+      "library": "打开我的书库",
+      "stillReading": "《{title}》仍在阅读中",
+      "booksOnShelf": "书架上有 {count} 本书"
+    }
+  }
+}

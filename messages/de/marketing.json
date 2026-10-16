@@ -1,0 +1,16 @@
+{
+  "backToTop": "Nach oben",
+  "nav": {
+    "features": "Funktionen",
+    "howItWorks": "So funktioniert’s",
+    "faq": "FAQ",
+    "contact": "Kontakt",
+    "logIn": "Anmelden",
+    "getStarted": "Loslegen",
+    "openLibrary": "Zur Bibliothek",
+    "main": "Hauptmenü",
+    "footer": "Fußzeile",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen"
+  }
+}

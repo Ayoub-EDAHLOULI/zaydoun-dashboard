@@ -1,9 +1,19 @@
 "use client";
 
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { Check, Pencil } from "lucide-react";
 import { z } from "zod";
-import { Avatar, Button, ConfirmDialog, Input, Modal, Select, Skeleton } from "@/components/ui";
+import {
+  Avatar,
+  Button,
+  ConfirmDialog,
+  Input,
+  LocaleSwitcher,
+  Modal,
+  Select,
+  Skeleton,
+} from "@/components/ui";
 import { usersService } from "@/lib/api/services/users.service";
 import { authService } from "@/lib/api/services/auth.service";
 import { useAuth } from "@/contexts/AuthContext";
@@ -11,17 +21,19 @@ import { useToast } from "@/contexts/ToastContext";
 import { LANGUAGES } from "@/lib/languages";
 import { REPLY_LANG_KEY, getReplyLanguagePref } from "@/lib/preferences";
 import { cn } from "@/lib/cn";
-import { PASSWORD_HINT, passwordRule } from "@/validations/password";
+import { useFormatDate } from "@/lib/time";
+import { passwordRule } from "@/validations/password";
 import type { UserProfile } from "@/types/users.types";
 
+// Messages are keys in common.json → "validation"
 const passwordSchema = z
   .object({
-    currentPassword: z.string().min(1, "Enter your current password."),
+    currentPassword: z.string().min(1, "passwordRequired"),
     newPassword: passwordRule,
     confirmPassword: z.string(),
   })
   .refine((d) => d.newPassword === d.confirmPassword, {
-    message: "The passwords don't match.",
+    message: "passwordsMismatch",
     path: ["confirmPassword"],
   });
 
@@ -29,12 +41,15 @@ type PasswordForm = z.infer<typeof passwordSchema>;
 const EMPTY_PASSWORDS: PasswordForm = { currentPassword: "", newPassword: "", confirmPassword: "" };
 
 function Card({
+  id,
   title,
   description,
   danger = false,
   row = false,
   children,
 }: {
+  /** Heading id, for aria-labelledby */
+  id?: string;
   title?: string;
   description?: string;
   danger?: boolean;
@@ -42,7 +57,6 @@ function Card({
   row?: boolean;
   children: ReactNode;
 }) {
-  const id = title ? `card-${title.toLowerCase().replace(/\s+/g, "-")}` : undefined;
   return (
     <section
       aria-labelledby={id}
@@ -66,6 +80,11 @@ function Card({
 }
 
 export default function ProfileView() {
+  const t = useTranslations("profile");
+  const tv = useTranslations("common.validation");
+  const tc = useTranslations("common");
+  const locale = useLocale();
+  const formatDate = useFormatDate();
   const { user, accessToken, updateUser, logout, isAdmin } = useAuth();
   const { notify } = useToast();
 
@@ -73,7 +92,7 @@ export default function ProfileView() {
   const [nameOpen, setNameOpen] = useState(false);
   const [nameDraft, setNameDraft] = useState("");
   const [savingName, setSavingName] = useState(false);
-  const [replyLang, setReplyLang] = useState<string>(getReplyLanguagePref);
+  const [replyLang, setReplyLang] = useState<string>(() => getReplyLanguagePref(locale));
   const [langSaved, setLangSaved] = useState(false);
   const [passwords, setPasswords] = useState<PasswordForm>(EMPTY_PASSWORDS);
   const [pwErrors, setPwErrors] = useState<Partial<Record<keyof PasswordForm, string>>>({});
@@ -85,9 +104,9 @@ export default function ProfileView() {
       .getMe()
       .then(setProfile)
       .catch((err: unknown) =>
-        notify(err instanceof Error ? err.message : "Couldn't load your profile", "error"),
+        notify(err instanceof Error ? err.message : t("toast.loadFailed"), "error"),
       );
-  }, [notify]);
+  }, [notify, t]);
 
   // "Saved" fades after a moment
   useEffect(() => {
@@ -108,10 +127,10 @@ export default function ProfileView() {
       setProfile((prev) => (prev ? { ...prev, ...updated, stats: prev.stats } : prev));
       // Merge into the session user so role/isActive are preserved
       if (user) updateUser({ ...user, name: updated.name ?? "" });
-      notify("Name updated", "success");
+      notify(t("toast.nameUpdated"), "success");
       setNameOpen(false);
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't update your name", "error");
+      notify(err instanceof Error ? err.message : t("toast.nameFailed"), "error");
     } finally {
       setSavingName(false);
     }
@@ -124,7 +143,7 @@ export default function ProfileView() {
       localStorage.setItem(REPLY_LANG_KEY, code);
       setLangSaved(true);
     } catch {
-      notify("Couldn't save this preference in your browser", "error");
+      notify(t("toast.prefFailed"), "error");
     }
   };
 
@@ -140,7 +159,7 @@ export default function ProfileView() {
     if (!parsed.success) {
       const errors: typeof pwErrors = {};
       for (const issue of parsed.error.issues) {
-        errors[issue.path[0] as keyof PasswordForm] ??= issue.message;
+        errors[issue.path[0] as keyof PasswordForm] ??= tv(issue.message as "required");
       }
       setPwErrors(errors);
       return;
@@ -153,9 +172,9 @@ export default function ProfileView() {
         accessToken,
       );
       setPasswords(EMPTY_PASSWORDS);
-      notify("Password updated", "success");
+      notify(t("toast.passwordUpdated"), "success");
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't update your password", "error");
+      notify(err instanceof Error ? err.message : t("toast.passwordFailed"), "error");
     } finally {
       setSavingPw(false);
     }
@@ -165,31 +184,30 @@ export default function ProfileView() {
   const deleteAccount = async () => {
     try {
       await usersService.deleteMe();
-      notify("Your account was deleted", "success");
+      notify(t("toast.deleted"), "success");
       await logout();
     } catch (err) {
-      notify(err instanceof Error ? err.message : "Couldn't delete your account", "error");
+      notify(err instanceof Error ? err.message : t("toast.deleteFailed"), "error");
     }
   };
 
   const memberSince = profile
-    ? new Date(profile.createdAt).toLocaleDateString(undefined, { month: "long", year: "numeric" })
+    ? formatDate(profile.createdAt, { month: "long", year: "numeric" })
     : "";
   const books = profile?.stats.totalBooks ?? 0;
   const convs = profile?.stats.totalConversations ?? 0;
-  const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
   const pwComplete =
     !!passwords.currentPassword && !!passwords.newPassword && !!passwords.confirmPassword;
 
   return (
     <div className="mx-auto flex w-full max-w-[760px] flex-col gap-6">
       <h1 className="font-serif text-32 leading-[1.1] font-normal tracking-[-0.02em] md:text-40">
-        Profile
+        {t("title")}
       </h1>
 
       {/* Account */}
       <section
-        aria-label="Account"
+        aria-label={t("account")}
         className="flex flex-wrap items-center gap-5 rounded-lg border border-border bg-bg-surface p-6 md:p-7"
       >
         <Avatar
@@ -201,10 +219,12 @@ export default function ProfileView() {
         <div className="flex min-w-0 flex-[1_1_240px] flex-col gap-1">
           {profile ? (
             <>
-              <span className="truncate text-xl font-semibold">{profile.name || "No name yet"}</span>
-              <span className="truncate text-sm text-text-secondary">{profile.email}</span>
+              <span className="truncate text-xl font-semibold">{profile.name || t("noName")}</span>
+              <span dir="ltr" className="truncate text-start text-sm text-text-secondary">
+                {profile.email}
+              </span>
               <span className="text-13 text-text-secondary">
-                Member since {memberSince} · {plural(books, "book")} · {plural(convs, "conversation")}
+                {t("memberSince", { date: memberSince, books, conversations: convs })}
               </span>
             </>
           ) : (
@@ -223,15 +243,15 @@ export default function ProfileView() {
           }}
         >
           <Pencil size={16} aria-hidden />
-          Edit name
+          {t("editName")}
         </Button>
       </section>
 
       {/* Reading preferences */}
-      <Card title="Reading preferences" description="Used as the default for new conversations.">
+      <Card id="card-prefs" title={t("prefs.title")} description={t("prefs.description")}>
         <div className="flex flex-wrap items-end gap-4">
           <Select
-            label="Zaydoun replies in"
+            label={t("prefs.repliesIn")}
             value={replyLang}
             onChange={(e) => changeReplyLang(e.target.value)}
             wrapperClassName="w-full max-w-[280px]"
@@ -250,17 +270,22 @@ export default function ProfileView() {
             )}
           >
             <Check size={16} aria-hidden />
-            {langSaved ? "Saved" : ""}
+            {langSaved ? t("prefs.saved") : ""}
           </span>
+        </div>
+        <div className="flex flex-col gap-2 border-t border-border pt-4">
+          <span className="text-13 font-medium text-text-secondary">{t("prefs.appLanguage")}</span>
+          <LocaleSwitcher appearance="outline" align="start" className="w-full max-w-[280px]" />
+          <span className="text-xs text-text-secondary">{t("prefs.appLanguageHint")}</span>
         </div>
       </Card>
 
       {/* Password */}
-      <Card title="Change password">
+      <Card id="card-password" title={t("password.title")}>
         <form onSubmit={savePassword} noValidate className="flex flex-col gap-4">
           <div className="grid gap-4 md:grid-cols-3">
             <Input
-              label="Current password"
+              label={t("password.current")}
               type="password"
               autoComplete="current-password"
               value={passwords.currentPassword}
@@ -268,16 +293,16 @@ export default function ProfileView() {
               error={pwErrors.currentPassword}
             />
             <Input
-              label="New password"
+              label={t("password.new")}
               type="password"
               autoComplete="new-password"
               value={passwords.newPassword}
               onChange={(e) => setPw("newPassword")(e.target.value)}
               error={pwErrors.newPassword}
-              hint={pwErrors.newPassword ? undefined : PASSWORD_HINT}
+              hint={pwErrors.newPassword ? undefined : tv("passwordHint")}
             />
             <Input
-              label="Confirm new password"
+              label={t("password.confirm")}
               type="password"
               autoComplete="new-password"
               value={passwords.confirmPassword}
@@ -287,7 +312,7 @@ export default function ProfileView() {
           </div>
           <div>
             <Button type="submit" loading={savingPw} disabled={!pwComplete}>
-              Update password
+              {t("password.submit")}
             </Button>
           </div>
         </form>
@@ -297,13 +322,11 @@ export default function ProfileView() {
       {!isAdmin && (
         <Card danger row>
           <div className="flex flex-[1_1_320px] flex-col gap-1">
-            <h2 className="text-lg font-semibold">Delete account</h2>
-            <p className="text-sm text-text-secondary">
-              Removes your books, every conversation and your account. This can&apos;t be undone.
-            </p>
+            <h2 className="text-lg font-semibold">{t("delete.title")}</h2>
+            <p className="text-sm text-text-secondary">{t("delete.body")}</p>
           </div>
           <Button variant="destructive-outline" onClick={() => setDeleteOpen(true)} disabled={!profile}>
-            Delete my account
+            {t("delete.action")}
           </Button>
         </Card>
       )}
@@ -311,13 +334,13 @@ export default function ProfileView() {
       <Modal
         open={nameOpen}
         onClose={() => setNameOpen(false)}
-        title="Edit name"
+        title={t("editName")}
         size="sm"
         dismissible={!savingName}
       >
         <form onSubmit={saveName} className="flex flex-col gap-5">
           <Input
-            label="Full name"
+            label={t("fullName")}
             value={nameDraft}
             onChange={(e) => setNameDraft(e.target.value)}
             autoComplete="name"
@@ -325,10 +348,10 @@ export default function ProfileView() {
           />
           <div className="flex flex-col-reverse gap-2.5 md:flex-row md:justify-end">
             <Button variant="ghost" onClick={() => setNameOpen(false)} disabled={savingName}>
-              Cancel
+              {tc("cancel")}
             </Button>
             <Button type="submit" loading={savingName} disabled={!nameDraft.trim()}>
-              Save
+              {t("save")}
             </Button>
           </div>
         </form>
@@ -338,11 +361,11 @@ export default function ProfileView() {
         open={deleteOpen}
         onClose={() => setDeleteOpen(false)}
         onConfirm={deleteAccount}
-        title="Delete your account?"
-        description={`Your ${plural(books, "book")} and ${plural(convs, "conversation")} will be gone for good.`}
-        confirmLabel="Delete forever"
-        cancelLabel="Keep my account"
-        requireText="DELETE"
+        title={t("delete.confirmTitle")}
+        description={t("delete.confirmBody", { books, conversations: convs })}
+        confirmLabel={t("delete.confirm")}
+        cancelLabel={t("delete.keep")}
+        requireText={t("delete.word")}
       />
     </div>
   );
