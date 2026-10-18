@@ -1,3 +1,5 @@
+import { setRequestLocale } from "next-intl/server";
+import { localeOf, type LocaleParams } from "@/i18n/metadata";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
@@ -14,7 +16,13 @@ import { faqCategories } from "@/lib/faq";
 
 const em = (chunks: React.ReactNode) => <em>{chunks}</em>;
 
-export default function FaqPage() {
+export default async function FaqPage(props: LocaleParams) {
+  // Lets this page prerender per language
+  setRequestLocale(await localeOf(props));
+  return <FaqPageContent />;
+}
+
+function FaqPageContent() {
   const t = useTranslations("faq");
 
   // FAQPage structured data, built from the same content the page shows

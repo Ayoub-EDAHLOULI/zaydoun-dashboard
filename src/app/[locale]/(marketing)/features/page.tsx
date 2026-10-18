@@ -1,3 +1,5 @@
+import { setRequestLocale } from "next-intl/server";
+import { localeOf, type LocaleParams } from "@/i18n/metadata";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { ArrowRight, Check } from "lucide-react";
@@ -47,7 +49,13 @@ const UNDER_THE_HOOD = [
 
 const em = (chunks: React.ReactNode) => <em>{chunks}</em>;
 
-export default function FeaturesPage() {
+export default async function FeaturesPage(props: LocaleParams) {
+  // Lets this page prerender per language
+  setRequestLocale(await localeOf(props));
+  return <FeaturesPageContent />;
+}
+
+function FeaturesPageContent() {
   const t = useTranslations("features");
   return (
     <MarketingShell>

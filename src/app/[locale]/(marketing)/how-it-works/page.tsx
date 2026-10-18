@@ -1,3 +1,5 @@
+import { setRequestLocale } from "next-intl/server";
+import { localeOf, type LocaleParams } from "@/i18n/metadata";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import {
@@ -178,7 +180,13 @@ const VOICE = [
 
 const GOOD_TO_KNOW = ["pdfs", "pages", "silent", "languages", "free", "lost"] as const;
 
-export default function HowItWorksPage() {
+export default async function HowItWorksPage(props: LocaleParams) {
+  // Lets this page prerender per language
+  setRequestLocale(await localeOf(props));
+  return <HowItWorksPageContent />;
+}
+
+function HowItWorksPageContent() {
   const t = useTranslations("howItWorks");
   return (
     <MarketingShell>

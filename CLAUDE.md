@@ -10,7 +10,21 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 - `npm run build` / `npm start`: production build with `output: "standalone"`.
 - `npx tsc --noEmit` to typecheck, `npm run lint` to lint.
 
-## Route map (src/app)
+## Languages (next-intl)
+
+- UI languages: `en` (default, no prefix), `fr`, `es`, `ar` (RTL), `zh`, `de`. Config is in `src/i18n/`: `routing.ts` (locales, `localePrefix: "as-needed"`, native names), `request.ts`, `navigation.ts`, `metadata.ts`.
+- Every route lives under `src/app/[locale]/`; `[locale]/layout.tsx` is the root layout and sets `<html lang dir>`. `src/proxy.ts` runs the next-intl middleware after the auth-cookie check, which ignores the locale prefix. Changing the proxy `matcher` needs a dev-server restart.
+- **Navigation:** always import `Link`, `useRouter`, `usePathname` and `redirect` from `@/i18n/navigation`, never from `next/link` or `next/navigation`. They keep the language prefix, and `usePathname()` returns the path without it.
+- **Messages:** `messages/<locale>/<namespace>.json`. The namespaces are listed in `src/i18n/messages.ts` and typed in `src/global.d.ts`, so English is the reference and `t("…")` keys are type-checked. Add a key to all 6 locales, using ICU plurals (`{count, plural, one {# book} other {# books}}`; Arabic also needs `zero/two/few/many`). Use `t.rich` with `<em>`, `<link>` etc. for inline markup. Use ’ rather than `'`, because the apostrophe is ICU's escape character.
+- **Zod messages** are message keys, e.g. `"emailInvalid"` → `common.validation`. The page translates `issue.message`.
+- **Formatting:** dates go through `useFormatDate()` / `useRelativeTime()` in `lib/time.ts`, and book languages through `languageDisplayName(code, locale)`. Admin numbers use `useAdminFormat()` in `components/Admin/format.ts`. Never call `toLocale*String(undefined)`.
+- **Two separate language concepts.** The UI language comes from the URL. Zaydoun's *reply* language (`lib/languages.ts`, 5 codes, no German) is per conversation, and its default (`getReplyLanguagePref(locale)`) follows the UI language when Zaydoun can reply in it.
+- **RTL:** use logical utilities (`ms-/me-/ps-/pe-/start-/end-/border-s/rounded-s/text-start`), never `ml-/left-/text-left`. `globals.css` mirrors directional lucide icons, zeroes letter-spacing and italics, and loosens heading leading for `ar`/`zh`. Arabic UI text uses IBM Plex Sans Arabic plus Amiri; Chinese uses system CJK fonts.
+- **Static pages:** server pages call `setRequestLocale(await localeOf(props))` so they prerender per language. Public layouts build metadata and hreflang alternates with `pageMetadata()`.
+- `LocaleSwitcher` (in `@/components/ui`) appears in the marketing nav and footer, the auth pages, the app sidebar and rail, and Profile.
+- API error messages (`err.message`) still arrive in English.
+
+## Route map (src/app/[locale])
 
 - `/`: marketing home (`components/Marketing/HomeSections.tsx`, with the interactive `AskDemo`).
 - `(marketing)/features|how-it-works|faq|contact`: marketing pages. FAQ content lives in `src/lib/faq.ts`; the `/faq` page and its FAQPage JSON-LD both read it, so edit answers there. Every marketing page gets the `ScrollToTop` button from `MarketingShell`. The nav's "How it works" points to `/how-it-works`; its copy mirrors the real pipeline in `zaydoun-api`, so update it if the pipeline changes (chunk size, top-5 search, model, history length). All of them wrap in `components/Marketing/MarketingShell.tsx` (nav, footer, `Eyebrow`, `SectionTitle`, `Container`).
@@ -77,7 +91,5 @@ This is the Next.js **16** App Router app (React 19, Tailwind v4, TypeScript). I
 
 ## Known issues
 
-- The site is English-only; there's no i18n library.
-- The SEO JSON-LD in `app/layout.tsx` includes a hardcoded `aggregateRating`.
 - When updating the logged-in user, merge into it (`updateUser({ ...user, name })`). Rebuilding the object drops `role`, and admins get bounced to `/login`.
 - `next.config.ts` image `remotePatterns` only allows `localhost:5000`.
